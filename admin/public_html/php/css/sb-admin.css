@@ -1,0 +1,390 @@
+/*!
+ * Start Bootstrap - SB Admin (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+
+/* Global Styles */
+
+
+
+body {
+    margin-top: 4em;
+    background-color: #EBEBEB;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.logo{
+
+    height: 160%;
+    vertical-align: central;
+    margin-top: -6px;
+    margin-left: -18px;
+}
+
+.logo-text{
+
+    height: 50%;
+    vertical-align: central;
+    margin-top: -22px;
+    margin-left: 22px;
+}
+
+.navbar{
+
+    height:50px;
+}
+.navbar-brand
+{
+    color:#FFF;
+    font-size:20px;
+    font-family: "Arial Black", Gadget, sans-serif;
+
+}
+.navbar-brand:hover
+{
+    color:#fff;
+}
+
+
+@media(min-width:100px) {
+    body {
+        margin-top: 4em;
+
+    }
+}
+
+#wrapper {
+    padding-left: 0;
+}
+
+#page-wrapper {
+
+
+    width: 100%;
+    padding: 0;
+    background-color:  #EBEBEB;
+}
+
+.huge {
+    font-size: 50px;
+    line-height: normal;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 180px;
+    }
+
+    #page-wrapper {
+        padding: 10px;
+    }
+}
+
+/* Top Navigation */
+
+.top-nav {
+    padding: 0 15px;
+    background: #040415;
+
+}
+
+.top-nav>ul {
+
+    background-color: transparent;
+
+
+}
+
+.top-nav>li {
+
+    display: inline-block;
+    float: left;
+
+
+
+}
+
+.top-nav>li>a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    line-height: 20px;
+
+
+    /*color: #999;*/
+    color: #fff;
+
+}
+
+.top-nav>li>a:hover,
+.top-nav>li>a:focus,
+.top-nav>.open>a,
+.top-nav>.open>a:hover,
+.top-nav>.open>a:focus {
+    color: #fff;
+    background-color: rgba(192, 19, 19, 0); 
+}
+
+.top-nav>.open>.dropdown-menu {
+    float: left;
+    position: absolute;
+    margin-top: 0;
+    border: 1px solid rgba(0,0,0,.15);
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    background-color: #fff;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+
+.top-nav>.open>.dropdown-menu>li>a {
+    white-space: normal;
+}
+
+ul.message-dropdown {
+    padding: 0;
+    max-height: 250px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+li.message-preview {
+    width: 275px;
+    border-bottom: 1px solid rgba(0,0,0,.15);
+}
+
+li.message-preview>a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+li.message-footer {
+    margin: 5px 0;
+}
+
+ul.alert-dropdown {
+    width: 200px;
+}
+
+/* Side Navigation */
+
+@media(min-width:768px) {
+    .side-nav {
+        position: fixed;
+        top: 50px;
+        left: 180px;
+        width: 180px;
+        margin-left: -180px;
+        border: none;
+        border-radius: 0;
+        overflow-y: auto;
+        bottom: 0;
+        border-right: solid #F0A202;
+        overflow-x: hidden;
+        padding-bottom: 40px;
+        /*#0A0908 red:#8B0000*/
+        background: #040415 ;}
+
+
+    .side-nav>li>a {
+        width: 300px;
+        color: white;
+
+        font-size: 14px;
+    }
+
+    .side-nav li a:hover{
+
+        background: rgba(240,162,2,.8) ;
+    }
+
+
+    .side-nav li a:focus {
+        outline: none;
+        background: rgba(54,54,54,1);
+        background: -moz-linear-gradient(-45deg, rgba(54,54,54,1) 0%, rgba(46,46,46,1) 100%);
+        background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(54,54,54,1)), color-stop(100%, rgba(46,46,46,1)));
+        background: -webkit-linear-gradient(-45deg, rgba(54,54,54,1) 0%, rgba(46,46,46,1) 100%);
+        background: -o-linear-gradient(-45deg, rgba(54,54,54,1) 0%, rgba(46,46,46,1) 100%);
+        background: -ms-linear-gradient(-45deg, rgba(54,54,54,1) 0%, rgba(46,46,46,1) 100%);
+        background: linear-gradient(135deg, rgba(54,54,54,1) 0%, rgba(46,46,46,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#363636', endColorstr='#2e2e2e', GradientType=1 );
+    }
+}
+
+.side-nav>li>ul {
+    padding: 0;
+}
+
+.side-nav>li>ul>li>a {
+    display: block;
+    padding: 10px 15px 10px 38px;
+    text-decoration: none;
+    color: #999;
+}
+
+.side-nav>li>ul>li>a:hover {
+    color: #fff;
+}
+
+/* Flot Chart Containers */
+
+.flot-chart {
+    display: block;
+    height: 400px;
+}
+
+.flot-chart-content {
+    width: 100%;
+    height: 100%;
+}
+
+/* Custom Colored Panels */
+
+.huge {
+    font-size: 40px;
+}
+.panel-custom-red {
+    border-color: #8B0000;
+}
+
+.panel-custom-red > .panel-heading {
+    border-color: #8B0000;
+    color: #fff;
+    background-color: #8B0000;
+}
+
+.panel-custom-red > a {
+    color: #8B0000;
+}
+
+.panel-custom-red > a:hover {
+    color: #3d8b3d;
+}
+
+.btn-custom-red{
+    width: 150px;
+
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+
+    background-color: #114B5F;
+    color: #fff;
+}
+.btn-custom-red:hover{
+    background-color: #990f0f;
+    color: #fff;
+}
+
+.btn-custom-red-small{
+    width: 30px;
+    height: 30px;
+    align-content: center;
+    padding: 0;
+
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+
+    background-color: transparent;
+    color: #3E6990;
+}
+.btn-custom-red-small:hover{
+    background-color: #A00000;
+    color: #fff;
+}
+
+.panel-custom-black {
+    border-color: #0C0C0C;
+}
+
+.panel-custom-black > .panel-heading {
+    border-color: #0C0C0C;
+    color: #fff;
+    background: #0C0C0C;
+}
+
+
+.panel-custom-black > a {
+    color: #0C0C0C;
+}
+
+.panel-custom-black > a:hover {
+    color: silver;
+}
+
+.btn-custom-black{
+
+    -webkit-border-radius: 0 !important;
+    -moz-border-radius: 0 !important;
+    border-radius: 0 !important;
+
+
+    background-color: #0C0C0C;
+    color: #fff;
+}
+.btn-custom-black:hover{
+    background-color: silver;
+    color: #fff;
+}
+
+.p-cust{
+    font-size: 2em;
+}
+.p-cust-xs{
+    font-size: 1.5em;
+}
+
+/*
+
+.panel-red {
+    border-color: #d9534f;
+}
+
+.panel-red > .panel-heading {
+    border-color: #d9534f;
+    color: #fff;
+    background-color: #d9534f;
+}
+
+.panel-red > a {
+    color: #d9534f;
+}
+
+.panel-red > a:hover {
+    color: #b52b27;
+}
+
+*/
+
+.profile-userpic img {
+    float: none;
+    margin: 20px 48px;
+    padding:0px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50% !important;
+    border: solid 2px #EBEBEB;
+
+}
+
+.img {
+    position: relative;
+    width:  570px;
+    height: 300px;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+}
+
+.imgorg {
+    position: relative;
+    width:  100%;
+    height: 40%;
+    background-position: 50% 50%;
+    background-repeat:   no-repeat;
+    background-size:     cover;
+}
