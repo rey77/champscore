@@ -16,7 +16,7 @@ if ($_SESSION['eingeloggt'] == false) {
         <link rel="icon" type="image/png" href="img/favicon-16x16.png" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <title>Athletes</title>
-        <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+        <meta contenat='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
         <!-- Bootstrap core CSS     -->
         <link href="css/bootstrap.min.css" rel="stylesheet" />
@@ -129,7 +129,7 @@ if ($_SESSION['eingeloggt'] == false) {
                         <p><!--<img style=" margin-left: -20px; height: 70px;" class="logo" src="../img/Logo.png" alt=""/>-->
                             <img style="  height: 20px;" src="img/text.png" alt=""/></p>
                     </a>
-                    
+
                 </div>
                 <div class="logo logo-mini">
                     <a href="index.php" class="simple-text">
@@ -139,11 +139,11 @@ if ($_SESSION['eingeloggt'] == false) {
                 <div class="sidebar-wrapper">
                     <div class="user">
                         <div class="photo">
-                            <img src="uploads/profile/<?php echo $_SESSION['user_id'] . ".jpg" ?>">
+                            <img src="uploads/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
                         </div>
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                                <?php echo $_SESSION['username']; ?>
+                                <?php echo $_SESSION['hostEmail']; ?>
                                 <b class="caret"></b>
                             </a>
                             <div class="collapse" id="collapseExample">
@@ -163,51 +163,21 @@ if ($_SESSION['eingeloggt'] == false) {
                     </div>
                     <ul class="nav">
                         <li>
-                            <a href="./allCompetitions.php">
+                            <a href="./hostAllCompetitions.php">
                                 <i class="material-icons">public</i>
                                 <p>All Competitions</p>
                             </a>
                         </li>
-                        <li>
+                        <li class="active">
 
-                            <a data-toggle="collapse" href="#host">
-                                <i class="material-icons">person</i>
-                                <p>Competition Host
-                                    <b class="caret"></b>
+                            <a  href="./hostCompetitions.php">
+                                <i class="material-icons">dashboard</i>
+                                <p>My Competitions
                                 </p>
                             </a>
-                            <div class="collapse out" id="host">
-                                <ul class="nav">
-                                    <!--<li>
-                                        <a href="./hostDashboard.php">Dashboard</a>
-                                    </li>-->
-                                    <li>
-                                        <a href="./hostCompetitions.php">Competitions</a>
-                                    </li>
-
-                                </ul>
-                            </div>
                         </li>
 
-                        <li>
-                            <a data-toggle="collapse" href="#athlete">
-                                <i class="material-icons">person_outline</i>
-                                <p>Athlete
-                                    <b class="caret"></b>
-                                </p>
-                            </a>
-                            <div class="collapse out" id="athlete">
-                                <ul class="nav">
-                                    <!--<li>
-                                        <a href="./athleteDashboard.php">Dashboard</a>
-                                    </li>-->
-                                    <li>
-                                        <a href="./athleteCompetitions.php">Competitions</a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </li>
+                        
                     </ul>
                 </div>
             </div>
@@ -397,7 +367,7 @@ if ($_SESSION['eingeloggt'] == false) {
 
                                                                 <thead>
                                                                 <th><?php echo $tblHeader1 ?></th>
-                                                                <th><?php echo $tblHeader2 ?></th>
+                                                                <!--<th><?php echo $tblHeader2 ?></th>-->
                                                                 <?php
                                                                 if ($tblHeader3 != "") {
                                                                     echo "<th>$tblHeader3</th>";
@@ -431,7 +401,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                                                                 $teamName = $zeile['team_name'];
                                                                                 $teamBox = $zeile['team_affiliate'];
 
-                                                                                $sql_team_member = "select team_member_ID, fk_user_ID from tbl_team_member where fk_team_ID = ?";
+                                                                                $sql_team_member = "select team_member_ID, fk_athlete_ID from tbl_team_member where fk_team_ID = ?";
                                                                                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                                                                                 $q_team_member = $pdo->prepare($sql_team_member);
                                                                                 $q_team_member->execute(array($teamID));
@@ -441,27 +411,25 @@ if ($_SESSION['eingeloggt'] == false) {
                                                                                     <td >
                                                                                         <?php echo $teamName ?>
                                                                                     </td>
-                                                                                    <td>
-                                                                                        <?php echo $teamBox ?>
-                                                                                    </td>
+                                                                                    
                                                                                     <td>
                                                                                         <?php
                                                                                         while ($zeile = $q_team_member->fetch(PDO::FETCH_ASSOC)) {
 
-                                                                                            $teamMemberID = $zeile['fk_user_ID'];
-                                                                                            $sql_user = "SELECT user_ID, user_email, user_firstname, user_lastname, user_name FROM `tbl_user` where user_ID=?";
+                                                                                            $teamMemberID = $zeile['fk_athlete_ID'];
+                                                                                            $sql_athlete = "SELECT athlete_ID, athlete_email, athlete_firstname, athlete_lastname FROM `tbl_athlete` where athlete_ID=?";
                                                                                             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                                                                                            $q_user = $pdo->prepare($sql_user);
-                                                                                            $q_user->execute(array($teamMemberID));
+                                                                                            $q_athlete = $pdo->prepare($sql_athlete);
+                                                                                            $q_athlete->execute(array($teamMemberID));
 
-                                                                                            while ($zeile = $q_user->fetch()) {
+                                                                                            while ($zeile = $q_athlete->fetch()) {
 
-                                                                                                $userID = $zeile['user_ID'];
-                                                                                                $userFirstName = $zeile['user_firstname'];
-                                                                                                $userLastName = $zeile['user_lastname'];
+                                                                                                $athleteID = $zeile['athlete_ID'];
+                                                                                                $athleteFirstName = $zeile['athlete_firstname'];
+                                                                                                $athleteLastName = $zeile['athlete_lastname'];
 
 
-                                                                                                echo $userFirstName . " " . $userLastName . ", ";
+                                                                                                echo $athleteFirstName . " " . $athleteLastName . ", ";
                                                                                             }
                                                                                         }
                                                                                         ?>
@@ -469,16 +437,16 @@ if ($_SESSION['eingeloggt'] == false) {
                                                                                     </td>
                                                                                     <td class="td-actions text-right">
 
-                                                                                        <form name="editTeam" action = "editTeam.php" method="POST" role="form">
+                                                                                        <form name="editTeam" action = "#" method="POST" role="form">
                                                                                             <div style="display:none;">
                                                                                                 <input type="hidden" name="teamID" class="form-control" value="<?php echo $teamID ?>" >
                                                                                                 <input type="hidden" name="divID" class="form-control" value="<?php echo $divID ?>">
                                                                                             </div>
 
 
-                                                                                            <button type="submit" rel="tooltip" class="btn btn-round">
+                                                                                            <!--<button type="submit" rel="tooltip" class="btn btn-round">
                                                                                                 <i class="material-icons">edit</i>
-                                                                                            </button>
+                                                                                            </button>-->
                                                                                             <button type="button" onclick = "deleteTeam(<?php echo $teamID ?>);" rel="tooltip" class="btn btn-round btn-danger">
                                                                                                 <i class="material-icons">close</i>
                                                                                             </button>
@@ -499,15 +467,15 @@ if ($_SESSION['eingeloggt'] == false) {
                                                                         while ($zeile = $q_ad->fetch(PDO::FETCH_ASSOC)) {
                                                                             $athleteID = $zeile['fk_athlete_ID'];
 
-                                                                            $sql_athl = "select athlete_ID, athlete_name, athlete_box from tbl_athlete where athlete_ID = ?";
+                                                                            $sql_athl = "select athlete_ID,  athlete_affiliate, athlete_firstname, athlete_lastname from tbl_athlete where athlete_ID = ?";
                                                                             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                                                                             $q_athl = $pdo->prepare($sql_athl);
                                                                             $q_athl->execute(array($athleteID));
 
                                                                             while ($zeile = $q_athl->fetch(PDO::FETCH_ASSOC)) {
                                                                                 $athleteID = $zeile['athlete_ID'];
-                                                                                $athleteName = $zeile['athlete_name'];
-                                                                                $athleteBox = $zeile['athlete_box'];
+                                                                                $athleteName = $zeile['athlete_firstname'] ." ". $zeile['athlete_lastname'] ;
+                                                                                $athleteBox = $zeile['athlete_affiliate'];
                                                                                 ?>
 
 
@@ -515,9 +483,9 @@ if ($_SESSION['eingeloggt'] == false) {
                                                                                     <td>
                                                                                         <?php echo $athleteName ?>
                                                                                     </td>
-                                                                                    <td>
+                                                                                  <!--  <td>
                                                                                         <?php echo $athleteBox ?>
-                                                                                    </td>
+                                                                                    </td>-->
                                                                                     <td class="td-actions text-right">
 
                                                                                         <form name="editAthlete" action = "editAthlete.php" method="POST" role="form">
@@ -607,6 +575,6 @@ if ($_SESSION['eingeloggt'] == false) {
         <script src="js/demo.js"></script>
         <script src="js/bootstrap.min.js"></script>
 
-</body>
+    </body>
 
 </html>

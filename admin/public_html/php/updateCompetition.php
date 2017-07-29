@@ -40,7 +40,7 @@ $q = $pdo->prepare($sql);
 $q->execute(array($compName, $compDescShort, $compDescLong, $regCode, $compLocation, $compFacebookLink, $compStartDate, $compStartTime, $compEndDate, $compEndTime, $compStreet, $compZip, $compCity, $compCountry, $compMainColor, $compAccentColor, $compID));
 
 //save competition logo
-$target_dir = "uploads/complogo/";
+$target_dir = "uploads/host/complogo/";
 $target_file = $target_dir . basename($_FILES["compLogo"]["name"]);
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
@@ -76,9 +76,9 @@ if ($uploadOk == 0) {
 } else {
 
     $temp = explode(".", $_FILES["compLogo"]["name"]);
-    $newfilename = $compID . '.' . end($temp);
+    $newfilename = $compID . '.jpg';// . end($temp);
 
-    if (move_uploaded_file($_FILES["compLogo"]["tmp_name"], "uploads/complogo/" . $newfilename /* $target_file */)) {
+    if (move_uploaded_file($_FILES["compLogo"]["tmp_name"], "uploads/host/complogo/" . $newfilename /* $target_file */)) {
         echo "The file " . basename($_FILES["compLogo"]["name"]) . " has been uploaded.";
 
         $sql_logo = "UPDATE tbl_competition SET comp_logo = ? WHERE comp_id =?";
@@ -94,7 +94,7 @@ if ($uploadOk == 0) {
 
 
 //save competition banner
-$target_dir = "uploads/compbanner/";
+$target_dir = "uploads/host/compbanner/";
 $target_file = $target_dir . basename($_FILES["compBanner"]["name"]);
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
@@ -130,9 +130,9 @@ if ($uploadOk == 0) {
 } else {
 
     $temp = explode(".", $_FILES["compBanner"]["name"]);
-    $newfilename = $compID . '.' . end($temp);
+    $newfilename = $compID . '.jpg';// . end($temp);
     echo $newfilename;
-    if (move_uploaded_file($_FILES["compBanner"]["tmp_name"], "uploads/compbanner/" . $newfilename /* $target_file */)) {
+    if (move_uploaded_file($_FILES["compBanner"]["tmp_name"], "uploads/host/compbanner/" . $newfilename /* $target_file */)) {
         echo "The file " . basename($_FILES["compBanner"]["name"]) . " has been uploaded.";
 
         $sql_logo = "UPDATE tbl_competition SET comp_banner = ? WHERE comp_id =?";
@@ -148,7 +148,7 @@ if ($uploadOk == 0) {
 
 
 //save PDF File for terms and conditions--------------------------------
-$target_dir = "uploads/terms/";
+$target_dir = "uploads/host/terms/";
 $target_file = $target_dir . basename($_FILES["compTerms"]["name"]);
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
@@ -186,9 +186,9 @@ if ($uploadOk == 0) {
 } else {
 
     $temp = explode(".", $_FILES["compTerms"]["name"]);
-    $newfilename = $compID . '.' . end($temp);
+    $newfilename = $compID . '.jpg'; //. end($temp);
 
-    if (move_uploaded_file($_FILES["compTerms"]["tmp_name"], "uploads/terms/" . $newfilename /* $target_file */)) {
+    if (move_uploaded_file($_FILES["compTerms"]["tmp_name"], "uploads/host/terms/" . $newfilename /* $target_file */)) {
         echo "The file " . basename($_FILES["compTerms"]["name"]) . " has been uploaded.";
 
         $sql_terms = "UPDATE tbl_competition SET comp_terms = ? WHERE comp_id =?";

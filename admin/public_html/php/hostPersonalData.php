@@ -7,36 +7,34 @@ if ($_SESSION['eingeloggt'] == false) {
 }
 ?>
 <?php
-$userID = $_SESSION['user_id'];
+$hostID = $_SESSION['host_id'];
 include 'Database.php';
 $pdo = Database::connect();
 
-$sql_user = "select * from tbl_user "
-        . "where tbl_user.user_ID = ?";
+$sql_host = "select * from tbl_host "
+        . "where tbl_host.host_ID = ?";
 
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$q_user = $pdo->prepare($sql_user);
-$q_user->execute(array($userID));
+$q_host = $pdo->prepare($sql_host);
+$q_host->execute(array($hostID));
 
 
-while ($zeile = $q_user->fetch(/* PDO::FETCH_ASSOC */)) {
-    $userName = $zeile["user_name"];
-    $userFirstname = $zeile["user_firstname"];
-    $userLastname = $zeile["user_lastname"];
-    $userStreet = $zeile["user_street"];
-    $userZip = $zeile["user_zip"];
-    $userCity = $zeile["user_city"];
-    $userCountry = $zeile["user_country"];
-    $userBirthdate = $zeile["user_birthdate"];
-    $userGender = $zeile["user_gender"];
-    $userAffiliate = $zeile["user_affiliate"];
-    $userBestScore = $zeile["user_bestscore"];
-    $userShirtsize = $zeile["user_shirtsize"];
-    $userEmail = $zeile["user_email"];
+while ($zeile = $q_host->fetch(/* PDO::FETCH_ASSOC */)) {
+    $hostFirstname = $zeile["host_firstname"];
+    $hostLastname = $zeile["host_lastname"];
+    $hostStreet = $zeile["host_street"];
+    $hostZip = $zeile["host_zip"];
+    $hostCity = $zeile["host_city"];
+    $hostCountry = $zeile["host_country"];
+    $hostBirthdate = $zeile["host_birthdate"];
+    $hostGender = $zeile["host_gender"];
+    $hostAffiliate = $zeile["host_affiliate"];
+    $hostEmail = $zeile["host_email"];
+    $hostAvatar = $zeile["host_avatar"];
 }
 
 
-while ($zeile = $q_user->fetch(/* PDO::FETCH_ASSOC */)) {
+while ($zeile = $q_host->fetch(/* PDO::FETCH_ASSOC */)) {
     
 }
 Database::disconnect();
@@ -71,9 +69,9 @@ Database::disconnect();
 
             function setCountryGender() {
 
-                document.getElementById("country").value = "<?php echo $userCountry ?>";
+                document.getElementById("country").value = "<?php echo $hostCountry ?>";
 
-                if (<?php echo $userGender ?> === 1) {
+                if (<?php echo $hostGender ?> === 1) {
                     document.getElementById("femaleRadio").checked = true;
                     document.getElementById("maleRadio").checked = false;
                 } else {
@@ -84,29 +82,27 @@ Database::disconnect();
             }
 
             //Funktion zur Prüfung der Registrierungsdaten
-            function mySubmitUserData()
+            function mySubmitHostData()
             {
 
-                var filename = <?php echo $_SESSION['user_id']; ?> + ".jpg";
+                var filename = <?php echo $_SESSION['host_id']; ?> + ".jpg";
 
                 var formData = new FormData();
                 formData.append('fileToUpload', $('#fileToUpload')[0].files[0], filename);
-                formData.append('lastname', document.getElementById('userLastName').value);
-                formData.append('firstname', document.getElementById('userFirstName').value);
-                formData.append('street', document.getElementById('userStreet').value);
-                formData.append('zip', document.getElementById('userZip').value);
-                formData.append('city', document.getElementById('userCity').value);
+                formData.append('lastname', document.getElementById('hostLastName').value);
+                formData.append('firstname', document.getElementById('hostFirstName').value);
+                formData.append('street', document.getElementById('hostStreet').value);
+                formData.append('zip', document.getElementById('hostZip').value);
+                formData.append('city', document.getElementById('hostCity').value);
                 formData.append('country', $("#country").val());
-                formData.append('affiliate', $("#userAffiliate").val());
-                formData.append('birthdate', $("#userBirthDate").val());
-                formData.append('bestscore', document.getElementById('userBestScore').value);
-                formData.append('shirtsize', document.getElementById('userShirtSize').value);
+                formData.append('affiliate', $("#hostAffiliate").val());
+                formData.append('birthdate', $("#hostBirthDate").val());
                 formData.append('gender', document.querySelector('input[name = "gender" ]:checked').value);
 
 
                 $.ajax({
                     type: "POST",
-                    url: "updateUserData.php",
+                    url: "updateHostData.php",
                     cache: false,
                     data: formData,
                     processData: false, // tell jQuery not to process the data
@@ -132,7 +128,7 @@ Database::disconnect();
             function mySubmitProfilePic()
             {
 
-                var filename = <?php echo $_SESSION['user_id']; ?> + ".jpg";
+                var filename = <?php echo $_SESSION['host_id']; ?> + ".jpg";
 
                 var formData = new FormData();
                 formData.append('fileToUpload', $('#fileToUpload')[0].files[0], filename);
@@ -190,11 +186,11 @@ Database::disconnect();
                 <div class="sidebar-wrapper">
                     <div class="user">
                         <div class="photo">
-                            <img src="uploads/profile/<?php echo $_SESSION['user_id'] . ".jpg" ?>">
+                            <img src="uploads/host/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
                         </div>
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                                <?php echo $userName ?>
+                                <?php echo $hostEmail ?>
                                 <b class="caret"></b>
                             </a>
                             <div class="collapse" id="collapseExample">
@@ -203,7 +199,7 @@ Database::disconnect();
                                         <a href="#">My Profile</a>
                                     </li>-->
                                     <li>
-                                        <a href="person.php">Edit Profile</a>
+                                        <a href="hostPersonalData.php">Edit Profile</a>
                                     </li>
                                     <li>
                                         <a href="loginsec/logout.php">Log out</a>
@@ -217,51 +213,21 @@ Database::disconnect();
                     </div>
                     <ul class="nav">
                         <li>
-                            <a href="./allCompetitions.php">
+                            <a href="./hostAllCompetitions.php">
                                 <i class="material-icons">public</i>
                                 <p>All Competitions</p>
                             </a>
                         </li>
                         <li>
-
-                            <a data-toggle="collapse" href="#host">
-                                <i class="material-icons">person</i>
-                                <p>Competition Host
-                                    <b class="caret"></b>
-                                </p>
+                            
+                            <a href="./hostCompetitions.php">
+                                <i class="material-icons">dashboard</i>
+                               <p>My Competitions</p>
+                            
                             </a>
-                            <div class="collapse out" id="host">
-                                <ul class="nav">
-                                    <!--<li>
-                                        <a href="./hostDashboard.php">Dashboard</a>
-                                    </li>-->
-                                    <li>
-                                        <a href="./hostCompetitions.php">Competitions</a>
-                                    </li>
-
-                                </ul>
-                            </div>
                         </li>
 
-                        <li>
-                            <a data-toggle="collapse" href="#athlete">
-                                <i class="material-icons">person_outline</i>
-                                <p>Athlete
-                                    <b class="caret"></b>
-                                </p>
-                            </a>
-                            <div class="collapse out" id="athlete">
-                                <ul class="nav">
-                                    <!--<li>
-                                        <a href="./athleteDashboard.php">Dashboard</a>
-                                    </li>-->
-                                    <li>
-                                        <a href="./athleteCompetitions.php">Competitions</a>
-                                    </li>
 
-                                </ul>
-                            </div>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -350,7 +316,7 @@ Database::disconnect();
 
                                     <div class="card-content">
 
-                                        <form name ="formUserData" role="form" enctype="multipart/form-data" onsubmit="return mySubmitUserData()">
+                                        <form name ="formHostData" role="form" enctype="multipart/form-data" onsubmit="return mySubmitHostData()">
 
                                             <div class="row">
 
@@ -362,43 +328,38 @@ Database::disconnect();
                                                 </div>-->
                                                 <div class="col-lg-4 col-lg-offset-4 fileinput fileinput-new text-center" data-provides="fileinput">
                                                     <div class="fileinput-new thumbnail img-circle img-raised">
-                                                        <img src="uploads/profile/<?php echo $_SESSION['user_id'] . ".jpg" ?>" alt="...">
+                                                        <img src="uploads/host/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>" alt="...">
                                                     </div>
 
                                                     <div class="fileinput-preview fileinput-exists thumbnail img-circle img-raised"></div>
-                                                    <h4 class="card-title"><?php echo $userFirstname . " " . $userLastname ?></h4>
+                                                    <h4 class="card-title"><?php echo $hostFirstname . " " . $hostLastname ?></h4>
                                                     <p class="description">
-                                                        <?php echo $userAffiliate ?>
+                                                        <?php echo $hostAffiliate ?>
                                                     </p>
                                                     <div>
                                                         <span class="btn btn-raised btn-round btn-default btn-file">
                                                             <span class="fileinput-new">Select Photo</span>
                                                             <span class="fileinput-exists">Change</span>
 
-                                                            <input type="file"  name="fileToUpload" id="fileToUpload" value="uploads/profile/<?php echo $_SESSION['user_id'] . ".jpg" ?>"/></span>
+                                                            <input type="file"  name="fileToUpload" id="fileToUpload" value="uploads/host/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>"/></span>
                                                         <br />
-                                                        <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"> Remove</a>
+                                                        
 
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <div class="col-md-3">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Username</label>
-                                                        <input type="text" id="userName" class="form-control" value="<?php echo $userName; ?>" disabled>
-                                                    </div>
-                                                </div>
+                                                
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Email address</label>
-                                                        <input type="email" id="email" class="form-control" value="<?php echo $userEmail ?>" disabled>
+                                                        <input type="email" id="email" class="form-control" value="<?php echo $hostEmail ?>" disabled>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Affiliate</label>
-                                                        <input type="text" id="userAffiliate"  class="form-control" value="<?php echo $userAffiliate ?>" >
+                                                        <input type="text" id="hostAffiliate"  class="form-control" value="<?php echo $hostAffiliate ?>" >
                                                     </div>
                                                 </div>
                                             </div>
@@ -406,19 +367,19 @@ Database::disconnect();
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">First Name</label>
-                                                        <input type="text" id="userFirstName" class="form-control" value="<?php echo $userFirstname ?>">
+                                                        <input type="text" id="hostFirstName" class="form-control" value="<?php echo $hostFirstname ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Last Name</label>
-                                                        <input type="text" id="userLastName" class="form-control" value="<?php echo $userLastname ?>">
+                                                        <input type="text" id="hostLastName" class="form-control" value="<?php echo $hostLastname ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Date of Birth</label>
-                                                        <input type="date" id="userBirthDate" class="form-control" value=<?php echo $userBirthdate ?>>
+                                                        <input type="date" id="hostBirthDate" class="form-control" value=<?php echo $hostBirthdate ?>>
                                                     </div>
                                                 </div>
                                             </div>
@@ -439,7 +400,7 @@ Database::disconnect();
                                                 <div class="col-md-12">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Street</label>
-                                                        <input type="text" id="userStreet" class="form-control" value="<?php echo $userStreet ?>">
+                                                        <input type="text" id="hostStreet" class="form-control" value="<?php echo $hostStreet ?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -447,14 +408,14 @@ Database::disconnect();
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">ZIP</label>
-                                                        <input type="text" id="userZip" class="form-control" value="<?php echo $userZip ?>">
+                                                        <input type="text" id="hostZip" class="form-control" value="<?php echo $hostZip ?>">
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">City</label>
-                                                        <input type="text" id="userCity" class="form-control" value="<?php echo $userCity ?>">
+                                                        <input type="text" id="hostCity" class="form-control" value="<?php echo $hostCity ?>">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
@@ -716,22 +677,7 @@ Database::disconnect();
 
                                             </div>
 
-                                            <div class="row">
-
-
-                                                <div class="col-md-4">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">T-Shirt Size</label>
-                                                        <input type="text" id="userShirtSize"  class="form-control" value="<?php echo $userShirtsize ?>">
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div class="form-group label-floating">
-                                                        <label class="control-label">Personal Best in Competitive Fitness</label>
-                                                        <input type="text" id="userBestScore"  class="form-control" value="<?php echo $userBestScore ?>">
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
 
                                             <button type="submit" class="btn btn-pinterest pull-right">Save Data</button>
                                             <div class="clearfix"></div>
@@ -826,7 +772,7 @@ Database::disconnect();
                 </div>
             </footer>
         </div>
-    </div>
+    
 
 </body>
 

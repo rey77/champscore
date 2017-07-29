@@ -7,14 +7,14 @@ if ($_SESSION['eingeloggt'] == false) {
     exit();
 }
 
-$userID = $_SESSION['user_id'];
+$hostID = $_SESSION['host_id'];
 include 'Database.php';
 $pdo = Database::connect();
 
-$sql = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_city, comp_country, comp_active from tbl_competition where fk_user_id = ?";
+$sql = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_city, comp_country, comp_active from tbl_competition where fk_host_id = ?";
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $q = $pdo->prepare($sql);
-$q->execute(array($userID));
+$q->execute(array($hostID));
 
 Database::disconnect();
 ?>
@@ -68,11 +68,11 @@ Database::disconnect();
                 <div class="sidebar-wrapper">
                     <div class="user">
                         <div class="photo">
-                            <img src="uploads/profile/<?php echo $_SESSION['user_id'] . ".jpg" ?>">
+                            <img src="uploads/host/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
                         </div>
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                                <?php echo $_SESSION['username']; ?>
+                                <?php echo $_SESSION['hostEmail']; ?>
                                 <b class="caret"></b>
                             </a>
                             <div class="collapse" id="collapseExample">
@@ -90,51 +90,21 @@ Database::disconnect();
                     </div>
                     <ul class="nav">
                         <li>
-                            <a href="./allCompetitions.php">
+                            <a href="./hostAllCompetitions.php">
                                 <i class="material-icons">public</i>
                                 <p>All Competitions</p>
                             </a>
                         </li>
-                        <li class="active">
-
-                            <a data-toggle="collapse" href="#host">
-                                <i class="material-icons">person</i>
-                                <p>Competition Host
-                                    <b class="caret"></b>
-                                </p>
+                        <li  class="active">
+                            
+                            <a href="./hostCompetitions.php">
+                                <i class="material-icons">dashboard</i>
+                               <p>My Competitions</p>
+                            
                             </a>
-                            <div class="collapse in" id="host">
-                                <ul class="nav">
-                                    <!--<li>
-                                        <a href="./hostDashboard.php">Dashboard</a>
-                                    </li>-->
-                                    <li class="active">
-                                        <a href="./hostCompetitions.php">Competitions</a>
-                                    </li>
-
-                                </ul>
-                            </div>
                         </li>
 
-                        <li>
-                            <a data-toggle="collapse" href="#athlete">
-                                <i class="material-icons">person_outline</i>
-                                <p>Athlete
-                                    <b class="caret"></b>
-                                </p>
-                            </a>
-                            <div class="collapse out" id="athlete">
-                                <ul class="nav">
-                                    <!--<li>
-                                        <a href="./athleteDashboard.php">Dashboard</a>
-                                    </li>-->
-                                    <li>
-                                        <a href="./athleteCompetitions.php">Competitions</a>
-                                    </li>
 
-                                </ul>
-                            </div>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -154,7 +124,7 @@ Database::disconnect();
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"> My Competitions </a>
+                         <a class="navbar-brand" href="#"> My Competitions </a>
                         </div>
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-right">
@@ -236,7 +206,7 @@ Database::disconnect();
 
                             $compLogo = $zeile['comp_logo'];
                             if ($compLogo != 0) {
-                                $logosrc = "uploads/complogo/$compLogo";
+                                $logosrc = "uploads/host/complogo/$compLogo";
                             } else {
                                 $logosrc = "img/image_placeholder.jpg";
                             }

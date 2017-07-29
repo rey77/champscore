@@ -53,19 +53,19 @@ $compID = $_GET['comp_id'];
 
 
         if ($compLogo != 0) {
-            $logosrc = "uploads/complogo/$compLogo";
+            $logosrc = "uploads/host/complogo/$compLogo";
         } else {
             $logosrc = "img/image_placeholder.jpg";
         }
 
         if ($compTerms != 0) {
-            $termsSrc = "uploads/terms/$compTerms";
+            $termsSrc = "uploads/host/terms/$compTerms";
         } else {
             $termsSrc = "img/image_placeholder.jpg";
         }
 
         if ($compTerms != 0) {
-            $bannersrc = "uploads/compbanner/$compBanner";
+            $bannersrc = "uploads/host/compbanner/$compBanner";
         } else {
             $bannersrc = "img/image_placeholder.jpg";
         }
@@ -154,7 +154,7 @@ $compID = $_GET['comp_id'];
 
                             newdiv.innerHTML = "<div class=\"col-md-5 col-md-offset-0 form-group label-floating\"><b>" + (counter + suffix) + " Member " + captain + "</b><br><input type='text' id='firstName" + counter + "'   class='form-control' placeholder ='First Name' required>\n\
                                               <input type='text' id='lastName" + counter + "' class='form-control' placeholder ='Last Name' required>\n\
-                                            <input type='email' id='userEmail" + counter + "' name='userEmail[" + counter + "]' class='form-control' placeholder ='E-Mail' email='true' required><span id='user-result" + counter + "' ></span></div>";
+                                            <input type='email' id='athleteEmail" + counter + "' name='athleteEmail[" + counter + "]' class='form-control' placeholder ='E-Mail' email='true' required><span id='athlete-result" + counter + "' ></span></div>";
 
 
                             //append("<input type='text'/><br/>");
@@ -165,7 +165,7 @@ $compID = $_GET['comp_id'];
 
                             newdiv.innerHTML = "<div class=\"col-md-5 col-md-offset-0 form-group label-floating has-success\"><b>" + (counter + suffix) + " Member</b><br><input type='text' id='firstName" + counter + "'  class='form-control' placeholder ='First Name' required>\n\
                                               <input type='text' id='lastName" + counter + "'  class='form-control' placeholder ='Last Name' required>\n\
-                                            <input type='email' id='userEmail" + counter + "'  name='userEmail[" + counter + "]' class='form-control' placeholder ='E-Mail' email='true' required><span id='user-result" + counter + "' ></span></div>";
+                                            <input type='email' id='athleteEmail" + counter + "'  name='athleteEmail[" + counter + "]' class='form-control' placeholder ='E-Mail' email='true' required><span id='athlete-result" + counter + "' ></span></div>";
                         }
 
 
@@ -174,22 +174,22 @@ $compID = $_GET['comp_id'];
                         clearTimeout(x_timer); //clear any previously set 
                         var x_timer;
 
-                        $('#userEmail' + counter).keyup(function (e) {
+                        $('#athleteEmail' + counter).keyup(function (e) {
 
-                            var user = this.value;
-                            var id = this.getAttribute('id').substr(9);
+                            var athlete = this.value;
+                            var id = this.getAttribute('id').substr(12);
 
                             e.preventDefault();
                             clearTimeout(x_timer);
 
                             x_timer = setTimeout(function () {
-                                check_user_ajax(user, id);
+                                check_athlete_ajax(athlete, id);
                             }, 500);
                         });
 
-                        function check_user_ajax(user, id) {
+                        function check_athlete_ajax(athlete, id) {
 
-                            $.post('user_checker.php', {'user_email': user}, function (data) {
+                            $.post('athlete_checker.php', {'athlete_email': athlete}, function (data) {
 
                                 if (data) {
                                     document.getElementById("btnRegister").disabled = false;
@@ -199,7 +199,7 @@ $compID = $_GET['comp_id'];
                                     var message = 'Select an existing Athlete';
                                 }
 
-                                $('#user-result' + id).html(message);
+                                $('#athlete-result' + id).html(message);
 
                             });
                         }
@@ -252,7 +252,7 @@ $compID = $_GET['comp_id'];
 
                     <div class="col-sm-8 col-sm-offset-2">
 
-                        <div class="card card-signup" style="opacity: 0.8">
+                        <div class="card card-signup" style="opacity: 0.9">
                             <h2 class="wizard-title text-center"><?php echo $compName ?></h2>
 
 

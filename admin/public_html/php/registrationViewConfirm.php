@@ -52,13 +52,13 @@ $compID = $_GET['comp_id'];
 
 
         if ($compLogo != 0) {
-            $logosrc = "uploads/complogo/$compLogo";
+            $logosrc = "uploads/host/complogo/$compLogo";
         } else {
             $logosrc = "img/image_placeholder.jpg";
         }
 
         if ($compTerms != 0) {
-            $termsSrc = "uploads/terms/$compTerms";
+            $termsSrc = "uploads/host/terms/$compTerms";
         } else {
             $termsSrc = "img/image_placeholder.jpg";
         }

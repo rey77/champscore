@@ -5,7 +5,7 @@ session_start();
 include 'Database.php';
 $pdo = Database::connect();
 
-$userID = $_SESSION['user_id']; //aus Session Variable nehmen
+$hostID = $_SESSION['host_id']; //aus Session Variable nehmen
 $wodName = $_POST['wodName'];
 $wodType = $_POST['wodType'];
 $wodDesc = $_POST['wodDescription'];

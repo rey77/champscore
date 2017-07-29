@@ -1,10 +1,6 @@
 <?PHP
 session_start();
 
-if (isset($_SESSION['message'])) {
-    echo $_SESSION['message'];
-    unset($_SESSION['message']);
-}
 
 // Session beenden 
 // damit können wir diese Seite als "Logout" verwenden
@@ -88,57 +84,33 @@ if (ini_get("session.use_cookies")) {
                                         <i class="fa fa-instagram"></i>
                                     </a>
                                 </li>-->
-                                <li class="button-container">
+                               <!-- <li class="button-container">
                                     <a href="php/login.php"  class="btn btn-pinterest ">
                                         Login
                                     </a>
-                                </li>
+                                </li>-->
                             </ul>
                         </div>
                     </div>
                 </nav>
 
-                <div class="page-header header-filter" style="background-image: url('php/img/header.jpg');">
+                <div class="page-header header-filter" style="background-image: url('img/header.jpg');">
                     <div class="container">
                         <div class="row">
-                            <div class="col-md-8 col-md-offset-2 text-center">
+                            <!--<div class="col-md-8 col-md-offset-2 text-center">
                                 <h1 class="title"> Your Favorite Competition Management Tool</h1>
                                 <h4>You will have an unique competition experience using champscore</h4>
+                            </div>-->
+                            <div class="col-md-6 col-md-offset-0 text-center">
+                                <h1 class="title">ATHLETES</h1>
+                                <a class="btn btn-pinterest" href="php/athleteLogin.php">Login</a>
+                                <a class="btn btn-pinterest" href="php/athleteRegister.php">Register</a>
                             </div>
-                            <div class="col-md-10 col-md-offset-1">
-                                <div class="card card-raised card-form-horizontal">
-                                    <div class="card-content">
-                                        <form method="POST" action="php/firstLogin.php">
-                                            <div class="row">
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <input name="newUserName" type="text" value="" placeholder="User Name" class="form-control"  required />
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <input name="newUserEmail" type="email" value="" placeholder="Email" class="form-control" required/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <input name ="password1" type="password" value="" placeholder="Password" class="form-control"  required/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <div class="form-group">
-                                                        <input name= "password2" type="password" value="" placeholder="Confirm Password" class="form-control" required />
-                                                    </div>
-                                                </div>
-                                            </div><br>
-                                            <div class="row">
-                                                <div class="col-md-2 col-md-offset-5">
-                                                    <button type="submit" class="btn btn-oxfordblue btn-block">Sign up</button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
+                            
+                            <div class="col-md-6 col-md-offset-0 text-center">
+                                <h1 class="title">HOSTS</h1>
+                                <a class="btn btn-pinterest" href="php/hostLogin.php">Login</a>
+                                <a class="btn btn-pinterest" href="#">Register (coming soon)</a>
                             </div>
                         </div>
                     </div>
@@ -163,15 +135,15 @@ if (ini_get("session.use_cookies")) {
                     </div>
 
                     <div class="row">
+                        
                         <?php
+                        
                         include 'php/Database.php';
                         $pdo = Database::connect();
-
                         $sql = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_city, comp_country from tbl_competition";
                         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                         $q = $pdo->prepare($sql);
                         $q->execute(array());
-
                         while ($zeile = $q->fetch(/* PDO::FETCH_ASSOC */)) {
 
                             $compID = $zeile['comp_ID'];
@@ -179,7 +151,7 @@ if (ini_get("session.use_cookies")) {
 
                             if ($compLogo != 0) {
 
-                                $logosrc = "php/uploads/complogo/$compLogo";
+                                $logosrc = "php/uploads/host/complogo/$compLogo";
                             } else {
                                 $logosrc = "http://placehold.it/400x250/000/fff";
                             }
@@ -220,7 +192,7 @@ if (ini_get("session.use_cookies")) {
                 </div>
             </div>
         </div>
-        <div class="cd-section" id="pricing">
+       <!-- <div class="cd-section" id="pricing">
 
 
             <div class="pricing-2" id="pricing-2">
@@ -265,7 +237,7 @@ if (ini_get("session.use_cookies")) {
                 </div>
             </div>
 
-        </div>
+        </div>-->
 
 
     </body>

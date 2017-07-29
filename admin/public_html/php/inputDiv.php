@@ -7,7 +7,7 @@ $pdo = Database::connect();
 
 // INSERT COMPETITION IN DB
 
-$userID = $_SESSION['user_id']; //aus Session Variable nehmen
+$hostID = $_SESSION['host_id']; //aus Session Variable nehmen
 $divisionName = $_POST['divName'];
 $teamSize = $_POST['teamSize'];
 $compID = $_POST['compID'];

@@ -25,12 +25,12 @@ while ($zeile = $q->fetch(/* PDO::FETCH_ASSOC */)) {
 }
 
 if ($compLogo != 0) {
-    $logosrc = "uploads/complogo/$compLogo";
+    $logosrc = "uploads/host/complogo/$compLogo";
 } else {
     $logosrc = "http://placehold.it/400x250/000/fff";
 }
 if ($compBanner != 0) {
-    $bannersrc = "uploads/compbanner/$compBanner";
+    $bannersrc = "uploads/host/compbanner/$compBanner";
 } else {
     $bannersrc = "img/banner.jpg";
 }

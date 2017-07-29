@@ -77,11 +77,11 @@ Database::disconnect();
                 <div class="sidebar-wrapper">
                     <div class="user">
                         <div class="photo">
-                            <img src="uploads/profile/<?php echo $_SESSION['user_id'] . ".jpg" ?>">
+                            <img src="uploads/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
                         </div>
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                                <?php echo $_SESSION['username']; ?>
+                                <?php echo $_SESSION['hostName']; ?>
                                 <b class="caret"></b>
                             </a>
                             <div class="collapse" id="collapseExample">

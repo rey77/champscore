@@ -7,18 +7,18 @@ if ($_SESSION['eingeloggt'] == false) {
     exit();
 }
 
-$userID = $_SESSION['user_id'];
+$athleteID = $_SESSION['athlete_id'];
 include 'Database.php';
 $pdo = Database::connect();
 
 $sql_indiv = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_city, comp_country, comp_active, div_is_team from tbl_competition "
         . " join tbl_division on tbl_competition.comp_ID = tbl_division.fk_comp_ID"
-        . " join tbl_user_division on tbl_division.div_ID = tbl_user_division.fk_div_ID"
-        . " where tbl_user_division.fk_user_ID =?";
+        . " join tbl_athl_div on tbl_division.div_ID = tbl_athl_div.fk_div_ID"
+        . " where tbl_athl_div.fk_athlete_ID =?";
 
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $q_indiv = $pdo->prepare($sql_indiv);
-$q_indiv->execute(array($userID));
+$q_indiv->execute(array($athleteID));
 
 
 $sql_team = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_city, comp_country, comp_active, div_is_team from tbl_competition "
@@ -26,11 +26,11 @@ $sql_team = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_city, c
         . " join tbl_team_division on tbl_division.div_ID = tbl_team_division.fk_div_ID"
         . " join tbl_team on tbl_team_division.fk_team_ID = tbl_team.team_ID"
         . " join tbl_team_member on tbl_team.team_ID = tbl_team_member.fk_team_ID"
-        . " where tbl_team_member.fk_user_ID =?";
+        . " where tbl_team_member.fk_athlete_ID =?";
 
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $q_team = $pdo->prepare($sql_team);
-$q_team->execute(array($userID));
+$q_team->execute(array($athleteID));
 ?>
 
 <!doctype html>
@@ -82,18 +82,18 @@ $q_team->execute(array($userID));
                 <div class="sidebar-wrapper">
                     <div class="user">
                         <div class="photo">
-                            <img src="uploads/profile/<?php echo $_SESSION['user_id'] . ".jpg" ?>">
+                            <img src="uploads/athlete/profile/<?php echo $_SESSION['athlete_id'] . ".jpg" ?>">
                         </div>
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                                <?php echo $_SESSION['username']; ?>
+                                <?php echo $_SESSION['athleteEmail']; ?>
                                 <b class="caret"></b>
                             </a>
                             <div class="collapse" id="collapseExample">
                                 <ul class="nav">
 
                                     <li>
-                                        <a href="person.php">Edit Profile</a>
+                                        <a href="athletePersonalData.php">Edit Profile</a>
                                     </li>
                                     <li>
                                         <a href="loginsec/logout.php">Log out</a>
@@ -104,51 +104,21 @@ $q_team->execute(array($userID));
                     </div>
                     <ul class="nav">
                         <li>
-                            <a href="./allCompetitions.php">
+                            <a href="./athleteAllCompetitions.php">
                                 <i class="material-icons">public</i>
                                 <p>All Competitions</p>
                             </a>
                         </li>
-                        <li>
-
-                            <a data-toggle="collapse" href="#host">
-                                <i class="material-icons">person</i>
-                                <p>Competition Host
-                                    <b class="caret"></b>
-                                </p>
-                            </a>
-                            <div class="collapse out" id="host">
-                                <ul class="nav">
-                                    <!--<li>
-                                        <a href="./hostDashboard.php">Dashboard</a>
-                                    </li>-->
-                                    <li>
-                                        <a href="./hostCompetitions.php">Competitions</a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </li>
-
                         <li class="active">
-                            <a data-toggle="collapse" href="#athlete">
-                                <i class="material-icons">person_outline</i>
-                                <p>Athlete
-                                    <b class="caret"></b>
-                                </p>
+                            
+                            <a href="./athleteCompetitions.php">
+                                <i class="material-icons">dashboard</i>
+                               <p>My Competitions</p>
+                            
                             </a>
-                            <div class="collapse in" id="athlete">
-                                <ul class="nav">
-                                    <!--<li>
-                                        <a href="./athleteDashboard.php">Dashboard</a>
-                                    </li>-->
-                                    <li class="active">
-                                        <a href="./athleteCompetitions.php">Competitions</a>
-                                    </li>
-
-                                </ul>
-                            </div>
                         </li>
+
+
                     </ul>
                 </div>
             </div>
@@ -310,7 +280,7 @@ $q_team->execute(array($userID));
 
                                                                     $compLogo = $zeile['comp_logo'];
                                                                       if ($compLogo != 0) {
-                                                                      $logosrc = "uploads/complogo/$compLogo";
+                                                                      $logosrc = "uploads/host/complogo/$compLogo";
                                                                       } else {
                                                                       $logosrc = "img/image_placeholder.jpg";
                                                                       } 

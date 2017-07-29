@@ -8,7 +8,7 @@ $pdo = Database::connect();
 
 // INSERT COMPETITION IN DB
 $compName = $_POST['compName'];
-$userID = $_SESSION['user_id']; //aus Session Variable nehmen
+$hostID = $_SESSION['host_id']; //aus Session Variable nehmen
 $compStartDate = $_POST['compStartDate'];
 $compStartTime = $_POST['compStartTime'];
 $compEndDate = $_POST['compEndDate'];
@@ -27,16 +27,16 @@ $compDescShort = $_POST['compDescShort'];
 
 
 
-$sql = "INSERT INTO `tbl_competition` ( `comp_name`,`comp_desc_short`,`comp_desc_long`, `comp_regcode`, `comp_start_date`,  `comp_start_time`,  `comp_location_name`  `comp_facebook_link` ,`fk_user_ID`, `comp_active`, `comp_street`, `comp_zip`, `comp_state`, `comp_country` ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+$sql = "INSERT INTO `tbl_competition` ( `comp_name`,`comp_desc_short`,`comp_desc_long`, `comp_regcode`, `comp_start_date`,  `comp_start_time`,  `comp_location_name`  `comp_facebook_link` ,`fk_host_ID`, `comp_active`, `comp_street`, `comp_zip`, `comp_state`, `comp_country` ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $q = $pdo->prepare($sql);
-$q->execute(array($compName, $compDescShort, $compDescLong, $regCode, $compStartDate, $compStartTime, $compLocation, $compFacebookLink, $userID, 1, $compStreet, $compZip, $compState, $compCountry));
+$q->execute(array($compName, $compDescShort, $compDescLong, $regCode, $compStartDate, $compStartTime, $compLocation, $compFacebookLink, $hostID, 1, $compStreet, $compZip, $compState, $compCountry));
 
 
 // No file was selected for upload, your (re)action goes here
 //competition logo save
-$target_dir = "uploads/complogo/";
+$target_dir = "uploads/host/complogo/";
 $target_file = $target_dir . basename($_FILES["compLogo"]["name"]);
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
@@ -69,10 +69,10 @@ if ($uploadOk == 0) {
 } else {
 
     $temp = explode(".", $_FILES["compLogo"]["name"]);
-    $newfilename = $compID . '.' . end($temp);
+    $newfilename = $compID . '.jpg';// . end($temp);
 
 
-    if (move_uploaded_file($_FILES["compLogo"]["tmp_name"], "uploads/complogo/" . $newfilename /* $target_file */)) {
+    if (move_uploaded_file($_FILES["compLogo"]["tmp_name"], "uploads/host/complogo/" . $newfilename /* $target_file */)) {
         echo "The file " . basename($_FILES["compLogo"]["name"]) . " has been uploaded.";
     } else {
         echo "Sorry, there was an error uploading your file.";
@@ -89,7 +89,7 @@ $q_comp_upd->execute(array($newfilename, $compID));
 
 // No file was selected for upload, your (re)action goes here
 //competition Banner save
-$target_dir = "uploads/compbanner/";
+$target_dir = "uploads/host/compbanner/";
 $target_file = $target_dir . basename($_FILES["compBanner"]["name"]);
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
@@ -122,10 +122,10 @@ if ($uploadOk == 0) {
 } else {
 
     $temp = explode(".", $_FILES["compBanner"]["name"]);
-    $newfilename = $compID . '.' . end($temp);
+    $newfilename = $compID . '.jpg';// . end($temp);
 
 
-    if (move_uploaded_file($_FILES["compBanner"]["tmp_name"], "uploads/compbanner/" . $newfilename /* $target_file */)) {
+    if (move_uploaded_file($_FILES["compBanner"]["tmp_name"], "uploads/host/compbanner/" . $newfilename /* $target_file */)) {
         echo "The file " . basename($_FILES["compBanner"]["name"]) . " has been uploaded.";
     } else {
         echo "Sorry, there was an error uploading your file.";
@@ -140,7 +140,7 @@ $q_comp_banner->execute(array($newfilename, $compID));
 
 
 //save PDF File for terms and conditions--------------------------------
-$target_dir = "uploads/terms/";
+$target_dir = "uploads/host/terms/";
 $target_file = $target_dir . basename($_FILES["compTerms"]["name"]);
 $uploadOk = 1;
 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
@@ -178,9 +178,9 @@ if ($uploadOk == 0) {
 } else {
 
     $temp = explode(".", $_FILES["compTerms"]["name"]);
-    $newfilename = $compID . '.' . end($temp);
+    $newfilename = $compID . '.jpg';// . end($temp);
 
-    if (move_uploaded_file($_FILES["compTerms"]["tmp_name"], "uploads/terms/" . $newfilename /* $target_file */)) {
+    if (move_uploaded_file($_FILES["compTerms"]["tmp_name"], "uploads/host/terms/" . $newfilename /* $target_file */)) {
         echo "The file " . basename($_FILES["compTerms"]["name"]) . " has been uploaded.";
 
         $sql_terms = "UPDATE tbl_competition SET comp_terms = ? WHERE comp_id =?";
@@ -196,6 +196,6 @@ if ($uploadOk == 0) {
 }
 
 Database::disconnect();
-header("Location:organizer.php");
+header("Location:hostCompetitions.php");
 ?>
    

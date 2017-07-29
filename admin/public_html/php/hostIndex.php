@@ -6,29 +6,18 @@ if ($_SESSION['eingeloggt'] == false) {
     header("Location: public_html/index.php");
     exit();
 }
-
-$userID = $_SESSION['user_id'];
-include 'Database.php';
-$pdo = Database::connect();
-
-$sql = "select * from tbl_competition";
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$q = $pdo->prepare($sql);
-$q->execute();
-
-Database::disconnect();
 ?>
+
 
 <!doctype html>
 <html lang="en">
 
     <head>
-
         <meta charset="utf-8" />
         <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png" />
         <link rel="icon" type="image/png" href="img/favicon-16x16.png" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <title>All Competitions</title>
+        <title>Welcome</title>
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
         <!-- Bootstrap core CSS     -->
@@ -40,15 +29,10 @@ Database::disconnect();
         <!--     Fonts and icons     -->
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
-
-        <link href="php/css/material-kit.css?v=1.1.0" rel="stylesheet"/>
-
-
     </head>
 
     <body>
         <div class="wrapper">
-
             <div class="sidebar" data-active-color="darkred" data-background-color="black" data-image="img/sidebar-1.jpg">
                 <!--
             Tip 1: You can change the color of active element of the sidebar using: data-active-color="purple | blue | green | orange | red | rose"
@@ -60,28 +44,28 @@ Database::disconnect();
                         <p><!--<img style=" margin-left: -20px; height: 70px;" class="logo" src="../img/Logo.png" alt=""/>-->
                             <img style="  height: 20px;" src="img/text.png" alt=""/></p>
                     </a>
-                    
+
                 </div>
                 <div class="logo logo-mini">
-                    <a href="index.php" class="simple-text">
+                    <a href="http://www.creative-tim.com" class="simple-text">
                         CS
                     </a>
                 </div>
                 <div class="sidebar-wrapper">
                     <div class="user">
                         <div class="photo">
-                            <img src="uploads/profile/<?php echo $_SESSION['user_id'] . ".jpg" ?>">
+                            <img src="uploads/host/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
                         </div>
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                                <?php echo $_SESSION['username']; ?>
+                                <?php echo $_SESSION['hostEmail']; ?>
                                 <b class="caret"></b>
                             </a>
                             <div class="collapse" id="collapseExample">
                                 <ul class="nav">
 
                                     <li>
-                                        <a href="person.php">Edit Profile</a>
+                                        <a href="hostPersonalData.php">Edit Profile</a>
                                     </li>
                                     <li>
                                         <a href="loginsec/logout.php">Log out</a>
@@ -91,52 +75,22 @@ Database::disconnect();
                         </div>
                     </div>
                     <ul class="nav">
-                        <li class="active">
-                            <a href="./allCompetitions.php">
+                        <li>
+                            <a href="./hostAllCompetitions.php">
                                 <i class="material-icons">public</i>
                                 <p>All Competitions</p>
                             </a>
                         </li>
                         <li>
-
-                            <a data-toggle="collapse" href="#host">
-                                <i class="material-icons">person</i>
-                                <p>Competition Host
-                                    <b class="caret"></b>
-                                </p>
+                            
+                            <a href="./hostCompetitions.php">
+                                <i class="material-icons">dashboard</i>
+                               <p>My Competitions</p>
+                            
                             </a>
-                            <div class="collapse out" id="host">
-                                <ul class="nav">
-                                    <!--<li>
-                                        <a href="./hostDashboard.php">Dashboard</a>
-                                    </li>-->
-                                    <li>
-                                        <a href="./hostCompetitions.php">Competitions</a>
-                                    </li>
-
-                                </ul>
-                            </div>
                         </li>
 
-                        <li>
-                            <a data-toggle="collapse" href="#athlete">
-                                <i class="material-icons">person_outline</i>
-                                <p>Athlete
-                                    <b class="caret"></b>
-                                </p>
-                            </a>
-                            <div class="collapse out" id="athlete">
-                                <ul class="nav">
-                                    <!--<li>
-                                        <a href="./athleteDashboard.php">Dashboard</a>
-                                    </li>-->
-                                    <li>
-                                        <a href="./athleteCompetitions.php">Competitions</a>
-                                    </li>
 
-                                </ul>
-                            </div>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -156,7 +110,7 @@ Database::disconnect();
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"> All Competitions </a>
+
                         </div>
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-right">
@@ -215,69 +169,13 @@ Database::disconnect();
                     </div>
                 </nav>
                 <div class="content">
-
                     <div class="container-fluid">
-
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2 text-center">
-                                <h2 class="title">Our Competitions</h2>
-                                <h5 class="description">We are happy to host Competitions all around the globe.</h5>
+                                <h2 class="title">Welcome to champscore</h2>
+                                <h5 class="description">As a Host you have possibilites to manage whole Competitions</h5>
                             </div>
                         </div>
-
-                        <div class="row">
-                            <?php
-                            while ($zeile = $q->fetch(/* PDO::FETCH_ASSOC */)) {
-
-                                $compID = $zeile['comp_ID'];
-                                $compLogo = $zeile['comp_logo'];
-
-                                if ($compLogo != 0) {
-
-                                    $logosrc = "uploads/complogo/$compLogo";
-                                } else {
-                                    $logosrc = "http://placehold.it/400x250/000/fff";
-                                }
-                                ?> 
-
-                                <div class="col-md-4">
-
-
-                                    <div class="card card-testimonial">
-                                        <div class="icon">
-
-                                        </div>
-
-                                        <div class="footer">
-
-                                            <a  href="competitionView.php?comp_id=<?php echo $compID ?>">
-                                                <h4 class="card-title"><b><?php echo $zeile['comp_name'] ?></b></h4>
-
-                                                </a>
-                                            <p><?php echo $zeile['comp_start_date'] ?> in <?php echo $zeile['comp_city'] ?>, <?php echo $zeile['comp_country'] ?></p>
-                                            
-
-
-
-                                            <div class="card-avatar">
-                                                <a href="#pablo">
-                                                    <img class="img" src="<?php echo $logosrc ?>">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                                <?php
-                            }
-                            Database::disconnect();
-                            ?>
-
-                        </div>
-
-
-
 
                     </div>
                 </div>
@@ -359,44 +257,7 @@ Database::disconnect();
     <script src="js/material-dashboard.js"></script>
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="js/demo.js"></script>
-    <script type="text/javascript">
-                                $(document).ready(function () {
 
-                                    // Javascript method's body can be found in assets/js/demos.js
-                                    demo.initDashboardPageCharts();
-
-                                    demo.initVectorMap();
-                                });
-    </script>
-
-
-    <script type="text/javascript">
-
-//Funktion zur Prüfung der Registrierungsdaten
-        function deleteComp(comp_ID)
-        {
-
-            var del_comp_id = comp_ID;
-            var info = 'comp_ID=' + del_comp_id;
-
-            if (confirm("Sure you want to delete this Competition? This cannot be undone later.")) {
-                alert(info);
-                $.ajax({
-                    type: "POST",
-                    url: "deleteComp.php", //URL to the delete php script
-                    data: info,
-                    success: function () {
-                        window.location.reload(false);
-                    },
-                    error: function () {
-                        alert("Fehler")
-                    },
-                });
-
-            }
-            return false;
-
-
-        }
-    </script>
 </html>
+
+

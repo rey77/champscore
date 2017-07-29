@@ -6,10 +6,10 @@ if ($_SESSION['eingeloggt'] == false) {
     header("Location: public_html/index.php");
     exit();
 }
-
-$divID = $_POST['divID'];
-$compID = $_POST['compID'];
 ?>
+
+
+<!doctype html>
 <html lang="en">
 
     <head>
@@ -17,7 +17,7 @@ $compID = $_POST['compID'];
         <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png" />
         <link rel="icon" type="image/png" href="img/favicon-16x16.png" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <title>New Athlete</title>
+        <title>Welcome</title>
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
         <!-- Bootstrap core CSS     -->
@@ -29,12 +29,9 @@ $compID = $_POST['compID'];
         <!--     Fonts and icons     -->
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
-
     </head>
 
     <body>
-
-
         <div class="wrapper">
             <div class="sidebar" data-active-color="darkred" data-background-color="black" data-image="img/sidebar-1.jpg">
                 <!--
@@ -47,33 +44,31 @@ $compID = $_POST['compID'];
                         <p><!--<img style=" margin-left: -20px; height: 70px;" class="logo" src="../img/Logo.png" alt=""/>-->
                             <img style="  height: 20px;" src="img/text.png" alt=""/></p>
                     </a>
-                    
+
                 </div>
                 <div class="logo logo-mini">
-                    <a href="index.php" class="simple-text">
+                    <a href="http://www.creative-tim.com" class="simple-text">
                         CS
                     </a>
                 </div>
                 <div class="sidebar-wrapper">
                     <div class="user">
                         <div class="photo">
-                            <img src="uploads/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
+                            <img src="uploads/athlete/profile/<?php echo $_SESSION['athlete_id'] . ".jpg" ?>">
                         </div>
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                                <?php echo $_SESSION['hostName']; ?>
+                                <?php echo $_SESSION['athleteEmail']; ?>
                                 <b class="caret"></b>
                             </a>
                             <div class="collapse" id="collapseExample">
                                 <ul class="nav">
+
                                     <li>
-                                        <a href="#">My Profile</a>
+                                        <a href="athletePersonalData.php">Edit Profile</a>
                                     </li>
                                     <li>
-                                        <a href="#">Edit Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Settings</a>
+                                        <a href="loginsec/logout.php">Log out</a>
                                     </li>
                                 </ul>
                             </div>
@@ -81,51 +76,21 @@ $compID = $_POST['compID'];
                     </div>
                     <ul class="nav">
                         <li>
-                            <a href="./allCompetitions.php">
+                            <a href="./athleteAllCompetitions.php">
                                 <i class="material-icons">public</i>
                                 <p>All Competitions</p>
                             </a>
                         </li>
-                        <li class="active">
-
-                            <a data-toggle="collapse" href="#host">
-                                <i class="material-icons">person</i>
-                                <p>Competition Host
-                                    <b class="caret"></b>
-                                </p>
-                            </a>
-                            <div class="collapse in" id="host">
-                                <ul class="nav">
-                                    <!--<li>
-                                        <a href="./hostDashboard.php">Dashboard</a>
-                                    </li>-->
-                                    <li class="active">
-                                        <a href="./hostCompetitions.php">Competitions</a>
-                                    </li>
-
-                                </ul>
-                            </div>
-                        </li>
-
                         <li>
-                            <a data-toggle="collapse" href="#athlete">
-                                <i class="material-icons">person_outline</i>
-                                <p>Athlete
-                                    <b class="caret"></b>
-                                </p>
+                            
+                            <a href="./athleteCompetitions.php">
+                                <i class="material-icons">dashboard</i>
+                               <p>My Competitions</p>
+                            
                             </a>
-                            <div class="collapse out" id="athlete">
-                                <ul class="nav">
-                                    <!--<li>
-                                        <a href="./athleteDashboard.php">Dashboard</a>
-                                    </li>-->
-                                    <li>
-                                        <a href="./athleteCompetitions.php">Competitions</a>
-                                    </li>
-
-                                </ul>
-                            </div>
                         </li>
+
+
                     </ul>
                 </div>
             </div>
@@ -145,7 +110,7 @@ $compID = $_POST['compID'];
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"> Division </a>
+
                         </div>
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-right">
@@ -205,44 +170,10 @@ $compID = $_POST['compID'];
                 </nav>
                 <div class="content">
                     <div class="container-fluid">
-
-
-                        <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header card-header-text" data-background-color="oxfordblue">
-                                    <h4 class="card-title">New Athlete</h4>
-
-                                </div>
-                                <div class="card-content">
-
-
-                                    <form name ="athleteData" role="form" action="inputAthlete.php" method="POST" >
-                                        
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Athlete Name</label>
-                                                <input type="text" name="athleteName"  class="form-control" required>
-                                                <!--<p class="help-block">Example block-level help text here.</p>-->
-                                            </div>
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Athlete Box</label>
-                                                <input type="text" name="athleteBox"  class="form-control" required>
-                                                <!--<p class="help-block">Example block-level help text here.</p>-->
-                                            </div>
-
-                                            <div class="form-group">
-
-                                                <input type="hidden" name="divID" value="<?php echo $divID ?>" class="form-control" >
-                                                <input type="hidden" name="compID" value="<?php echo $compID ?>" class="form-control" >
-
-<!--<p class="help-block">Example block-level help text here.</p>-->
-                                            </div>
-                                        
-                                        
-                                            <button type="submit" class="btn btn-pinterest">Save</button>
-                                        
-                                    </form>
-
-                                </div>
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2 text-center">
+                                <h2 class="title">Welcome to champscore</h2>
+                                <h5 class="description">As an Athlete, you have possibilites to register for Competitions</h5>
                             </div>
                         </div>
 
@@ -328,3 +259,5 @@ $compID = $_POST['compID'];
     <script src="js/demo.js"></script>
 
 </html>
+
+

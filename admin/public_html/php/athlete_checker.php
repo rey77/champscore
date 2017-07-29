@@ -1,32 +1,32 @@
 <?php
 
 session_start();
-if (isset($_POST["user_email"])) {
+if (isset($_POST["athlete_email"])) {
 
     if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) AND strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
         die();
     }
 
-    $userEmail = filter_var($_POST["user_email"], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH);
+    $athleteEmail = filter_var($_POST["athlete_email"], FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_LOW | FILTER_FLAG_STRIP_HIGH);
 
     include 'Database.php';
     $pdo = Database::connect();
 
-    $sql = "SELECT user_email FROM tbl_user WHERE user_email=?";
+    $sql = "SELECT athlete_email FROM tbl_athlete WHERE athlete_email=?";
 
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $q = $pdo->prepare($sql);
-    $q->execute(array($userEmail));
+    $q->execute(array($athleteEmail));
 
-    $userExists = false;
+    $athleteExists = false;
     while ($zeile = $q->fetch(/* PDO::FETCH_ASSOC */)) {
-        $userExists = true;
+        $athleteExists = true;
     }
 
     Database::disconnect();
 
 
-    die($userExists);
+    die($athleteExists);
 }
 ?>
    

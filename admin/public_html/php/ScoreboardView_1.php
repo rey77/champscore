@@ -36,7 +36,7 @@ session_start();
 
 
         if ($compLogo != 0) {
-            $logosrc = "uploads/complogo/$compLogo";
+            $logosrc = "uploads/host/complogo/$compLogo";
         } else {
             $logosrc = "img/image_placeholder.jpg";
         }

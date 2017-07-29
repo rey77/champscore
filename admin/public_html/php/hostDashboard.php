@@ -7,14 +7,14 @@ if ($_SESSION['eingeloggt'] == false) {
     exit();
 }
 
-$userID = $_SESSION['user_id'];
+$hostID = $_SESSION['host_id'];
 include 'Database.php';
 $pdo = Database::connect();
 
-$sql = "select comp_ID, comp_name, comp_date, comp_logo, comp_city, comp_country, comp_active from tbl_competition where fk_user_id = ?";
+$sql = "select comp_ID, comp_name, comp_date, comp_logo, comp_city, comp_country, comp_active from tbl_competition where fk_host_id = ?";
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $q = $pdo->prepare($sql);
-$q->execute(array($userID));
+$q->execute(array($hostID));
 
 Database::disconnect();
 ?>
@@ -68,11 +68,11 @@ Database::disconnect();
                 <div class="sidebar-wrapper">
                     <div class="user">
                         <div class="photo">
-                            <img src="uploads/profile/<?php echo $_SESSION['user_id'] . ".jpg" ?>">
+                            <img src="uploads/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
                         </div>
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                                <?php echo $_SESSION['username']; ?>
+                                <?php echo $_SESSION['hostName']; ?>
                                 <b class="caret"></b>
                             </a>
                             <div class="collapse" id="collapseExample">
