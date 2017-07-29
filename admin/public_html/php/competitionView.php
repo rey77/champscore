@@ -11,7 +11,7 @@ session_start();
         include 'Database.php';
         $pdo = Database::connect();
 
-        $sql = "select comp_ID, comp_name, comp_start_date,comp_end_date,comp_start_time, comp_banner, comp_end_time, comp_location_name, comp_start_time, comp_facebook_link, comp_desc_long,comp_desc_short, comp_main_color, comp_accent_color, comp_regcode, comp_active, comp_street, comp_zip, comp_city, comp_country, comp_logo from tbl_competition where comp_id = ?";
+        $sql = "select comp_ID, comp_name, comp_start_date,comp_end_date,comp_start_time, comp_banner, comp_end_time, comp_location_name, comp_start_time, comp_facebook_link, comp_instagram_link, comp_desc_long,comp_desc_short, comp_main_color, comp_accent_color, comp_regcode, comp_active, comp_street, comp_zip, comp_city, comp_country, comp_logo from tbl_competition where comp_id = ?";
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $q = $pdo->prepare($sql);
@@ -38,6 +38,7 @@ session_start();
             $compAccentColor = $zeile['comp_accent_color'];
             $compLocation = $zeile['comp_location_name'];
             $compFacebookLink = $zeile['comp_facebook_link'];
+            $compInstagramLink = $zeile['comp_instagram_link'];
             $compBanner = $zeile['comp_banner'];
         }
 
@@ -234,14 +235,7 @@ session_start();
                              </ul>
                          </li>-->
 
-                        <li>
 
-                            <a  href = "registrationView_1.php?comp_id=<?php echo $compID ?>" target="_blank" >
-                                <i class="material-icons">person_add</i> Register for this Competition
-                            </a> 
-
-
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -258,7 +252,7 @@ session_start();
                         <div class="col-xs-6 col-xs-offset-3">
                             <div class="profile">
                                 <div class="avatar">
-                                    <img src="<?php echo $logosrc ?>" alt="Circle Image" style="border: solid; border-color: <?php echo "#".$compAccentColor?>" class="img-rounded img-responsive img-raised">
+                                    <img src="<?php echo $logosrc ?>" alt="Circle Image" style="border: solid; border-color: <?php echo "#" . $compAccentColor ?>" class="img-rounded img-responsive img-raised">
                                 </div>
                                 <div class="name">
                                     <h3 class="title"><?php echo $compName ?></h3>
@@ -267,12 +261,19 @@ session_start();
                                         <a href = "<?php echo $compFacebookLink ?>" target="_blank" class = "btn btn-just-icon btn-simple btn-facebook"><i class = "fa fa-facebook"></i></a>
 
                                     <?php } ?>
-                                    <?php if ($compFacebookLink != "") { ?>
-                                        <a href = "<?php echo $compFacebookLink ?>" target="_blank" class = "btn btn-just-icon btn-simple btn-instagram"><i class = "fa fa-instagram"></i></a>
+                                    <?php if ($compInstagramLink != "") { ?>
+                                        <a href = "<?php echo $compInstagramLink ?>" target="_blank" class = "btn btn-just-icon btn-simple btn-instagram"><i class = "fa fa-instagram"></i></a>
 
                                     <?php } ?>
                                 </div>
+
                             </div>
+
+                        </div>
+                        <div class="col-xs-12  col-sm-12  col-lg-12   text-center">
+                            <a class="btn" style="background:<?php echo '#' . $compAccentColor ?>" href = "registrationView_1.php?comp_id=<?php echo $compID ?>" target="_blank" >
+                                <i class="material-icons">person_add</i> Register for this Competition
+                            </a> 
                         </div>
 
                         <!--<div class="col-xs-3 follow">
@@ -358,7 +359,7 @@ session_start();
                                     <hr />
                                     <h4 class="title">Sponsors</h4>
                                     <ul class="list-unstyled">
-                                        <li>Vogttraining Equipment</li>
+                                        <li>VOGT TRAINING Equipment</li>
                                     </ul><br>
 
 <!-- <p class="description">Vogttraining Equipment</p>-->
@@ -587,23 +588,21 @@ session_start();
                                                                             ?>
                                                                         </div>
                                                                     </div>
-                                                                
-                                                            </div>
 
-                                                            <!--  end card  -->
+                                                                </div>
+
+                                                                <!--  end card  -->
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                <?php } ?>
+                                                    <?php } ?>
                                                     <!-- end col-md-12 -->
 
 
 
                                                     <?php
-                                                
-
-                                                $counter++;
-                                                echo "</div>";
-}
+                                                    $counter++;
+                                                    echo "</div>";
+                                                }
                                                 Database::disconnect();
                                                 ?>
 

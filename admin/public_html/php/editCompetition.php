@@ -236,7 +236,7 @@ if ($_SESSION['eingeloggt'] == false) {
                         </div>
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                                <?php echo $_SESSION['hostName']; ?>
+                                <?php echo $_SESSION['hostEmail']; ?>
                                 <b class="caret"></b>
                             </a>
                             <div class="collapse" id="collapseExample">
@@ -393,6 +393,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                                 </p>
                                                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                                     <div class="fileinput-new thumbnail">
+                                                        
                                                         <img src="<?php echo $bannersrc ?>" alt="...">
                                                     </div>
                                                     <div class="fileinput-preview fileinput-exists thumbnail"></div>

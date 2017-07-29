@@ -80,7 +80,7 @@ if (isset($_SESSION['message'])) {
                                                         <span class="fileinput-new">Select Photo</span>
                                                         <span class="fileinput-exists">Change</span>
 
-                                                        <input type="file"  name="avatar" id="avatar" required /></span>
+                                                        <input type="file"  name="avatar" id="avatar" required="true"/></span>
                                                     <br />
 
                                                 </div>

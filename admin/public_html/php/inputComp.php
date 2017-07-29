@@ -18,21 +18,21 @@ $compLocation = $_POST['compLocation'];
 $regCode = $_POST['compRegCode'];
 $compStreet = $_POST['compStreet'];
 $compZip = $_POST['compZip']; //aus Session Variable nehmen
-$compState = $_POST['compState'];
+$compCity = $_POST['compCity'];
 $compCountry = $_POST['compCountry'];
 $compDescLong = $_POST['compDescLong'];
 $compDescShort = $_POST['compDescShort'];
-$compDescLong = $_POST['compDescLong'];
-$compDescShort = $_POST['compDescShort'];
 
 
 
-$sql = "INSERT INTO `tbl_competition` ( `comp_name`,`comp_desc_short`,`comp_desc_long`, `comp_regcode`, `comp_start_date`,  `comp_start_time`,  `comp_location_name`  `comp_facebook_link` ,`fk_host_ID`, `comp_active`, `comp_street`, `comp_zip`, `comp_state`, `comp_country` ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+$sql = "INSERT INTO `tbl_competition` ( `comp_name`,`comp_desc_short`,`comp_desc_long`, `comp_regcode`, `comp_start_date`,  `comp_start_time`,  `comp_location_name`,  `comp_facebook_link` ,`fk_host_ID`, `comp_active`, `comp_street`, `comp_zip`, `comp_city`, `comp_country` ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $q = $pdo->prepare($sql);
-$q->execute(array($compName, $compDescShort, $compDescLong, $regCode, $compStartDate, $compStartTime, $compLocation, $compFacebookLink, $hostID, 1, $compStreet, $compZip, $compState, $compCountry));
+$q->execute(array($compName, $compDescShort, $compDescLong, $regCode, $compStartDate, $compStartTime, $compLocation, $compFacebookLink, $hostID, 1, $compStreet, $compZip, $compCity, $compCountry));
 
+$compID = $pdo->lastInsertId();
 
 // No file was selected for upload, your (re)action goes here
 //competition logo save
@@ -178,7 +178,7 @@ if ($uploadOk == 0) {
 } else {
 
     $temp = explode(".", $_FILES["compTerms"]["name"]);
-    $newfilename = $compID . '.jpg';// . end($temp);
+    $newfilename = $compID . '.pdf';// . end($temp);
 
     if (move_uploaded_file($_FILES["compTerms"]["tmp_name"], "uploads/host/terms/" . $newfilename /* $target_file */)) {
         echo "The file " . basename($_FILES["compTerms"]["name"]) . " has been uploaded.";

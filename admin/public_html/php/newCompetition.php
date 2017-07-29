@@ -330,8 +330,8 @@ if ($_SESSION['eingeloggt'] == false) {
                                             </div>
                                             <div class="col-lg-4">
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">State</label>
-                                                    <input type="text" name="compState"  class="form-control" required>
+                                                    <label class="control-label">City</label>
+                                                    <input type="text" name="compCity"  class="form-control" required>
                                                 </div>
                                             </div>
                                             <div class="col-lg-4">

@@ -104,7 +104,7 @@ if (ini_get("session.use_cookies")) {
                             <div class="col-md-6 col-md-offset-0 text-center">
                                 <h1 class="title">ATHLETES</h1>
                                 <a class="btn btn-pinterest" href="php/athleteLogin.php">Login</a>
-                                <a class="btn btn-pinterest" href="php/athleteRegister.php">Register</a>
+                                <a class="btn btn-pinterest" href="php/athleteRegister.php">create Athlete Account</a>
                             </div>
                             
                             <div class="col-md-6 col-md-offset-0 text-center">
