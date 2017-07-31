@@ -12,21 +12,28 @@ if (isset($_POST["athlete_email"])) {
     include 'Database.php';
     $pdo = Database::connect();
 
-    $sql = "SELECT athlete_email FROM tbl_athlete WHERE athlete_email=?";
+    $sql = "SELECT athlete_email, athlete_firstname,athlete_lastname FROM tbl_athlete WHERE athlete_email=?";
 
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $q = $pdo->prepare($sql);
     $q->execute(array($athleteEmail));
 
-    $athleteExists = false;
+    $arr = array();
+    $arr[0] = 0;
+    $arr[1] = "";
+    $arr[2] = "";
+
     while ($zeile = $q->fetch(/* PDO::FETCH_ASSOC */)) {
-        $athleteExists = true;
+        $arr[0] = 1;
+        $arr[1] = $zeile['athlete_firstname'];
+        $arr[2] = $zeile['athlete_lastname'];
     }
+
+    echo json_encode($arr);
 
     Database::disconnect();
 
-
-    die($athleteExists);
+    
 }
 ?>
    

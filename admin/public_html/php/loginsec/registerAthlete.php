@@ -76,7 +76,7 @@ $athleteEmail = $_SESSION['athleteEmail'];
 $athletePhone = $_POST["athletePhone"];
 $athleteFirstName = $_POST["athleteFirstName"];
 $athleteLastName = $_POST["athleteLastName"];
-$athleteBirthDate = $_POST["athleteBirthDate"];
+
 $athleteGender = $_POST["athleteGender"];
 $athleteStreet = $_POST["athleteStreet"];
 $athleteZIP = $_POST["athleteZIP"];
@@ -86,6 +86,10 @@ $athleteAffiliate = $_POST["athleteAffiliate"];
 $athleteShirtsize = $_POST["athleteShirtsize"];
 $athleteBestscore = $_POST["athleteBestscore"];
 
+$athleteBirthDate = DateTime::createFromFormat('m/d/Y',$_POST["athleteBirthDate"]);
+$from_date = $athleteBirthDate->format("Y-m-d");
+
+
 
 
 $password = md5($_POST["athletePassword1"]);
@@ -94,7 +98,7 @@ $password = md5($_POST["athletePassword1"]);
 $sqlathlete = "INSERT INTO tbl_athlete ( `athlete_password`, `athlete_email`, `athlete_gender`, `athlete_birthdate`, `athlete_affiliate`, `athlete_firstname`, `athlete_lastname`, `athlete_street`,`athlete_zip` ,`athlete_city`,`athlete_country`,`athlete_bestscore`,`athlete_shirtsize` ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)";
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $qathlete = $pdo->prepare($sqlathlete);
-$qathlete->execute(array($password, $athleteEmail, $athleteGender, $athleteBirthDate, $athleteAffiliate, $athleteFirstName, $athleteLastName, $athleteStreet, $athleteZIP, $athleteCity, $athleteCountry, $athleteBestscore, $athleteShirtsize));
+$qathlete->execute(array($password, $athleteEmail, $athleteGender, $from_date, $athleteAffiliate, $athleteFirstName, $athleteLastName, $athleteStreet, $athleteZIP, $athleteCity, $athleteCountry, $athleteBestscore, $athleteShirtsize));
 $_SESSION['athlete_id'] = $pdo->lastInsertId();
 $athleteID = $_SESSION['athlete_id'];
 

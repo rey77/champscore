@@ -19,18 +19,6 @@ $sql_indiv = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_city, 
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $q_indiv = $pdo->prepare($sql_indiv);
 $q_indiv->execute(array($athleteID));
-
-
-$sql_team = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_city, comp_country, comp_active, div_is_team from tbl_competition "
-        . " join tbl_division on tbl_competition.comp_ID = tbl_division.fk_comp_ID"
-        . " join tbl_team_division on tbl_division.div_ID = tbl_team_division.fk_div_ID"
-        . " join tbl_team on tbl_team_division.fk_team_ID = tbl_team.team_ID"
-        . " join tbl_team_member on tbl_team.team_ID = tbl_team_member.fk_team_ID"
-        . " where tbl_team_member.fk_athlete_ID =?";
-
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$q_team = $pdo->prepare($sql_team);
-$q_team->execute(array($athleteID));
 ?>
 
 <!doctype html>
@@ -68,14 +56,14 @@ $q_team->execute(array($athleteID));
             Tip 3: you can change the color of the sidebar with data-background-color="white | black"
                 -->
                 <div class="logo">
-                    <a href="index.php" class="simple-text">
+                    <a href="athleteIndex.php" class="simple-text">
                         <p><!--<img style=" margin-left: -20px; height: 70px;" class="logo" src="../img/Logo.png" alt=""/>-->
                             <img style="  height: 20px;" src="img/text.png" alt=""/></p>
                     </a>
-                    
+
                 </div>
                 <div class="logo logo-mini">
-                    <a href="index.php" class="simple-text">
+                    <a href="athleteIndex.php" class="simple-text">
                         CS
                     </a>
                 </div>
@@ -110,11 +98,11 @@ $q_team->execute(array($athleteID));
                             </a>
                         </li>
                         <li class="active">
-                            
+
                             <a href="./athleteCompetitions.php">
                                 <i class="material-icons">dashboard</i>
-                               <p>My Competitions</p>
-                            
+                                <p>My Competitions</p>
+
                             </a>
                         </li>
 
@@ -140,60 +128,7 @@ $q_team->execute(array($athleteID));
                             </button>
                             <a class="navbar-brand" href="#"> My Competitions </a>
                         </div>
-                        <div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">dashboard</i>
-                                        <p class="hidden-lg hidden-md">Dashboard</p>
-                                    </a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">notifications</i>
-                                        <span class="notification">5</span>
-                                        <p class="hidden-lg hidden-md">
-                                            Notifications
-                                            <b class="caret"></b>
-                                        </p>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="#">Nina responded to your email</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">You have 5 new tasks</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">You're now friend with Andrew</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Another Notification</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Another One</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">person</i>
-                                        <p class="hidden-lg hidden-md">Profile</p>
-                                    </a>
-                                </li>
-                                <li class="separator hidden-lg hidden-md"></li>
-                            </ul>
-                            <form class="navbar-form navbar-right" role="search">
-                                <div class="form-group form-search is-empty">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                    <span class="material-input"></span>
-                                </div>
-                                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                    <i class="material-icons">search</i>
-                                    <div class="ripple-container"></div>
-                                </button>
-                            </form>
-                        </div>
+
                     </div>
                 </nav>
                 <div class="content">
@@ -202,7 +137,7 @@ $q_team->execute(array($athleteID));
                         <div class="row">
                             <div class="col-lg-12">
 
-                                <p>Here, you see your upcoming and past competitions</p>
+                                <p>Here, you can see your upcoming, current and past competitions</p>
 
 
 
@@ -251,9 +186,23 @@ $q_team->execute(array($athleteID));
 
                                                     <div class="material-datatables">
                                                         <table id="datatablessssss" class="table  table-no-bordered  table-shopping" cellspacing="0" width="100%" style="width:100%">
+
+                                                            <?php
+                                                            $sql_team = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_city, comp_country, comp_active, div_is_team from tbl_competition "
+                                                                    . " join tbl_division on tbl_competition.comp_ID = tbl_division.fk_comp_ID"
+                                                                    . " join tbl_team_division on tbl_division.div_ID = tbl_team_division.fk_div_ID"
+                                                                    . " join tbl_team on tbl_team_division.fk_team_ID = tbl_team.team_ID"
+                                                                    . " join tbl_team_member on tbl_team.team_ID = tbl_team_member.fk_team_ID"
+                                                                    . " where tbl_team_member.fk_athlete_ID =?"
+                                                                    . " and tbl_competition.comp_start_date  > CURRENT_DATE()";
+
+                                                            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                                            $q_team = $pdo->prepare($sql_team);
+                                                            $q_team->execute(array($athleteID));
+                                                            ?>
                                                             <thead>
                                                                 <tr>
-                                                                   <th></th>
+                                                                    <th></th>
                                                                     <th>Name</th>
                                                                     <th>When</th>
                                                                     <th>Where</th>
@@ -279,11 +228,11 @@ $q_team->execute(array($athleteID));
                                                                     }
 
                                                                     $compLogo = $zeile['comp_logo'];
-                                                                      if ($compLogo != 0) {
-                                                                      $logosrc = "uploads/host/complogo/$compLogo";
-                                                                      } else {
-                                                                      $logosrc = "img/image_placeholder.jpg";
-                                                                      } 
+                                                                    if ($compLogo != 0) {
+                                                                        $logosrc = "uploads/host/complogo/$compLogo";
+                                                                    } else {
+                                                                        $logosrc = "img/image_placeholder.jpg";
+                                                                    }
                                                                     ?>
                                                                     <tr>
                                                                         <td><div class="img-container">
@@ -292,16 +241,16 @@ $q_team->execute(array($athleteID));
                                                                         </td>
 
                                                                         <td><a href="competitionView.php?comp_id=<?php echo $compID ?>" target="_blank"><?php echo $compName ?></a></td>
-                                                                        <td><?php echo $compStartDate ?></td>
+                                                                        <td><?php echo date("d.m.Y", strtotime($compStartDate)) ?></td>
                                                                         <td><?php echo $compLocation ?></td>
                                                                         <td><i class="material-icons"><?php echo $divIsTeam ?></i></td>
 
                                                                     </tr>
 
-                                                                    <?php
-                                                                }
-                                                                Database::disconnect();
-                                                                ?>
+    <?php
+}
+Database::disconnect();
+?>
 
 
                                                             </tbody>
@@ -314,8 +263,163 @@ $q_team->execute(array($athleteID));
                                             </div>
                                             <div class="tab-pane" id="current">
 
+                                                <div class="col-md-12">
+
+
+                                                    <div class="material-datatables">
+                                                        <table id="datatablessssss" class="table  table-no-bordered  table-shopping" cellspacing="0" width="100%" style="width:100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th></th>
+                                                                    <th>Name</th>
+                                                                    <th>When</th>
+                                                                    <th>Where</th>
+                                                                    <th>Team</th>
+
+                                                                </tr>
+                                                            </thead>
+
+                                                            <tbody>
+
+<?php
+$sql_team = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_city, comp_country, comp_active, div_is_team from tbl_competition "
+        . " join tbl_division on tbl_competition.comp_ID = tbl_division.fk_comp_ID"
+        . " join tbl_team_division on tbl_division.div_ID = tbl_team_division.fk_div_ID"
+        . " join tbl_team on tbl_team_division.fk_team_ID = tbl_team.team_ID"
+        . " join tbl_team_member on tbl_team.team_ID = tbl_team_member.fk_team_ID"
+        . " where tbl_team_member.fk_athlete_ID =?"
+        . " and tbl_competition.comp_start_date  >= CURRENT_DATE()"
+        . " and tbl_competition.comp_end_date  <= CURRENT_DATE()";
+
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$q_team = $pdo->prepare($sql_team);
+$q_team->execute(array($athleteID));
+
+while ($zeile = $q_team->fetch(/* PDO::FETCH_ASSOC */)) {
+
+    $compLocation = $zeile['comp_city'] . ", " . $zeile['comp_country'];
+    $compName = $zeile['comp_name'];
+    $compStartDate = $zeile['comp_start_date'];
+    $compID = $zeile['comp_ID'];
+
+
+
+    if ($zeile['div_is_team']) {
+        $divIsTeam = "done";
+    }
+
+    $compLogo = $zeile['comp_logo'];
+    if ($compLogo != 0) {
+        $logosrc = "uploads/host/complogo/$compLogo";
+    } else {
+        $logosrc = "img/image_placeholder.jpg";
+    }
+    ?>
+                                                                    <tr>
+                                                                        <td><div class="img-container">
+                                                                                <img src="<?php echo $logosrc ?>" alt="...">
+                                                                            </div>
+                                                                        </td>
+
+                                                                        <td><a href="competitionView.php?comp_id=<?php echo $compID ?>" target="_blank"><?php echo $compName ?></a></td>
+                                                                        <td><?php echo date("d.m.Y", strtotime($compStartDate)) ?></td>
+                                                                        <td><?php echo $compLocation ?></td>
+                                                                        <td><i class="material-icons"><?php echo $divIsTeam ?></i></td>
+
+                                                                    </tr>
+
+    <?php
+}
+Database::disconnect();
+?>
+
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+
+                                                </div>
+
                                             </div>
                                             <div class="tab-pane" id="past">
+
+                                                <div class="col-md-12">
+
+
+                                                    <div class="material-datatables">
+                                                        <table id="datatablessssss" class="table  table-no-bordered  table-shopping" cellspacing="0" width="100%" style="width:100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th></th>
+                                                                    <th>Name</th>
+                                                                    <th>When</th>
+                                                                    <th>Where</th>
+                                                                    <th>Team</th>
+
+                                                                </tr>
+                                                            </thead>
+
+                                                            <tbody>
+
+<?php
+$sql_team = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_city, comp_country, comp_active, div_is_team from tbl_competition "
+        . " join tbl_division on tbl_competition.comp_ID = tbl_division.fk_comp_ID"
+        . " join tbl_team_division on tbl_division.div_ID = tbl_team_division.fk_div_ID"
+        . " join tbl_team on tbl_team_division.fk_team_ID = tbl_team.team_ID"
+        . " join tbl_team_member on tbl_team.team_ID = tbl_team_member.fk_team_ID"
+        . " where tbl_team_member.fk_athlete_ID =?"
+        . " and tbl_competition.comp_end_date  < CURRENT_DATE()";
+
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$q_team = $pdo->prepare($sql_team);
+$q_team->execute(array($athleteID));
+
+while ($zeile = $q_team->fetch(/* PDO::FETCH_ASSOC */)) {
+
+    $compLocation = $zeile['comp_city'] . ", " . $zeile['comp_country'];
+    $compName = $zeile['comp_name'];
+    $compStartDate = $zeile['comp_start_date'];
+    $compID = $zeile['comp_ID'];
+
+
+
+    if ($zeile['div_is_team']) {
+        $divIsTeam = "done";
+    }
+
+    $compLogo = $zeile['comp_logo'];
+    if ($compLogo != 0) {
+        $logosrc = "uploads/host/complogo/$compLogo";
+    } else {
+        $logosrc = "img/image_placeholder.jpg";
+    }
+    ?>
+                                                                    <tr>
+                                                                        <td><div class="img-container">
+                                                                                <img src="<?php echo $logosrc ?>" alt="...">
+                                                                            </div>
+                                                                        </td>
+
+                                                                        <td><a href="competitionView.php?comp_id=<?php echo $compID ?>" target="_blank"><?php echo $compName ?></a></td>
+                                                                        <td><?php echo date("d.m.Y", strtotime($compStartDate)) ?></td>
+                                                                        <td><?php echo $compLocation ?></td>
+                                                                        <td><i class="material-icons"><?php echo $divIsTeam ?></i></td>
+
+                                                                    </tr>
+
+    <?php
+}
+Database::disconnect();
+?>
+
+
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+
+
+                                                </div>
 
                                             </div>
                                         </div>
@@ -332,36 +436,13 @@ $q_team->execute(array($athleteID));
                 </div>
                 <footer class="footer">
                     <div class="container-fluid">
-                        <nav class="pull-left">
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        Home
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Company
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Portfolio
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Blog
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+
                         <p class="copyright pull-right">
                             &copy;
                             <script>
                                 document.write(new Date().getFullYear())
                             </script>
-                            <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+                            <a>champscore</a>
                         </p>
                     </div>
                 </footer>

@@ -55,11 +55,11 @@ body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4 {
 }
 
 a {
-  color: #9c27b0;
+    color: #d80000;
 }
 a:hover, a:focus {
-  color: #89229b;
-  text-decoration: none;
+    color: #820000;
+    text-decoration: none;
 }
 a.text-info:hover, a.text-info:focus {
   color: #00a5bb;
@@ -1590,10 +1590,10 @@ fieldset[disabled] .form-group.is-focused .radio label {
   opacity: 1;
 }
 .radio input[type=radio]:checked ~ .check {
-  background-color: #9c27b0;
+  background-color: #d80000;
 }
 .radio input[type=radio]:checked ~ .circle {
-  border-color: #9c27b0;
+  border-color: #d80000;
 }
 .radio input[type=radio]:checked ~ .check {
   -webkit-transform: scale3d(0.65, 0.65, 1);

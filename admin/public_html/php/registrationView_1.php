@@ -27,17 +27,13 @@ $compID = $_GET['comp_id'];
         <?php
         include 'Database.php';
         $pdo = Database::connect();
-
         //  $compID = $_GET['comp_id'];
         //   $compID = 57;
         $sql = "select comp_ID, comp_name, comp_start_date, comp_banner, comp_regcode, comp_terms, comp_active, comp_street, comp_zip, comp_city, comp_country, comp_logo from tbl_competition where comp_id = ?";
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $q = $pdo->prepare($sql);
         $q->execute(array($compID));
-
-
         while ($zeile = $q->fetch(/* PDO::FETCH_ASSOC */)) {
-
             $compID = $zeile['comp_ID'];
             $compName = $zeile['comp_name'];
             $compRegCode = $zeile['comp_regcode'];
@@ -50,34 +46,26 @@ $compID = $_GET['comp_id'];
             $compTerms = $zeile['comp_terms'];
             $compBanner = $zeile['comp_banner'];
         }
-
-
         if ($compLogo != 0) {
             $logosrc = "uploads/host/complogo/$compLogo";
         } else {
             $logosrc = "img/image_placeholder.jpg";
         }
-
         if ($compTerms != 0) {
             $termsSrc = "uploads/host/terms/$compTerms";
         } else {
             $termsSrc = "img/image_placeholder.jpg";
         }
-
         if ($compTerms != 0) {
             $bannersrc = "uploads/host/compbanner/$compBanner";
         } else {
             $bannersrc = "img/image_placeholder.jpg";
         }
-
         /* $sql_user = "select * from tbl_user";
           $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           $q_user = $pdo->prepare($sql_user);
           $q_user->execute(array($userID));
-
-
           while ($zeile = $q_user->fetch(/* PDO::FETCH_ASSOC )) {
-
           $userName = $zeile['user_name'];
           $userFirstName = $zeile['user_firstname'];
           $userLastName = $zeile['user_lastname'];
@@ -87,19 +75,14 @@ $compID = $_GET['comp_id'];
 
 
         <script type="text/javascript">
-
             function onChangeDivision() {
-
                 var division = document.getElementById('division').value.split(',');
                 var divID = division[0];
                 var divIsTeam = division[1];
                 var divTeamSize = division[2];
                 document.getElementById("divID").value = divID;
-
                 if (divIsTeam) {
-
                     // Number of tea to create
-
                     var number = divTeamSize;
                     // Container <div> where dynamic content will be placed
                     var container = document.getElementById("names");
@@ -108,17 +91,13 @@ $compID = $_GET['comp_id'];
                         container.removeChild(container.lastChild);
                     }
                     //container.appendChild(document.createTextNode("Each Member will get an E-Mail to Confirm the Registration"));
-
-
                     for (i = 1; i <= number; i++) {
                         // Append a node with a random text
-
                         // Create an <input> element, set its type and name attributes
                         // var input = document.createElement("input");
                         //input.type = "text";
                         //input.name = "member" + i;
                         //input.class = "form-control";
-
                         var counter = i;
                         var suffix;
                         var captain;
@@ -140,74 +119,73 @@ $compID = $_GET['comp_id'];
                                 captain = "";
                                 break;
                         }
-
-
-
                         var newdiv = document.createElement('div' + counter);
                         if (counter === 1) {
-
                             var teamNameDiv = document.createElement('div');
-
                             teamNameDiv.innerHTML = "<div class=\"col-md-10 col-md-offset-0 form-group label-floating\"><input type='text' id='teamName' name='teamName'  class='form-control' placeholder ='Team Name' required>\n\
                                                     <input type='hidden' id='isTeam' name='isTeam'  class='form-control' value= '1'  required></div>";
                             container.appendChild(teamNameDiv);
-
-                            newdiv.innerHTML = "<div class=\"col-md-5 col-md-offset-0 form-group label-floating\"><b>" + (counter + suffix) + " Member " + captain + "</b><br><input type='text' id='firstName" + counter + "'   class='form-control' placeholder ='First Name' required>\n\
-                                              <input type='text' id='lastName" + counter + "' class='form-control' placeholder ='Last Name' required>\n\
+                            newdiv.innerHTML = "<div class=\"col-md-5 col-md-offset-0 form-group label-floating\"><b>" + (counter + suffix) + " Member " + captain + "</b><br>\n\
                                             <input type='email' id='athleteEmail" + counter + "' name='athleteEmail[" + counter + "]' class='form-control' placeholder ='E-Mail' email='true' required><span id='athlete-result" + counter + "' ></span></div>";
-
-
                             //append("<input type='text'/><br/>");
                             // newdiv.innerHTML = "<div class=\"col-md-5 col-md-offset-0 form-group label-floating\"><b>" + (counter + suffix) + " Member " + captain + "</b><br><input type='text' id='firstName" + counter + "'  value= '' class='form-control' placeholder ='First Name' required>\n\
                             //<input type='text' id='lastName" + counter + "'  value= '' class='form-control' placeholder ='Last Name' required>\n\
                             //<input type='email' id='userEmail" + counter + "' name='userEmail[" + counter + "]' value= '' class='form-control' placeholder ='E-Mail' email='true' required><span id='user-result" + counter + "' ></span></div>";
                         } else {
-
-                            newdiv.innerHTML = "<div class=\"col-md-5 col-md-offset-0 form-group label-floating has-success\"><b>" + (counter + suffix) + " Member</b><br><input type='text' id='firstName" + counter + "'  class='form-control' placeholder ='First Name' required>\n\
-                                              <input type='text' id='lastName" + counter + "'  class='form-control' placeholder ='Last Name' required>\n\
+                            newdiv.innerHTML = "<div class=\"col-md-5 col-md-offset-0 form-group label-floating has-success\"><b>" + (counter + suffix) + " Member</b><br>\n\
                                             <input type='email' id='athleteEmail" + counter + "'  name='athleteEmail[" + counter + "]' class='form-control' placeholder ='E-Mail' email='true' required><span id='athlete-result" + counter + "' ></span></div>";
                         }
-
-
                         container.appendChild(newdiv);
 //check if username exists, important for teams
                         clearTimeout(x_timer); //clear any previously set 
                         var x_timer;
-
                         $('#athleteEmail' + counter).keyup(function (e) {
-
                             var athlete = this.value;
                             var id = this.getAttribute('id').substr(12);
-
                             e.preventDefault();
                             clearTimeout(x_timer);
-
                             x_timer = setTimeout(function () {
                                 check_athlete_ajax(athlete, id);
                             }, 500);
                         });
-
                         function check_athlete_ajax(athlete, id) {
-
                             $.post('athlete_checker.php', {'athlete_email': athlete}, function (data) {
 
-                                if (data) {
+
+                                var exists;
+                                var firstname;
+                                var lastname;
+                                $.each(data, function (key, value) {
+
+
+                                    if (key === 0) {
+                                        exists = value;
+                                    }
+
+                                    if (key === 1) {
+                                        firstname = value;
+                                    }
+                                    if (key === 2) {
+                                        lastname = value;
+                                    }
+
+                                }
+
+                                );
+
+                                if (exists === 1) {
                                     document.getElementById("btnRegister").disabled = false;
-                                    var message = 'Athlete is registered <i class="material-icons">done</i>';
+                                    var message = 'Athlete: ' + firstname + " " + lastname + ' <i class="material-icons">done</i>';
                                 } else {
+
                                     document.getElementById("btnRegister").disabled = true;
                                     var message = 'Select an existing Athlete';
                                 }
-
                                 $('#athlete-result' + id).html(message);
-
-                            });
+                            }, "json");
                         }
                     }
-
                 } else {
-
-
                     // Container <div> where dynamic content will be placed
                     var container = document.getElementById("names");
                     // Clear previous contents of the container
@@ -215,22 +193,45 @@ $compID = $_GET['comp_id'];
                         container.removeChild(container.lastChild);
                     }
                     //container.appendChild(document.createTextNode("Each Member will get an E-Mail to Confirm the Registration"));
-
-
                     var newdiv = document.createElement('div');
                     //append("<input type='text'/><br/>");
-
-
                     newdiv.innerHTML = "<div class=\"col-md-2 col-md-offset-5\"><input type='hidden' id='isTeam' name='isTeam'  class='form-control' value= '0'  required>\n\
                                         <input type='text' name='firstName'  class='form-control' placeholder ='First Name' required>\n\
                                               <input type='text' name='lastName'  class='form-control' placeholder ='Last Name' required>\n\
                                             <input type='email' name='email' class='form-control' placeholder ='E-Mail' email='true' required></div>";
-
                     container.appendChild(newdiv);
                 }
             }
 
+
+
+            function mySubmitCompReg()
+            {
+
+
+                if ($("#division").val() == "") {
+                    alert("Please select a Division");
+                    document.formular.division.focus();
+                    return false;
+                }
+
+                if (!this.form.optionsCheckboxes.checked)
+                {
+
+                    alert('You must agree to the terms first.');
+                    return false;
+                } else {
+
+                    alert('haha');
+                }
+
+
+            }
+
+
         </script>
+
+
     </head>
 
     <body class="login-page">
@@ -270,11 +271,11 @@ $compID = $_GET['comp_id'];
                             <div class="row">
                                 <div class="col-md-12 col-md-offset-1">
 
-                                    <form class="form" method="POST" action="inputCompRegistration.php">
+                                    <form class="form" onsubmit="return mySubmitCompReg()" method="POST" action="inputCompRegistration.php">
                                         <input type='hidden' id='compID' name='compID' class='form-control' value= '<?php echo $compID ?>'>
                                         <input type='hidden' id='divID' name='divID' class='form-control' >
 
-                                        <div class="card-content"style="opacity: 1">
+                                        <div class="card-content">
                                             <div class="row">
                                                 <div class="col-md-4 col-md-offset-3">
                                                     <div class="form-group label-floating">
@@ -288,21 +289,15 @@ $compID = $_GET['comp_id'];
                                                             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                                                             $q_div = $pdo->prepare($sql_div);
                                                             $q_div->execute(array($compID));
-
-
-
                                                             while ($zeile = $q_div->fetch(/* PDO::FETCH_ASSOC */)) {
                                                                 $divName = $zeile['div_name'];
-
                                                                 if ($zeile['div_is_team']) {
-                                                                    $divName = 'Team - ' . $divName . $zeile['div_team_size'];
+                                                                    $divName = 'Team - ' . $divName;
                                                                 } else {
-                                                                    $divName = 'Individual - ' . $divName . $zeile['div_team_size'];
+                                                                    $divName = 'Individual - ' . $divName;
                                                                 }
-
                                                                 echo "<option value=" . $zeile['div_ID'] . ',' . $zeile['div_is_team'] . ',' . $zeile['div_team_size'] . ">" . $divName . "</option>";
                                                             }
-
                                                             Database::disconnect();
                                                             ?>
                                                         </select>
@@ -321,11 +316,11 @@ $compID = $_GET['comp_id'];
                                             <div align="right" class="col-md-11 col-md-offset-0">
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox" name="optionsCheckboxes" required>
-                                                        I agree to the <a href="#something" data-toggle="modal" data-target="#myModal">terms and conditions</a>.
+                                                        <input type="checkbox" name="optionsCheckboxes" id="termsCheckbox" required>
+                                                        I agree to the <a href="#something" data-toggle="modal" data-target="#myModal">I agree to the Terms and Conditions</a>.
                                                     </label>
 
-                                                    <button id="btnRegister"  class="btn btn-pinterest">Register</button>
+                                                    <button id="btnRegister"  class="btn btn-pinterest" disabled>Register</button>
 
                                                 </div>
                                             </div>
@@ -336,7 +331,7 @@ $compID = $_GET['comp_id'];
                             </div>
                         </div>
                         <div id="myModal" class="modal fade" role="dialog">
-                            <div class="modal-dialog">
+                            <div class="modal-dialog" style="width: 70%">
 
                                 <!-- Modal content-->
                                 <div class="modal-content">
@@ -345,7 +340,7 @@ $compID = $_GET['comp_id'];
                                         <h4 class="modal-title">Terms & Conditions</h4>
                                     </div>
                                     <div class="modal-body" align="middle">
-                                        <iframe src="<?php echo $termsSrc ?>" width="400" height="500"></iframe>
+                                        <iframe src="<?php echo $termsSrc ?>" width="400" height="500" style="width: 70%"></iframe>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-pinterest" data-dismiss="modal">Close</button>
@@ -362,8 +357,6 @@ $compID = $_GET['comp_id'];
                                 <form action="" method="">
                                             You can switch " data-color="purple" "  with one of the next bright colors: "green", "orange", "red", "blue"    
                                     <div class="wizard-header">
-
-
                                         <h3 class="wizard-title">
                         <?php echo $compName ?>
                                         </h3>
@@ -384,9 +377,7 @@ $compID = $_GET['comp_id'];
                                         <div class="tab-pane" id="about">
                                             <div class="row">
                                                 <h4 class="info-text"> Please fill in the required Information</h4>
-
                                                 <div class="col-sm-6">
-
                                                     <div class="input-group">
                                                         <span class="input-group-addon">
                                                             <i class="material-icons">face</i>
@@ -395,9 +386,6 @@ $compID = $_GET['comp_id'];
                                                     </div>
                                                 </div>
                                                 
-
-
-
                         <!--<div class="col-lg-10 col-lg-offset-1">
                             <div class="input-group">
                                 <span class="input-group-addon">
@@ -522,6 +510,21 @@ $compID = $_GET['comp_id'];
                                                                 demo.initMaterialWizard();
                                                             }
                                                             );
+                                                            $("form").submit(function (e) {
+                                                                var ref = $(this).find("[required]");
+                                                                $(ref).each(function () {
+                                                                    if ($(this).val() == '')
+                                                                    {
+                                                                        alert("Please provide all Information");
+                                                                        $(this).focus();
+                                                                        e.preventDefault();
+                                                                        return false;
+                                                                    }
+
+
+                                                                });
+                                                                return true;
+                                                            });
     </script>
 
 </html>

@@ -340,7 +340,7 @@ Database::disconnect();
                                                         <?php echo $athleteAffiliate ?>
                                                     </p>
                                                     <div>
-                                                        <span class="btn btn-raised btn-round btn-default btn-file">
+                                                        <span class="btn btn-raised btn-round btn-pinterest btn-file">
                                                             <span class="fileinput-new">Select Photo</span>
                                                             <span class="fileinput-exists">Change</span>
 

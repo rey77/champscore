@@ -21,13 +21,164 @@ if (isset($_SESSION['message'])) {
         <link href="css/bootstrap.min.css" rel="stylesheet" />
         <!--  Material Dashboard CSS    -->
         <link href="css/material-dashboard.css" rel="stylesheet" />
-        <!--  CSS for Demo Purpose, don't include it in your project     -->
-        <link href="css/demo.css" rel="stylesheet" />
         <!--     Fonts and icons     -->
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
         <link href="css/material-kit.css?v=1.1.0" rel="stylesheet"/>
 
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            $(function () {
+                $("#datepicker").datepicker();
+            });
+        </script>
+
+        <script type="text/javascript">
+            //Funktion zur Prüfung der Registrierungsdaten
+            function mySubmitReg()
+            {
+
+               
+                if ($("#avatar").val() == "") {
+                    alert("Please provide a Profile Picture");
+                    document.formular.avatar.focus();
+                    return false;
+
+                }
+
+                if (document.formular.athleteEmail.value == "") {
+                    alert("Please provide an Email Address");
+                    document.formular.athleteEmail.focus();
+                    return false;
+                }
+
+                if (document.formular.athletePassword1.value == "") {
+                    alert("Please provide a password");
+                    document.formular.athletePassword1.focus();
+                    return false;
+                }
+                if (document.formular.athletePassword2.value == "") {
+                    alert("Please confirm your password");
+                    document.formular.athletePassword2.focus();
+                    return false;
+                }
+                if (document.formular.athletePassword1.value.length < 8) {
+                    alert("Your password needs to consist of at least 8 characters")
+                    document.formular.athletePassword1.focus();
+                    return false;
+                }
+                var nr_length = document.formular.athletePassword1.value.replace(/[^0-9]/g, '').length;
+                if (nr_length < 1) {
+                    alert("Your password should have at least 1 number")
+                    document.formular.athletePassword1.focus();
+                    return false;
+                }
+
+
+                if (document.formular.athleteFirstName.value == "") {
+                    alert("Please provide your First Name");
+                    document.formular.athleteFirstName.focus();
+                    return false;
+                }
+
+                if (document.formular.athleteLastName.value == "") {
+                    alert("Please provide your Last Name");
+                    document.formular.athleteLastName.focus();
+                    return false;
+                }
+
+                if (document.formular.athleteBirthDate == "") {
+                    alert("Please provide your Birth Date");
+                    document.formular.athleteBirthDate.focus();
+                    return false;
+                }
+
+
+                if (document.formular.athleteStreet.value == "") {
+                    alert("Please provide your Street");
+                    document.formular.athleteStreet.focus();
+                    return false;
+                }
+
+                if (document.formular.athleteZip.value == "") {
+                    alert("Please provide your ZIP");
+                    document.formular.athleteZIP.focus();
+                    return false;
+                }
+
+                if (document.formular.athleteCity.value == "") {
+                    alert("Please provide your City");
+                    document.formular.athleteCity.focus();
+                    return false;
+                }
+                if (document.formular.athleteCountry.value == "") {
+                    alert("Please provide your Country");
+                    document.formular.athleteCountry.focus();
+                    return false;
+                }
+
+                if (document.formular.athletePhone.value == "") {
+                    alert("Please provide your Phone Number");
+                    document.formular.athletePhone.focus();
+                    return false;
+                }
+
+                if (document.formular.athleteAffiliate.value == "") {
+                    alert("Please provide your Affiliate or fill in 'no Affiliate'");
+                    document.formular.athleteAffiliate.focus();
+                    return false;
+                }
+                
+                 if ($("#athleteShirtsize").val() == "") {
+                    alert("Please provide your Shirt Size");
+                    document.formular.athleteShirtsize.focus();
+                    return false;
+                }
+
+                if ($("#athleteBestscore").val() == "") {
+                    alert("Please provide your Best Result in Competitive Fitness");
+                    document.formular.athleteBestscore.focus();
+                    return false;
+                }
+
+                if ($("#actionPicture").val() == "") {
+                    alert("Please provide an Action Picture");
+                    document.formular.actionPicture.focus();
+                    return false;
+                }
+
+                if (document.formular.athletePassword1.value == document.formular.athletePassword2.value)
+                {
+                    return true;
+                } else
+                {
+                    alert("Your confirmed password is not the same as your password");
+                    return false;
+                }
+                /*
+                 if (document.formular.actionPicture == "") {
+                 alert("Please provide an Action Picture");
+                 document.formular.actionPicture.focus();
+                 return false;
+                 }
+                 if (document.formular.avatar == "") {
+                 alert("Please provide a Profile Picture");
+                 document.formular.avatar.focus();
+                 return false;
+                 }*/
+
+
+
+
+
+            }
+
+
+
+
+        </script> 
 
     </head>
 
@@ -37,7 +188,7 @@ if (isset($_SESSION['message'])) {
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
 
-                    <a class="navbar-brand" href="landingpage.php"><p><img style="width: 2em;" class="logo" src="../img/Logo.png" alt=""/><img style=" padding-left: .5em; width: 9em;" class="logo" src="../img/text.png" alt=""/></p></a>
+                    <a class="navbar-brand" href="../index.php"><p><img style="width: 2em;" class="logo" src="../img/Logo.png" alt=""/><img style=" padding-left: .5em; width: 9em;" class="logo" src="../img/text.png" alt=""/></p></a>
                 </div>
 
             </div>
@@ -56,7 +207,7 @@ if (isset($_SESSION['message'])) {
 
 
                             <div class="row">
-                                <form class="form" method="POST" enctype="multipart/form-data" action="loginsec/registerAthlete.php">
+                                <form name="formular" class="form" onsubmit="return mySubmitReg()" method="POST" enctype="multipart/form-data" action="loginsec/registerAthlete.php">
                                     <div class="card-content">
 
                                         <div class="row">
@@ -67,7 +218,7 @@ if (isset($_SESSION['message'])) {
                                                     <input type="text" class="form-control" disabled>
                                                 </div>
                                             </div>-->
-                                            <div class="col-lg-4 col-lg-offset-4 fileinput fileinput-new text-center" data-provides="fileinput">
+                                            <div class="col-lg-4 col-lg-offset-4 col-xs-12 fileinput fileinput-new text-center" data-provides="fileinput">
                                                 <div class="fileinput-new thumbnail img-circle img-raised">
                                                     <img src="img/default-avatar.png" alt="...">
                                                 </div>
@@ -76,8 +227,8 @@ if (isset($_SESSION['message'])) {
 
 
                                                 <div>
-                                                    <span class="btn btn-raised btn-round btn-default btn-file">
-                                                        <span class="fileinput-new">Select Photo</span>
+                                                    <span class="btn btn-raised btn-round btn-pinterest btn-file">
+                                                        <span class="fileinput-new">Select Profile Picture</span>
                                                         <span class="fileinput-exists">Change</span>
 
                                                         <input type="file"  name="avatar" id="avatar" required="true"/></span>
@@ -159,9 +310,10 @@ if (isset($_SESSION['message'])) {
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Date of Birth</label>
-                                                        <input type="date" name="athleteBirthDate" id="athleteBirthDate" class="form-control" required >
+                                                        <input type="text" name="athleteBirthDate" id="datepicker" class="form-control datepicker" required >
                                                     </div>
                                                 </div>
+
 
                                                 <div class="radio col-md-6 form-group label-floating">
                                                     <br>
@@ -201,7 +353,7 @@ if (isset($_SESSION['message'])) {
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
-                                                        <label class="control-label">Country</label>
+                                                        <label class="control-label"> Country</label>
                                                         <select id="country" name="athleteCountry" class="form-control" required >
                                                             <option value=""></option>
                                                             <option value="AF">Afghanistan</option>
@@ -478,6 +630,7 @@ if (isset($_SESSION['message'])) {
                                             </div>
                                         </div>
 
+
                                         <div class="row">
                                             <div class="col-lg-10 col-lg-offset-1">
 
@@ -485,16 +638,16 @@ if (isset($_SESSION['message'])) {
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">T-Shirt Size</label>
                                                         <select id="athleteShirtsize" name="athleteShirtsize" class="form-control" required>
-                                                        
-                                                        <option value="XS">XS </option>
-                                                        <option value="S">S</option>
-                                                        <option value="M">M</option>
-                                                        <option value="L">L</option>
-                                                        <option value="XL">XL</option>
-                                                        <option value="XXL">XXL</option>
-                                                        
-                                                    </select>
-                                                        
+
+                                                            <option value="XS">XS </option>
+                                                            <option value="S">S</option>
+                                                            <option value="M">M</option>
+                                                            <option value="L">L</option>
+                                                            <option value="XL">XL</option>
+                                                            <option value="XXL">XXL</option>
+
+                                                        </select>
+
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -514,14 +667,14 @@ if (isset($_SESSION['message'])) {
                                                 <p class="text-muted">
                                                     Please provide a cool action picture of you which can be used in Competitions
                                                 </p>
-                                                <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                                <div class="col-lg-12 fileinput fileinput-new text-center" data-provides="fileinput">
                                                     <div class="fileinput-new thumbnail">
-                                                        <img src="img/image_placeholder.jpg" alt="...">
+                                                        <img src="img/actionpicture_placeholder.jpg" alt="...">
                                                     </div>
                                                     <div class="fileinput-preview fileinput-exists thumbnail"></div>
                                                     <div>
                                                         <span class="btn btn-pinterest btn-round btn-file">
-                                                            <span class="fileinput-new">Select Picture</span>
+                                                            <span class="fileinput-new">Select Action Picture</span>
                                                             <span class="fileinput-exists">Change</span>
                                                             <input type="file" name="actionPicture" id="actionPicture" required />
                                                         </span>
@@ -553,51 +706,54 @@ if (isset($_SESSION['message'])) {
                 </div>
             </div>
         </div>
-    </body>
-    <!--   Core JS Files   -->
-    <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
-    <script src="js/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="js/material.min.js" type="text/javascript"></script>
-    <script src="js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
-    <!-- Forms Validations Plugin -->
-    <script src="js/jquery.validate.min.js"></script>
-    <!--  Plugin for Date Time Picker and Full Calendar Plugin-->
-    <script src="js/moment.min.js"></script>
-    <!--  Charts Plugin -->
-    <script src="js/chartist.min.js"></script>
-    <!--  Plugin for the Wizard -->
-    <script src="js/jquery.bootstrap-wizard.js"></script>
-    <!--  Notifications Plugin    -->
-    <script src="js/bootstrap-notify.js"></script>
-    <!-- DateTimePicker Plugin -->
-    <script src="js/bootstrap-datetimepicker.js"></script>
-    <!-- Vector Map plugin -->
-    <script src="js/jquery-jvectormap.js"></script>
-    <!-- Sliders Plugin -->
-    <script src="js/nouislider.min.js"></script>
-    <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
-    <!-- Select Plugin -->
-    <script src="js/jquery.select-bootstrap.js"></script>
-    <!--  DataTables.net Plugin    -->
-    <script src="js/jquery.datatables.js"></script>
-    <!-- Sweet Alert 2 plugin -->
-    <script src="js/sweetalert2.js"></script>
-    <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-    <script src="js/jasny-bootstrap.min.js"></script>
-    <!--  Full Calendar Plugin    -->
-    <script src="js/fullcalendar.min.js"></script>
-    <!-- TagsInput Plugin -->
-    <script src="js/jquery.tagsinput.js"></script>
-    <!-- Material Dashboard javascript methods -->
-    <script src="js/material-dashboard.js"></script>
-    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-    <script src="js/demo.js"></script>
-    <script type="text/javascript">
-        $().ready(function () {
-            demo.initMaterialWizard();
-        });
-    </script>
 
+        <!--   Core JS Files   -->
+        <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
+        <script src="js/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/material.min.js" type="text/javascript"></script>
+        <script src="js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+        <!-- Forms Validations Plugin -->
+        <script src="js/jquery.validate.min.js"></script>
+        <!--  Plugin for Date Time Picker and Full Calendar Plugin-->
+        <script src="js/moment.min.js"></script>
+        <!--  Charts Plugin -->
+        <script src="js/chartist.min.js"></script>
+        <!--  Plugin for the Wizard -->
+        <script src="js/jquery.bootstrap-wizard.js"></script>
+        <!--  Notifications Plugin    -->
+        <script src="js/bootstrap-notify.js"></script>
+        <!-- DateTimePicker Plugin -->
+        <script src="js/bootstrap-datetimepicker.js"></script>
+        <!-- Vector Map plugin -->
+        <script src="js/jquery-jvectormap.js"></script>
+        <!-- Sliders Plugin -->
+        <script src="js/nouislider.min.js"></script>
+        <!--  Google Maps Plugin    -->
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
+        <!-- Select Plugin -->
+        <script src="js/jquery.select-bootstrap.js"></script>
+        <!--  DataTables.net Plugin    -->
+        <script src="js/jquery.datatables.js"></script>
+        <!-- Sweet Alert 2 plugin -->
+        <script src="js/sweetalert2.js"></script>
+        <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+        <script src="js/jasny-bootstrap.min.js"></script>
+        <!--  Full Calendar Plugin    -->
+        <script src="js/fullcalendar.min.js"></script>
+        <!-- TagsInput Plugin -->
+        <script src="js/jquery.tagsinput.js"></script>
+
+        <!-- Material Dashboard javascript methods -->
+        <script src="js/material-dashboard.js"></script>
+
+        <script type="text/javascript" src="js/ajaxlivesearch.min.js"></script>
+
+
+
+
+
+
+
+    </body>
 </html>

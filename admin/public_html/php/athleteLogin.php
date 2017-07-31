@@ -50,7 +50,7 @@ if (ini_get("session.use_cookies")) {
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
 
-                    <a class="navbar-brand" href="landingpage.php"><p><img style="width: 2em;" class="logo" src="../img/Logo.png" alt=""/><img style=" padding-left: .5em; width: 9em;" class="logo" src="../img/text.png" alt=""/></p></a>
+                    <a class="navbar-brand" href="../index.php"><p><img style="width: 2em;" class="logo" src="../img/Logo.png" alt=""/><img style=" padding-left: .5em; width: 9em;" class="logo" src="../img/text.png" alt=""/></p></a>
                 </div>
 
 

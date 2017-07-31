@@ -3,7 +3,7 @@ session_start();
 
 if ($_SESSION['eingeloggt'] == false) {
 
-    header("Location: public_html/index.php");
+    header("Location: /index.php");
     exit();
 }
 ?>

@@ -334,7 +334,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                                             $tblHeader2 = "Team Affiliate";
                                                             $tblHeader3 = "Team Members";
                                                             ?>
-                                                            <form name="newTeam" action = "newTeam.php" method="POST" role="form">
+                                                            <!--<form name="newTeam" action = "newTeam.php" method="POST" role="form">
                                                                 <div style="display:none;">
                                                                     <input type="hidden" name="divID" class="form-control" value="<?php echo $divID ?>" >
                                                                     <input type="hidden" name="compID" class="form-control" value="<?php echo $compID ?>" >
@@ -342,7 +342,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                                                 <button type="submit" class="btn btn-pinterest" data-toggle="tooltip" data-placement="right" title="Add new Team">Team <i class="material-icons">add</i></button>
 
 
-                                                            </form>
+                                                            </form>-->
                                                             <?php
                                                         } else {
 
