@@ -31,6 +31,29 @@ if ($_SESSION['eingeloggt'] == false) {
 
         <script type="text/javascript">
 
+            function codeAddress() {
+                $('a.showme').click(function (ev) {
+                    
+                    ev.preventDefault();
+                    var uid = $(this).data('id');
+                    $.get('athletesCustomizeAthleteinfo.php?id=' + uid, function (html) {
+                        $('#modal-7 .modal-body').html(html);
+                        $('#modal-7').modal('show', {backdrop: 'static'});
+                    });
+                });
+            }
+            window.onload = codeAddress;
+
+            $(document).ready(function () {
+
+
+                if (location.hash) {
+                    $("a[href='" + location.hash + "']").tab("show");
+                }
+                $(document.body).on("click", "a[data-toggle]", function (event) {
+                    location.hash = this.getAttribute("href");
+                });
+            });
 
             function deleteAthlete(athlete_ID)
             {
@@ -90,17 +113,9 @@ if ($_SESSION['eingeloggt'] == false) {
 
             }
 
-            $(document).ready(function () {
-                $(function () {
-                    $('[data-toggle="tooltip"]').tooltip()
-                })
-                if (location.hash) {
-                    $("a[href='" + location.hash + "']").tab("show");
-                }
-                $(document.body).on("click", "a[data-toggle]", function (event) {
-                    location.hash = this.getAttribute("href");
-                });
-            });
+
+
+
             $(window).on("popstate", function () {
                 var anchor = location.hash || $("a[data-toggle='tab']").first().attr("href");
                 $("a[href='" + anchor + "']").tab("show");
@@ -177,7 +192,7 @@ if ($_SESSION['eingeloggt'] == false) {
                             </a>
                         </li>
 
-                        
+
                     </ul>
                 </div>
             </div>
@@ -199,7 +214,7 @@ if ($_SESSION['eingeloggt'] == false) {
                             </button>
                             <a class="navbar-brand" href="#"> Athletes & Teams </a>
                         </div>
-                        
+
                     </div>
                 </nav>
                 <div class="content">
@@ -358,7 +373,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                                                                     <td >
                                                                                         <?php echo $teamName ?>
                                                                                     </td>
-                                                                                    
+
                                                                                     <td>
                                                                                         <?php
                                                                                         while ($zeile = $q_team_member->fetch(PDO::FETCH_ASSOC)) {
@@ -375,8 +390,8 @@ if ($_SESSION['eingeloggt'] == false) {
                                                                                                 $athleteFirstName = $zeile['athlete_firstname'];
                                                                                                 $athleteLastName = $zeile['athlete_lastname'];
 
-
-                                                                                                echo $athleteFirstName . " " . $athleteLastName . ", ";
+                                                                                                echo "<a href=\"#\"  data-id=\"$athleteID\" class=\"btn btn-pinterest btn-single btn-sm showme\">$athleteFirstName $athleteLastName  </a>";
+                                                                                                //echo $athleteFirstName . " " . $athleteLastName . ", ";
                                                                                             }
                                                                                         }
                                                                                         ?>
@@ -421,7 +436,7 @@ if ($_SESSION['eingeloggt'] == false) {
 
                                                                             while ($zeile = $q_athl->fetch(PDO::FETCH_ASSOC)) {
                                                                                 $athleteID = $zeile['athlete_ID'];
-                                                                                $athleteName = $zeile['athlete_firstname'] ." ". $zeile['athlete_lastname'] ;
+                                                                                $athleteName = $zeile['athlete_firstname'] . " " . $zeile['athlete_lastname'];
                                                                                 $athleteBox = $zeile['athlete_affiliate'];
                                                                                 ?>
 
@@ -431,7 +446,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                                                                         <?php echo $athleteName ?>
                                                                                     </td>
                                                                                   <!--  <td>
-                                                                                        <?php echo $athleteBox ?>
+                                                                                    <?php echo $athleteBox ?>
                                                                                     </td>-->
                                                                                     <td class="td-actions text-right">
 
@@ -478,6 +493,30 @@ if ($_SESSION['eingeloggt'] == false) {
                 </div>
             </div>
         </div>
+
+        <div class="modal fade" id="modal-7">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Athlete info</h4>
+                    </div>
+
+                    <div class="modal-body">
+
+                    
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-pinterest" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 
 
         <!--   Core JS Files   -->

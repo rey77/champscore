@@ -510,14 +510,14 @@ function debounce(func, wait, immediate) {
 	};
 };
 
-/*$("form").submit(function(e) {
+$("form").submit(function(e) {
 
     var ref = $(this).find("[required]");
 
     $(ref).each(function(){
         if ( $(this).val() == '' )
         {
-            alert("Required field should not be blank.");
+            alert("Please provide all Information");
 
             $(this).focus();
 
@@ -525,4 +525,4 @@ function debounce(func, wait, immediate) {
             return false;
         }
     });  return true;
-});*/
+});

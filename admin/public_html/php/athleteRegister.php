@@ -231,7 +231,7 @@ if (isset($_SESSION['message'])) {
                                                         <span class="fileinput-new">Select Profile Picture</span>
                                                         <span class="fileinput-exists">Change</span>
 
-                                                        <input type="file"  name="avatar" id="avatar" required="true"/></span>
+                                                        <input type="file"  name="avatar" id="avatar" required/></span>
                                                     <br />
 
                                                 </div>
@@ -676,7 +676,7 @@ if (isset($_SESSION['message'])) {
                                                         <span class="btn btn-pinterest btn-round btn-file">
                                                             <span class="fileinput-new">Select Action Picture</span>
                                                             <span class="fileinput-exists">Change</span>
-                                                            <input type="file" name="actionPicture" id="actionPicture" required />
+                                                            <input type="file" name="actionPicture" id="actionPicture"  required />
                                                         </span>
 
                                                     </div>
@@ -706,6 +706,8 @@ if (isset($_SESSION['message'])) {
                 </div>
             </div>
         </div>
+        
+        
 
         <!--   Core JS Files   -->
         <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
