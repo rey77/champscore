@@ -126,14 +126,14 @@ $compID = $_GET['comp_id'];
                                                     <input type='hidden' id='isTeam' name='isTeam'  class='form-control' value= '1'  required></div>";
                             container.appendChild(teamNameDiv);
                             newdiv.innerHTML = "<div class=\"col-md-5 col-md-offset-0 form-group label-floating\"><b>" + (counter + suffix) + " Member " + captain + "</b><br>\n\
-                                            <input type='email' id='athleteEmail" + counter + "' name='athleteEmail[" + counter + "]' class='form-control' placeholder ='E-Mail' email='true' required><span id='athlete-result" + counter + "' ></span></div>";
+                                            <input type='email' id='athleteEmail" + counter + "' name='athleteEmail[" + counter + "]' class='form-control' placeholder ='Email Address' email='true' required><span id='athlete-result" + counter + "' ></span></div>";
                             //append("<input type='text'/><br/>");
                             // newdiv.innerHTML = "<div class=\"col-md-5 col-md-offset-0 form-group label-floating\"><b>" + (counter + suffix) + " Member " + captain + "</b><br><input type='text' id='firstName" + counter + "'  value= '' class='form-control' placeholder ='First Name' required>\n\
                             //<input type='text' id='lastName" + counter + "'  value= '' class='form-control' placeholder ='Last Name' required>\n\
                             //<input type='email' id='userEmail" + counter + "' name='userEmail[" + counter + "]' value= '' class='form-control' placeholder ='E-Mail' email='true' required><span id='user-result" + counter + "' ></span></div>";
                         } else {
                             newdiv.innerHTML = "<div class=\"col-md-5 col-md-offset-0 form-group label-floating has-success\"><b>" + (counter + suffix) + " Member</b><br>\n\
-                                            <input type='email' id='athleteEmail" + counter + "'  name='athleteEmail[" + counter + "]' class='form-control' placeholder ='E-Mail' email='true' required><span id='athlete-result" + counter + "' ></span></div>";
+                                            <input type='email' id='athleteEmail" + counter + "'  name='athleteEmail[" + counter + "]' class='form-control' placeholder ='Email Address' email='true' required><span id='athlete-result" + counter + "' ></span></div>";
                         }
                         container.appendChild(newdiv);
 //check if username exists, important for teams

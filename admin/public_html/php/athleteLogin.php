@@ -95,6 +95,8 @@ if (ini_get("session.use_cookies")) {
                                         </span>
                                         <input type="password" name="athletePassword" placeholder="Password..." class="form-control" type="password" required="true" />
                                     </div>
+                                    <a href="#" class="passforgot"  data-toggle="modal" data-target="#passwordforgot">Forgot your Password?</a>
+                                                
 
                                     <!-- If you want to add a checkbox to this form, uncomment this code
 
@@ -118,6 +120,38 @@ if (ini_get("session.use_cookies")) {
 
         </div>
 
+        
+        
+        <div class="modal fade" id="passwordforgot">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+
+                    <!-- header -->
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3 class="modal-title">Forgot your Password?</h3>
+                    </div>
+
+                    <!-- body ( form ) -->
+                    <div class="modal-body">
+
+                        <form role="form" action="loginsec/resetAthletePassword.php" method="POST" id="passForgot">
+                            <div class="form-group">
+                                <label>Please type in your Email Address. We will send you a new password</label>
+                                <input type="text" class="form-control" Name = "email" placeholder="Email Address">                                     
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- button -->
+                    <div class="modal-footer">
+
+                        <button type="Submit" form="passForgot" class="btn btn-pinterest btn-block"  name="submit">OK</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
     <!--   Core JS Files   -->
     <script src="js/jquery.min.js" type="text/javascript"></script>

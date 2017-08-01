@@ -34,9 +34,6 @@ while ($zeile = $q_host->fetch(/* PDO::FETCH_ASSOC */)) {
 }
 
 
-while ($zeile = $q_host->fetch(/* PDO::FETCH_ASSOC */)) {
-    
-}
 Database::disconnect();
 ?>
 <!DOCTYPE html>

@@ -1,5 +1,5 @@
 <?php
-// Session starten oder übernehmen
+// Session starten oder ï¿½bernehmen
 session_start();
 
 if (isset($_POST['email']) AND ($_POST['email']!=''))
@@ -12,10 +12,11 @@ if (isset($_POST['email']) AND ($_POST['email']!=''))
   { 
     @$newpwd .= $chars{mt_rand (0,strlen($chars))}; 
   } 
+  
   $passwort = $newpwd;
   $betreff = "Neues Passwort von ChampScore";
   $inhalt = "Sehr geehrte Kundin\nSehr geehrter Kunde\n\nHier Ihr neues Passwort: '$passwort'\n
-Freundliche Grüsse\nIhr ChampScore-Team\nwww.champscore.net";
+Freundliche Grï¿½sse\nIhr ChampScore-Team\nwww.champscore.net";
   $header = "From: info@champscore.net";
   mail($email,$betreff,$inhalt,$header);
   

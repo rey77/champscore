@@ -9,6 +9,32 @@ $teamName = $_POST['teamName'];
 include 'Database.php';
 $pdo = Database::connect();
 
+
+$sql_comp = "select comp_ID, comp_name, comp_start_date, comp_end_date, comp_start_time, comp_end_time,comp_banner, comp_terms, comp_desc_long,comp_start_time, comp_location_name, comp_facebook_link, comp_desc_short, comp_regcode, comp_active, comp_street, comp_zip, comp_city, comp_country, comp_logo, comp_main_color, comp_accent_color, fk_host_ID from tbl_competition where comp_id = ?";
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$q_comp = $pdo->prepare($sql_comp);
+$q_comp->execute(array($compID));
+
+
+while ($zeile = $q_comp->fetch(/* PDO::FETCH_ASSOC */)) {
+    $hostID = $zeile['fk_host_ID'];
+    $compName = $zeile['comp_name'];
+    $compStartDate = $zeile['comp_start_date'];
+}
+
+$sql_host = "select * from tbl_host "
+        . "where tbl_host.host_ID = ?";
+
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$q_host = $pdo->prepare($sql_host);
+$q_host->execute(array($hostID));
+
+
+while ($zeile = $q_host->fetch(/* PDO::FETCH_ASSOC */)) {
+    $hostFirstname = $zeile["host_firstname"];
+    $hostEmail = $zeile["host_email"];
+}
+
 if (($_POST['isTeam'])) {
 
 //auf alle nutzer prüfen, UserID is
@@ -54,7 +80,22 @@ if (($_POST['isTeam'])) {
                 $q_athlete = $pdo->prepare($sql_athlete);
                 $q_athlete->execute(array($athleteEmail));
 
+
+
                 while ($zeile = $q_athlete->fetch()) {
+
+
+                    //Send confirmation Mail
+                    $athleteEmail = $zeile['athlete_email'];
+                    $athleteFirstname = $zeile['athlete_firstname'];
+
+                    $betreff = "Competition Registration";
+                    $inhalt = "Hello  $athleteFirstname
+                             \n\nYou are now registered for the Competition $compName, which is held on $compStartDate.
+                             \nYou can sit back now until you get further instructions from the Competition Organization. \n
+Best Wishes\nchampscore\nwww.champscore.ch";
+                    $header = "From: info@champscore.ch";
+                    mail($athleteEmail, $betreff, $inhalt, $header);
 
                     $athleteID = $zeile['athlete_ID'];
                     $athleteFirstName = $zeile['athlete_firstname'];
@@ -68,6 +109,21 @@ if (($_POST['isTeam'])) {
             }
         }
     }
+
+
+
+
+    //Send confirmation Mail to Host
+
+
+    $betreff = "New Team registered!";
+    $inhalt = "Hello " . $hostFirstname
+            . "\n\nA new Team registration for the Competition $compName just went in!
+               \nTeam Name: $teamName
+               \nYou can see the Team Members and further details in your Host Account. \n
+Best Wishes\nchampscore\nwww.champscore.ch";
+    $header = "From: info@champscore.ch";
+    mail($hostEmail, $betreff, $inhalt, $header);
 } else {
 
     /* $sql_indiv = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_city, comp_country, comp_active, div_is_team from tbl_competition "
@@ -92,7 +148,7 @@ if (($_POST['isTeam'])) {
 
                 $athleteEmail = $key2;
 
-                $sql = "SELECT athlete_ID, athlete_email FROM `tbl_athlete` where athlete_email=?";
+                $sql = "SELECT athlete_ID, athlete_email, athlete_firstname FROM `tbl_athlete` where athlete_email=?";
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $q = $pdo->prepare($sql);
                 $q->execute(array($athleteEmail));
@@ -108,11 +164,27 @@ if (($_POST['isTeam'])) {
                     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                     $q = $pdo->prepare($sql);
                     $q->execute(array($athleteID, $divID));
+
+
+                    //Send Mail to Host
+//Send confirmation Mail
+                    $athleteEmail = $zeile['athlete_email'];
+
+                    $betreff = "Competition Registration";
+                    $inhalt = "Hello  $athleteFirstName
+                             \n\nYou are now registered for the Competition $compName, which is held on $compStartDate.
+                             \n\nYou can sit back now until you get further instructions from the Competition Organization. \n
+Best Wishes\nchampscore\nwww.champscore.ch";
+                    $header = "From: info@champscore.ch";
+                    mail($athleteEmail, $betreff, $inhalt, $header);
                 }
             }
         }
     }
 }
+
+
+
 
 Database::disconnect();
 header("Location:registrationViewConfirm.php?comp_id=$compID");

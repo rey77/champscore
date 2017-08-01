@@ -122,8 +122,8 @@ $compID = $_GET['comp_id'];
                                 <div class="col-md-12 col-md-offset-1">
                                     <br>
                                     <br>
-                                    <p>You are Registered for the Competition. You can find the Competition listed in your Athlete Section</p>
-                                    <p>Good Luck in the Competition!</p>
+                                    <p>You are now Registered for the Competition and will get an Email Confirmation. You can find the Competition listed in your Athlete Section</p>
+                                    <p>Good Luck!</p>
                                 </div>
                             </div>
                             <div class="row">

@@ -125,7 +125,7 @@ if ($_FILES["avatar"]["error"] != 0) {
 //stands for any kind of errors happen during the uploading
 }
 // Check file size
-if ($_FILES["avatar"]["size"] > 1 * MB) {
+if ($_FILES["avatar"]["size"] > 10 * MB) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
 }
@@ -179,7 +179,7 @@ if ($_FILES["actionPicture"]["error"] != 0) {
 //stands for any kind of errors happen during the uploading
 }
 // Check file size
-if ($_FILES["actionPicture"]["size"] > 1 * MB) {
+if ($_FILES["actionPicture"]["size"] > 10 * MB) {
     echo "Sorry, your file is too large.";
     $uploadOk = 0;
 }

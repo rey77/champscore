@@ -39,6 +39,8 @@ if (ini_get("session.use_cookies")) {
     </head>
 
     <body>
+        
+        <?php include_once("./php/analyticstracking.php") ?>
 
 
 

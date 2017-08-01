@@ -19,6 +19,12 @@ include 'Database.php';
 $pdo = Database::connect();
 
 
+define('KB', 1024);
+define('MB', 1048576);
+define('GB', 1073741824);
+define('TB', 1099511627776);
+
+
 $sql_athlete = "UPDATE\n"
         . " tbl_athlete\n"
         . "SET\n"
@@ -73,7 +79,7 @@ if (isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"])) {
       $uploadOk = 0;
       } */
 // Check file size
-    if ($_FILES["fileToUpload"]["size"] > 500000) {
+    if ($_FILES["fileToUpload"]["size"] > 10 * MB) {
         echo "Sorry, your file is too large.";
         $uploadOk = 0;
     }
@@ -100,6 +106,74 @@ if (isset($_FILES["fileToUpload"]) && !empty($_FILES["fileToUpload"])) {
                     . " tbl_athlete\n"
                     . "SET\n"
                     . " athlete_avatar =?\n"
+                    . "WHERE\n"
+                    . " athlete_ID =?";
+
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $q_athlete = $pdo->prepare($sql_athlete);
+            $q_athlete->execute(array($newfilename, $athleteID));
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+    }
+}
+
+if (isset($_FILES["actionPicture"]) && !empty($_FILES["actionPicture"])) {
+
+
+    $target_dir = "uploads/athlete/actionpicture/";
+    $target_file = $target_dir . basename($_FILES["actionPicture"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+// Check if image file is a actual image or fake image
+    if (isset($_POST["submit"])) {
+        $check = getimagesize($_FILES["actionPicture"]["tmp_name"]);
+        if ($check !== false) {
+            echo "File is an image - " . $check["mime"] . ".";
+            $uploadOk = 1;
+        } else {
+            echo "File is not an image.";
+            $uploadOk = 0;
+        }
+    }
+
+    if ($_FILES["actionPicture"]["error"] != 0) {
+        $uploadOk = 0;
+//stands for any kind of errors happen during the uploading
+    }
+
+// Check if file already exists
+    /* if (file_exists($target_file)) {
+      echo "Sorry, file already exists.";
+      $uploadOk = 0;
+      } */
+// Check file size
+    if ($_FILES["actionPicture"]["size"] > 10 * MB) {
+        echo "Sorry, your file is too large.";
+        $uploadOk = 0;
+    }
+// Allow certain file formats
+    if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif") {
+        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        $uploadOk = 0;
+    }
+// Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        echo "Sorry, your file was not uploaded.";
+// if everything is ok, try to upload file
+    } else {
+
+        $temp = explode(".", $_FILES["actionPicture"]["name"]);
+        $newfilename = $_SESSION['athlete_id'] . '.jpg';// . end($temp);
+
+        
+        if (move_uploaded_file($_FILES["actionPicture"]["tmp_name"], "uploads/athlete/actionpicture/" . $newfilename /* $target_file */)) {
+            
+
+            $sql_athlete = "UPDATE\n"
+                    . " tbl_athlete\n"
+                    . "SET\n"
+                    . " athlete_actionpicture =?\n"
                     . "WHERE\n"
                     . " athlete_ID =?";
 
