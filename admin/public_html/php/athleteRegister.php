@@ -47,6 +47,12 @@ if (isset($_SESSION['message'])) {
                     return false;
 
                 }
+                
+                if (document.formular.avatar.value == "") {
+                    alert("Please provide a Profile Picture");
+                    document.formular.avatar.focus();
+                    return false;
+                }
 
                 if (document.formular.athleteEmail.value == "") {
                     alert("Please provide an Email Address");
@@ -148,6 +154,12 @@ if (isset($_SESSION['message'])) {
                     document.formular.actionPicture.focus();
                     return false;
                 }
+                 
+                 if (document.formular.actionPicture.value == "") {
+                    alert("Please provide an Action Picture");
+                    document.formular.actionPicture.focus();
+                    return false;
+                }
 
                 if (document.formular.athletePassword1.value == document.formular.athletePassword2.value)
                 {
@@ -231,7 +243,7 @@ if (isset($_SESSION['message'])) {
                                                         <span class="fileinput-new">Select Profile Picture</span>
                                                         <span class="fileinput-exists">Change</span>
 
-                                                        <input type="file"  name="avatar" id="avatar" required/></span>
+                                                        <input type="file"  name="avatar" id="avatar" required /></span>
                                                     <br />
 
                                                 </div>

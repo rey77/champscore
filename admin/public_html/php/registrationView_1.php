@@ -208,7 +208,14 @@ $compID = $_GET['comp_id'];
             function mySubmitCompReg()
             {
 
-
+                $("#regForm input").each(function () {
+                    if ($(this).val() == "")
+                    {
+                        "Please fill in all the Information"
+                        return false;
+                    }
+                })
+                
                 if ($("#division").val() == "") {
                     alert("Please select a Division");
                     document.formular.division.focus();
@@ -222,7 +229,7 @@ $compID = $_GET['comp_id'];
                     return false;
                 } else {
 
-                    alert('haha');
+                    return true;
                 }
 
 
@@ -271,7 +278,7 @@ $compID = $_GET['comp_id'];
                             <div class="row">
                                 <div class="col-md-12 col-md-offset-1">
 
-                                    <form class="form" onsubmit="return mySubmitCompReg()" method="POST" action="inputCompRegistration.php">
+                                    <form class="form" id="regForm" onsubmit="return mySubmitCompReg()" method="POST" action="inputCompRegistration.php">
                                         <input type='hidden' id='compID' name='compID' class='form-control' value= '<?php echo $compID ?>'>
                                         <input type='hidden' id='divID' name='divID' class='form-control' >
 
