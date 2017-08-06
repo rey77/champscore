@@ -42,6 +42,8 @@ session_start();
             $compBanner = $zeile['comp_banner'];
         }
 
+        $compStartDateFormatted = date("d.m.Y", strtotime($compStartDate));
+        $compEndDateFormatted = date("d.m.Y", strtotime($compEndDate));
 
         $compDescLongFormatted = nl2br(htmlentities($compDescLong, ENT_QUOTES, 'UTF-8'));
         $compDescShortFormatted = nl2br(htmlentities($compDescShort, ENT_QUOTES, 'UTF-8'));
@@ -110,7 +112,7 @@ session_start();
                     </button>
                     <a class="navbar-brand" href="../index.php"><p><img style="width: 2em;" class="logo" src="../img/Logo.png" alt=""/><img style=" padding-left: .5em; width: 9em;" class="logo" src="../img/text.png" alt=""/></p></a>
 
-                   
+
                 </div>
 
                 <div class="collapse navbar-collapse">
@@ -341,10 +343,10 @@ session_start();
                                     <h4 class="title">When</h4>
                                     <ul class="list-unstyled">
                                         <li><b>from</b></li>
-                                        <li><?php echo $compStartDate ?></li>
+                                        <li><?php echo $compStartDateFormatted ?></li>
                                         <li><?php echo $compStartTime ?></li>
                                         <li><b>to</b></li>
-                                        <li><?php echo $compEndDate ?></li>
+                                        <li><?php echo $compEndDateFormatted ?></li>
                                         <li><?php echo $compEndTime ?></li>
                                     </ul>
                                     <hr />

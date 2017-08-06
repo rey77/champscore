@@ -39,7 +39,7 @@ if (ini_get("session.use_cookies")) {
     </head>
 
     <body>
-        
+
         <?php include_once("./php/analyticstracking.php") ?>
 
 
@@ -69,7 +69,7 @@ if (ini_get("session.use_cookies")) {
 
                             <ul class="nav navbar-nav navbar-right">
 
-                                
+
 
                                 <!--<li>
                                     <a href="https://twitter.com/CreativeTim">
@@ -86,11 +86,11 @@ if (ini_get("session.use_cookies")) {
                                         <i class="fa fa-instagram"></i>
                                     </a>
                                 </li>-->
-                               <!-- <li class="button-container">
-                                    <a href="php/login.php"  class="btn btn-pinterest ">
-                                        Login
-                                    </a>
-                                </li>-->
+                                <!-- <li class="button-container">
+                                     <a href="php/login.php"  class="btn btn-pinterest ">
+                                         Login
+                                     </a>
+                                 </li>-->
                             </ul>
                         </div>
                     </div>
@@ -108,7 +108,7 @@ if (ini_get("session.use_cookies")) {
                                 <a class="btn btn-pinterest" href="php/athleteLogin.php">Login</a>
                                 <a class="btn btn-pinterest" href="php/athleteRegister.php">create Athlete Account</a>
                             </div>
-                            
+
                             <div class="col-md-6 col-md-offset-0 text-center">
                                 <h1 class="title">HOSTS</h1>
                                 <a class="btn btn-pinterest" href="php/hostLogin.php">Login</a>
@@ -137,9 +137,8 @@ if (ini_get("session.use_cookies")) {
                     </div>
 
                     <div class="row">
-                        
+
                         <?php
-                        
                         include 'php/Database.php';
                         $pdo = Database::connect();
                         $sql = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_city, comp_country from tbl_competition";
@@ -157,6 +156,9 @@ if (ini_get("session.use_cookies")) {
                             } else {
                                 $logosrc = "http://placehold.it/400x250/000/fff";
                             }
+
+                            $originalDate = $zeile['comp_start_date'];
+                            $newDate = date("d.m.Y", strtotime($originalDate));
                             ?> 
 
                             <div class="col-md-6">
@@ -169,7 +171,7 @@ if (ini_get("session.use_cookies")) {
                                     <div class="media-body">
                                         <a class="pull-left" href="php/competitionView.php?comp_id=<?php echo $compID ?>"><h4 class="media-heading" ><?php echo $zeile['comp_name'] ?> </h4>
 
-                                            <p><?php echo $zeile['comp_start_date'] ?></p>
+                                            <p><?php echo $newDate ?></p>
                                             <p><?php echo $zeile['comp_city'] ?>, <?php echo $zeile['comp_country'] ?></p>
                                         </a>
                                         <!--<div class="media-footer">
@@ -194,52 +196,52 @@ if (ini_get("session.use_cookies")) {
                 </div>
             </div>
         </div>
-       <!-- <div class="cd-section" id="pricing">
-
-
-            <div class="pricing-2" id="pricing-2">
-
-                <div class="container">
-
-
-                    <div class="row">
-                        <div class="col-md-6 col-md-offset-3 text-center">
-                            <h2 class="title">Pricing</h2>
-                            
-                        </div>
-                    </div>
-                    <div class="row">
-
-
-
-                        <div class="col-md-4">
-                            <div class="card card-pricing  card-raised" style="background-image: url('php/img/cs.png')">
-                                <div class="card-content">
-                                    
-                                    <h1 class="card-title"><small>$</small>.99<small>/ Registration</small></h1>
-                                    <ul>
-                                        <li><b>+3.5%</b> Fee per registration</li>
-                                        <li>Unlimited Wods</li>
-                                        <li>Customizable Competition page</li>
-                                        <li>Customizable Leaderboard</li>
-                                        <li>Simple Scoring</li>
-                                        <li>Judging sheets on demand</li>
-                                    </ul>
-                                    <a href="#pablo" class="btn btn-pinterest btn-round">
-                                        Get Started
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                    </div>
-
-                </div>
-            </div>
-
-        </div>-->
+        <!-- <div class="cd-section" id="pricing">
+ 
+ 
+             <div class="pricing-2" id="pricing-2">
+ 
+                 <div class="container">
+ 
+ 
+                     <div class="row">
+                         <div class="col-md-6 col-md-offset-3 text-center">
+                             <h2 class="title">Pricing</h2>
+                             
+                         </div>
+                     </div>
+                     <div class="row">
+ 
+ 
+ 
+                         <div class="col-md-4">
+                             <div class="card card-pricing  card-raised" style="background-image: url('php/img/cs.png')">
+                                 <div class="card-content">
+                                     
+                                     <h1 class="card-title"><small>$</small>.99<small>/ Registration</small></h1>
+                                     <ul>
+                                         <li><b>+3.5%</b> Fee per registration</li>
+                                         <li>Unlimited Wods</li>
+                                         <li>Customizable Competition page</li>
+                                         <li>Customizable Leaderboard</li>
+                                         <li>Simple Scoring</li>
+                                         <li>Judging sheets on demand</li>
+                                     </ul>
+                                     <a href="#pablo" class="btn btn-pinterest btn-round">
+                                         Get Started
+                                     </a>
+                                 </div>
+                             </div>
+                         </div>
+ 
+ 
+ 
+                     </div>
+ 
+                 </div>
+             </div>
+ 
+         </div>-->
 
 
     </body>
