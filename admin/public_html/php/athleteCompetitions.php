@@ -247,10 +247,10 @@ $q_indiv->execute(array($athleteID));
 
                                                                     </tr>
 
-    <?php
-}
-Database::disconnect();
-?>
+                                                                    <?php
+                                                                }
+                                                                Database::disconnect();
+                                                                ?>
 
 
                                                             </tbody>
@@ -281,40 +281,40 @@ Database::disconnect();
 
                                                             <tbody>
 
-<?php
-$sql_team = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_city, comp_country, comp_active, div_is_team from tbl_competition "
-        . " join tbl_division on tbl_competition.comp_ID = tbl_division.fk_comp_ID"
-        . " join tbl_team_division on tbl_division.div_ID = tbl_team_division.fk_div_ID"
-        . " join tbl_team on tbl_team_division.fk_team_ID = tbl_team.team_ID"
-        . " join tbl_team_member on tbl_team.team_ID = tbl_team_member.fk_team_ID"
-        . " where tbl_team_member.fk_athlete_ID =?"
-        . " and tbl_competition.comp_start_date  >= CURRENT_DATE()"
-        . " and tbl_competition.comp_end_date  <= CURRENT_DATE()";
+                                                                <?php
+                                                                $sql_team = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_city, comp_country, comp_active, div_is_team from tbl_competition "
+                                                                        . " join tbl_division on tbl_competition.comp_ID = tbl_division.fk_comp_ID"
+                                                                        . " join tbl_team_division on tbl_division.div_ID = tbl_team_division.fk_div_ID"
+                                                                        . " join tbl_team on tbl_team_division.fk_team_ID = tbl_team.team_ID"
+                                                                        . " join tbl_team_member on tbl_team.team_ID = tbl_team_member.fk_team_ID"
+                                                                        . " where tbl_team_member.fk_athlete_ID =?"
+                                                                        . " and tbl_competition.comp_start_date  >= CURRENT_DATE()"
+                                                                        . " and tbl_competition.comp_end_date  <= CURRENT_DATE()";
 
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$q_team = $pdo->prepare($sql_team);
-$q_team->execute(array($athleteID));
+                                                                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                                                $q_team = $pdo->prepare($sql_team);
+                                                                $q_team->execute(array($athleteID));
 
-while ($zeile = $q_team->fetch(/* PDO::FETCH_ASSOC */)) {
+                                                                while ($zeile = $q_team->fetch(/* PDO::FETCH_ASSOC */)) {
 
-    $compLocation = $zeile['comp_city'] . ", " . $zeile['comp_country'];
-    $compName = $zeile['comp_name'];
-    $compStartDate = $zeile['comp_start_date'];
-    $compID = $zeile['comp_ID'];
+                                                                    $compLocation = $zeile['comp_city'] . ", " . $zeile['comp_country'];
+                                                                    $compName = $zeile['comp_name'];
+                                                                    $compStartDate = $zeile['comp_start_date'];
+                                                                    $compID = $zeile['comp_ID'];
 
 
 
-    if ($zeile['div_is_team']) {
-        $divIsTeam = "done";
-    }
+                                                                    if ($zeile['div_is_team']) {
+                                                                        $divIsTeam = "done";
+                                                                    }
 
-    $compLogo = $zeile['comp_logo'];
-    if ($compLogo != 0) {
-        $logosrc = "uploads/host/complogo/$compLogo";
-    } else {
-        $logosrc = "img/image_placeholder.jpg";
-    }
-    ?>
+                                                                    $compLogo = $zeile['comp_logo'];
+                                                                    if ($compLogo != 0) {
+                                                                        $logosrc = "uploads/host/complogo/$compLogo";
+                                                                    } else {
+                                                                        $logosrc = "img/image_placeholder.jpg";
+                                                                    }
+                                                                    ?>
                                                                     <tr>
                                                                         <td><div class="img-container">
                                                                                 <img src="<?php echo $logosrc ?>" alt="...">
@@ -328,10 +328,10 @@ while ($zeile = $q_team->fetch(/* PDO::FETCH_ASSOC */)) {
 
                                                                     </tr>
 
-    <?php
-}
-Database::disconnect();
-?>
+                                                                    <?php
+                                                                }
+                                                                Database::disconnect();
+                                                                ?>
 
 
                                                             </tbody>
@@ -356,45 +356,46 @@ Database::disconnect();
                                                                     <th>When</th>
                                                                     <th>Where</th>
                                                                     <th>Team</th>
+                                                                    <th>Rank</th>
 
                                                                 </tr>
                                                             </thead>
 
                                                             <tbody>
 
-<?php
-$sql_team = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_city, comp_country, comp_active, div_is_team from tbl_competition "
-        . " join tbl_division on tbl_competition.comp_ID = tbl_division.fk_comp_ID"
-        . " join tbl_team_division on tbl_division.div_ID = tbl_team_division.fk_div_ID"
-        . " join tbl_team on tbl_team_division.fk_team_ID = tbl_team.team_ID"
-        . " join tbl_team_member on tbl_team.team_ID = tbl_team_member.fk_team_ID"
-        . " where tbl_team_member.fk_athlete_ID =?"
-        . " and tbl_competition.comp_end_date  < CURRENT_DATE()";
+                                                                <?php
+                                                                $sql_team = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_city, comp_country, comp_active, div_is_team from tbl_competition "
+                                                                        . " join tbl_division on tbl_competition.comp_ID = tbl_division.fk_comp_ID"
+                                                                        . " join tbl_team_division on tbl_division.div_ID = tbl_team_division.fk_div_ID"
+                                                                        . " join tbl_team on tbl_team_division.fk_team_ID = tbl_team.team_ID"
+                                                                        . " join tbl_team_member on tbl_team.team_ID = tbl_team_member.fk_team_ID"
+                                                                        . " where tbl_team_member.fk_athlete_ID =?"
+                                                                        . " and tbl_competition.comp_end_date  < CURRENT_DATE()";
 
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$q_team = $pdo->prepare($sql_team);
-$q_team->execute(array($athleteID));
+                                                                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                                                                $q_team = $pdo->prepare($sql_team);
+                                                                $q_team->execute(array($athleteID));
 
-while ($zeile = $q_team->fetch(/* PDO::FETCH_ASSOC */)) {
+                                                                while ($zeile = $q_team->fetch(/* PDO::FETCH_ASSOC */)) {
 
-    $compLocation = $zeile['comp_city'] . ", " . $zeile['comp_country'];
-    $compName = $zeile['comp_name'];
-    $compStartDate = $zeile['comp_start_date'];
-    $compID = $zeile['comp_ID'];
+                                                                    $compLocation = $zeile['comp_city'] . ", " . $zeile['comp_country'];
+                                                                    $compName = $zeile['comp_name'];
+                                                                    $compStartDate = $zeile['comp_start_date'];
+                                                                    $compID = $zeile['comp_ID'];
 
 
 
-    if ($zeile['div_is_team']) {
-        $divIsTeam = "done";
-    }
+                                                                    if ($zeile['div_is_team']) {
+                                                                        $divIsTeam = "done";
+                                                                    }
 
-    $compLogo = $zeile['comp_logo'];
-    if ($compLogo != 0) {
-        $logosrc = "uploads/host/complogo/$compLogo";
-    } else {
-        $logosrc = "img/image_placeholder.jpg";
-    }
-    ?>
+                                                                    $compLogo = $zeile['comp_logo'];
+                                                                    if ($compLogo != 0) {
+                                                                        $logosrc = "uploads/host/complogo/$compLogo";
+                                                                    } else {
+                                                                        $logosrc = "img/image_placeholder.jpg";
+                                                                    }
+                                                                    ?>
                                                                     <tr>
                                                                         <td><div class="img-container">
                                                                                 <img src="<?php echo $logosrc ?>" alt="...">
@@ -405,13 +406,13 @@ while ($zeile = $q_team->fetch(/* PDO::FETCH_ASSOC */)) {
                                                                         <td><?php echo date("d.m.Y", strtotime($compStartDate)) ?></td>
                                                                         <td><?php echo $compLocation ?></td>
                                                                         <td><i class="material-icons"><?php echo $divIsTeam ?></i></td>
-
+                                                                        <td></td>
                                                                     </tr>
 
-    <?php
-}
-Database::disconnect();
-?>
+                                                                    <?php
+                                                                }
+                                                                Database::disconnect();
+                                                                ?>
 
 
                                                             </tbody>
