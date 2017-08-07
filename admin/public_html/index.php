@@ -38,7 +38,7 @@ if (ini_get("session.use_cookies")) {
 
     </head>
 
-    <body>
+    <body class="blog-post">
 
         <?php include_once("./php/analyticstracking.php") ?>
 
@@ -96,6 +96,8 @@ if (ini_get("session.use_cookies")) {
                     </div>
                 </nav>
 
+
+
                 <div class="page-header header-filter" style="background-image: url('img/header.jpg');">
                     <div class="container">
                         <div class="row">
@@ -119,21 +121,17 @@ if (ini_get("session.use_cookies")) {
                 </div>
             </div>
 
-            <!--     *********    END HEADER 2      *********      -->
-
-        </div>
-
-        <div class="cd-section" id="teams" style="background-color: white;">
-            <!--     *********    TEAM 1     *********      -->
-
-            <div class="team-1" id="team-1">
-
+            <div class="main main-raised">
                 <div class="container">
                     <div class="row">
+                        <br>
+                        <br>
                         <div class="col-md-8 col-md-offset-2 text-center">
                             <h2 class="title">Our Competitions</h2>
-                            <h5 class="description">We are happy to host Competitions all around the globe.</h5>
-                        </div>
+                            <!--<h5 class="description">We are happy to host Competitions all around the globe.</h5>-->
+                            <br>
+                            <br></div>
+
                     </div>
 
                     <div class="row">
@@ -165,23 +163,16 @@ if (ini_get("session.use_cookies")) {
                                 <div class="media">
                                     <a class="pull-left" href="php/competitionView.php?comp_id=<?php echo $compID ?>">
                                         <div class="avatar">
-                                            <img class="media-object" alt="Tim Picture" src="<?php echo $logosrc ?>">
+                                            <img class="media-object"  src="<?php echo $logosrc ?>">
                                         </div>
                                     </a>
                                     <div class="media-body">
                                         <a class="pull-left" href="php/competitionView.php?comp_id=<?php echo $compID ?>"><h4 class="media-heading" ><?php echo $zeile['comp_name'] ?> </h4>
+                                        </a><br><br>
+                                        <p><?php echo $newDate . " in " . $zeile['comp_city'] . ", " . $zeile['comp_country']; ?> <a href="php/registrationView_1.php?comp_id=<?php echo $compID ?>"  class="btn btn-pinterest btn-single btn-sm ">Join! </a></p>
+                                        
 
-                                            <p><?php echo $newDate ?></p>
-                                            <p><?php echo $zeile['comp_city'] ?>, <?php echo $zeile['comp_country'] ?></p>
-                                        </a>
-                                        <!--<div class="media-footer">
-                                            <a href="#pablo" class="btn btn-primary btn-simple pull-right" rel="tooltip" title="Reply to Comment">
-                                                <i class="material-icons">reply</i> Reply
-                                            </a>
-                                            <a href="#pablo" class="btn btn-default btn-simple pull-right">
-                                                <i class="material-icons">favorite</i> 25
-                                            </a>
-                                        </div>-->
+
 
                                     </div>
                                 </div>
@@ -193,9 +184,51 @@ if (ini_get("session.use_cookies")) {
 
                     </div>
 
+                    <br>
+                    <br><br>
+                    <br><br>
+                    <br>
+
                 </div>
             </div>
+
+
+
         </div>
+        <br>
+        <br>
+
+        <!--<footer class="footer footer-black">
+            <div class="container">
+
+
+                <ul class="pull-center">
+                    <li>
+                        <a href="#pablo">
+                            Contact
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#pablo">
+                            Impressum
+                        </a>
+                    </li>
+                    
+                </ul>
+
+                <ul class="social-buttons pull-right">
+                    
+                    <li>
+                        <a href="https://www.facebook.com/CreativeTim" target="_blank" class="btn btn-just-icon btn-simple">
+                            <i class="fa fa-facebook-square"></i>
+                        </a>
+                    </li>
+                   
+                </ul>
+
+            </div>
+        </footer>
+-->
         <!-- <div class="cd-section" id="pricing">
  
  

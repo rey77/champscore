@@ -260,7 +260,7 @@ $compID = $_GET['comp_id'];
 
                     <div class="col-sm-8 col-sm-offset-2">
 
-                        <div class="card card-signup" style="opacity: 0.9">
+                        <div class="card card-signup">
                             <h2 class="wizard-title text-center"><?php echo $compName ?></h2>
 
 
