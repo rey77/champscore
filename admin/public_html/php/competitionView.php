@@ -339,15 +339,15 @@ session_start();
 
 
 
-                                <div class="col-md-2 col-md-offset-1 stats">
+                                <div class="col-md-3 col-md-offset-1 stats">
                                     <h4 class="title">When</h4>
                                     <ul class="list-unstyled">
                                         <li><b>from</b></li>
                                         <li><?php echo $compStartDateFormatted ?></li>
-                                        <li><?php echo $compStartTime ?></li>
+                                        <li><?php echo date('G:i',strtotime($compStartTime)); ?></li>
                                         <li><b>to</b></li>
                                         <li><?php echo $compEndDateFormatted ?></li>
-                                        <li><?php echo $compEndTime ?></li>
+                                        <li><?php echo date('G:i',strtotime($compEndTime));  ?></li>
                                     </ul>
                                     <hr />
                                     <h4 class="title">Where</h4>
@@ -623,38 +623,18 @@ session_start();
         </div>
 
 
-        <footer class = "footer">
-            <div class = "container">
-                <nav class = "pull-left">
-                    <ul>
-                        <li>
-                            <a href = "http://www.creative-tim.com">
-                                Creative Tim
-                            </a>
-                        </li>
-                        <li>
-                            <a href = "http://presentation.creative-tim.com">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href = "http://blog.creative-tim.com">
-                                Blog
-                            </a>
-                        </li>
-                        <li>
-                            <a href = "http://www.creative-tim.com/license">
-                                Licenses
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <div class = "copyright pull-right">
-                    &copy;
-                    <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
-                </div>
-            </div>
-        </footer>
+        <footer class="footer">
+                    <div class="container-fluid">
+
+                        <p class="copyright pull-right">
+                            &copy;
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>
+                            <a>champscore</a>
+                        </p>
+                    </div>
+                </footer>
 
 
     </body>
