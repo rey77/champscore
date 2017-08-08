@@ -212,7 +212,7 @@ if (isset($_SESSION['message'])) {
 
                     <div class="col-sm-8 col-sm-offset-2">
                         <div class="card card-signup">
-                            <h2 class="wizard-title text-center">Welcome</h2>
+                            <h2 class="wizard-title text-center">Create Athlete Account</h2>
 
 
 
