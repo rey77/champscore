@@ -31,7 +31,18 @@ if (isset($_SESSION['message'])) {
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script>
             $(function () {
-                $("#datepicker").datepicker();
+                $("#datepicker").datepicker({
+
+                    dateFormat: 'dd.mm.yy',
+                    showButtonPanel: true,
+                    changeMonth: true,
+                    changeYear: true,
+                    showOtherMonths: true,
+                    selectOtherMonths: true,
+                    yearRange: "-60:+0"
+                });
+
+
             });
         </script>
 
@@ -40,14 +51,15 @@ if (isset($_SESSION['message'])) {
             function mySubmitReg()
             {
 
-               
+
+
                 if ($("#avatar").val() == "") {
                     alert("Please provide a Profile Picture");
                     document.formular.avatar.focus();
                     return false;
 
                 }
-                
+
                 if (document.formular.avatar.value == "") {
                     alert("Please provide a Profile Picture");
                     document.formular.avatar.focus();
@@ -136,8 +148,8 @@ if (isset($_SESSION['message'])) {
                     document.formular.athleteAffiliate.focus();
                     return false;
                 }
-                
-                 if ($("#athleteShirtsize").val() == "") {
+
+                if ($("#athleteShirtsize").val() == "") {
                     alert("Please provide your Shirt Size");
                     document.formular.athleteShirtsize.focus();
                     return false;
@@ -154,8 +166,8 @@ if (isset($_SESSION['message'])) {
                     document.formular.actionPicture.focus();
                     return false;
                 }
-                 
-                 if (document.formular.actionPicture.value == "") {
+
+                if (document.formular.actionPicture.value == "") {
                     alert("Please provide an Action Picture");
                     document.formular.actionPicture.focus();
                     return false;
@@ -320,9 +332,9 @@ if (isset($_SESSION['message'])) {
                                         <div class="row">
                                             <div class="col-lg-10 col-lg-offset-1">
                                                 <div class="col-md-6">
-                                                    <div class="form-group label-floating">
+                                                    <div class="form-group" >
                                                         <label class="control-label">Date of Birth</label>
-                                                        <input type="text" name="athleteBirthDate" id="datepicker" class="form-control datepicker" required >
+                                                        <input type="text" name="athleteBirthDate" id="datepicker" class="form-control datepicker" placeholder="dd.mm.yyyy"  required readonly>
                                                     </div>
                                                 </div>
 
@@ -718,8 +730,8 @@ if (isset($_SESSION['message'])) {
                 </div>
             </div>
         </div>
-        
-        
+
+
 
         <!--   Core JS Files   -->
         <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>

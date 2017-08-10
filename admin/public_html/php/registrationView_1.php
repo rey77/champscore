@@ -56,7 +56,7 @@ $compID = $_GET['comp_id'];
         } else {
             $termsSrc = "img/image_placeholder.jpg";
         }
-        if ($compTerms != 0) {
+        if ($compBanner != 0) {
             $bannersrc = "uploads/host/compbanner/$compBanner";
         } else {
             $bannersrc = "img/image_placeholder.jpg";
@@ -276,7 +276,7 @@ $compID = $_GET['comp_id'];
                             </div>
 
                             <div class="row">
-                                <div class="col-md-12 col-md-offset-2 col-sm-11 col-sm-offset-1 col-xs-11 col-xs-offset-1">
+                                <div class="col-md-11 col-md-offset-2 col-sm-11 col-sm-offset-1 col-xs-11 col-xs-offset-1">
 
                                     <form class="form" id="regForm" onsubmit="return mySubmitCompReg()" method="POST" action="inputCompRegistration.php">
                                         <input type='hidden' id='compID' name='compID' class='form-control' value= '<?php echo $compID ?>'>
@@ -286,7 +286,7 @@ $compID = $_GET['comp_id'];
                                         <div class="card-content">
                                             <div class="row">
 
-                                                <div class="col-md-4 col-md-offset-3 col-sm-4 col-md-offset-2">
+                                                <div class="col-md-5 col-md-offset-2 col-sm-4 col-sm-offset-2">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Select Division</label>
                                                         <select id ="division" name="division" class="form-control" onchange="onChangeDivision()" required>
