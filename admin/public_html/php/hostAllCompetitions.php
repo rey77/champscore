@@ -128,7 +128,7 @@ Database::disconnect();
                             </button>
                             <a class="navbar-brand" href="#"> All Competitions </a>
                         </div>
-                        <div class="collapse navbar-collapse">
+                        <!--<div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
                                     <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
@@ -181,7 +181,7 @@ Database::disconnect();
                                     <div class="ripple-container"></div>
                                 </button>
                             </form>
-                        </div>
+                        </div>-->
                     </div>
                 </nav>
                 <div class="content">

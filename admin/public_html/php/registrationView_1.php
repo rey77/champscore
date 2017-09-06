@@ -473,6 +473,33 @@ $compID = $_GET['comp_id'];
                 </div>
             </div>
         </div>
+        
+        <footer class="footer footer-black">
+            <div class="container">
+
+
+                <ul class="pull-center">
+                    <li>
+                        <a href="#pablo">
+                            info@champscore.ch
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+
+                <!--<ul class="social-buttons pull-right">
+                    
+                    <li>
+                        <a href="https://www.facebook.com/CreativeTim" target="_blank" class="btn btn-just-icon btn-simple">
+                            <i class="fa fa-facebook-square"></i>
+                        </a>
+                    </li>
+                   
+                </ul>-->
+
+            </div>
+        </footer>
     </body>
     <!--   Core JS Files   -->
     <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>

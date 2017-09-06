@@ -731,6 +731,32 @@ if (isset($_SESSION['message'])) {
             </div>
         </div>
 
+        <footer class="footer">
+            <div class="container">
+
+
+                <ul class="pull-center">
+                    <li>
+                        <a  style="color:black" href="#pablo">
+                            info@champscore.ch
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+
+                <!--<ul class="social-buttons pull-right">
+                    
+                    <li>
+                        <a href="https://www.facebook.com/CreativeTim" target="_blank" class="btn btn-just-icon btn-simple">
+                            <i class="fa fa-facebook-square"></i>
+                        </a>
+                    </li>
+                   
+                </ul>-->
+
+            </div>
+        </footer>
 
 
         <!--   Core JS Files   -->

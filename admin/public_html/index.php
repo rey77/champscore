@@ -65,11 +65,50 @@ if (ini_get("session.use_cookies")) {
                             <a class="navbar-brand" href="index.php"><p><img style="width: 2em;" class="logo" src="img/Logo.png" alt=""/><img style=" padding-left: .5em; width: 9em;" class="logo" src="img/text.png" alt=""/></p></a>
                         </div>
 
-                        <div class="collapse navbar-collapse" id="navigation-example">
+                        <div class="collapse navbar-collapse">
 
                             <ul class="nav navbar-nav navbar-right">
 
 
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="material-icons">person</i> Athlete
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-with-icons">
+                                        <li>
+                                            <a href="php/athleteLogin.php">
+                                                <i class="material-icons">fingerprint</i> Login
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="php/athleteRegister.php">
+                                                <i class="material-icons">person_add</i> Signup
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                                
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="material-icons">person_outline</i> Host
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-with-icons">
+                                        <li>
+                                            <a href="php/hostLogin.php">
+                                                <i class="material-icons">fingerprint</i> Login
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="material-icons">person_add</i> Signup
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
 
                                 <!--<li>
                                     <a href="https://twitter.com/CreativeTim">
@@ -106,15 +145,17 @@ if (ini_get("session.use_cookies")) {
                                 <h4>You will have an unique competition experience using champscore</h4>
                             </div>-->
                             <div class="col-md-6 col-md-offset-0 text-center">
-                                <h1 class="title">ATHLETES</h1>
-                                <a class="btn btn-pinterest" href="php/athleteLogin.php">Login</a>
-                                <a class="btn btn-pinterest" href="php/athleteRegister.php">create Athlete Account</a>
+
+
+                                <h1 class="title">ATHLETE</h1>
+                                    <a class="btn btn-pinterest" href="php/athleteLogin.php">Login</a>
+                                    <a class="btn btn-pinterest" href="php/athleteRegister.php">create Account</a>
                             </div>
 
                             <div class="col-md-6 col-md-offset-0 text-center">
-                                <h1 class="title">HOSTS</h1>
-                                <a class="btn btn-pinterest" href="php/hostLogin.php">Login</a>
-                                <a class="btn btn-pinterest" href="#">Register (coming soon)</a>
+                                <h1 class="title">HOST</h1>
+                                    <a class="btn btn-oxfordblue" href="php/hostLogin.php">Login</a>
+                                    <a class="btn btn-oxfordblue" href="#">create Account (coming soon)</a>
                             </div>
                         </div>
                     </div>
@@ -139,7 +180,7 @@ if (ini_get("session.use_cookies")) {
                         <?php
                         include 'php/Database.php';
                         $pdo = Database::connect();
-                        $sql = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_city, comp_country from tbl_competition";
+                        $sql = "select comp_ID, comp_reg_active, comp_name, comp_start_date, comp_logo, comp_city, comp_country from tbl_competition";
                         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                         $q = $pdo->prepare($sql);
                         $q->execute(array());
@@ -147,6 +188,7 @@ if (ini_get("session.use_cookies")) {
 
                             $compID = $zeile['comp_ID'];
                             $compLogo = $zeile['comp_logo'];
+                            $compRegActive = $zeile['comp_reg_active'];
 
                             if ($compLogo != 0) {
 
@@ -169,11 +211,16 @@ if (ini_get("session.use_cookies")) {
                                     <div class="media-body">
                                         <a class="pull-left" href="php/competitionView.php?comp_id=<?php echo $compID ?>"><h4 class="media-heading" ><?php echo $zeile['comp_name'] ?> </h4>
                                         </a><br><br>
-                                        <p><?php echo $newDate . " in " . $zeile['comp_city'] . ", " . $zeile['comp_country']; ?> <a href="php/registrationView_1.php?comp_id=<?php echo $compID ?>"  class="btn btn-pinterest btn-single btn-sm ">Join! </a></p>
-                                        
+                                        <p><?php echo $newDate . " in " . $zeile['comp_city'] . ", " . $zeile['comp_country']; ?> 
 
+                                            <?php if ($compRegActive != 0) { ?><a href="php/registrationView_1.php?comp_id=<?php echo $compID ?>"  class="btn btn-pinterest btn-single btn-sm ">Join! </a>
 
+                                            <?php } else { ?>
 
+                                                <a class="btn btn-pinterest btn-single btn-sm " disabled>Join! </a>
+
+                                            <?php } ?>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -198,25 +245,21 @@ if (ini_get("session.use_cookies")) {
         <br>
         <br>
 
-        <!--<footer class="footer footer-black">
+        <footer class="footer footer-black">
             <div class="container">
 
 
                 <ul class="pull-center">
                     <li>
                         <a href="#pablo">
-                            Contact
+                            info@champscore.ch
                         </a>
                     </li>
-                    <li>
-                        <a href="#pablo">
-                            Impressum
-                        </a>
-                    </li>
-                    
+
+
                 </ul>
 
-                <ul class="social-buttons pull-right">
+                <!--<ul class="social-buttons pull-right">
                     
                     <li>
                         <a href="https://www.facebook.com/CreativeTim" target="_blank" class="btn btn-just-icon btn-simple">
@@ -224,11 +267,11 @@ if (ini_get("session.use_cookies")) {
                         </a>
                     </li>
                    
-                </ul>
+                </ul>-->
 
             </div>
         </footer>
--->
+
         <!-- <div class="cd-section" id="pricing">
  
  

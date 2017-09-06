@@ -27,7 +27,7 @@ Database::disconnect();
         <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png" />
         <link rel="icon" type="image/png" href="img/favicon-16x16.png" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <title>Material Dashboard Pro by Creative Tim</title>
+        <title>My Competitions</title>
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
         <!-- Bootstrap core CSS     -->
@@ -79,7 +79,7 @@ Database::disconnect();
                                 <ul class="nav">
 
                                     <li>
-                                        <a href="person.php">Edit Profile</a>
+                                        <a href="hostPersonalData.php">Edit Profile</a>
                                     </li>
                                     <li>
                                         <a href="loginsec/logout.php">Log out</a>
@@ -126,7 +126,7 @@ Database::disconnect();
                             </button>
                          <a class="navbar-brand" href="#"> My Competitions </a>
                         </div>
-                        <div class="collapse navbar-collapse">
+                        <!--<div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
                                     <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
@@ -179,7 +179,7 @@ Database::disconnect();
                                     <div class="ripple-container"></div>
                                 </button>
                             </form>
-                        </div>
+                        </div>-->
                     </div>
                 </nav>
                 <div class="content">
@@ -210,6 +210,9 @@ Database::disconnect();
                             } else {
                                 $logosrc = "img/image_placeholder.jpg";
                             }
+                            
+                             $originalDate = $zeile['comp_start_date'];
+                            $newDate = date("d.m.Y", strtotime($originalDate));
                             ?>
 
 
@@ -248,7 +251,7 @@ Database::disconnect();
                                     </div>
                                     <div class="card-footer">
                                         <div class="price">
-                                            <h4><?php echo $zeile['comp_start_date'] ?></h4>
+                                            <h4><?php echo $newDate ?></h4>
                                         </div>
                                         <div class="stats pull-right">
                                             <p class="category"><i class="material-icons">place</i><?php echo $zeile['comp_city'] ?>, <?php echo $zeile['comp_country'] ?></p>
@@ -269,36 +272,13 @@ Database::disconnect();
                 </div>
                 <footer class="footer">
                     <div class="container-fluid">
-                        <nav class="pull-left">
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        Home
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Company
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Portfolio
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Blog
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+
                         <p class="copyright pull-right">
                             &copy;
                             <script>
                                 document.write(new Date().getFullYear())
                             </script>
-                            <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+                            <a>champscore</a>
                         </p>
                     </div>
                 </footer>
