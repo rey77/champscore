@@ -2928,6 +2928,7 @@ select.form-control[multiple], .form-group.is-focused select.form-control[multip
   box-shadow: 0 4px 20px 0px rgba(0, 0, 0, 0.14), 0 7px 10px -5px rgba(156, 39, 176, 0.4);
 }
 
+
 .btn-group.bootstrap-select .dropdown-menu,
 .dropdown .dropdown-menu,
 .dropup .dropdown-menu,

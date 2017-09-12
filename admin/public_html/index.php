@@ -46,10 +46,6 @@ if (ini_get("session.use_cookies")) {
 
         <div class="cd-section" id="headers">
 
-            <!--     *********     HEADER 1      *********      -->
-
-
-            <!--     *********     HEADER 2      *********      -->
 
             <div class="header-2">
                 <nav class="navbar navbar-transparent navbar-absolute">
@@ -77,7 +73,7 @@ if (ini_get("session.use_cookies")) {
                                     </a>
                                     <ul class="dropdown-menu dropdown-with-icons">
                                         <li>
-                                            <a href="php/athleteLogin.php">
+                                            <a class="host" href="php/athleteLogin.php">
                                                 <i class="material-icons">fingerprint</i> Login
                                             </a>
                                         </li>
