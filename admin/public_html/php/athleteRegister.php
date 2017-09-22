@@ -231,7 +231,7 @@ if (isset($_SESSION['message'])) {
                                                         <span class="fileinput-new">Select Profile Picture</span>
                                                         <span class="fileinput-exists">Change</span>
 
-                                                        <input type="file"  name="avatar" id="avatar" required/></span>
+                                                        <input type="file"  name="avatar" id="avatar" required="required"/></span>
                                                     <br />
 
                                                 </div>
@@ -251,19 +251,19 @@ if (isset($_SESSION['message'])) {
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Email address</label>
-                                                        <input type="email" name="athleteEmail" id="email" class="form-control" required >
+                                                        <input type="email" name="athleteEmail" id="email" class="form-control" required="required" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label"> Password</label>
-                                                        <input type="password" name="athletePassword1" class="form-control" required minLength="8" >
+                                                        <input type="password" name="athletePassword1" class="form-control" required="required" minLength="8" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Confirm Password</label>
-                                                        <input type="password" name="athletePassword2" class="form-control" required minLength="8" >
+                                                        <input type="password" name="athletePassword2" class="form-control" required="required" minLength="8" >
                                                     </div>
                                                 </div>
 
@@ -276,13 +276,13 @@ if (isset($_SESSION['message'])) {
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">First Name</label>
-                                                        <input type="text" name="athleteFirstName" id="athleteFirstName" class="form-control" required>
+                                                        <input type="text" name="athleteFirstName" id="athleteFirstName" class="form-control" required="required">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Last Name</label>
-                                                        <input type="text" name="athleteLastName" id="athleteLastName" class="form-control" required>
+                                                        <input type="text" name="athleteLastName" id="athleteLastName" class="form-control" required="required">
                                                     </div>
                                                 </div>
                                             </div>
@@ -296,7 +296,7 @@ if (isset($_SESSION['message'])) {
                                                 </span>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Email
-                                                        <small>(required)</small>
+                                                        <small>(required="required")</small>
                                                     </label>
                                                     <input name="email" type="email" class="form-control">
                                                 </div>
@@ -310,7 +310,7 @@ if (isset($_SESSION['message'])) {
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Date of Birth</label>
-                                                        <input type="text" name="athleteBirthDate" id="datepicker" class="form-control datepicker" required >
+                                                        <input type="text" name="athleteBirthDate" id="datepicker" class="form-control datepicker" required="required" >
                                                     </div>
                                                 </div>
 
@@ -332,13 +332,13 @@ if (isset($_SESSION['message'])) {
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Street</label>
-                                                        <input type="text" name="athleteStreet" id="athleteStreet" class="form-control" required>
+                                                        <input type="text" name="athleteStreet" id="athleteStreet" class="form-control" required="required">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">ZIP</label>
-                                                        <input type="text" name="athleteZIP" id="athleteZip" class="form-control" required>
+                                                        <input type="text" name="athleteZIP" id="athleteZip" class="form-control" required="required">
                                                     </div>
                                                 </div>
                                             </div>
@@ -348,13 +348,13 @@ if (isset($_SESSION['message'])) {
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">City</label>
-                                                        <input type="text" name="athleteCity" id="athleteCity" class="form-control" required>
+                                                        <input type="text" name="athleteCity" id="athleteCity" class="form-control" required="required">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label"> Country</label>
-                                                        <select id="country" name="athleteCountry" class="form-control" required >
+                                                        <select id="country" name="athleteCountry" class="form-control" required="required" >
                                                             <option value=""></option>
                                                             <option value="AF">Afghanistan</option>
                                                             <option value="AX">Åland Islands</option>
@@ -615,7 +615,7 @@ if (isset($_SESSION['message'])) {
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Phone number</label>
-                                                        <input type="text" name="athletePhone" id="athletePhone" class="form-control" required>
+                                                        <input type="text" name="athletePhone" id="athletePhone" class="form-control" required="required">
                                                     </div>
                                                 </div>
 
@@ -623,7 +623,7 @@ if (isset($_SESSION['message'])) {
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Affiliate Name</label>
-                                                        <input type="text" name="athleteAffiliate" id="athleteAffiliate"  class="form-control" required>
+                                                        <input type="text" name="athleteAffiliate" id="athleteAffiliate"  class="form-control" required="required">
                                                     </div>
                                                 </div>
 
@@ -637,7 +637,7 @@ if (isset($_SESSION['message'])) {
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">T-Shirt Size</label>
-                                                        <select id="athleteShirtsize" name="athleteShirtsize" class="form-control" required>
+                                                        <select id="athleteShirtsize" name="athleteShirtsize" class="form-control" required="required">
 
                                                             <option value="XS">XS </option>
                                                             <option value="S">S</option>
@@ -653,7 +653,7 @@ if (isset($_SESSION['message'])) {
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Personal Best in Competitive Fitness</label>
-                                                        <input type="text" name="athleteBestscore" id="athleteBestscore"  class="form-control" required>
+                                                        <input type="text" name="athleteBestscore" id="athleteBestscore"  class="form-control" required="required">
                                                     </div>
                                                 </div>
 
@@ -676,7 +676,7 @@ if (isset($_SESSION['message'])) {
                                                         <span class="btn btn-pinterest btn-round btn-file">
                                                             <span class="fileinput-new">Select Action Picture</span>
                                                             <span class="fileinput-exists">Change</span>
-                                                            <input type="file" name="actionPicture" id="actionPicture"  required />
+                                                            <input type="file" name="actionPicture" id="actionPicture"  required="required" />
                                                         </span>
 
                                                     </div>

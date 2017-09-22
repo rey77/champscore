@@ -111,12 +111,17 @@ $uploadOk = 1;
 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 // Check if image file is a actual image or fake image
 if (isset($_POST["submit"])) {
-    $check = getimagesize($_FILES["avatar"]["tmp_name"]);
-    if ($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
+    if(isset($_FILES["avatar"])) {
+        $check = getimagesize($_FILES["avatar"]["tmp_name"]);
+        if ($check !== false) {
+            echo "File is an image - " . $check["mime"] . ".";
+            $uploadOk = 1;
+        } else {
+            echo "File is not an image.";
+            $uploadOk = 0;
+        }
     } else {
-        echo "File is not an image.";
+        echo "Avatar is required";
         $uploadOk = 0;
     }
 }
@@ -165,12 +170,17 @@ $uploadOk = 1;
 $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 // Check if image file is a actual image or fake image
 if (isset($_POST["submit"])) {
-    $check = getimagesize($_FILES["actionPicture"]["tmp_name"]);
-    if ($check !== false) {
-        echo "File is an image - " . $check["mime"] . ".";
-        $uploadOk = 1;
+    if (isset($_FILES["actionPicture"])) {
+        $check = getimagesize($_FILES["actionPicture"]["tmp_name"]);
+        if ($check !== false) {
+            echo "File is an image - " . $check["mime"] . ".";
+            $uploadOk = 1;
+        } else {
+            echo "File is not an image.";
+            $uploadOk = 0;
+        }
     } else {
-        echo "File is not an image.";
+        echo 'actionPicture is required';
         $uploadOk = 0;
     }
 }
