@@ -162,7 +162,8 @@
                             <h2 class="title">Our Competitions</h2>
                             <!--<h5 class="description">We are happy to host Competitions all around the globe.</h5>-->
                             <br>
-                            <br></div>
+                            <br>
+                        </div>
 
                     </div>
 
@@ -175,16 +176,16 @@
                             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                             $q = $pdo->prepare($sql);
                             $q->execute(array());
-                            while ($zeile = $q->fetch(/* PDO::FETCH_ASSOC */)) {
-                                $compID = $zeile['comp_ID'];
-                                $compLogo = $zeile['comp_logo'];
-                                $compRegActive = $zeile['comp_reg_active'];
+                            while ($row = $q->fetch(/* PDO::FETCH_ASSOC */)) {
+                                $compID = $row['comp_ID'];
+                                $compLogo = $row['comp_logo'];
+                                $compRegActive = $row['comp_reg_active'];
                                 if ($compLogo != 0) {
                                     $logosrc = "php/uploads/host/complogo/$compLogo";
                                 } else {
                                     $logosrc = "http://placehold.it/400x250/000/fff";
                                 }
-                                $originalDate = $zeile['comp_start_date'];
+                                $originalDate = $row['comp_start_date'];
                                 $newDate = date("d.m.Y", strtotime($originalDate));
                                 ?>
 
@@ -196,9 +197,9 @@
                                             </div>
                                         </a>
                                         <div class="media-body">
-                                            <a class="pull-left" href="php/competitionView.php?comp_id=<?php echo $compID ?>"><h4 class="media-heading" ><?php echo $zeile['comp_name'] ?> </h4>
+                                            <a class="pull-left" href="php/competitionView.php?comp_id=<?php echo $compID ?>"><h4 class="media-heading" ><?php echo $row['comp_name'] ?> </h4>
                                             </a><br><br>
-                                            <p><?php echo $newDate . " in " . $zeile['comp_city'] . ", " . $zeile['comp_country']; ?>
+                                            <p><?php echo $newDate . " in " . $row['comp_city'] . ", " . $row['comp_country']; ?>
 
                                                 <?php if ($compRegActive != 0) { ?><a href="php/registrationView_1.php?comp_id=<?php echo $compID ?>"  class="btn btn-pinterest btn-single btn-sm ">Join! </a>
 
