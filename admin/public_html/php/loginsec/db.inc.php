@@ -4,6 +4,6 @@ $passwort="";
 $dbname="champscore_net"; */
 
 $benutzer="root";
-$passwort="root";
+$passwort="";
 $dbname="champscore_net";
 ?>
