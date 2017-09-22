@@ -10,8 +10,7 @@ session_start();
 
         include 'Database.php';
         $pdo = Database::connect();
-
-        $sql = "select comp_ID, comp_name, comp_reg_active, comp_start_date,comp_end_date,comp_start_time, comp_banner, comp_end_time, comp_location_name, comp_start_time, comp_facebook_link, comp_instagram_link, comp_desc_long,comp_desc_short, comp_main_color, comp_accent_color, comp_regcode, comp_active, comp_street, comp_zip, comp_city, comp_country, comp_logo from tbl_competition where comp_id = ?";
+        $sql = "select * from tbl_competition where comp_id = ?";
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $q = $pdo->prepare($sql);
@@ -20,7 +19,7 @@ session_start();
 
         while ($zeile = $q->fetch(/* PDO::FETCH_ASSOC */)) {
 
-            $compID = $zeile['comp_ID'];
+            $compID = $zeile['comp_id'];
             $compName = $zeile['comp_name'];
             $compRegCode = $zeile['comp_regcode'];
             $compStartDate = $zeile['comp_start_date'];
@@ -41,6 +40,7 @@ session_start();
             $compInstagramLink = $zeile['comp_instagram_link'];
             $compBanner = $zeile['comp_banner'];
             $compRegActive = $zeile['comp_reg_active'];
+            $compSponsors = $zeile['comp_sponsors'];
         }
 
         $compStartDateFormatted = date("d.m.Y", strtotime($compStartDate));
@@ -377,7 +377,7 @@ session_start();
                                     <hr />
                                     <h4 style="color:<?php echo $compMainColor?>" class="title">Sponsors</h4>
                                     <ul class="list-unstyled">
-                                        <li>VOGT TRAINING Equipment</li>
+                                        <p><?php echo $compSponsors; ?></p>
                                     </ul><br>
 
                 <!-- <p class="description">Vogttraining Equipment</p>-->

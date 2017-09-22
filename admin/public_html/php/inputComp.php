@@ -22,15 +22,16 @@ $compCity = $_POST['compCity'];
 $compCountry = $_POST['compCountry'];
 $compDescLong = $_POST['compDescLong'];
 $compDescShort = $_POST['compDescShort'];
+$compSponsors = $_POST['compSponsors'];
 
 
 
 
-$sql = "INSERT INTO `tbl_competition` ( `comp_name`,`comp_desc_short`,`comp_desc_long`, `comp_regcode`, `comp_start_date`,  `comp_start_time`,  `comp_location_name`,  `comp_facebook_link` ,`fk_host_ID`, `comp_active`, `comp_street`, `comp_zip`, `comp_city`, `comp_country` ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+$sql = "INSERT INTO `tbl_competition` ( `comp_name`,`comp_desc_short`,`comp_desc_long`, `comp_regcode`, `comp_start_date`,  `comp_start_time`,  `comp_location_name`,  `comp_facebook_link` ,`fk_host_ID`, `comp_active`, `comp_street`, `comp_zip`, `comp_city`, `comp_country`, `comp_sponsors` ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $q = $pdo->prepare($sql);
-$q->execute(array($compName, $compDescShort, $compDescLong, $regCode, $compStartDate, $compStartTime, $compLocation, $compFacebookLink, $hostID, 1, $compStreet, $compZip, $compCity, $compCountry));
+$q->execute(array($compName, $compDescShort, $compDescLong, $regCode, $compStartDate, $compStartTime, $compLocation, $compFacebookLink, $hostID, 1, $compStreet, $compZip, $compCity, $compCountry, $compSponsors));
 
 $compID = $pdo->lastInsertId();
 
