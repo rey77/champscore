@@ -29,15 +29,16 @@ $compMainColor = $_POST['compMainColor'];
 $compAccentColor = $_POST['compAccentColor'];
 $compLocation = $_POST['compLocation'];
 $compFacebookLink = $_POST['compFacebookLink'];
+$compSponsors = $_POST['compSponsors'];
 
 $sql = "UPDATE tbl_competition SET comp_name = ?, comp_desc_short =?, comp_desc_long = ?, comp_regcode = ? , comp_location_name = ?,  comp_facebook_link = ?, comp_start_date = ? , comp_start_time = ?, "
-        . "comp_end_date = ?, comp_end_time = ?, comp_street = ?, comp_zip = ?, comp_city = ?, comp_country = ? , comp_main_color = ?, comp_accent_color = ? "
+        . "comp_end_date = ?, comp_end_time = ?, comp_street = ?, comp_zip = ?, comp_city = ?, comp_country = ? , comp_main_color = ?, comp_accent_color = ?, comp_sponsors = ?"
         . "WHERE comp_id = ?";
 
 
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $q = $pdo->prepare($sql);
-$q->execute(array($compName, $compDescShort, $compDescLong, $regCode, $compLocation, $compFacebookLink, $compStartDate, $compStartTime, $compEndDate, $compEndTime, $compStreet, $compZip, $compCity, $compCountry, $compMainColor, $compAccentColor, $compID));
+$q->execute(array($compName, $compDescShort, $compDescLong, $regCode, $compLocation, $compFacebookLink, $compStartDate, $compStartTime, $compEndDate, $compEndTime, $compStreet, $compZip, $compCity, $compCountry, $compMainColor, $compAccentColor, $compSponsors, $compID));
 
 //save competition logo
 $target_dir = "uploads/host/complogo/";
