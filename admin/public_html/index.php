@@ -38,8 +38,8 @@ if (ini_get("session.use_cookies")) {
 
     </head>
 
-    <body>
-        
+    <body class="blog-post">
+
         <?php include_once("./php/analyticstracking.php") ?>
 
 
@@ -65,11 +65,50 @@ if (ini_get("session.use_cookies")) {
                             <a class="navbar-brand" href="index.php"><p><img style="width: 2em;" class="logo" src="img/Logo.png" alt=""/><img style=" padding-left: .5em; width: 9em;" class="logo" src="img/text.png" alt=""/></p></a>
                         </div>
 
-                        <div class="collapse navbar-collapse" id="navigation-example">
+                        <div class="collapse navbar-collapse">
 
                             <ul class="nav navbar-nav navbar-right">
 
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="material-icons">person</i> Athlete
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-with-icons">
+                                        <li>
+                                            <a href="php/athleteLogin.php">
+                                                <i class="material-icons">fingerprint</i> Login
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="php/athleteRegister.php">
+                                                <i class="material-icons">person_add</i> Signup
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
                                 
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="material-icons">person_outline</i> Host
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-with-icons">
+                                        <li>
+                                            <a href="php/hostLogin.php">
+                                                <i class="material-icons">fingerprint</i> Login
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="material-icons">person_add</i> Signup
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
 
                                 <!--<li>
                                     <a href="https://twitter.com/CreativeTim">
@@ -86,15 +125,17 @@ if (ini_get("session.use_cookies")) {
                                         <i class="fa fa-instagram"></i>
                                     </a>
                                 </li>-->
-                               <!-- <li class="button-container">
-                                    <a href="php/login.php"  class="btn btn-pinterest ">
-                                        Login
-                                    </a>
-                                </li>-->
+                                <!-- <li class="button-container">
+                                     <a href="php/login.php"  class="btn btn-pinterest ">
+                                         Login
+                                     </a>
+                                 </li>-->
                             </ul>
                         </div>
                     </div>
                 </nav>
+
+
 
                 <div class="page-header header-filter" style="background-image: url('img/header.jpg');">
                     <div class="container">
@@ -104,45 +145,42 @@ if (ini_get("session.use_cookies")) {
                                 <h4>You will have an unique competition experience using champscore</h4>
                             </div>-->
                             <div class="col-md-6 col-md-offset-0 text-center">
-                                <h1 class="title">ATHLETES</h1>
-                                <a class="btn btn-pinterest" href="php/athleteLogin.php">Login</a>
-                                <a class="btn btn-pinterest" href="php/athleteRegister.php">create Athlete Account</a>
+
+
+                                <h1 class="title">ATHLETE</h1>
+                                    <a class="btn btn-pinterest" href="php/athleteLogin.php">Login</a>
+                                    <a class="btn btn-pinterest" href="php/athleteRegister.php">create Account</a>
                             </div>
-                            
+
                             <div class="col-md-6 col-md-offset-0 text-center">
-                                <h1 class="title">HOSTS</h1>
-                                <a class="btn btn-pinterest" href="php/hostLogin.php">Login</a>
-                                <a class="btn btn-pinterest" href="#">Register (coming soon)</a>
+                                <h1 class="title">HOST</h1>
+                                    <a class="btn btn-oxfordblue" href="php/hostLogin.php">Login</a>
+                                    <a class="btn btn-oxfordblue" href="#">create Account (coming soon)</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!--     *********    END HEADER 2      *********      -->
-
-        </div>
-
-        <div class="cd-section" id="teams" style="background-color: white;">
-            <!--     *********    TEAM 1     *********      -->
-
-            <div class="team-1" id="team-1">
-
+            <div class="main main-raised">
                 <div class="container">
                     <div class="row">
+                        <br>
+                        <br>
                         <div class="col-md-8 col-md-offset-2 text-center">
                             <h2 class="title">Our Competitions</h2>
-                            <h5 class="description">We are happy to host Competitions all around the globe.</h5>
-                        </div>
+                            <!--<h5 class="description">We are happy to host Competitions all around the globe.</h5>-->
+                            <br>
+                            <br></div>
+
                     </div>
 
                     <div class="row">
-                        
+
                         <?php
-                        
                         include 'php/Database.php';
                         $pdo = Database::connect();
-                        $sql = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_city, comp_country from tbl_competition";
+                        $sql = "select comp_ID, comp_reg_active, comp_name, comp_start_date, comp_logo, comp_city, comp_country from tbl_competition";
                         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                         $q = $pdo->prepare($sql);
                         $q->execute(array());
@@ -150,6 +188,7 @@ if (ini_get("session.use_cookies")) {
 
                             $compID = $zeile['comp_ID'];
                             $compLogo = $zeile['comp_logo'];
+                            $compRegActive = $zeile['comp_reg_active'];
 
                             if ($compLogo != 0) {
 
@@ -157,30 +196,31 @@ if (ini_get("session.use_cookies")) {
                             } else {
                                 $logosrc = "http://placehold.it/400x250/000/fff";
                             }
+
+                            $originalDate = $zeile['comp_start_date'];
+                            $newDate = date("d.m.Y", strtotime($originalDate));
                             ?> 
 
                             <div class="col-md-6">
                                 <div class="media">
                                     <a class="pull-left" href="php/competitionView.php?comp_id=<?php echo $compID ?>">
                                         <div class="avatar">
-                                            <img class="media-object" alt="Tim Picture" src="<?php echo $logosrc ?>">
+                                            <img class="media-object"  src="<?php echo $logosrc ?>">
                                         </div>
                                     </a>
                                     <div class="media-body">
                                         <a class="pull-left" href="php/competitionView.php?comp_id=<?php echo $compID ?>"><h4 class="media-heading" ><?php echo $zeile['comp_name'] ?> </h4>
+                                        </a><br><br>
+                                        <p><?php echo $newDate . " in " . $zeile['comp_city'] . ", " . $zeile['comp_country']; ?> 
 
-                                            <p><?php echo $zeile['comp_start_date'] ?></p>
-                                            <p><?php echo $zeile['comp_city'] ?>, <?php echo $zeile['comp_country'] ?></p>
-                                        </a>
-                                        <!--<div class="media-footer">
-                                            <a href="#pablo" class="btn btn-primary btn-simple pull-right" rel="tooltip" title="Reply to Comment">
-                                                <i class="material-icons">reply</i> Reply
-                                            </a>
-                                            <a href="#pablo" class="btn btn-default btn-simple pull-right">
-                                                <i class="material-icons">favorite</i> 25
-                                            </a>
-                                        </div>-->
+                                            <?php if ($compRegActive != 0) { ?><a href="php/registrationView_1.php?comp_id=<?php echo $compID ?>"  class="btn btn-pinterest btn-single btn-sm ">Join! </a>
 
+                                            <?php } else { ?>
+
+                                                <a class="btn btn-pinterest btn-single btn-sm " disabled>Join! </a>
+
+                                            <?php } ?>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -191,55 +231,93 @@ if (ini_get("session.use_cookies")) {
 
                     </div>
 
+                    <br>
+                    <br><br>
+                    <br><br>
+                    <br>
+
                 </div>
             </div>
+
+
+
         </div>
-       <!-- <div class="cd-section" id="pricing">
+        <br>
+        <br>
+
+        <footer class="footer footer-black">
+            <div class="container">
 
 
-            <div class="pricing-2" id="pricing-2">
-
-                <div class="container">
-
-
-                    <div class="row">
-                        <div class="col-md-6 col-md-offset-3 text-center">
-                            <h2 class="title">Pricing</h2>
-                            
-                        </div>
-                    </div>
-                    <div class="row">
+                <ul class="pull-center">
+                    <li>
+                        <a href="#pablo">
+                            info@champscore.ch
+                        </a>
+                    </li>
 
 
+                </ul>
 
-                        <div class="col-md-4">
-                            <div class="card card-pricing  card-raised" style="background-image: url('php/img/cs.png')">
-                                <div class="card-content">
-                                    
-                                    <h1 class="card-title"><small>$</small>.99<small>/ Registration</small></h1>
-                                    <ul>
-                                        <li><b>+3.5%</b> Fee per registration</li>
-                                        <li>Unlimited Wods</li>
-                                        <li>Customizable Competition page</li>
-                                        <li>Customizable Leaderboard</li>
-                                        <li>Simple Scoring</li>
-                                        <li>Judging sheets on demand</li>
-                                    </ul>
-                                    <a href="#pablo" class="btn btn-pinterest btn-round">
-                                        Get Started
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                <!--<ul class="social-buttons pull-right">
+                    
+                    <li>
+                        <a href="https://www.facebook.com/CreativeTim" target="_blank" class="btn btn-just-icon btn-simple">
+                            <i class="fa fa-facebook-square"></i>
+                        </a>
+                    </li>
+                   
+                </ul>-->
 
-
-
-                    </div>
-
-                </div>
             </div>
+        </footer>
 
-        </div>-->
+        <!-- <div class="cd-section" id="pricing">
+ 
+ 
+             <div class="pricing-2" id="pricing-2">
+ 
+                 <div class="container">
+ 
+ 
+                     <div class="row">
+                         <div class="col-md-6 col-md-offset-3 text-center">
+                             <h2 class="title">Pricing</h2>
+                             
+                         </div>
+                     </div>
+                     <div class="row">
+ 
+ 
+ 
+                         <div class="col-md-4">
+                             <div class="card card-pricing  card-raised" style="background-image: url('php/img/cs.png')">
+                                 <div class="card-content">
+                                     
+                                     <h1 class="card-title"><small>$</small>.99<small>/ Registration</small></h1>
+                                     <ul>
+                                         <li><b>+3.5%</b> Fee per registration</li>
+                                         <li>Unlimited Wods</li>
+                                         <li>Customizable Competition page</li>
+                                         <li>Customizable Leaderboard</li>
+                                         <li>Simple Scoring</li>
+                                         <li>Judging sheets on demand</li>
+                                     </ul>
+                                     <a href="#pablo" class="btn btn-pinterest btn-round">
+                                         Get Started
+                                     </a>
+                                 </div>
+                             </div>
+                         </div>
+ 
+ 
+ 
+                     </div>
+ 
+                 </div>
+             </div>
+ 
+         </div>-->
 
 
     </body>

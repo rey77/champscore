@@ -30,7 +30,7 @@ $compID = $_GET['comp_id'];
 
         //  $compID = $_GET['comp_id'];
         //   $compID = 57;
-        $sql = "select comp_ID, comp_name, comp_start_date, comp_regcode, comp_terms, comp_active, comp_street, comp_zip, comp_city, comp_country, comp_logo from tbl_competition where comp_id = ?";
+        $sql = "select comp_ID, comp_name, comp_start_date, comp_banner, comp_regcode, comp_terms, comp_active, comp_street, comp_zip, comp_city, comp_country, comp_logo from tbl_competition where comp_id = ?";
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $q = $pdo->prepare($sql);
         $q->execute(array($compID));
@@ -48,6 +48,7 @@ $compID = $_GET['comp_id'];
             $compCountry = $zeile['comp_country'];
             $compLogo = $zeile['comp_logo'];
             $compTerms = $zeile['comp_terms'];
+            $compBanner = $zeile['comp_banner'];
         }
 
 
@@ -63,6 +64,11 @@ $compID = $_GET['comp_id'];
             $termsSrc = "img/image_placeholder.jpg";
         }
 
+        if ($compBanner != 0) {
+            $bannersrc = "uploads/host/compbanner/$compBanner";
+        } else {
+            $bannersrc = "img/image_placeholder.jpg";
+        }
 
         /* $sql_user = "select * from tbl_user";
           $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -96,7 +102,7 @@ $compID = $_GET['comp_id'];
             </div>
         </nav>
 
-        <div class="page-header header-filter" style="background-image: url('img/header2.jpg'); background-size: cover; background-position: top center;">
+        <div class="page-header header-filter" style="background-image: url('<?php echo $bannersrc ?>'); background-size: cover; background-position: top center;">
             <div class="container">
                 <div class="row">
 
@@ -108,7 +114,7 @@ $compID = $_GET['comp_id'];
 
                             <h5 class="text-center">Confirmation</h5>
                             <div class="row">
-                                <div class="col-md-2 col-md-offset-5">
+                                <div class="col-md-2 col-md-offset-5 col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-4">
                                     <div class="avatar">
                                         <img class="media-object img-rounded img-responsive img-raised" alt="Logo" src="<?php echo $logosrc ?>">
                                     </div>
@@ -119,17 +125,17 @@ $compID = $_GET['comp_id'];
 
                             <div class="row">
 
-                                <div class="col-md-12 col-md-offset-1">
+                                <div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
                                     <br>
                                     <br>
-                                    <p>You are now Registered for the Competition and will get an Email Confirmation. You can find the Competition listed in your Athlete Section</p>
+                                    <p>You are now Registered for the Competition and will get an Email Confirmation. You can find the Competition listed in your Athlete Section.</p>
                                     <p>Good Luck!</p>
                                 </div>
                             </div>
                             <div class="row">
-                                <div align="right" class="col-md-11 col-md-offset-0">
+                                <div align="right" class="col-md-11 col-md-offset-0 col-sm-11 col-md-offset-0 col-xs-11 col-xs-offset-0">
 
-                                    <button class="btn btn-pinterest" type="button" onclick="window.open('', '_self', ''); window.close();">Close</button>
+                                   ¨<!-- <button class="btn btn-pinterest" type="button" onclick="window.open('', '_self', ''); window.close();">Close</button>-->
                                 </div>
                             </div>
 

@@ -11,7 +11,7 @@ session_start();
         include 'Database.php';
         $pdo = Database::connect();
 
-        $sql = "select comp_ID, comp_name, comp_start_date,comp_end_date,comp_start_time, comp_banner, comp_end_time, comp_location_name, comp_start_time, comp_facebook_link, comp_instagram_link, comp_desc_long,comp_desc_short, comp_main_color, comp_accent_color, comp_regcode, comp_active, comp_street, comp_zip, comp_city, comp_country, comp_logo from tbl_competition where comp_id = ?";
+        $sql = "select comp_ID, comp_name, comp_reg_active, comp_start_date,comp_end_date,comp_start_time, comp_banner, comp_end_time, comp_location_name, comp_start_time, comp_facebook_link, comp_instagram_link, comp_desc_long,comp_desc_short, comp_main_color, comp_accent_color, comp_regcode, comp_active, comp_street, comp_zip, comp_city, comp_country, comp_logo from tbl_competition where comp_id = ?";
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $q = $pdo->prepare($sql);
@@ -40,8 +40,11 @@ session_start();
             $compFacebookLink = $zeile['comp_facebook_link'];
             $compInstagramLink = $zeile['comp_instagram_link'];
             $compBanner = $zeile['comp_banner'];
+            $compRegActive = $zeile['comp_reg_active'];
         }
 
+        $compStartDateFormatted = date("d.m.Y", strtotime($compStartDate));
+        $compEndDateFormatted = date("d.m.Y", strtotime($compEndDate));
 
         $compDescLongFormatted = nl2br(htmlentities($compDescLong, ENT_QUOTES, 'UTF-8'));
         $compDescShortFormatted = nl2br(htmlentities($compDescShort, ENT_QUOTES, 'UTF-8'));
@@ -110,7 +113,7 @@ session_start();
                     </button>
                     <a class="navbar-brand" href="../index.php"><p><img style="width: 2em;" class="logo" src="../img/Logo.png" alt=""/><img style=" padding-left: .5em; width: 9em;" class="logo" src="../img/text.png" alt=""/></p></a>
 
-                   
+
                 </div>
 
                 <div class="collapse navbar-collapse">
@@ -270,11 +273,26 @@ session_start();
                             </div>
 
                         </div>
-                        <div class="col-xs-12  col-sm-12  col-lg-12   text-center">
-                            <a class="btn" style="background:<?php echo '#' . $compAccentColor ?>" href = "registrationView_1.php?comp_id=<?php echo $compID ?>" target="_blank" >
-                                <i class="material-icons">person_add</i> Register for this Competition
-                            </a> 
-                        </div>
+
+                        <?php if ($compRegActive == 0) { ?>
+                            <div class="col-xs-12  col-sm-12  col-lg-12   text-center">
+                                <h3 style="color:<?php echo '#' . $compAccentColor ?>" >
+                                    <b>Registration Closed</b>
+                                </h3>
+                            </div>
+                        <?php } else { ?>
+
+                            <div class="col-xs-12  col-sm-12  col-lg-12   text-center">
+                                <a class="btn" style="background:<?php echo '#' . $compAccentColor ?>" href = "registrationView_1.php?comp_id=<?php echo $compID ?>" target="_blank" >
+                                    <i class="material-icons">person_add</i> Register for this Competition
+                                </a> 
+                            </div>
+
+                            <?php
+                        }
+                        ?>
+
+
 
                         <!--<div class="col-xs-3 follow">
                            <button class="btn btn-fab btn-pinterest" rel="tooltip" title="Register">
@@ -288,7 +306,7 @@ session_start();
 
                     <!--<div class = "description text-center">
                     <p><?php echo $compDescShortFormatted
-                                    ?></p>
+                        ?></p>
                 </div>-->
 
                     <div class="row">
@@ -331,24 +349,24 @@ session_start();
                     <div class="tab-content">
                         <div class="tab-pane active competition" id="competition">
                             <div class="row">
-                                <div class="col-md-7 col-md-offset-1"><h3 class="title"> <?php echo $compName ?></h3>
+                                <div class="col-md-7 col-md-offset-1"><h3 style="color:<?php echo $compMainColor?>" class="title"> <?php echo $compName ?></h3>
                                     <br><p><?php echo $compDescLongFormatted ?></p>
                                 </div>
 
 
 
-                                <div class="col-md-2 col-md-offset-1 stats">
-                                    <h4 class="title">When</h4>
+                                <div class="col-md-3 col-md-offset-1 stats">
+                                    <h4 style="color:<?php echo $compMainColor?>" class="title">When</h4>
                                     <ul class="list-unstyled">
                                         <li><b>from</b></li>
-                                        <li><?php echo $compStartDate ?></li>
-                                        <li><?php echo $compStartTime ?></li>
+                                        <li><?php echo $compStartDateFormatted ?></li>
+                                        <li><?php echo date('G:i', strtotime($compStartTime)); ?></li>
                                         <li><b>to</b></li>
-                                        <li><?php echo $compEndDate ?></li>
-                                        <li><?php echo $compEndTime ?></li>
+                                        <li><?php echo $compEndDateFormatted ?></li>
+                                        <li><?php echo date('G:i', strtotime($compEndTime)); ?></li>
                                     </ul>
                                     <hr />
-                                    <h4 class="title">Where</h4>
+                                    <h4 style="color:<?php echo $compMainColor?>"class="title">Where</h4>
                                     <ul class="list-unstyled">
                                         <li><b><?php echo $compLocation ?></b></li>
                                         <li><?php echo $compStreet ?></li>
@@ -357,12 +375,12 @@ session_start();
                                         <li><?php echo $compCountry ?></li>
                                     </ul>
                                     <hr />
-                                    <h4 class="title">Sponsors</h4>
+                                    <h4 style="color:<?php echo $compMainColor?>" class="title">Sponsors</h4>
                                     <ul class="list-unstyled">
                                         <li>VOGT TRAINING Equipment</li>
                                     </ul><br>
 
-<!-- <p class="description">Vogttraining Equipment</p>-->
+                <!-- <p class="description">Vogttraining Equipment</p>-->
                                     <!--<hr />
                                     <!--<h4 class="title">Focus</h4>
                                     <span class="label label-primary">Footwear</span>
@@ -423,7 +441,7 @@ session_start();
                                          white-space: pre;"  id ="wods"></div>
 
 
-                            <!--<table class="table table-hover col-lg-12 col-md-12" id ="result" ></table>
+                                            <!--<table class="table table-hover col-lg-12 col-md-12" id ="result" ></table>
                                     -->
                                 </div>
                             </div>
@@ -544,57 +562,69 @@ session_start();
                                                     $q_wod_colspan = $pdo->prepare($sql_wod_colspan);
                                                     $q_wod_colspan->execute(array($valueDiv));
 
-                                                    while ($zeile = $q_wod_colspan->fetch(/* PDO::FETCH_ASSOC */)) {
-                                                        $wodID = $zeile['wod_ID'];
-                                                        $wodName = $zeile['wod_name'];
-                                                        $wodDesc = $zeile['wod_desc'];
-                                                        $wodDescFormatted = nl2br(htmlentities($wodDesc, ENT_QUOTES, 'UTF-8'));
-                                                        ?>
-
-                                                        <div class="card-content">
-
-                                                            <div class="row">
-                                                                <div class="col-md-12">
+                                                    if ($q_wod_colspan->rowCount() == 0) {
 
 
+                                                        echo "<h3 style=\"color: #$compAccentColor\"> 
+                                                <b>No Workouts announced yet</b>
+                                                </h3>";
+                                                    } else {
 
-                                                                    <div class = "panel-group" id = "accordion" role = "tablist" aria-multiselectable = "true">
-                                                                        <div class = "panel panel-default">
-                                                                            <?php echo"<div class=\"panel-heading\" role=\"tab\" id=\"heading$wodID\">";
-                                                                            ?>
 
-                                                                            <?php echo"<a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse$wodID\" aria-expanded=\"true\" aria-controls=\"collapse$wodID\">"; ?>
-                                                                            <h4 class="panel-title">
-                                                                                <b><?php echo $wodName ?></b>
-                                                                                <i class="material-icons">keyboard_arrow_down</i>
-                                                                            </h4>
-                                                                            <?php
-                                                                            echo"</a>";
-                                                                            echo"</div>";
-                                                                            ?>
+                                                        while ($zeile = $q_wod_colspan->fetch(/* PDO::FETCH_ASSOC */)) {
+                                                            $wodID = $zeile['wod_ID'];
+                                                            $wodName = $zeile['wod_name'];
+                                                            $wodDesc = $zeile['wod_desc'];
+                                                            $wodDescFormatted = nl2br(htmlentities($wodDesc, ENT_QUOTES, 'UTF-8'));
+                                                            ?>
 
-                                                                            <?php echo"<div id=\"collapse$wodID\" class=\"panel-collapse collapse out\" role=\"tabpanel\" aria-labelledby=\"heading$wodID\">";
-                                                                            ?>
-                                                                            <div class="panel-body">
+                                                            <div class="card-content">
 
-                                                                                <div class="col-md-6" align="left">
-                                                                                    <?php echo "<p><h4>$wodDescFormatted</h4></p>"; ?>
+                                                                <div class="row">
+                                                                    <div class="col-md-12 col-sm-12 col-xs-12">
+
+
+
+                                                                        <div class = "panel-group" id = "accordion" role = "tablist" aria-multiselectable = "true">
+                                                                            <div class = "panel panel-default">
+                                                                                <?php echo"<div class = \"panel-heading\" role=\"tab\" id=\"heading$wodID\">";
+                                                                                ?>
+
+                                                                                <?php echo"<a style=\"color: #$compAccentColor\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse$wodID\" aria-expanded=\"false\" aria-controls=\"collapse$wodID\">"; ?>
+                                                                                <h4 class="panel-title">
+                                                                                    <b><?php echo $wodName ?></b>
+                                                                                    <i class="material-icons">keyboard_arrow_down</i>
+                                                                                </h4>
+                                                                                <?php
+                                                                                echo"</a>";
+                                                                                echo"</div>";
+                                                                                ?>
+
+                                                                                <?php echo"<div id=\"collapse$wodID\" class=\"panel-collapse collapse out\" role=\"tabpanel\" aria-labelledby=\"heading$wodID\">";
+                                                                                ?>
+                                                                                <div class="panel-body">
+
+                                                                                    <div class="col-md-6" align="left">
+                                                                                        <?php echo "<p><h4>$wodDescFormatted</h4></p>"; ?>
+                                                                                    </div>
                                                                                 </div>
+
+
+                                                                                <?php
+                                                                                echo"</div>";
+                                                                                ?>
                                                                             </div>
-
-
-                                                                            <?php
-                                                                            echo"</div>";
-                                                                            ?>
                                                                         </div>
+
                                                                     </div>
 
+                                                                    <!--  end card  -->
                                                                 </div>
-
-                                                                <!--  end card  -->
                                                             </div>
-                                                        </div>
-                                                    <?php } ?>
+                                                            <?php
+                                                        }
+                                                    }
+                                                    ?>
                                                     <!-- end col-md-12 -->
 
 
@@ -621,36 +651,16 @@ session_start();
         </div>
 
 
-        <footer class = "footer">
-            <div class = "container">
-                <nav class = "pull-left">
-                    <ul>
-                        <li>
-                            <a href = "http://www.creative-tim.com">
-                                Creative Tim
-                            </a>
-                        </li>
-                        <li>
-                            <a href = "http://presentation.creative-tim.com">
-                                About Us
-                            </a>
-                        </li>
-                        <li>
-                            <a href = "http://blog.creative-tim.com">
-                                Blog
-                            </a>
-                        </li>
-                        <li>
-                            <a href = "http://www.creative-tim.com/license">
-                                Licenses
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <div class = "copyright pull-right">
+        <footer class="footer">
+            <div class="container-fluid">
+
+                <p class="copyright pull-right">
                     &copy;
-                    <script>document.write(new Date().getFullYear())</script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
-                </div>
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script>
+                    <a>champscore</a>
+                </p>
             </div>
         </footer>
 

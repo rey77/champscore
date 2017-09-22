@@ -56,7 +56,7 @@ $compID = $_GET['comp_id'];
         } else {
             $termsSrc = "img/image_placeholder.jpg";
         }
-        if ($compTerms != 0) {
+        if ($compBanner != 0) {
             $bannersrc = "uploads/host/compbanner/$compBanner";
         } else {
             $bannersrc = "img/image_placeholder.jpg";
@@ -146,7 +146,7 @@ $compID = $_GET['comp_id'];
                             clearTimeout(x_timer);
                             x_timer = setTimeout(function () {
                                 check_athlete_ajax(athlete, id);
-                            }, 500);
+                            }, 100);
                         });
                         function check_athlete_ajax(athlete, id) {
                             $.post('athlete_checker.php', {'athlete_email': athlete}, function (data) {
@@ -179,7 +179,7 @@ $compID = $_GET['comp_id'];
                                 } else {
 
                                     document.getElementById("btnRegister").disabled = true;
-                                    var message = 'Select an existing Athlete';
+                                    var message = "Athlete doesn't exist <i class='material-icons'>clear</i><br><a href='athleteRegister.php' target='_blank'>create new Athlete</a>";
                                 }
                                 $('#athlete-result' + id).html(message);
                             }, "json");
@@ -208,6 +208,13 @@ $compID = $_GET['comp_id'];
             function mySubmitCompReg()
             {
 
+                $("#regForm input").each(function () {
+                    if ($(this).val() == "")
+                    {
+                        "Please fill in all the Information"
+                        return false;
+                    }
+                })
 
                 if ($("#division").val() == "") {
                     alert("Please select a Division");
@@ -222,7 +229,7 @@ $compID = $_GET['comp_id'];
                     return false;
                 } else {
 
-                    alert('haha');
+                    return true;
                 }
 
 
@@ -253,7 +260,7 @@ $compID = $_GET['comp_id'];
 
                     <div class="col-sm-8 col-sm-offset-2">
 
-                        <div class="card card-signup" style="opacity: 0.9">
+                        <div class="card card-signup">
                             <h2 class="wizard-title text-center"><?php echo $compName ?></h2>
 
 
@@ -269,15 +276,17 @@ $compID = $_GET['comp_id'];
                             </div>
 
                             <div class="row">
-                                <div class="col-md-12 col-md-offset-1">
+                                <div class="col-md-11 col-md-offset-2 col-sm-11 col-sm-offset-1 col-xs-11 col-xs-offset-1">
 
-                                    <form class="form" onsubmit="return mySubmitCompReg()" method="POST" action="inputCompRegistration.php">
+                                    <form class="form" id="regForm" onsubmit="return mySubmitCompReg()" method="POST" action="inputCompRegistration.php">
                                         <input type='hidden' id='compID' name='compID' class='form-control' value= '<?php echo $compID ?>'>
                                         <input type='hidden' id='divID' name='divID' class='form-control' >
+                                        <p><b>Note:</b> You need to <a href="athleteRegister.php" target="_blank">create Athlete Accounts</a> before you register for this Competition</p>
 
                                         <div class="card-content">
                                             <div class="row">
-                                                <div class="col-md-4 col-md-offset-3">
+
+                                                <div class="col-md-5 col-md-offset-2 col-sm-4 col-sm-offset-2">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Select Division</label>
                                                         <select id ="division" name="division" class="form-control" onchange="onChangeDivision()" required>
@@ -313,7 +322,7 @@ $compID = $_GET['comp_id'];
 
                                                 </div>
                                             </div>
-                                            <div align="right" class="col-md-11 col-md-offset-0">
+                                            <div align="right" class="col-md-10 col-md-offset-0">
                                                 <div class="checkbox">
                                                     <label>
                                                         <input type="checkbox" name="optionsCheckboxes" id="termsCheckbox" required>
@@ -464,6 +473,33 @@ $compID = $_GET['comp_id'];
                 </div>
             </div>
         </div>
+        
+        <footer class="footer footer-black">
+            <div class="container">
+
+
+                <ul class="pull-center">
+                    <li>
+                        <a href="#pablo">
+                            info@champscore.ch
+                        </a>
+                    </li>
+                    
+                    
+                </ul>
+
+                <!--<ul class="social-buttons pull-right">
+                    
+                    <li>
+                        <a href="https://www.facebook.com/CreativeTim" target="_blank" class="btn btn-just-icon btn-simple">
+                            <i class="fa fa-facebook-square"></i>
+                        </a>
+                    </li>
+                   
+                </ul>-->
+
+            </div>
+        </footer>
     </body>
     <!--   Core JS Files   -->
     <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>

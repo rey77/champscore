@@ -37,6 +37,259 @@ if (isset($_GET["id"])) {
         $athleteActionpicture = $zeile["athlete_actionpicture"];
     }
 
+    
+    $newDate = date("d.m.Y", strtotime($athleteBirthdate));
+
+    $countryList = array(
+        'AF' => 'Afghanistan',
+        'AX' => 'Aland Islands',
+        'AL' => 'Albania',
+        'DZ' => 'Algeria',
+        'AS' => 'American Samoa',
+        'AD' => 'Andorra',
+        'AO' => 'Angola',
+        'AI' => 'Anguilla',
+        'AQ' => 'Antarctica',
+        'AG' => 'Antigua and Barbuda',
+        'AR' => 'Argentina',
+        'AM' => 'Armenia',
+        'AW' => 'Aruba',
+        'AU' => 'Australia',
+        'AT' => 'Austria',
+        'AZ' => 'Azerbaijan',
+        'BS' => 'Bahamas the',
+        'BH' => 'Bahrain',
+        'BD' => 'Bangladesh',
+        'BB' => 'Barbados',
+        'BY' => 'Belarus',
+        'BE' => 'Belgium',
+        'BZ' => 'Belize',
+        'BJ' => 'Benin',
+        'BM' => 'Bermuda',
+        'BT' => 'Bhutan',
+        'BO' => 'Bolivia',
+        'BA' => 'Bosnia and Herzegovina',
+        'BW' => 'Botswana',
+        'BV' => 'Bouvet Island (Bouvetoya)',
+        'BR' => 'Brazil',
+        'IO' => 'British Indian Ocean Territory (Chagos Archipelago)',
+        'VG' => 'British Virgin Islands',
+        'BN' => 'Brunei Darussalam',
+        'BG' => 'Bulgaria',
+        'BF' => 'Burkina Faso',
+        'BI' => 'Burundi',
+        'KH' => 'Cambodia',
+        'CM' => 'Cameroon',
+        'CA' => 'Canada',
+        'CV' => 'Cape Verde',
+        'KY' => 'Cayman Islands',
+        'CF' => 'Central African Republic',
+        'TD' => 'Chad',
+        'CL' => 'Chile',
+        'CN' => 'China',
+        'CX' => 'Christmas Island',
+        'CC' => 'Cocos (Keeling) Islands',
+        'CO' => 'Colombia',
+        'KM' => 'Comoros the',
+        'CD' => 'Congo',
+        'CG' => 'Congo the',
+        'CK' => 'Cook Islands',
+        'CR' => 'Costa Rica',
+        'CI' => 'Cote d\'Ivoire',
+        'HR' => 'Croatia',
+        'CU' => 'Cuba',
+        'CY' => 'Cyprus',
+        'CZ' => 'Czech Republic',
+        'DK' => 'Denmark',
+        'DJ' => 'Djibouti',
+        'DM' => 'Dominica',
+        'DO' => 'Dominican Republic',
+        'EC' => 'Ecuador',
+        'EG' => 'Egypt',
+        'SV' => 'El Salvador',
+        'GQ' => 'Equatorial Guinea',
+        'ER' => 'Eritrea',
+        'EE' => 'Estonia',
+        'ET' => 'Ethiopia',
+        'FO' => 'Faroe Islands',
+        'FK' => 'Falkland Islands (Malvinas)',
+        'FJ' => 'Fiji the Fiji Islands',
+        'FI' => 'Finland',
+        'FR' => 'France, French Republic',
+        'GF' => 'French Guiana',
+        'PF' => 'French Polynesia',
+        'TF' => 'French Southern Territories',
+        'GA' => 'Gabon',
+        'GM' => 'Gambia the',
+        'GE' => 'Georgia',
+        'DE' => 'Germany',
+        'GH' => 'Ghana',
+        'GI' => 'Gibraltar',
+        'GR' => 'Greece',
+        'GL' => 'Greenland',
+        'GD' => 'Grenada',
+        'GP' => 'Guadeloupe',
+        'GU' => 'Guam',
+        'GT' => 'Guatemala',
+        'GG' => 'Guernsey',
+        'GN' => 'Guinea',
+        'GW' => 'Guinea-Bissau',
+        'GY' => 'Guyana',
+        'HT' => 'Haiti',
+        'HM' => 'Heard Island and McDonald Islands',
+        'VA' => 'Holy See (Vatican City State)',
+        'HN' => 'Honduras',
+        'HK' => 'Hong Kong',
+        'HU' => 'Hungary',
+        'IS' => 'Iceland',
+        'IN' => 'India',
+        'ID' => 'Indonesia',
+        'IR' => 'Iran',
+        'IQ' => 'Iraq',
+        'IE' => 'Ireland',
+        'IM' => 'Isle of Man',
+        'IL' => 'Israel',
+        'IT' => 'Italy',
+        'JM' => 'Jamaica',
+        'JP' => 'Japan',
+        'JE' => 'Jersey',
+        'JO' => 'Jordan',
+        'KZ' => 'Kazakhstan',
+        'KE' => 'Kenya',
+        'KI' => 'Kiribati',
+        'KP' => 'Korea',
+        'KR' => 'Korea',
+        'KW' => 'Kuwait',
+        'KG' => 'Kyrgyz Republic',
+        'LA' => 'Lao',
+        'LV' => 'Latvia',
+        'LB' => 'Lebanon',
+        'LS' => 'Lesotho',
+        'LR' => 'Liberia',
+        'LY' => 'Libyan Arab Jamahiriya',
+        'LI' => 'Liechtenstein',
+        'LT' => 'Lithuania',
+        'LU' => 'Luxembourg',
+        'MO' => 'Macao',
+        'MK' => 'Macedonia',
+        'MG' => 'Madagascar',
+        'MW' => 'Malawi',
+        'MY' => 'Malaysia',
+        'MV' => 'Maldives',
+        'ML' => 'Mali',
+        'MT' => 'Malta',
+        'MH' => 'Marshall Islands',
+        'MQ' => 'Martinique',
+        'MR' => 'Mauritania',
+        'MU' => 'Mauritius',
+        'YT' => 'Mayotte',
+        'MX' => 'Mexico',
+        'FM' => 'Micronesia',
+        'MD' => 'Moldova',
+        'MC' => 'Monaco',
+        'MN' => 'Mongolia',
+        'ME' => 'Montenegro',
+        'MS' => 'Montserrat',
+        'MA' => 'Morocco',
+        'MZ' => 'Mozambique',
+        'MM' => 'Myanmar',
+        'NA' => 'Namibia',
+        'NR' => 'Nauru',
+        'NP' => 'Nepal',
+        'AN' => 'Netherlands Antilles',
+        'NL' => 'Netherlands the',
+        'NC' => 'New Caledonia',
+        'NZ' => 'New Zealand',
+        'NI' => 'Nicaragua',
+        'NE' => 'Niger',
+        'NG' => 'Nigeria',
+        'NU' => 'Niue',
+        'NF' => 'Norfolk Island',
+        'MP' => 'Northern Mariana Islands',
+        'NO' => 'Norway',
+        'OM' => 'Oman',
+        'PK' => 'Pakistan',
+        'PW' => 'Palau',
+        'PS' => 'Palestinian Territory',
+        'PA' => 'Panama',
+        'PG' => 'Papua New Guinea',
+        'PY' => 'Paraguay',
+        'PE' => 'Peru',
+        'PH' => 'Philippines',
+        'PN' => 'Pitcairn Islands',
+        'PL' => 'Poland',
+        'PT' => 'Portugal, Portuguese Republic',
+        'PR' => 'Puerto Rico',
+        'QA' => 'Qatar',
+        'RE' => 'Reunion',
+        'RO' => 'Romania',
+        'RU' => 'Russian Federation',
+        'RW' => 'Rwanda',
+        'BL' => 'Saint Barthelemy',
+        'SH' => 'Saint Helena',
+        'KN' => 'Saint Kitts and Nevis',
+        'LC' => 'Saint Lucia',
+        'MF' => 'Saint Martin',
+        'PM' => 'Saint Pierre and Miquelon',
+        'VC' => 'Saint Vincent and the Grenadines',
+        'WS' => 'Samoa',
+        'SM' => 'San Marino',
+        'ST' => 'Sao Tome and Principe',
+        'SA' => 'Saudi Arabia',
+        'SN' => 'Senegal',
+        'RS' => 'Serbia',
+        'SC' => 'Seychelles',
+        'SL' => 'Sierra Leone',
+        'SG' => 'Singapore',
+        'SK' => 'Slovakia (Slovak Republic)',
+        'SI' => 'Slovenia',
+        'SB' => 'Solomon Islands',
+        'SO' => 'Somalia, Somali Republic',
+        'ZA' => 'South Africa',
+        'GS' => 'South Georgia and the South Sandwich Islands',
+        'ES' => 'Spain',
+        'LK' => 'Sri Lanka',
+        'SD' => 'Sudan',
+        'SR' => 'Suriname',
+        'SJ' => 'Svalbard & Jan Mayen Islands',
+        'SZ' => 'Swaziland',
+        'SE' => 'Sweden',
+        'CH' => 'Switzerland',
+        'SY' => 'Syrian Arab Republic',
+        'TW' => 'Taiwan',
+        'TJ' => 'Tajikistan',
+        'TZ' => 'Tanzania',
+        'TH' => 'Thailand',
+        'TL' => 'Timor-Leste',
+        'TG' => 'Togo',
+        'TK' => 'Tokelau',
+        'TO' => 'Tonga',
+        'TT' => 'Trinidad and Tobago',
+        'TN' => 'Tunisia',
+        'TR' => 'Turkey',
+        'TM' => 'Turkmenistan',
+        'TC' => 'Turks and Caicos Islands',
+        'TV' => 'Tuvalu',
+        'UG' => 'Uganda',
+        'UA' => 'Ukraine',
+        'AE' => 'United Arab Emirates',
+        'GB' => 'United Kingdom',
+        'US' => 'United States of America',
+        'UM' => 'United States Minor Outlying Islands',
+        'VI' => 'United States Virgin Islands',
+        'UY' => 'Uruguay, Eastern Republic of',
+        'UZ' => 'Uzbekistan',
+        'VU' => 'Vanuatu',
+        'VE' => 'Venezuela',
+        'VN' => 'Vietnam',
+        'WF' => 'Wallis and Futuna',
+        'EH' => 'Western Sahara',
+        'YE' => 'Yemen',
+        'ZM' => 'Zambia',
+        'ZW' => 'Zimbabwe'
+    );
+
+
 
     if ($athleteAvatar != 0) {
         $avatarsrc = "uploads/athlete/profile/$athleteAvatar";
@@ -65,7 +318,7 @@ if (isset($_GET["id"])) {
     print "     $athleteAffiliate \n";
     print "            </p>\n";
     print "            <div>\n";
-    
+
     print "\n";
     print "\n";
     print "            </div>\n";
@@ -85,16 +338,16 @@ if (isset($_GET["id"])) {
     print "                <p>$athleteAffiliate</p>\n";
     print "            </div>\n";
     print "        </div>\n";
-   
-   
+
+
     print "        <div class=\"col-md-4\">\n";
     print "            <div class=\"form-group label-floating\">\n";
     print "                <label class=\"control-label\">First Name</label>\n";
     print "                <p>$athleteFirstname</p>\n";
     print "            </div>\n";
     print "        </div>\n";
-     print "        </div>\n";
-     print "    <div class=\"row\">\n";
+    print "        </div>\n";
+    print "    <div class=\"row\">\n";
     print "        <div class=\"col-md-4\">\n";
     print "            <div class=\"form-group label-floating\">\n";
     print "                <label class=\"control-label\">Last Name</label>\n";
@@ -104,10 +357,10 @@ if (isset($_GET["id"])) {
     print "        <div class=\"col-md-4\">\n";
     print "            <div class=\"form-group label-floating\">\n";
     print "                <label class=\"control-label\">Date of Birth</label>\n";
-    print "                <p>$athleteBirthdate</p>\n";
+    print "                <p>$newDate</p>\n";
     print "            </div>\n";
     print "        </div>\n";
-    
+
     print "        <div class=\"col-md-4\">\n";
     print "            <div class=\"form-group label-floating\">\n";
     print "                <label class=\"control-label\">Gender</label>\n";
@@ -120,7 +373,7 @@ if (isset($_GET["id"])) {
     print "                                                                 </div>\n";
     print "        </div>\n";
     print "        </div>\n";
-   
+
     print "    <div class=\"row\">\n";
     print "        <div class=\"col-md-4\">\n";
     print "            <div class=\"form-group label-floating\">\n";
@@ -128,8 +381,8 @@ if (isset($_GET["id"])) {
     print "                <p>$athleteStreet</p>\n";
     print "            </div>\n";
     print "        </div>\n";
-    
-    
+
+
     print "        <div class=\"col-md-4\">\n";
     print "            <div class=\"form-group label-floating\">\n";
     print "                <label class=\"control-label\">ZIP</label>\n";
@@ -148,265 +401,15 @@ if (isset($_GET["id"])) {
     print "        <div class=\"col-md-4\">\n";
     print "            <div class=\"form-group label-floating\">\n";
     print "                <label class=\"control-label\">Country</label>\n";
-    print "                <select id=\"country\" class=\"form-control\" disabled>\n";
-    print "                    <option value=\"AF\">Afghanistan</option>\n";
-    print "                    <option value=\"AX\">Åland Islands</option>\n";
-    print "                    <option value=\"AL\">Albania</option>\n";
-    print "                    <option value=\"DZ\">Algeria</option>\n";
-    print "                    <option value=\"AS\">American Samoa</option>\n";
-    print "                    <option value=\"AD\">Andorra</option>\n";
-    print "                    <option value=\"AO\">Angola</option>\n";
-    print "                    <option value=\"AI\">Anguilla</option>\n";
-    print "                    <option value=\"AQ\">Antarctica</option>\n";
-    print "                    <option value=\"AG\">Antigua and Barbuda</option>\n";
-    print "                    <option value=\"AR\">Argentina</option>\n";
-    print "                    <option value=\"AM\">Armenia</option>\n";
-    print "                    <option value=\"AW\">Aruba</option>\n";
-    print "                    <option value=\"AU\">Australia</option>\n";
-    print "                    <option value=\"AT\">Austria</option>\n";
-    print "                    <option value=\"AZ\">Azerbaijan</option>\n";
-    print "                    <option value=\"BS\">Bahamas</option>\n";
-    print "                    <option value=\"BH\">Bahrain</option>\n";
-    print "                    <option value=\"BD\">Bangladesh</option>\n";
-    print "                    <option value=\"BB\">Barbados</option>\n";
-    print "                    <option value=\"BY\">Belarus</option>\n";
-    print "                    <option value=\"BE\">Belgium</option>\n";
-    print "                    <option value=\"BZ\">Belize</option>\n";
-    print "                    <option value=\"BJ\">Benin</option>\n";
-    print "                    <option value=\"BM\">Bermuda</option>\n";
-    print "                    <option value=\"BT\">Bhutan</option>\n";
-    print "                    <option value=\"BO\">Bolivia, Plurinational State of</option>\n";
-    print "                    <option value=\"BQ\">Bonaire, Sint Eustatius and Saba</option>\n";
-    print "                    <option value=\"BA\">Bosnia and Herzegovina</option>\n";
-    print "                    <option value=\"BW\">Botswana</option>\n";
-    print "                    <option value=\"BV\">Bouvet Island</option>\n";
-    print "                    <option value=\"BR\">Brazil</option>\n";
-    print "                    <option value=\"IO\">British Indian Ocean Territory</option>\n";
-    print "                    <option value=\"BN\">Brunei Darussalam</option>\n";
-    print "                    <option value=\"BG\">Bulgaria</option>\n";
-    print "                    <option value=\"BF\">Burkina Faso</option>\n";
-    print "                    <option value=\"BI\">Burundi</option>\n";
-    print "                    <option value=\"KH\">Cambodia</option>\n";
-    print "                    <option value=\"CM\">Cameroon</option>\n";
-    print "                    <option value=\"CA\">Canada</option>\n";
-    print "                    <option value=\"CV\">Cape Verde</option>\n";
-    print "                    <option value=\"KY\">Cayman Islands</option>\n";
-    print "                    <option value=\"CF\">Central African Republic</option>\n";
-    print "                    <option value=\"TD\">Chad</option>\n";
-    print "                    <option value=\"CL\">Chile</option>\n";
-    print "                    <option value=\"CN\">China</option>\n";
-    print "                    <option value=\"CX\">Christmas Island</option>\n";
-    print "                    <option value=\"CC\">Cocos (Keeling) Islands</option>\n";
-    print "                    <option value=\"CO\">Colombia</option>\n";
-    print "                    <option value=\"KM\">Comoros</option>\n";
-    print "                    <option value=\"CG\">Congo</option>\n";
-    print "                    <option value=\"CD\">Congo, the Democratic Republic of the</option>\n";
-    print "                    <option value=\"CK\">Cook Islands</option>\n";
-    print "                    <option value=\"CR\">Costa Rica</option>\n";
-    print "                    <option value=\"CI\">Côte d'Ivoire</option>\n";
-    print "                    <option value=\"HR\">Croatia</option>\n";
-    print "                    <option value=\"CU\">Cuba</option>\n";
-    print "                    <option value=\"CW\">Curaçao</option>\n";
-    print "                    <option value=\"CY\">Cyprus</option>\n";
-    print "                    <option value=\"CZ\">Czech Republic</option>\n";
-    print "                    <option value=\"DK\">Denmark</option>\n";
-    print "                    <option value=\"DJ\">Djibouti</option>\n";
-    print "                    <option value=\"DM\">Dominica</option>\n";
-    print "                    <option value=\"DO\">Dominican Republic</option>\n";
-    print "                    <option value=\"EC\">Ecuador</option>\n";
-    print "                    <option value=\"EG\">Egypt</option>\n";
-    print "                    <option value=\"SV\">El Salvador</option>\n";
-    print "                    <option value=\"GQ\">Equatorial Guinea</option>\n";
-    print "                    <option value=\"ER\">Eritrea</option>\n";
-    print "                    <option value=\"EE\">Estonia</option>\n";
-    print "                    <option value=\"ET\">Ethiopia</option>\n";
-    print "                    <option value=\"FK\">Falkland Islands (Malvinas)</option>\n";
-    print "                    <option value=\"FO\">Faroe Islands</option>\n";
-    print "                    <option value=\"FJ\">Fiji</option>\n";
-    print "                    <option value=\"FI\">Finland</option>\n";
-    print "                    <option value=\"FR\">France</option>\n";
-    print "                    <option value=\"GF\">French Guiana</option>\n";
-    print "                    <option value=\"PF\">French Polynesia</option>\n";
-    print "                    <option value=\"TF\">French Southern Territories</option>\n";
-    print "                    <option value=\"GA\">Gabon</option>\n";
-    print "                    <option value=\"GM\">Gambia</option>\n";
-    print "                    <option value=\"GE\">Georgia</option>\n";
-    print "                    <option value=\"DE\">Germany</option>\n";
-    print "                    <option value=\"GH\">Ghana</option>\n";
-    print "                    <option value=\"GI\">Gibraltar</option>\n";
-    print "                    <option value=\"GR\">Greece</option>\n";
-    print "                    <option value=\"GL\">Greenland</option>\n";
-    print "                    <option value=\"GD\">Grenada</option>\n";
-    print "                    <option value=\"GP\">Guadeloupe</option>\n";
-    print "                    <option value=\"GU\">Guam</option>\n";
-    print "                    <option value=\"GT\">Guatemala</option>\n";
-    print "                    <option value=\"GG\">Guernsey</option>\n";
-    print "                    <option value=\"GN\">Guinea</option>\n";
-    print "                    <option value=\"GW\">Guinea-Bissau</option>\n";
-    print "                    <option value=\"GY\">Guyana</option>\n";
-    print "                    <option value=\"HT\">Haiti</option>\n";
-    print "                    <option value=\"HM\">Heard Island and McDonald Islands</option>\n";
-    print "                    <option value=\"VA\">Holy See (Vatican City State)</option>\n";
-    print "                    <option value=\"HN\">Honduras</option>\n";
-    print "                    <option value=\"HK\">Hong Kong</option>\n";
-    print "                    <option value=\"HU\">Hungary</option>\n";
-    print "                    <option value=\"IS\">Iceland</option>\n";
-    print "                    <option value=\"IN\">India</option>\n";
-    print "                    <option value=\"ID\">Indonesia</option>\n";
-    print "                    <option value=\"IR\">Iran, Islamic Republic of</option>\n";
-    print "                    <option value=\"IQ\">Iraq</option>\n";
-    print "                    <option value=\"IE\">Ireland</option>\n";
-    print "                    <option value=\"IM\">Isle of Man</option>\n";
-    print "                    <option value=\"IL\">Israel</option>\n";
-    print "                    <option value=\"IT\">Italy</option>\n";
-    print "                    <option value=\"JM\">Jamaica</option>\n";
-    print "                    <option value=\"JP\">Japan</option>\n";
-    print "                    <option value=\"JE\">Jersey</option>\n";
-    print "                    <option value=\"JO\">Jordan</option>\n";
-    print "                    <option value=\"KZ\">Kazakhstan</option>\n";
-    print "                    <option value=\"KE\">Kenya</option>\n";
-    print "                    <option value=\"KI\">Kiribati</option>\n";
-    print "                    <option value=\"KP\">Korea, Democratic People's Republic of</option>\n";
-    print "                    <option value=\"KR\">Korea, Republic of</option>\n";
-    print "                    <option value=\"KW\">Kuwait</option>\n";
-    print "                    <option value=\"KG\">Kyrgyzstan</option>\n";
-    print "                    <option value=\"LA\">Lao People's Democratic Republic</option>\n";
-    print "                    <option value=\"LV\">Latvia</option>\n";
-    print "                    <option value=\"LB\">Lebanon</option>\n";
-    print "                    <option value=\"LS\">Lesotho</option>\n";
-    print "                    <option value=\"LR\">Liberia</option>\n";
-    print "                    <option value=\"LY\">Libya</option>\n";
-    print "                    <option value=\"LI\">Liechtenstein</option>\n";
-    print "                    <option value=\"LT\">Lithuania</option>\n";
-    print "                    <option value=\"LU\">Luxembourg</option>\n";
-    print "                    <option value=\"MO\">Macao</option>\n";
-    print "                    <option value=\"MK\">Macedonia, the former Yugoslav Republic of</option>\n";
-    print "                    <option value=\"MG\">Madagascar</option>\n";
-    print "                    <option value=\"MW\">Malawi</option>\n";
-    print "                    <option value=\"MY\">Malaysia</option>\n";
-    print "                    <option value=\"MV\">Maldives</option>\n";
-    print "                    <option value=\"ML\">Mali</option>\n";
-    print "                    <option value=\"MT\">Malta</option>\n";
-    print "                    <option value=\"MH\">Marshall Islands</option>\n";
-    print "                    <option value=\"MQ\">Martinique</option>\n";
-    print "                    <option value=\"MR\">Mauritania</option>\n";
-    print "                    <option value=\"MU\">Mauritius</option>\n";
-    print "                    <option value=\"YT\">Mayotte</option>\n";
-    print "                    <option value=\"MX\">Mexico</option>\n";
-    print "                    <option value=\"FM\">Micronesia, Federated States of</option>\n";
-    print "                    <option value=\"MD\">Moldova, Republic of</option>\n";
-    print "                    <option value=\"MC\">Monaco</option>\n";
-    print "                    <option value=\"MN\">Mongolia</option>\n";
-    print "                    <option value=\"ME\">Montenegro</option>\n";
-    print "                    <option value=\"MS\">Montserrat</option>\n";
-    print "                    <option value=\"MA\">Morocco</option>\n";
-    print "                    <option value=\"MZ\">Mozambique</option>\n";
-    print "                    <option value=\"MM\">Myanmar</option>\n";
-    print "                    <option value=\"NA\">Namibia</option>\n";
-    print "                    <option value=\"NR\">Nauru</option>\n";
-    print "                    <option value=\"NP\">Nepal</option>\n";
-    print "                    <option value=\"NL\">Netherlands</option>\n";
-    print "                    <option value=\"NC\">New Caledonia</option>\n";
-    print "                    <option value=\"NZ\">New Zealand</option>\n";
-    print "                    <option value=\"NI\">Nicaragua</option>\n";
-    print "                    <option value=\"NE\">Niger</option>\n";
-    print "                    <option value=\"NG\">Nigeria</option>\n";
-    print "                    <option value=\"NU\">Niue</option>\n";
-    print "                    <option value=\"NF\">Norfolk Island</option>\n";
-    print "                    <option value=\"MP\">Northern Mariana Islands</option>\n";
-    print "                    <option value=\"NO\">Norway</option>\n";
-    print "                    <option value=\"OM\">Oman</option>\n";
-    print "                    <option value=\"PK\">Pakistan</option>\n";
-    print "                    <option value=\"PW\">Palau</option>\n";
-    print "                    <option value=\"PS\">Palestinian Territory, Occupied</option>\n";
-    print "                    <option value=\"PA\">Panama</option>\n";
-    print "                    <option value=\"PG\">Papua New Guinea</option>\n";
-    print "                    <option value=\"PY\">Paraguay</option>\n";
-    print "                    <option value=\"PE\">Peru</option>\n";
-    print "                    <option value=\"PH\">Philippines</option>\n";
-    print "                    <option value=\"PN\">Pitcairn</option>\n";
-    print "                    <option value=\"PL\">Poland</option>\n";
-    print "                    <option value=\"PT\">Portugal</option>\n";
-    print "                    <option value=\"PR\">Puerto Rico</option>\n";
-    print "                    <option value=\"QA\">Qatar</option>\n";
-    print "                    <option value=\"RE\">Réunion</option>\n";
-    print "                    <option value=\"RO\">Romania</option>\n";
-    print "                    <option value=\"RU\">Russian Federation</option>\n";
-    print "                    <option value=\"RW\">Rwanda</option>\n";
-    print "                    <option value=\"BL\">Saint Barthélemy</option>\n";
-    print "                    <option value=\"SH\">Saint Helena, Ascension and Tristan da Cunha</option>\n";
-    print "                    <option value=\"KN\">Saint Kitts and Nevis</option>\n";
-    print "                    <option value=\"LC\">Saint Lucia</option>\n";
-    print "                    <option value=\"MF\">Saint Martin (French part)</option>\n";
-    print "                    <option value=\"PM\">Saint Pierre and Miquelon</option>\n";
-    print "                    <option value=\"VC\">Saint Vincent and the Grenadines</option>\n";
-    print "                    <option value=\"WS\">Samoa</option>\n";
-    print "                    <option value=\"SM\">San Marino</option>\n";
-    print "                    <option value=\"ST\">Sao Tome and Principe</option>\n";
-    print "                    <option value=\"SA\">Saudi Arabia</option>\n";
-    print "                    <option value=\"SN\">Senegal</option>\n";
-    print "                    <option value=\"RS\">Serbia</option>\n";
-    print "                    <option value=\"SC\">Seychelles</option>\n";
-    print "                    <option value=\"SL\">Sierra Leone</option>\n";
-    print "                    <option value=\"SG\">Singapore</option>\n";
-    print "                    <option value=\"SX\">Sint Maarten (Dutch part)</option>\n";
-    print "                    <option value=\"SK\">Slovakia</option>\n";
-    print "                    <option value=\"SI\">Slovenia</option>\n";
-    print "                    <option value=\"SB\">Solomon Islands</option>\n";
-    print "                    <option value=\"SO\">Somalia</option>\n";
-    print "                    <option value=\"ZA\">South Africa</option>\n";
-    print "                    <option value=\"GS\">South Georgia and the South Sandwich Islands</option>\n";
-    print "                    <option value=\"SS\">South Sudan</option>\n";
-    print "                    <option value=\"ES\">Spain</option>\n";
-    print "                    <option value=\"LK\">Sri Lanka</option>\n";
-    print "                    <option value=\"SD\">Sudan</option>\n";
-    print "                    <option value=\"SR\">Suriname</option>\n";
-    print "                    <option value=\"SJ\">Svalbard and Jan Mayen</option>\n";
-    print "                    <option value=\"SZ\">Swaziland</option>\n";
-    print "                    <option value=\"SE\">Sweden</option>\n";
-    print "                    <option value=\"CH\">Switzerland</option>\n";
-    print "                    <option value=\"SY\">Syrian Arab Republic</option>\n";
-    print "                    <option value=\"TW\">Taiwan, Province of China</option>\n";
-    print "                    <option value=\"TJ\">Tajikistan</option>\n";
-    print "                    <option value=\"TZ\">Tanzania, United Republic of</option>\n";
-    print "                    <option value=\"TH\">Thailand</option>\n";
-    print "                    <option value=\"TL\">Timor-Leste</option>\n";
-    print "                    <option value=\"TG\">Togo</option>\n";
-    print "                    <option value=\"TK\">Tokelau</option>\n";
-    print "                    <option value=\"TO\">Tonga</option>\n";
-    print "                    <option value=\"TT\">Trinidad and Tobago</option>\n";
-    print "                    <option value=\"TN\">Tunisia</option>\n";
-    print "                    <option value=\"TR\">Turkey</option>\n";
-    print "                    <option value=\"TM\">Turkmenistan</option>\n";
-    print "                    <option value=\"TC\">Turks and Caicos Islands</option>\n";
-    print "                    <option value=\"TV\">Tuvalu</option>\n";
-    print "                    <option value=\"UG\">Uganda</option>\n";
-    print "                    <option value=\"UA\">Ukraine</option>\n";
-    print "                    <option value=\"AE\">United Arab Emirates</option>\n";
-    print "                    <option value=\"GB\">United Kingdom</option>\n";
-    print "                    <option value=\"US\">United States</option>\n";
-    print "                    <option value=\"UM\">United States Minor Outlying Islands</option>\n";
-    print "                    <option value=\"UY\">Uruguay</option>\n";
-    print "                    <option value=\"UZ\">Uzbekistan</option>\n";
-    print "                    <option value=\"VU\">Vanuatu</option>\n";
-    print "                    <option value=\"VE\">Venezuela, Bolivarian Republic of</option>\n";
-    print "                    <option value=\"VN\">Viet Nam</option>\n";
-    print "                    <option value=\"VG\">Virgin Islands, British</option>\n";
-    print "                    <option value=\"VI\">Virgin Islands, U.S.</option>\n";
-    print "                    <option value=\"WF\">Wallis and Futuna</option>\n";
-    print "                    <option value=\"EH\">Western Sahara</option>\n";
-    print "                    <option value=\"YE\">Yemen</option>\n";
-    print "                    <option value=\"ZM\">Zambia</option>\n";
-    print "                    <option value=\"ZW\">Zimbabwe</option>\n";
-    print "                </select>\n";
-    print "            </div>\n";
-    print "        </div>\n";
+    print"<p>" . $countryList[$athleteCountry] . "</p>";
+    print " </div>\n";
+    print " </div>\n";
     print "\n";
-   
-   
+
+
     print "\n";
     print "\n";
-    print "        <div class=\"col-md-4\">\n";
+    print " <div class = \"col-md-4\">\n";
     print "            <div class=\"form-group label-floating\">\n";
     print "                <label class=\"control-label\">T-Shirt Size</label>\n";
     print "                <p>$athleteShirtsize</p>\n";
@@ -432,7 +435,7 @@ if (isset($_GET["id"])) {
     print "                </div>\n";
     print "                <div class=\"fileinput-preview fileinput-exists thumbnail\"></div>\n";
     print "                <div>\n";
-    
+
     print "\n";
     print "            </div>\n";
     print "        </div>\n";
