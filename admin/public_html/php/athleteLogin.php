@@ -94,8 +94,9 @@ if (ini_get("session.use_cookies")) {
                                             <i class="material-icons">lock_outline</i>
                                         </span>
                                         <input type="password" name="athletePassword" placeholder="Password..." class="form-control" type="password" required="true" />
-                                    </div>
                                     <a href="#" class="passforgot"  data-toggle="modal" data-target="#passwordforgot">Forgot your Password?</a>
+                                    
+                                    </div>
                                                 
 
                                     <!-- If you want to add a checkbox to this form, uncomment this code
@@ -152,6 +153,33 @@ if (ini_get("session.use_cookies")) {
                 </div>
             </div>
         </div>
+        
+        <footer class="footer">
+            <div class="container">
+
+
+                <ul class="pull-center">
+                    <li>
+                        <a style="color:black" href="#pablo">
+                            info@champscore.ch
+                        </a>
+                    </li>
+
+
+                </ul>
+
+                <!--<ul class="social-buttons pull-right">
+                    
+                    <li>
+                        <a href="https://www.facebook.com/CreativeTim" target="_blank" class="btn btn-just-icon btn-simple">
+                            <i class="fa fa-facebook-square"></i>
+                        </a>
+                    </li>
+                   
+                </ul>-->
+
+            </div>
+        </footer>
     </body>
     <!--   Core JS Files   -->
     <script src="js/jquery.min.js" type="text/javascript"></script>

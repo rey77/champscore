@@ -2,6 +2,11 @@
 
 session_start();
 
+error_reporting(E_STRICT | E_ALL);
+date_default_timezone_set('Etc/UTC');
+require '../PHPMailer-master/PHPMailerAutoload.php';
+$mail = new PHPMailer;
+
 $compID = $_POST['compID'];
 $divID = $_POST['divID'];
 $teamName = $_POST['teamName'];
@@ -32,6 +37,7 @@ $q_host->execute(array($hostID));
 
 while ($zeile = $q_host->fetch(/* PDO::FETCH_ASSOC */)) {
     $hostFirstname = $zeile["host_firstname"];
+    $hostLastname = $zeile["host_lastname"];
     $hostEmail = $zeile["host_email"];
 }
 
@@ -88,14 +94,38 @@ if (($_POST['isTeam'])) {
                     //Send confirmation Mail
                     $athleteEmail = $zeile['athlete_email'];
                     $athleteFirstname = $zeile['athlete_firstname'];
+                    $athleteLastname = $zeile['athlete_lastname'];
 
-                    $betreff = "Competition Registration";
-                    $inhalt = "Hello  $athleteFirstname
-                             \n\nYou are now registered for the Competition $compName, which is held on $compStartDate.
-                             \nYou can sit back now until you get further instructions from the Competition Organization. \n
-Best Wishes\nchampscore\nwww.champscore.ch";
-                    $header = "From: info@champscore.ch";
-                    mail($athleteEmail, $betreff, $inhalt, $header);
+
+                    $mail->isSMTP();                                      // Set mailer to use SMTP
+                    $mail->Host = 'mail.cyon.ch';  // Specify main and backup SMTP servers
+                    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+                    $mail->Username = 'info@champscore.ch';                 // SMTP username
+                    $mail->Password = 'c3162_pax_';                           // SMTP password
+                    $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+                    $mail->Port = 465;                                    // TCP port to connect to
+
+                    $mail->setFrom('info@champscore.ch', 'champscore');
+                    $mail->addAddress($athleteEmail, $athleteFirstname + " " + $athleteLastname);     // Add a recipient
+                    $mail->addReplyTo('info@champscore.ch', 'Information');
+
+
+                    $mail->isHTML(true);                                  // Set email format to HTML
+                    $mail->AddEmbeddedImage('img/text_dark.png', 'cs');
+                    $mail->Subject = 'You are registered for ' . $compName;
+                    $mail->Body = 'Hello ' . $athleteFirstname . '<br><br>You are now registered for the Competition <b>' . $compName . '</b>, which is held on ' . $compStartDate . '<br><br>You can sit back now until you get further instructions from the Competition Organization<br><br>Best Wishes,<br><br><a href = "http://www.champscore.ch/"><img src="cid:cs" alt="www.champscore.ch" height="30" /></a><br>';
+
+                    $mail->AltBody = "Hello " . $athleteFirstname
+                            . "\n\nYou are now registered for the Competition " . $compName . ", which is held on " . $compStartDate . "
+               \nYou can sit back now until you get further instructions from the Competition Organization
+               \n\nBest Wishes,\n\nchampscore\nwww.champscore.ch";
+
+                    if (!$mail->send()) {
+                        echo 'Message could not be sent.';
+                        echo 'Mailer Error: ' . $mail->ErrorInfo;
+                    } else {
+                        echo 'Message has been sent';
+                    }
 
                     $athleteID = $zeile['athlete_ID'];
                     $athleteFirstName = $zeile['athlete_firstname'];
@@ -114,16 +144,36 @@ Best Wishes\nchampscore\nwww.champscore.ch";
 
 
     //Send confirmation Mail to Host
+    $mail->isSMTP();                                      // Set mailer to use SMTP
+    $mail->Host = 'mail.cyon.ch';  // Specify main and backup SMTP servers
+    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+    $mail->Username = 'info@champscore.ch';                 // SMTP username
+    $mail->Password = 'c3162_pax_';                           // SMTP password
+    $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+    $mail->Port = 465;                                    // TCP port to connect to
+
+    $mail->setFrom('info@champscore.ch', 'champscore');
+    $mail->addAddress($hostEmail, $hostFirstname + " " + $hostLastname);     // Add a recipient
+    $mail->addReplyTo('info@champscore.ch', 'Information');
 
 
-    $betreff = "New Team registered!";
-    $inhalt = "Hello " . $hostFirstname
-            . "\n\nA new Team registration for the Competition $compName just went in!
-               \nTeam Name: $teamName
-               \nYou can see the Team Members and further details in your Host Account. \n
-Best Wishes\nchampscore\nwww.champscore.ch";
-    $header = "From: info@champscore.ch";
-    mail($hostEmail, $betreff, $inhalt, $header);
+    $mail->isHTML(true);                                  // Set email format to HTML
+    $mail->AddEmbeddedImage('img/text_dark.png', 'cs');
+    $mail->Subject = 'New Team Registration for ' . $compName . '!';
+    $mail->Body = 'Hello ' . $hostFirstname . '<br><br>A Team just registered for the Competition <b>' . $compName . '!</b><br><br><b>Team Name:</b><br>' . $teamName . '<br><br>You can see further details in your Host Account. Click <a href = "http://www.champscore.ch/php/hostLogin.php">here</a> to Log in <br><br>Best Wishes,<br><br><a href = "http://www.champscore.ch/"><img src="cid:cs" alt="www.champscore.ch" height="30" /></a><br>';
+
+    $mail->AltBody = "Hello " . $hostFirstname
+            . "\n\nA new Team Registration for the Competition $compName just went in!
+      \nTeam Name: $teamName
+      \nYou can see and further details in your Host Account. \n
+      Best Wishes,\n\nchampscore\nwww.champscore.ch";
+
+    if (!$mail->send()) {
+        echo 'Message could not be sent.';
+        echo 'Mailer Error: ' . $mail->ErrorInfo;
+    } else {
+        echo 'Message has been sent';
+    }
 } else {
 
     /* $sql_indiv = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_city, comp_country, comp_active, div_is_team from tbl_competition "

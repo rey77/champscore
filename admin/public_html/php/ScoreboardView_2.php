@@ -438,6 +438,18 @@ while ($zeile = $q_des->fetch(/* PDO::FETCH_ASSOC */)) {
             </div>
 
         </div>
+        <footer class="footer">
+                    <div class="container-fluid">
+
+                        <p class="copyright pull-right">
+                            &copy;
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>
+                            <a>champscore</a>
+                        </p>
+                    </div>
+                </footer>
 
 
 

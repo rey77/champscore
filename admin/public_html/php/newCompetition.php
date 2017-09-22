@@ -198,7 +198,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                                         <span class="btn btn-pinterest btn-round btn-file">
                                                             <span class="fileinput-new">Select Logo</span>
                                                             <span class="fileinput-exists">Change</span>
-                                                            <input type="file" name="compLogo" id="compLogo" />
+                                                            <input type="file" name="compLogo" id="compLogo" required/>
                                                         </span>
                                                         <a href="#pablo" class="btn btn-pinterest btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
                                                     </div>
@@ -219,7 +219,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                                         <span class="btn btn-pinterest btn-round btn-file">
                                                             <span class="fileinput-new">Select Banner</span>
                                                             <span class="fileinput-exists">Change</span>
-                                                            <input type="file" name="compBanner" id="compBanner" />
+                                                            <input type="file" name="compBanner" id="compBanner" required/>
                                                         </span>
                                                         <a href="#pablo" class="btn btn-pinterest btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
                                                     </div>
@@ -365,7 +365,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                                     <label>Main Color</label>
                                                     <button style="width: 25px ;height: 25px" class=" jscolor {valueElement:'chosen-value-mainColor', onFineChange:'setBodyBgColor(this)'} btn btn-default btn-md colorchange">
                                                     </button>
-                                                    <input  class="form-control" name="compMainColor" id="chosen-value-mainColor" >
+                                                    <input  class="form-control" name="compMainColor" id="chosen-value-mainColor" value="<?php echo 000000 ?>">
 
                                                 </div>
                                             </div>
@@ -373,9 +373,9 @@ if ($_SESSION['eingeloggt'] == false) {
                                             <div class="col-lg-6">
                                                 <div class="form-group label-floating">
                                                     <label>Accent Color</label>
-                                                    <button style="width: 25px ;height: 25px" class=" jscolor {valueElement:'chosen-value-accentColor', onFineChange:'setBodyBgColor(this)'} btn btn-default btn-md colorchange">
+                                                    <button style="width: 25px; height: 25px" class=" jscolor {valueElement:'chosen-value-accentColor', onFineChange:'setBodyBgColor(this)'} btn btn-default btn-md colorchange">
                                                     </button>
-                                                    <input  class="form-control" name="compAccentColor" id="chosen-value-accentColor" >
+                                                    <input  class="form-control" name="compAccentColor" id="chosen-value-accentColor" value="<?php echo 000000 ?>">
 
                                                 </div>
                                             </div>

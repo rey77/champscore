@@ -60,7 +60,7 @@ Database::disconnect();
                         <p><!--<img style=" margin-left: -20px; height: 70px;" class="logo" src="../img/Logo.png" alt=""/>-->
                             <img style="  height: 20px;" src="img/text.png" alt=""/></p>
                     </a>
-                    
+
                 </div>
                 <div class="logo logo-mini">
                     <a href="index.php" class="simple-text">
@@ -98,11 +98,11 @@ Database::disconnect();
                             </a>
                         </li>
                         <li>
-                            
+
                             <a href="./hostCompetitions.php">
                                 <i class="material-icons">dashboard</i>
-                               <p>My Competitions</p>
-                            
+                                <p>My Competitions</p>
+
                             </a>
                         </li>
 
@@ -128,7 +128,7 @@ Database::disconnect();
                             </button>
                             <a class="navbar-brand" href="#"> All Competitions </a>
                         </div>
-                        <div class="collapse navbar-collapse">
+                        <!--<div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-right">
                                 <li>
                                     <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
@@ -181,7 +181,7 @@ Database::disconnect();
                                     <div class="ripple-container"></div>
                                 </button>
                             </form>
-                        </div>
+                        </div>-->
                     </div>
                 </nav>
                 <div class="content">
@@ -208,6 +208,9 @@ Database::disconnect();
                                 } else {
                                     $logosrc = "http://placehold.it/400x250/000/fff";
                                 }
+                                
+                                $originalDate = $zeile['comp_start_date'];
+                            $newDate = date("d.m.Y", strtotime($originalDate));
                                 ?> 
 
                                 <div class="col-md-4">
@@ -223,9 +226,9 @@ Database::disconnect();
                                             <a  href="competitionView.php?comp_id=<?php echo $compID ?>">
                                                 <h4 class="card-title"><b><?php echo $zeile['comp_name'] ?></b></h4>
 
-                                                </a>
-                                            <p><?php echo $zeile['comp_start_date'] ?> in <?php echo $zeile['comp_city'] ?>, <?php echo $zeile['comp_country'] ?></p>
-                                            
+                                            </a>
+                                            <p><?php echo $newDate ?> in <?php echo $zeile['comp_city'] ?>, <?php echo $zeile['comp_country'] ?></p>
+
 
 
 
@@ -241,6 +244,9 @@ Database::disconnect();
                                 </div>
                                 <?php
                             }
+
+                            
+
                             Database::disconnect();
                             ?>
 
@@ -253,36 +259,13 @@ Database::disconnect();
                 </div>
                 <footer class="footer">
                     <div class="container-fluid">
-                        <nav class="pull-left">
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        Home
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Company
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Portfolio
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Blog
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+
                         <p class="copyright pull-right">
                             &copy;
                             <script>
                                 document.write(new Date().getFullYear())
                             </script>
-                            <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+                            <a>champscore</a>
                         </p>
                     </div>
                 </footer>

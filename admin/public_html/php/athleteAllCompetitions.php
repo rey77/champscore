@@ -155,6 +155,9 @@ Database::disconnect();
                                 } else {
                                     $logosrc = "http://placehold.it/400x250/000/fff";
                                 }
+                                
+                                 $originalDate = $zeile['comp_start_date'];
+                            $newDate = date("d.m.Y", strtotime($originalDate));
                                 ?> 
 
                                 <div class="col-md-4">
@@ -174,7 +177,7 @@ Database::disconnect();
                                                 <h4 class="card-title"><b><?php echo $zeile['comp_name'] ?></b></h4>
 
                                                 </a>
-                                            <p><?php echo $zeile['comp_start_date'] ?> in <?php echo $zeile['comp_city'] ?>, <?php echo $zeile['comp_country'] ?></p>
+                                            <p><?php echo $newDate ?> in <?php echo $zeile['comp_city'] ?>, <?php echo $zeile['comp_country'] ?></p>
                                             
 
 

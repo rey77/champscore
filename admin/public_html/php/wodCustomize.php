@@ -9,14 +9,12 @@ if ($_SESSION['eingeloggt'] == false) {
 ?>
 <html lang="en">
 
-
-
     <head>
         <meta charset="utf-8" />
         <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png" />
         <link rel="icon" type="image/png" href="img/favicon-16x16.png" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <title>champscore</title>
+        <title>Divisions & Workouts</title>
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
         <!-- Bootstrap core CSS     -->
@@ -174,19 +172,16 @@ if ($_SESSION['eingeloggt'] == false) {
                         </div>
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                                <?php echo $_SESSION['username']; ?>
+                                <?php echo $_SESSION['hostEmail']; ?>
                                 <b class="caret"></b>
                             </a>
                             <div class="collapse" id="collapseExample">
                                 <ul class="nav">
-                                    <li>
-                                        <a href="#">My Profile</a>
+                                     <li>
+                                        <a href="hostPersonalData.php">Edit Profile</a>
                                     </li>
                                     <li>
-                                        <a href="#">Edit Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Settings</a>
+                                        <a href="loginsec/logout.php">Log out</a>
                                     </li>
                                 </ul>
                             </div>
@@ -228,62 +223,9 @@ if ($_SESSION['eingeloggt'] == false) {
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"> Divisions, Events, WODs </a>
+                            <a class="navbar-brand" href="#"> Divisions & Workouts </a>
                         </div>
-                        <div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">dashboard</i>
-                                        <p class="hidden-lg hidden-md">Dashboard</p>
-                                    </a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">notifications</i>
-                                        <span class="notification">5</span>
-                                        <p class="hidden-lg hidden-md">
-                                            Notifications
-                                            <b class="caret"></b>
-                                        </p>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="#">Mike John responded to your email</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">You have 5 new tasks</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">You're now friend with Andrew</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Another Notification</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Another One</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">person</i>
-                                        <p class="hidden-lg hidden-md">Profile</p>
-                                    </a>
-                                </li>
-                                <li class="separator hidden-lg hidden-md"></li>
-                            </ul>
-                            <form class="navbar-form navbar-right" role="search">
-                                <div class="form-group form-search is-empty">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                    <span class="material-input"></span>
-                                </div>
-                                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                    <i class="material-icons">search</i>
-                                    <div class="ripple-container"></div>
-                                </button>
-                            </form>
-                        </div>
+                        
                     </div>
                 </nav>
                 <div class="content">
@@ -307,7 +249,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                     <div class="nav-tabs-navigation">
                                         <div class="nav-tabs-wrapper">
                                             <span class="nav-tabs-title"><b>Divisions</b></span>
-                                            <ul class="nav nav-tabs" data-tabs="tabs" style="color: <?php echo '#' . $compAccentColor ?>">
+                                            <ul class="nav nav-tabs" data-tabs="tabs">
 
                                                 <?php
                                                 $sql_div = "SELECT div_name, div_ID FROM `tbl_division` where fk_comp_id = ?";
@@ -346,35 +288,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                     </div>
                                 </div>
                                 <div class="card-content">
-                                    <div class="table-responsive">
-                                        <table class="table" style="table-layout:fixed">
-
-                                            <tbody>
-                                                <tr>
-
-                                                    <td class="td-actions text-left">
-
-                                                        <form name="editDiv" action = "editDivision.php" method="POST" role="form">
-                                                            <div style="display:none;"><input type="hidden" name="divID" class="form-control" value="<?php echo $divID ?>">
-                                                            </div>
-                                                            Division
-                                                            <button type="submit" rel="tooltip" class="btn btn-round" title="Edit this Division">
-                                                                <i class="material-icons">edit</i>
-                                                            </button>
-
-                                                            <button type="button" onclick="deleteDiv(<?php echo $divID ?>)" rel="tooltip" class="btn btn-round btn-danger" title="Delete this Division">
-                                                                <i class="material-icons">delete</i>
-                                                            </button>
-
-                                                        </form>
-
-                                                        <hr>
-                                                    </td>
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                    
                                     <div class="tab-content">
                                         <?php
                                         $counter = 0;
@@ -389,7 +303,37 @@ if ($_SESSION['eingeloggt'] == false) {
                                             }
 
                                             echo "<div class =\"tab-pane WDiv$valueDiv $paneActive\" id =\"WDiv$valueDiv\">";
-                                            ?>  
+                                            ?> 
+                                        
+                                        <div class="table-responsive">
+                                        <table class="table" style="table-layout:fixed">
+
+                                            <tbody>
+                                                <tr>
+
+                                                    <td class="td-actions text-left">
+
+                                                        <form name="editDiv" action = "editDivision.php" method="POST" role="form">
+                                                            <div style="display:none;"><input type="hidden" name="divID" class="form-control" value="<?php echo $valueDiv ?>">
+                                                            </div>
+                                                            Division
+                                                            <button type="submit" rel="tooltip" class="btn btn-round" title="Edit this Division">
+                                                                <i class="material-icons">edit</i>
+                                                            </button>
+
+                                                            <button type="button" onclick="deleteDiv(<?php echo $valueDiv ?>)" rel="tooltip" class="btn btn-round btn-danger" title="Delete this Division">
+                                                                <i class="material-icons">delete</i>
+                                                            </button>
+
+                                                        </form>
+
+                                                        <hr>
+                                                    </td>
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                    </div>
 
                                             <div class="table-responsive">
                                                 <table class="table" style="table-layout:fixed">
@@ -397,7 +341,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                                         <tr>
                                                             <th class= "td-actions"><form name="newWod" action = "newWod.php" method="POST" role="form">
                                                             <div style="display:none;">
-                                                                <input type="hidden" name="divID" class="form-control" value="<?php echo $divID ?>" >
+                                                                <input type="hidden" name="divID" class="form-control" value="<?php echo $valueDiv ?>" >
                                                                 <input type="hidden" name="compID" class="form-control" value="<?php echo $compID ?>" >
                                                             </div>
                                                             WOD
@@ -474,6 +418,18 @@ if ($_SESSION['eingeloggt'] == false) {
                     </div>
                 </div>
 
+                <footer class="footer">
+                    <div class="container-fluid">
+
+                        <p class="copyright pull-right">
+                            &copy;
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>
+                            <a>champscore</a>
+                        </p>
+                    </div>
+                </footer>
             </div>
         </div>
 

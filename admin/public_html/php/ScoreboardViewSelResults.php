@@ -15,6 +15,18 @@ if ($wod_ID == 0) {
 include 'Database.php';
 $pdo = Database::connect();
 
+
+$sql_comp = "SELECT * FROM `tbl_competition` where comp_ID = ?";
+
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$q_comp = $pdo->prepare($sql_comp);
+$q_comp->execute(array($compID));
+
+while ($zeile = $q_comp->fetch(/* PDO::FETCH_ASSOC */)) {
+    $compAccentColor = $zeile['comp_accent_color'];
+}
+
+
 $sql_div = "SELECT div_name, div_ID, div_is_team FROM `tbl_division` where div_ID = ?";
 
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -287,7 +299,7 @@ if ($wodOverall) {
                 <?php echo"<div class=\"col-lg-6 col-lg-offset-3 col-md-12 col-md-offset-0  col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0 panel-heading\" role=\"tab\" id=\"heading$wod_ID\">";
                 ?>
 
-                <?php echo"<a role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse$wod_ID\" aria-expanded=\"true\" aria-controls=\"collapse$wod_ID\">"; ?>
+                <?php echo"<a style=\"color: #$compAccentColor\" role=\"button\" data-toggle=\"collapse\" data-parent=\"#accordion\" href=\"#collapse$wod_ID\" aria-expanded=\"false\" aria-controls=\"collapse$wod_ID\">"; ?>
                 <h4 class="panel-title">
                     <b><?php echo $wodName ?> Description</b>
                     <i class="material-icons">keyboard_arrow_down</i>

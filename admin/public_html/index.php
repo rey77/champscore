@@ -1,5 +1,5 @@
 <?PHP
-session_start();
+    session_start();
     // Session beenden
     // damit können wir diese Seite als "Logout" verwenden
     session_unset();
@@ -35,9 +35,8 @@ session_start();
         <link href="assets/css/styles.css" type="text/css" rel="stylesheet"/>
     </head>
 
-    <body>
+    <body class="blog-post">
         <?php include_once("./php/analyticstracking.php") ?>
-
         <div class="cd-section" id="headers">
             <!--     *********     HEADER 1      *********      -->
 
@@ -47,8 +46,7 @@ session_start();
                     <div class="container">
                         <!-- Brand and toggle get grouped for better mobile display -->
                         <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                    data-target="#navigation-example">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
                                 <span class="sr-only">Toggle navigation</span>
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
@@ -62,10 +60,50 @@ session_start();
                             </a>
                         </div>
 
-                        <div class="collapse navbar-collapse" id="navigation-example">
+                        <div class="collapse navbar-collapse">
 
                             <ul class="nav navbar-nav navbar-right">
 
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="material-icons">person</i> Athlete
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-with-icons">
+                                        <li>
+                                            <a href="php/athleteLogin.php">
+                                                <i class="material-icons">fingerprint</i> Login
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="php/athleteRegister.php">
+                                                <i class="material-icons">person_add</i> Signup
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                        <i class="material-icons">person_outline</i> Host
+                                        <b class="caret"></b>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-with-icons">
+                                        <li>
+                                            <a href="php/hostLogin.php">
+                                                <i class="material-icons">fingerprint</i> Login
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="material-icons">person_add</i> Signup
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </li>
 
                                 <!--<li>
                                     <a href="https://twitter.com/CreativeTim">
@@ -100,97 +138,123 @@ session_start();
                                 <h4>You will have an unique competition experience using champscore</h4>
                             </div>-->
                             <div class="col-md-6 col-md-offset-0 text-center">
-                                <h1 class="title">ATHLETES</h1>
+                                <h1 class="title">ATHLETE</h1>
                                 <a class="btn btn-pinterest" href="php/athleteLogin.php">Login</a>
-                                <a class="btn btn-pinterest" href="php/athleteRegister.php">create Athlete Account</a>
+                                <a class="btn btn-pinterest" href="php/athleteRegister.php">create Account</a>
                             </div>
 
                             <div class="col-md-6 col-md-offset-0 text-center">
-                                <h1 class="title">HOSTS</h1>
-                                <a class="btn btn-pinterest" href="php/hostLogin.php">Login</a>
-                                <a class="btn btn-pinterest" href="#">Register (coming soon)</a>
+                                <h1 class="title">HOST</h1>
+                                <a class="btn btn-oxfordblue" href="php/hostLogin.php">Login</a>
+                                <a class="btn btn-oxfordblue" href="#">create Account (coming soon)</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!--     *********    END HEADER 2      *********      -->
-
-        </div>
-
-        <div class="cd-section" id="teams" style="background-color: white;">
-            <!--     *********    TEAM 1     *********      -->
-
-            <div class="team-1" id="team-1">
-
+            <div class="main main-raised">
                 <div class="container">
                     <div class="row">
+                        <br>
+                        <br>
                         <div class="col-md-8 col-md-offset-2 text-center">
                             <h2 class="title">Our Competitions</h2>
-                            <h5 class="description">We are happy to host Competitions all around the globe.</h5>
-                        </div>
+                            <!--<h5 class="description">We are happy to host Competitions all around the globe.</h5>-->
+                            <br>
+                            <br></div>
+
                     </div>
 
                     <div class="row">
 
                         <?php
+                            include 'php/Database.php';
+                            $pdo = Database::connect();
+                            $sql = "select comp_ID, comp_reg_active, comp_name, comp_start_date, comp_logo, comp_city, comp_country from tbl_competition";
+                            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                            $q = $pdo->prepare($sql);
+                            $q->execute(array());
+                            while ($zeile = $q->fetch(/* PDO::FETCH_ASSOC */)) {
+                                $compID = $zeile['comp_ID'];
+                                $compLogo = $zeile['comp_logo'];
+                                $compRegActive = $zeile['comp_reg_active'];
+                                if ($compLogo != 0) {
+                                    $logosrc = "php/uploads/host/complogo/$compLogo";
+                                } else {
+                                    $logosrc = "http://placehold.it/400x250/000/fff";
+                                }
+                                $originalDate = $zeile['comp_start_date'];
+                                $newDate = date("d.m.Y", strtotime($originalDate));
+                                ?>
 
-                        include 'php/Database.php';
-                        $pdo = Database::connect();
-                        $sql = "SELECT comp_ID, comp_name, comp_start_date, comp_logo, comp_city, comp_country FROM tbl_competition";
-                        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                        $q = $pdo->prepare($sql);
-                        $q->execute(array());
-                        while ($zeile = $q->fetch(/* PDO::FETCH_ASSOC */)) {
-
-                            $compID = $zeile['comp_ID'];
-                            $compLogo = $zeile['comp_logo'];
-
-                            if ($compLogo != 0) {
-
-                                $logosrc = "php/uploads/host/complogo/$compLogo";
-                            } else {
-                                $logosrc = "http://placehold.it/400x250/000/fff";
-                            }
-                            ?>
-
-                            <div class="col-md-6">
-                                <div class="media">
-                                    <a class="pull-left" href="php/competitionView.php?comp_id=<?php echo $compID ?>">
-                                        <div class="avatar">
-                                            <img class="media-object" alt="Tim Picture" src="<?php echo $logosrc ?>">
-                                        </div>
-                                    </a>
-                                    <div class="media-body">
-                                        <a class="pull-left" href="php/competitionView.php?comp_id=<?php echo $compID ?>"><h4
-                                                    class="media-heading"><?php echo $zeile['comp_name'] ?> </h4>
-
-                                            <p><?php echo $zeile['comp_start_date'] ?></p>
-                                            <p><?php echo $zeile['comp_city'] ?>, <?php echo $zeile['comp_country'] ?></p>
+                                <div class="col-md-6">
+                                    <div class="media">
+                                        <a class="pull-left" href="php/competitionView.php?comp_id=<?php echo $compID ?>">
+                                            <div class="avatar">
+                                                <img class="media-object"  src="<?php echo $logosrc ?>">
+                                            </div>
                                         </a>
-                                        <!--<div class="media-footer">
-                                            <a href="#pablo" class="btn btn-primary btn-simple pull-right" rel="tooltip" title="Reply to Comment">
-                                                <i class="material-icons">reply</i> Reply
-                                            </a>
-                                            <a href="#pablo" class="btn btn-default btn-simple pull-right">
-                                                <i class="material-icons">favorite</i> 25
-                                            </a>
-                                        </div>-->
+                                        <div class="media-body">
+                                            <a class="pull-left" href="php/competitionView.php?comp_id=<?php echo $compID ?>"><h4 class="media-heading" ><?php echo $zeile['comp_name'] ?> </h4>
+                                            </a><br><br>
+                                            <p><?php echo $newDate . " in " . $zeile['comp_city'] . ", " . $zeile['comp_country']; ?>
 
+                                                <?php if ($compRegActive != 0) { ?><a href="php/registrationView_1.php?comp_id=<?php echo $compID ?>"  class="btn btn-pinterest btn-single btn-sm ">Join! </a>
+
+                                                <?php } else { ?>
+
+                                                    <a class="btn btn-pinterest btn-single btn-sm " disabled>Join! </a>
+
+                                                <?php } ?>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <?php
-                        }
-                        Database::disconnect();
+                                <?php
+                            }
+                            Database::disconnect();
                         ?>
-
                     </div>
+
+                    <br>
+                    <br><br>
+                    <br><br>
+                    <br>
 
                 </div>
             </div>
         </div>
+        <br>
+        <br>
+
+        <footer class="footer footer-black">
+            <div class="container">
+
+
+                <ul class="pull-center">
+                    <li>
+                        <a href="mailto:info@champscore.ch">
+                            info@champscore.ch
+                        </a>
+                    </li>
+
+
+                </ul>
+
+                <!--<ul class="social-buttons pull-right">
+
+                    <li>
+                        <a href="https://www.facebook.com/CreativeTim" target="_blank" class="btn btn-just-icon btn-simple">
+                            <i class="fa fa-facebook-square"></i>
+                        </a>
+                    </li>
+
+                </ul>-->
+
+            </div>
+        </footer>
+
         <!-- <div class="cd-section" id="pricing">
 
 
@@ -237,7 +301,6 @@ session_start();
              </div>
 
          </div>-->
-
 
         <!--   Core JS Files   -->
         <script src="php/js/jquery.min.js" type="text/javascript"></script>

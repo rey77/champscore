@@ -1,0 +1,14 @@
+{
+    "name": "vendor/champ-score",
+    "description": "Description of project ChampScore.",
+    "authors": [
+        {
+            "name": "Nato",
+            "email": "your@email.here"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "* dev-master"
+    }
+    
+}
