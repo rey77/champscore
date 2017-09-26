@@ -134,23 +134,20 @@ Database::disconnect();
                 <div class="sidebar-wrapper">
                     <div class="user">
                         <div class="photo">
-                            <img src="uploads/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
+                            <img src="uploads/host/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
                         </div>
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                                <?php echo $_SESSION['hostName']; ?>
+                                <?php echo $_SESSION['hostEmail']; ?>
                                 <b class="caret"></b>
                             </a>
                             <div class="collapse" id="collapseExample">
                                 <ul class="nav">
                                     <li>
-                                        <a href="#">My Profile</a>
+                                        <a href="hostPersonalData.php">Edit Profile</a>
                                     </li>
                                     <li>
-                                        <a href="#">Edit Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Settings</a>
+                                        <a href="loginsec/logout.php">Log out</a>
                                     </li>
                                 </ul>
                             </div>
@@ -194,60 +191,7 @@ Database::disconnect();
                             </button>
                             <a class="navbar-brand" href="#"> Division </a>
                         </div>
-                        <div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">dashboard</i>
-                                        <p class="hidden-lg hidden-md">Dashboard</p>
-                                    </a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">notifications</i>
-                                        <span class="notification">5</span>
-                                        <p class="hidden-lg hidden-md">
-                                            Notifications
-                                            <b class="caret"></b>
-                                        </p>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="#">Mike John responded to your email</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">You have 5 new tasks</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">You're now friend with Andrew</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Another Notification</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Another One</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">person</i>
-                                        <p class="hidden-lg hidden-md">Profile</p>
-                                    </a>
-                                </li>
-                                <li class="separator hidden-lg hidden-md"></li>
-                            </ul>
-                            <form class="navbar-form navbar-right" role="search">
-                                <div class="form-group form-search is-empty">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                    <span class="material-input"></span>
-                                </div>
-                                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                    <i class="material-icons">search</i>
-                                    <div class="ripple-container"></div>
-                                </button>
-                            </form>
-                        </div>
+                        
                     </div>
                 </nav>
                 <div class="content">
@@ -324,36 +268,13 @@ Database::disconnect();
                 </div>
                 <footer class="footer">
                     <div class="container-fluid">
-                        <nav class="pull-left">
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        Home
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Company
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Portfolio
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Blog
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+
                         <p class="copyright pull-right">
                             &copy;
                             <script>
                                 document.write(new Date().getFullYear())
                             </script>
-                            <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+                            <a>champscore</a>
                         </p>
                     </div>
                 </footer>

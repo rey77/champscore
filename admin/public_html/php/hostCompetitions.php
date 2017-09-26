@@ -233,9 +233,9 @@ Database::disconnect();
 
                                                 <ul class = "dropdown-menu">
                                                     <li><a href = "editCompetition.php?comp_id=<?php echo $zeile['comp_ID'] ?>"  >Edit Competition</a>
-                                                    <li><a href = "wodCustomize.php?comp_id=<?php echo $zeile['comp_ID'] ?>" >Divisions & Events</a>
+                                                    <li><a href = "wodCustomize.php?comp_id=<?php echo $zeile['comp_ID'] ?>" >Divisions & Workouts</a>
                                                     <li><a href = "athletesCustomize.php?comp_id=<?php echo $zeile['comp_ID'] ?>"  >Athletes</a></li>
-                                                    <li><a href = "competitionAddScore.php?comp_ID=<?php echo $zeile['comp_ID'] ?>"  >Add Score</a>
+                                                    <li><a href = "competitionAddScore.php?comp_ID=<?php echo $zeile['comp_ID'] ?>"  >Add Scores</a>
                                                    <!-- <li><a href = "scoreboardCustomize.php?comp_id=<?php echo $zeile['comp_ID'] ?>"  >Leaderboard</a>-->
                                                     <!--<li><a href = "javascript:;" onclick="deleteComp(<?php echo $zeile['comp_ID'] ?>);" > Delete Competition</a>-->
                                                 </ul>

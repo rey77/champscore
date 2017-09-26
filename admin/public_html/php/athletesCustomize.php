@@ -154,7 +154,7 @@ if ($_SESSION['eingeloggt'] == false) {
                 <div class="sidebar-wrapper">
                     <div class="user">
                         <div class="photo">
-                            <img src="uploads/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
+                            <img src="uploads/host/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
                         </div>
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
@@ -407,7 +407,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                                                                                 <i class="material-icons">edit</i>
                                                                                             </button>-->
                                                                                             <button type="button" onclick = "deleteTeam(<?php echo $teamID ?>);" rel="tooltip" class="btn btn-round btn-danger">
-                                                                                                <i class="material-icons">close</i>
+                                                                                                <i class="material-icons">delete</i>
                                                                                             </button>
                                                                                         </form>
 
@@ -488,6 +488,19 @@ if ($_SESSION['eingeloggt'] == false) {
 
                     </div>
                 </div>
+                
+                <footer class="footer">
+                    <div class="container-fluid">
+
+                        <p class="copyright pull-right">
+                            &copy;
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>
+                            <a>champscore</a>
+                        </p>
+                    </div>
+                </footer>
             </div>
         </div>
 
@@ -502,7 +515,7 @@ if ($_SESSION['eingeloggt'] == false) {
 
                     <div class="modal-body">
 
-                    
+                   
 
                     </div>
 

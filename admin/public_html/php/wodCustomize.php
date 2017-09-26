@@ -168,7 +168,8 @@ if ($_SESSION['eingeloggt'] == false) {
                 <div class="sidebar-wrapper">
                     <div class="user">
                         <div class="photo">
-                            <img src="uploads/profile/<?php echo $_SESSION['user_id'] . ".jpg" ?>">
+                            
+                            <img src="uploads/host/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
                         </div>
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" class="collapsed">

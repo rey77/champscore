@@ -161,7 +161,7 @@ if ($_SESSION['eingeloggt'] == false) {
         include 'Database.php';
         $pdo = Database::connect();
 
-        $sql_comp = "select comp_ID, comp_name, comp_start_date, comp_end_date, comp_start_time, comp_end_time,comp_banner, comp_terms, comp_desc_long,comp_start_time, comp_location_name, comp_facebook_link, comp_desc_short, comp_regcode, comp_active, comp_street, comp_zip, comp_city, comp_country, comp_logo, comp_main_color, comp_accent_color from tbl_competition where comp_id = ?";
+        $sql_comp = "select comp_ID, comp_name, comp_start_date, comp_end_date, comp_start_time, comp_end_time,comp_banner, comp_terms, comp_desc_long,comp_start_time, comp_location_name, comp_facebook_link,comp_instagram_link, comp_desc_short, comp_regcode, comp_active, comp_street, comp_zip, comp_city, comp_country, comp_logo, comp_main_color, comp_accent_color from tbl_competition where comp_id = ?";
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $q_comp = $pdo->prepare($sql_comp);
         $q_comp->execute(array($compID));
@@ -187,6 +187,7 @@ if ($_SESSION['eingeloggt'] == false) {
             $compAccentColor = $zeile['comp_accent_color'];
             $compLocation = $zeile['comp_location_name'];
             $compFacebookLink = $zeile['comp_facebook_link'];
+            $compInstagramLink = $zeile['comp_instagram_link'];
             $compTerms = $zeile['comp_terms'];
             $compBanner = $zeile['comp_banner'];
         }
@@ -232,7 +233,7 @@ if ($_SESSION['eingeloggt'] == false) {
                 <div class="sidebar-wrapper">
                     <div class="user">
                         <div class="photo">
-                            <img src="uploads/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
+                            <img src="uploads/host/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
                         </div>
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
@@ -333,7 +334,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                             <div class="col-lg-6" align="center">
                                                 <h3>Competition Banner</h3>
                                                 <p class="text-muted">
-                                                    This is the big picture is displayed on the top of your Competition Page
+                                                    This is the big picture displayed on the top of your Competition Page
                                                 </p>
                                                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                                     <div class="fileinput-new thumbnail">
@@ -478,7 +479,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                             <div class="col-lg-6">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Link to Instagram Page</label>
-                                                    <input type="text" name="compInstagramLink" value="" class="form-control" >
+                                                    <input type="text" name="compInstagramLink" value="<?php echo $compInstagramLink ?>" class="form-control" >
                                                 </div>
                                             </div>
                                         </div>

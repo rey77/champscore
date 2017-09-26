@@ -55,6 +55,7 @@ if ($_SESSION['eingeloggt'] == false) {
                     <div class="user">
                         <div class="photo">
                             <img src="uploads/host/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
+                            
                         </div>
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
@@ -121,6 +122,17 @@ if ($_SESSION['eingeloggt'] == false) {
                             <div class="col-md-8 col-md-offset-2 text-center">
                                 <h2 class="title">Welcome to champscore</h2>
                                 <h5 class="description">As a Host you have possibilites to manage whole Competitions</h5>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2 text-center">
+                                <a class="btn btn-lg btn-oxfordblue"  href = "hostAllCompetitions.php" >
+                                    <i class="material-icons">public</i> Browse all Competitions
+                                </a>
+                                <a class="btn btn-lg btn-oxfordblue"  href = "hostCompetitions.php" >
+                                    <i class="material-icons">fitness_center</i> My Competitions
+                                </a> 
                             </div>
                         </div>
 

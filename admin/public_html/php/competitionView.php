@@ -557,10 +557,10 @@ session_start();
 
 
                                                     <?php
-                                                    $sql_wod_colspan = "select * from tbl_wod where fk_div_id = ?";
+                                                    $sql_wod_colspan = "select * from tbl_wod where fk_div_id = ? and wod_is_published =?";
                                                     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                                                     $q_wod_colspan = $pdo->prepare($sql_wod_colspan);
-                                                    $q_wod_colspan->execute(array($valueDiv));
+                                                    $q_wod_colspan->execute(array($valueDiv,TRUE));
 
                                                     if ($q_wod_colspan->rowCount() == 0) {
 
