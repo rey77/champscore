@@ -81,10 +81,10 @@ Database::disconnect();
                                 <ul class="nav">
 
                                     <li>
-                                        <a href="person.php">Edit Profile</a>
+                                        <a href="hostPersonalData.php">Edit Profile</a>
                                     </li>
                                     <li>
-                                        <a href="loginsec/logout.php">Log out</a>
+                                        <a href="loginsec/logout.php">Log Out</a>
                                     </li>
                                 </ul>
                             </div>
@@ -94,14 +94,14 @@ Database::disconnect();
                         <li class="active">
                             <a href="./hostAllCompetitions.php">
                                 <i class="material-icons">public</i>
-                                <p>All Competitions</p>
+                                <p>ALL COMPETITIONS</p>
                             </a>
                         </li>
                         <li>
 
                             <a href="./hostCompetitions.php">
                                 <i class="material-icons">dashboard</i>
-                                <p>My Competitions</p>
+                                <p>MY COMPETITIONS</p>
 
                             </a>
                         </li>
@@ -126,7 +126,7 @@ Database::disconnect();
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"> All Competitions </a>
+                            <a class="navbar-brand" href="#"> ALL COMPETITIONS </a>
                         </div>
                         <!--<div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-right">
@@ -190,8 +190,8 @@ Database::disconnect();
 
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2 text-center">
-                                <h2 class="title">Our Competitions</h2>
-                                <h5 class="description">We are happy to host Competitions all around the globe.</h5>
+                                <h2 class="title">ALL COMPETITIONS</h2>
+                                <h5 class="description">WE ARE HAPPY TO HOST COMPETITIONS AROUND THE GLOBE.</h5>
                             </div>
                         </div>
 

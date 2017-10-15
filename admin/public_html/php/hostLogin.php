@@ -64,7 +64,7 @@ if (ini_get("session.use_cookies")) {
                         <div class="card card-signup">
                             <form class="form" name="formLogin" method="POST" action="loginsec/loginHost.php">
                                 <div class="header header-pinterest text-center">
-                                    <h4 class="card-title">Host Login</h4>
+                                    <h4 class="card-title">HOST LOGIN</h4>
                                     <!--<div class="social-line">
                                         <a href="#pablo" class="btn btn-just-icon btn-simple">
                                             <i class="fa fa-facebook-square"></i>

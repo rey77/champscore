@@ -10,11 +10,11 @@ include 'Database.php';
 $pdo = Database::connect();
 
 
-$sql_evt = "SELECT  wod_ID, wod_name FROM `tbl_wod` WHERE `fk_div_ID` = ?";
+$sql_evt = "SELECT  wod_ID, wod_name FROM `tbl_wod` WHERE `fk_div_ID` = ? and `wod_is_published` = ?";
 
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $q_evt = $pdo->prepare($sql_evt);
-$q_evt->execute(array($div_ID));
+$q_evt->execute(array($div_ID,TRUE));
 
 echo"<div class=\"btn-group\" style =\" display: inline-flex; \">";
 if ($q_evt->rowCount() > 0) {

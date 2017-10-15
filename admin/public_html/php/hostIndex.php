@@ -127,12 +127,13 @@ if ($_SESSION['eingeloggt'] == false) {
                         
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2 text-center">
-                                <a class="btn btn-lg btn-oxfordblue"  href = "hostAllCompetitions.php" >
-                                    <i class="material-icons">public</i> Browse all Competitions
-                                </a>
-                                <a class="btn btn-lg btn-oxfordblue"  href = "hostCompetitions.php" >
+                                
+                                <a class="btn btn-lg btn-pinterest"  href = "hostCompetitions.php" >
                                     <i class="material-icons">fitness_center</i> My Competitions
                                 </a> 
+                                <a class="btn btn-lg "  href = "hostAllCompetitions.php" >
+                                    <i class="material-icons">public</i> Browse all Competitions
+                                </a>
                             </div>
                         </div>
 

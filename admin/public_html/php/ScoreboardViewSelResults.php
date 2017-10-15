@@ -76,7 +76,7 @@ while ($zeile = $q_des->fetch(/* PDO::FETCH_ASSOC */)) {
 
 if ($wodOverall) {
 
-    echo "<center><h3><b>Total Score</b></h3></center><br>";
+
 
 
     if ($divIsTeam) {
@@ -95,8 +95,8 @@ if ($wodOverall) {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $q_wod = $pdo->prepare($sql_wod);
     $q_wod->execute(array($div_ID));
-
     while ($zeile = $q_wod->fetch(/* PDO::FETCH_ASSOC */)) {
+
         $zeile['wodID'];
 
         if ($divIsTeam) {
@@ -221,6 +221,8 @@ if ($wodOverall) {
     asort($final);
     $arrayCount = count($final);
     $arrayCount++;
+
+    
     echo"<br>";
     echo"<div class=\"col-lg-6 col-md-12 col-md-12 col-md-12\">";
     foreach ($final as $athleteName => $value) {

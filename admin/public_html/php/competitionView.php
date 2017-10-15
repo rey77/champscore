@@ -252,7 +252,7 @@ session_start();
                 <div class="container">
 
                     <div class="row">
-                        <div class="col-xs-6 col-xs-offset-3">
+                        <div class="col-xs-12 col-xs-offset-0">
                             <div class="profile">
                                 <div class="avatar">
                                     <img src="<?php echo $logosrc ?>" alt="Circle Image" style="border: solid; border-color: <?php echo "#" . $compAccentColor ?>" class="img-rounded img-responsive img-raised">

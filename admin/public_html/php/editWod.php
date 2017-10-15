@@ -147,7 +147,7 @@ Database::disconnect();
                                         <a href="hostPersonalData.php">Edit Profile</a>
                                     </li>
                                     <li>
-                                        <a href="loginsec/logout.php">Log out</a>
+                                        <a href="loginsec/logout.php">Log Out</a>
                                     </li>
                                 </ul>
                             </div>
@@ -157,14 +157,14 @@ Database::disconnect();
                         <li>
                             <a href="./hostAllCompetitions.php">
                                 <i class="material-icons">public</i>
-                                <p>All Competitions</p>
+                                <p>ALL COMPETITIONS</p>
                             </a>
                         </li>
                         <li  class="active">
                             
                             <a href="./hostCompetitions.php">
                                 <i class="material-icons">dashboard</i>
-                               <p>My Competitions</p>
+                               <p>MY COMPETITIONS</p>
                             
                             </a>
                         </li>
@@ -189,7 +189,7 @@ Database::disconnect();
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"> Division </a>
+                            <a class="navbar-brand" href="#"> EDIT WOD </a>
                         </div>
                         
                     </div>
@@ -201,7 +201,7 @@ Database::disconnect();
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header card-header-text" data-background-color="oxfordblue">
-                                    <h4 class="card-title">Edit WOD</h4>
+                                    <h4 class="card-title"><?php echo $wodName ?></h4>
 
                                 </div>
                                 <div class="card-content">

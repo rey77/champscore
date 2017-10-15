@@ -90,7 +90,7 @@ $compID = $_POST['compID'];
                                         <a href="hostPersonalData.php">Edit Profile</a>
                                     </li>
                                     <li>
-                                        <a href="loginsec/logout.php">Log out</a>
+                                        <a href="loginsec/logout.php">Log Out</a>
                                     </li>
                                 </ul>
                             </div>
@@ -100,14 +100,14 @@ $compID = $_POST['compID'];
                         <li>
                             <a href="./hostAllCompetitions.php">
                                 <i class="material-icons">public</i>
-                                <p>All Competitions</p>
+                                <p>ALL COMPETITIONS</p>
                             </a>
                         </li>
                         <li  class="active">
                             
                             <a href="./hostCompetitions.php">
                                 <i class="material-icons">dashboard</i>
-                               <p>My Competitions</p>
+                               <p>MY COMPETITIONS</p>
                             
                             </a>
                         </li>
@@ -132,7 +132,7 @@ $compID = $_POST['compID'];
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"> Division </a>
+                            <a class="navbar-brand" href="#"> NEW WOD </a>
                         </div>
                         
                     </div>
@@ -144,7 +144,7 @@ $compID = $_POST['compID'];
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header card-header-text" data-background-color="oxfordblue">
-                                    <h4 class="card-title">New WOD</h4>
+                                    <h4 class="card-title">WOD</h4>
 
                                 </div>
                                 <div class="card-content">

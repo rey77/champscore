@@ -195,11 +195,9 @@ Database::disconnect();
                                    <!-- <li>
                                         <a href="#">My Profile</a>
                                     </li>-->
+                                    
                                     <li>
-                                        <a href="hostPersonalData.php">Edit Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="loginsec/logout.php">Log out</a>
+                                        <a href="loginsec/logout.php">Log Out</a>
                                     </li>
                                     <!--<li>
                                         <a href="#">Settings</a>
@@ -212,14 +210,14 @@ Database::disconnect();
                         <li>
                             <a href="./hostAllCompetitions.php">
                                 <i class="material-icons">public</i>
-                                <p>All Competitions</p>
+                                <p>ALL COMPETITIONS</p>
                             </a>
                         </li>
                         <li>
                             
                             <a href="./hostCompetitions.php">
                                 <i class="material-icons">dashboard</i>
-                               <p>My Competitions</p>
+                               <p>MY COMPETITIONS</p>
                             
                             </a>
                         </li>
@@ -244,7 +242,7 @@ Database::disconnect();
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"> Edit Profile </a>
+                            <a class="navbar-brand" href="#"> EDIT PROFILE </a>
                         </div>
                         
                     </div>
@@ -281,7 +279,7 @@ Database::disconnect();
                                                         <?php echo $hostAffiliate ?>
                                                     </p>
                                                     <div>
-                                                        <span class="btn btn-raised btn-round btn-default btn-file">
+                                                        <span class="btn btn-raised btn-round btn-pinterest btn-file">
                                                             <span class="fileinput-new">Select Photo</span>
                                                             <span class="fileinput-exists">Change</span>
 

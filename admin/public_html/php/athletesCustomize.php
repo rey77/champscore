@@ -167,7 +167,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                         <a href="hostPersonalData.php">Edit Profile</a>
                                     </li>
                                     <li>
-                                        <a href="loginsec/logout.php">Log out</a>
+                                        <a href="loginsec/logout.php">Log Out</a>
                                     </li>
                                 </ul>
                             </div>
@@ -177,14 +177,14 @@ if ($_SESSION['eingeloggt'] == false) {
                         <li>
                             <a href="./hostAllCompetitions.php">
                                 <i class="material-icons">public</i>
-                                <p>All Competitions</p>
+                                <p>ALL COMPETITIONS</p>
                             </a>
                         </li>
                         <li class="active">
 
                             <a  href="./hostCompetitions.php">
                                 <i class="material-icons">dashboard</i>
-                                <p>My Competitions
+                                <p>MY COMPETITIONS
                                 </p>
                             </a>
                         </li>
@@ -209,7 +209,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"> Athletes & Teams </a>
+                            <a class="navbar-brand" href="#"> ATHLETES & TEAMS </a>
                         </div>
 
                     </div>
@@ -225,7 +225,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                     <div class="card-header card-header-tabs" data-background-color="oxfordblue" >
                                         <div class="nav-tabs-navigation">
                                             <div class="nav-tabs-wrapper">
-                                                <span class="nav-tabs-title"><b>Divisions </b></span>
+                                                <span class="nav-tabs-title"><b>DIVISIONS </b></span>
                                                 <ul class="nav nav-tabs" data-tabs="tabs" >
                                                     <?php
                                                     $sql_div = "select div_ID, div_name, div_is_team from tbl_division where fk_comp_id = ?";
@@ -289,9 +289,9 @@ if ($_SESSION['eingeloggt'] == false) {
 
                                                         <?php
                                                         if ($divIsTeam) {
-                                                            $tblHeader1 = "Team Name";
-                                                            $tblHeader2 = "Team Affiliate";
-                                                            $tblHeader3 = "Team Members";
+                                                            $tblHeader1 = "TEAM NAME";
+                                                            $tblHeader2 = "TEAM AFFILIATE";
+                                                            $tblHeader3 = "TEAM MEMBERS";
                                                             ?>
                                                             <!--<form name="newTeam" action = "newTeam.php" method="POST" role="form">
                                                                 <div style="display:none;">
@@ -305,8 +305,8 @@ if ($_SESSION['eingeloggt'] == false) {
                                                             <?php
                                                         } else {
 
-                                                            $tblHeader1 = "Athlete Name";
-                                                            $tblHeader2 = "Athlete Affiliate";
+                                                            $tblHeader1 = "ATHLETE NAME";
+                                                            $tblHeader2 = "ATHLETE AFFILIATE";
                                                             $tblHeader3 = "";
                                                             ?>
                                                             <form name="newAthlete" action = "newAthlete.php" method="POST" role="form">

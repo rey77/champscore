@@ -14,7 +14,7 @@ if ($_SESSION['eingeloggt'] == false) {
         <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png" />
         <link rel="icon" type="image/png" href="img/favicon-16x16.png" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <title>Divisions & Workouts</title>
+        <title>Divisions & WODS</title>
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
         <!-- Bootstrap core CSS     -->
@@ -182,7 +182,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                         <a href="hostPersonalData.php">Edit Profile</a>
                                     </li>
                                     <li>
-                                        <a href="loginsec/logout.php">Log out</a>
+                                        <a href="loginsec/logout.php">Log Out</a>
                                     </li>
                                 </ul>
                             </div>
@@ -192,14 +192,14 @@ if ($_SESSION['eingeloggt'] == false) {
                         <li>
                             <a href="./hostAllCompetitions.php">
                                 <i class="material-icons">public</i>
-                                <p>All Competitions</p>
+                                <p>ALL COMPETITIONS</p>
                             </a>
                         </li>
                         <li  class="active">
                             
                             <a href="./hostCompetitions.php">
                                 <i class="material-icons">dashboard</i>
-                               <p>My Competitions</p>
+                               <p>MY COMPETITIONS</p>
                             
                             </a>
                         </li>
@@ -224,7 +224,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"> Divisions & Workouts </a>
+                            <a class="navbar-brand" href="#"> DIVISIONS & WODS </a>
                         </div>
                         
                     </div>
@@ -232,13 +232,13 @@ if ($_SESSION['eingeloggt'] == false) {
                 <div class="content">
                     <div class="container-fluid">
 
-                        <p>Your Divisions, Events, Workouts are listed here.</p>
+                        <p>YOUR DIVISIONS AND WODS FOR THE COMPETITION ARE SHOWN HERE.</p>
 
                         <form name ="newDiv" role="form" action="newDivision.php" method="POST">
                             <div style="display:none;">
                                 <input type="hidden" name="compID" class="form-control" value="<?php echo $compID ?>" >
                             </div>
-                            <button type ="submit" class="btn btn-pinterest" data-toggle="tooltip" data-placement="right" title="Add new Division" >Division <i class="material-icons">add</i></button>
+                            <button type ="submit" class="btn btn-pinterest" data-toggle="tooltip" data-placement="right" title="Add new Division" > NEW DIVISION </button>
 
                         </form>
                         <br>
@@ -249,7 +249,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                 <div class="card-header card-header-tabs" data-background-color="oxfordblue">
                                     <div class="nav-tabs-navigation">
                                         <div class="nav-tabs-wrapper">
-                                            <span class="nav-tabs-title"><b>Divisions</b></span>
+                                            <span class="nav-tabs-title"><b>DIVISIONS</b></span>
                                             <ul class="nav nav-tabs" data-tabs="tabs">
 
                                                 <?php
@@ -317,12 +317,12 @@ if ($_SESSION['eingeloggt'] == false) {
                                                         <form name="editDiv" action = "editDivision.php" method="POST" role="form">
                                                             <div style="display:none;"><input type="hidden" name="divID" class="form-control" value="<?php echo $valueDiv ?>">
                                                             </div>
-                                                            Division
-                                                            <button type="submit" rel="tooltip" class="btn btn-round" title="Edit this Division">
+                                                            <?php echo $divName; ?>
+                                                            <button type="submit" rel="tooltip" class="btn btn-round" title="EDIT DIVISION">
                                                                 <i class="material-icons">edit</i>
                                                             </button>
 
-                                                            <button type="button" onclick="deleteDiv(<?php echo $valueDiv ?>)" rel="tooltip" class="btn btn-round btn-danger" title="Delete this Division">
+                                                            <button type="button" onclick="deleteDiv(<?php echo $valueDiv ?>)" rel="tooltip" class="btn btn-round btn-danger" title="DELETE DIVISION">
                                                                 <i class="material-icons">delete</i>
                                                             </button>
 
@@ -340,19 +340,19 @@ if ($_SESSION['eingeloggt'] == false) {
                                                 <table class="table" style="table-layout:fixed">
                                                     <thead>
                                                         <tr>
-                                                            <th class= "td-actions"><form name="newWod" action = "newWod.php" method="POST" role="form">
+                                                            <th class= "td-actions">WODS<form name="newWod" action = "newWod.php" method="POST" role="form">
                                                             <div style="display:none;">
                                                                 <input type="hidden" name="divID" class="form-control" value="<?php echo $valueDiv ?>" >
                                                                 <input type="hidden" name="compID" class="form-control" value="<?php echo $compID ?>" >
                                                             </div>
-                                                            WOD
-                                                            <button type="submit" rel="tooltip" class="btn btn-round btn-success" title="Add WOD" >
+                                                            
+                                                            <button type="submit" rel="tooltip" class="btn btn-round btn-success" title="NEW WOD" >
                                                                 <i class="material-icons">add</i>
                                                             </button>
 
                                                         </form></th>
 
-                                                            <th>Description</th>
+                                                            <th></th>
                                                             <th></th>
                                                         </tr>
                                                     </thead>
@@ -380,7 +380,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                                                             <input type="hidden" name="compID" class="form-control" value="<?php echo $compID ?>" >
                                                                         </div>
                                                                         <?php echo $wodName ?>
-                                                                        <button type="submit" rel="tooltip" class="btn btn-round" title="Edit this WOD">
+                                                                        <button type="submit" rel="tooltip" class="btn btn-round" title="EDIT WOD">
                                                                             <i class="material-icons">edit</i>
                                                                         </button>
 
@@ -388,7 +388,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                                                 </td>
                                                                 <td><?php echo $wodDesc ?></td>
                                                                 <td class="td-actions text-right">
-                                                                    <button type="button" onclick="deleteWod(<?php echo $wodID ?>);" rel="tooltip" class="btn btn-round btn-danger" title="Delete this WOD">
+                                                                    <button type="button" onclick="deleteWod(<?php echo $wodID ?>);" rel="tooltip" class="btn btn-round btn-danger" title="DELETE WOD">
                                                                         <i class="material-icons">delete</i>
                                                                     </button>
                                                                 </td>

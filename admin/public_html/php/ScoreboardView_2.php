@@ -180,7 +180,7 @@ while ($zeile = $q_des->fetch(/* PDO::FETCH_ASSOC */)) {
 
             document.addEventListener('DOMContentLoaded', function () {
 
-                onSelectDivision('<?php echo $desWodBtnFontColor ?>', '<?php echo $desWodBtnBgColor ?>', <?php echo $compID ?>);
+                onSelectDivision('<?php echo $compMainColor ?>', '<?php echo $compAccentColor ?>', <?php echo $compID ?>);
                 var div_ID = document.getElementById("selDiv").options[document.getElementById("selDiv").selectedIndex].value;
 
                 onSelectWod(0, div_ID, <?php echo $compID ?>);
@@ -345,7 +345,7 @@ while ($zeile = $q_des->fetch(/* PDO::FETCH_ASSOC */)) {
                 <div class="container">
 
                     <div class="row">
-                        <div class="col-xs-6 col-xs-offset-3">
+                        <div class="col-xs-12 col-xs-offset-0">
                             <div class="profile">
                                 <div class="avatar">
                                     <img src="<?php echo $logosrc ?>" alt="Circle Image" style="border:solid; border-color: <?php echo "#".$compAccentColor?>"  class="img-rounded img-responsive img-raised">
@@ -362,23 +362,19 @@ while ($zeile = $q_des->fetch(/* PDO::FETCH_ASSOC */)) {
 
 
 
-
                     <div class="container-fluid">
 
                         <!-- Page Heading -->
 
                         <div class="row"> 
+                            
 
 
                             <div class=" col-lg-2 col-lg-offset-5 col-md-2 col-md-offset-5 col-sm-4 col-sm-offset-4 col-xs-12 col-xs-offset-0 ">
 
-                                <br>
+                               
 
-
-                                <!--Renato  -->
-                                <form class="form-horizontal"  method="post"> 
-
-                                    <div class = "form-group " >
+                                    
 
                                         <select class = "form-control" id = "selDiv" onChange="onSelectDivision('<?php echo $desWodBtnFontColor ?>', '<?php echo $desWodBtnBgColor ?>', <?php echo $compID ?>);">
 
@@ -400,9 +396,9 @@ while ($zeile = $q_des->fetch(/* PDO::FETCH_ASSOC */)) {
 
                                         </select>
 
-                                    </div>
+                                    
 
-                                </form>
+                                
 
                             </div>
 

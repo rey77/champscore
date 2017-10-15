@@ -85,7 +85,7 @@ if (ini_get("session.use_cookies")) {
 
                                     </ul>
                                 </li>
-                                
+
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person_outline</i> Host
@@ -135,24 +135,30 @@ if (ini_get("session.use_cookies")) {
 
                 <div class="page-header header-filter" style="background-image: url('img/header.jpg');">
                     <div class="container">
-                        <div class="row">
-                            <!--<div class="col-md-8 col-md-offset-2 text-center">
-                                <h1 class="title"> Your Favorite Competition Management Tool</h1>
-                                <h4>You will have an unique competition experience using champscore</h4>
-                            </div>-->
-                            <div class="col-md-6 col-md-offset-0 text-center">
+
+                        <!--<div class="col-md-8 col-md-offset-2 text-center">
+                            <h1 class="title"> Your Favorite Competition Management Tool</h1>
+                            <h4>You will have an unique competition experience using champscore</h4>
+                        </div>-->
+                        <div class="col-lg-6 col-md-6 col-md-offset-0 text-center">
+
+                            <h1 class="title">ATHLETE</h1>
+
+                            <a class="btn btn-pinterest" href="php/athleteLogin.php">Login</a>
 
 
-                                <h1 class="title">ATHLETE</h1>
-                                    <a class="btn btn-pinterest" href="php/athleteLogin.php">Login</a>
-                                    <a class="btn btn-pinterest" href="php/athleteRegister.php">create Account</a>
-                            </div>
+                            <a class="btn btn-pinterest" href="php/athleteRegister.php">Register</a>
 
-                            <div class="col-md-6 col-md-offset-0 text-center">
-                                <h1 class="title">HOST</h1>
-                                    <a class="btn btn-oxfordblue" href="php/hostLogin.php">Login</a>
-                                    <a class="btn btn-oxfordblue" href="#">create Account (coming soon)</a>
-                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-md-offset-0 text-center">
+                            <h1 class="title">HOST</h1>
+
+                            <a class="btn btn-oxfordblue" href="php/hostLogin.php">Login</a>
+
+
+                            <a class="btn btn-oxfordblue" href="#">Register (coming soon)</a>
+
                         </div>
                     </div>
                 </div>
@@ -164,7 +170,7 @@ if (ini_get("session.use_cookies")) {
                         <br>
                         <br>
                         <div class="col-md-8 col-md-offset-2 text-center">
-                            <h2 class="title">Our Competitions</h2>
+                            <h2 class="title">OUR COMPETITIONS</h2>
                             <!--<h5 class="description">We are happy to host Competitions all around the globe.</h5>-->
                             <br>
                             <br></div>

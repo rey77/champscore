@@ -256,15 +256,15 @@ if ($_SESSION['eingeloggt'] == false) {
                         <li>
                             <a href="./hostAllCompetitions.php">
                                 <i class="material-icons">public</i>
-                                <p>All Competitions</p>
+                                <p>ALL COMPETITIONS</p>
                             </a>
                         </li>
                         <li  class="active">
-                            
+
                             <a href="./hostCompetitions.php">
                                 <i class="material-icons">dashboard</i>
-                               <p>My Competitions</p>
-                            
+                                <p>MY COMPETITIONS</p>
+
                             </a>
                         </li>
 
@@ -288,9 +288,9 @@ if ($_SESSION['eingeloggt'] == false) {
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"> My Competitions </a>
+                            <a class="navbar-brand" href="#"> EDIT COMPETITION </a>
                         </div>
-                        
+
                     </div>
                 </nav>
                 <div class="content">
@@ -301,7 +301,7 @@ if ($_SESSION['eingeloggt'] == false) {
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header card-header-text" data-background-color="oxfordblue">
-                                    <h4 class="card-title">Edit Competition</h4>
+                                    <h4 class="card-title"><?php echo $compName ?></h4>
 
                                 </div>
                                 <div class="card-content">
@@ -309,7 +309,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                     <form name ="compData" role="form" action="updateCompetition.php" method="POST" enctype="multipart/form-data">
                                         <div class="row">
                                             <div class="col-lg-6" align="center">
-                                                <h3>Competition Logo</h3>
+                                                <h3>COMPETITION LOGO <i class="material-icons">image</i></h3>
                                                 <p class="text-muted">
                                                     This is the Logo of the Competition. Choose a big enough image
                                                 </p>
@@ -332,13 +332,13 @@ if ($_SESSION['eingeloggt'] == false) {
                                                 </div>
                                             </div>
                                             <div class="col-lg-6" align="center">
-                                                <h3>Competition Banner</h3>
+                                                <h3>COMPETITION BANNER <i class="material-icons">image</i></h3>
                                                 <p class="text-muted">
                                                     This is the big picture displayed on the top of your Competition Page
                                                 </p>
                                                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                                     <div class="fileinput-new thumbnail">
-                                                        
+
                                                         <img src="<?php echo $bannersrc ?>" alt="...">
                                                     </div>
                                                     <div class="fileinput-preview fileinput-exists thumbnail"></div>
@@ -353,7 +353,8 @@ if ($_SESSION['eingeloggt'] == false) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <h3>Competition Type</h3>
+                                        <hr>
+                                        <h3>COMPETITION TYPE <i class="material-icons">view_compact</i></h3>
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="radio">
@@ -370,7 +371,8 @@ if ($_SESSION['eingeloggt'] == false) {
 
 
                                         </div>
-                                        <h3>General</h3>
+                                        <hr>
+                                        <h3>GENERAL <i class="material-icons">reorder</i></h3>
                                         <div class="row">
 
                                             <div class="col-lg-4">
@@ -395,7 +397,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                                 </div>
                                             </div>
 
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-12">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Long Description</label>
                                                     <textarea class="form-control" style="resize: none; height: 300px;" name="compDescLong" required><?php echo $compDescLong ?></textarea>
@@ -403,7 +405,8 @@ if ($_SESSION['eingeloggt'] == false) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <h3>When</h3>
+                                        <hr>
+                                        <h3>WHEN <i class="material-icons">watch_later</i></h3>
 
                                         <div class="row">
                                             <div class="col-lg-3">
@@ -431,8 +434,8 @@ if ($_SESSION['eingeloggt'] == false) {
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <h3>Where</h3>
+                                        <hr>
+                                        <h3>WHERE <i class="material-icons">location_on</i></h3>
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group label-floating">
@@ -467,8 +470,8 @@ if ($_SESSION['eingeloggt'] == false) {
                                             </div>
 
                                         </div>
-
-                                        <h3>Social Media</h3>
+                                        <hr>
+                                        <h3>SOCIAL MEDIA <i class="material-icons">share</i></h3>
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group label-floating">
@@ -483,8 +486,8 @@ if ($_SESSION['eingeloggt'] == false) {
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <h3>Colors</h3>
+                                        <hr>
+                                        <h3>COLORS <i class="material-icons">invert_colors</i></h3>
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group label-floating">
@@ -506,7 +509,8 @@ if ($_SESSION['eingeloggt'] == false) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <h3>Terms and Conditions</h3>
+                                        <hr>
+                                        <h3>TERMS AND CONDITIONS <i class="material-icons">assignment</i></h3>
 
                                         <div class="col-lg-12" align="center">
 
