@@ -3486,6 +3486,10 @@ h2.title {
 .card .pinterest {
   background: linear-gradient(60deg, #d80000, #9e0000);
 }
+.card .header-oxfordblue,
+.card .oxfordblue {
+  background: linear-gradient(60deg, #0B2545, #071930);
+}
 .card .header-info,
 .card .content-info {
   background: linear-gradient(60deg, #26c6da, #0097a7);

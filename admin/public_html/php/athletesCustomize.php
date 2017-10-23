@@ -510,7 +510,7 @@ if ($_SESSION['eingeloggt'] == false) {
 
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Athlete info</h4>
+                        <h4 class="modal-title">ATHLETE INFORMATION</h4>
                     </div>
 
                     <div class="modal-body">

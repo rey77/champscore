@@ -49,21 +49,21 @@ Database::disconnect();
     <body>
         <div class="wrapper">
 
-            <div class="sidebar" data-active-color="darkred" data-background-color="black" data-image="img/sidebar-1.jpg">
+            <div class="sidebar" data-active-color="oxfordblue" data-background-color="black" data-image="img/sidebar-1.jpg">
                 <!--
             Tip 1: You can change the color of active element of the sidebar using: data-active-color="purple | blue | green | orange | red | rose"
             Tip 2: you can also add an image using data-image tag
             Tip 3: you can change the color of the sidebar with data-background-color="white | black"
                 -->
                 <div class="logo">
-                    <a href="index.php" class="simple-text">
+                    <a href="athleteIndex.php" class="simple-text">
                         <p><!--<img style=" margin-left: -20px; height: 70px;" class="logo" src="../img/Logo.png" alt=""/>-->
                             <img style="  height: 20px;" src="img/text.png" alt=""/></p>
                     </a>
                     
                 </div>
                 <div class="logo logo-mini">
-                    <a href="index.php" class="simple-text">
+                    <a href="athleteIndex.php" class="simple-text">
                         CS
                     </a>
                 </div>
@@ -94,14 +94,14 @@ Database::disconnect();
                         <li class="active">
                             <a href="./athleteAllCompetitions.php">
                                 <i class="material-icons">public</i>
-                                <p>All Competitions</p>
+                                <p>ALL COMPETITIONS</p>
                             </a>
                         </li>
                         <li >
                             
                             <a href="./athleteCompetitions.php">
                                 <i class="material-icons">dashboard</i>
-                               <p>My Competitions</p>
+                               <p>MY COMPETITIONS</p>
                             
                             </a>
                         </li>
@@ -126,7 +126,7 @@ Database::disconnect();
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"> All Competitions </a>
+                            <a class="navbar-brand" href="#"> ALL COMPETITIONS </a>
                         </div>
                         
                     </div>
@@ -137,7 +137,7 @@ Database::disconnect();
 
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2 text-center">
-                                <h2 class="title"><i class="material-icons">public</i>All Competitions</h2>
+                                <h2 class="title"><i class="material-icons">public</i> ALL COMPETITIONS</h2>
                                 
                             </div>
                         </div>

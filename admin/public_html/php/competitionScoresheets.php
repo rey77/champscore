@@ -6,20 +6,7 @@ if ($_SESSION['eingeloggt'] == false) {
     header("Location: public_html/index.php");
     exit();
 }
-
-$hostID = $_SESSION['host_id'];
-include 'Database.php';
-$pdo = Database::connect();
-
-$sql = "select * from tbl_competition";
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$q = $pdo->prepare($sql);
-$q->execute();
-
-Database::disconnect();
 ?>
-
-<!doctype html>
 <html lang="en">
 
     <head>
@@ -28,7 +15,7 @@ Database::disconnect();
         <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png" />
         <link rel="icon" type="image/png" href="img/favicon-16x16.png" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <title>All Competitions</title>
+        <title>Scoresheets</title>
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
         <!-- Bootstrap core CSS     -->
@@ -41,12 +28,41 @@ Database::disconnect();
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
 
-        <link href="php/css/material-kit.css?v=1.1.0" rel="stylesheet"/>
 
-
+        
     </head>
 
     <body>
+
+        <?php
+        $compID = $_GET['comp_ID'];
+
+        include 'Database.php';
+        $pdo = Database::connect();
+
+        $sql_comp = "select comp_ID, comp_name, comp_scoresheets from tbl_competition where comp_id = ?";
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $q_comp = $pdo->prepare($sql_comp);
+        $q_comp->execute(array($compID));
+
+
+        while ($zeile = $q_comp->fetch(/* PDO::FETCH_ASSOC */)) {
+
+            $compID = $zeile['comp_ID'];
+            $compName = $zeile['comp_name'];
+            $compScoresheets = $zeile['comp_scoresheets'];
+                    
+        }
+        
+        if ($compScoresheets != 0) {
+            $scoresheetssrc = "uploads/host/scoresheets/$compScoresheets";
+        } else {
+            $scoresheetssrc = "img/image_placeholder.jpg";
+        }
+
+        
+        ?>
+
         <div class="wrapper">
 
             <div class="sidebar" data-active-color="darkred" data-background-color="black" data-image="img/sidebar-1.jpg">
@@ -79,25 +95,24 @@ Database::disconnect();
                             </a>
                             <div class="collapse" id="collapseExample">
                                 <ul class="nav">
-
                                     <li>
                                         <a href="hostPersonalData.php">Edit Profile</a>
                                     </li>
                                     <li>
-                                        <a href="loginsec/logout.php">Log Out</a>
+                                        <a href="loginsec/logout.php">Log out</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <ul class="nav">
-                        <li class="active">
+                        <li>
                             <a href="./hostAllCompetitions.php">
                                 <i class="material-icons">public</i>
                                 <p>ALL COMPETITIONS</p>
                             </a>
                         </li>
-                        <li>
+                        <li  class="active">
 
                             <a href="./hostCompetitions.php">
                                 <i class="material-icons">dashboard</i>
@@ -126,134 +141,52 @@ Database::disconnect();
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"> ALL COMPETITIONS </a>
+                            <a class="navbar-brand" href="#"> SCORESHEETS </a>
                         </div>
-                        <!--<div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">dashboard</i>
-                                        <p class="hidden-lg hidden-md">Dashboard</p>
-                                    </a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">notifications</i>
-                                        <span class="notification">5</span>
-                                        <p class="hidden-lg hidden-md">
-                                            Notifications
-                                            <b class="caret"></b>
-                                        </p>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="#">Mike John responded to your email</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">You have 5 new tasks</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">You're now friend with Andrew</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Another Notification</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Another One</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">person</i>
-                                        <p class="hidden-lg hidden-md">Profile</p>
-                                    </a>
-                                </li>
-                                <li class="separator hidden-lg hidden-md"></li>
-                            </ul>
-                            <form class="navbar-form navbar-right" role="search">
-                                <div class="form-group form-search is-empty">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                    <span class="material-input"></span>
-                                </div>
-                                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                    <i class="material-icons">search</i>
-                                    <div class="ripple-container"></div>
-                                </button>
-                            </form>
-                        </div>-->
+
                     </div>
                 </nav>
                 <div class="content">
-
                     <div class="container-fluid">
 
-                        <div class="row">
-                            <div class="col-md-8 col-md-offset-2 text-center">
-                                <h2 class="title"><i class="material-icons">public</i> ALL COMPETITIONS</h2>
-                                <h5 class="description">WE ARE HAPPY TO HOST COMPETITIONS AROUND THE GLOBE.</h5>
+
+
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header card-header-text" data-background-color="oxfordblue">
+                                    <h4 class="card-title"><?php echo $compName ?></h4>
+
+                                </div>
+                                <div class="card-content">
+
+                                        <div class="row">
+                                            
+
+                                        <div class="col-lg-12" align="center">
+
+                                            <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                                                <div class="fileinput-new ">
+                                                    <iframe src="<?php echo $scoresheetssrc ?>" width="600" height="800"></iframe>
+                                                </div>
+                                                <div class="fileinput-preview fileinput-exists"></div>
+                                                <div>
+                                                    
+                                                    <a href="#pablo" class="btn btn-pinterest btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                       
+
+                              
                             </div>
                         </div>
 
-                        <div class="row">
-                            <?php
-                            while ($zeile = $q->fetch(/* PDO::FETCH_ASSOC */)) {
-
-                                $compID = $zeile['comp_ID'];
-                                $compLogo = $zeile['comp_logo'];
-
-                                if ($compLogo != 0) {
-
-                                    $logosrc = "uploads/host/complogo/$compLogo";
-                                } else {
-                                    $logosrc = "http://placehold.it/400x250/000/fff";
-                                }
-                                
-                                $originalDate = $zeile['comp_start_date'];
-                            $newDate = date("d.m.Y", strtotime($originalDate));
-                                ?> 
-
-                                <div class="col-md-4">
-
-
-                                    <div class="card card-testimonial">
-                                        <div class="icon">
-
-                                        </div>
-
-                                        <div class="footer">
-
-                                            <a  href="competitionView.php?comp_id=<?php echo $compID ?>">
-                                                <h4 class="card-title"><b><?php echo $zeile['comp_name'] ?></b></h4>
-
-                                            </a>
-                                            <p><?php echo $newDate ?> in <?php echo $zeile['comp_city'] ?>, <?php echo $zeile['comp_country'] ?></p>
-
-                                            <div class="card-avatar">
-                                                <a href="#pablo">
-                                                    <img class="img" src="<?php echo $logosrc ?>">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-
-                                </div>
-                                <?php
-                            }
-
-                            
-
-                            Database::disconnect();
-                            ?>
-
-                        </div>
-
-
-
-
                     </div>
                 </div>
+
+
                 <footer class="footer">
                     <div class="container-fluid">
 
@@ -309,44 +242,40 @@ Database::disconnect();
     <script src="js/material-dashboard.js"></script>
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="js/demo.js"></script>
+
+    <script src="js/colorpicker/jscolor.js"></script>
+
     <script type="text/javascript">
+
+
                                 $(document).ready(function () {
+                                    var slider = document.getElementById('sliderRegular');
 
-                                    // Javascript method's body can be found in assets/js/demos.js
-                                    demo.initDashboardPageCharts();
+                                    noUiSlider.create(slider, {
+                                        start: 40,
+                                        connect: [true, false],
+                                        range: {
+                                            min: 0,
+                                            max: 100
+                                        }
+                                    });
 
-                                    demo.initVectorMap();
+                                    var slider2 = document.getElementById('sliderDouble');
+
+                                    noUiSlider.create(slider2, {
+                                        start: [20, 60],
+                                        connect: true,
+                                        range: {
+                                            min: 0,
+                                            max: 100
+                                        }
+                                    });
+
+
+
+                                    materialKit.initFormExtendedDatetimepickers();
+
+                                    $('#cp2').colorpicker();
                                 });
-    </script>
-
-
-    <script type="text/javascript">
-
-//Funktion zur Prüfung der Registrierungsdaten
-        function deleteComp(comp_ID)
-        {
-
-            var del_comp_id = comp_ID;
-            var info = 'comp_ID=' + del_comp_id;
-
-            if (confirm("Sure you want to delete this Competition? This cannot be undone later.")) {
-                alert(info);
-                $.ajax({
-                    type: "POST",
-                    url: "deleteComp.php", //URL to the delete php script
-                    data: info,
-                    success: function () {
-                        window.location.reload(false);
-                    },
-                    error: function () {
-                        alert("Fehler")
-                    },
-                });
-
-            }
-            return false;
-
-
-        }
     </script>
 </html>

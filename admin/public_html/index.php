@@ -144,20 +144,20 @@ if (ini_get("session.use_cookies")) {
 
                             <h1 class="title">ATHLETE</h1>
 
-                            <a class="btn btn-pinterest" href="php/athleteLogin.php">Login</a>
+                            <a class="btn btn-oxfordblue" href="php/athleteLogin.php">Login</a>
 
 
-                            <a class="btn btn-pinterest" href="php/athleteRegister.php">Register</a>
+                            <a class="btn btn-oxfordblue" href="php/athleteRegister.php">Register</a>
 
                         </div>
 
                         <div class="col-lg-6 col-md-6 col-md-offset-0 text-center">
                             <h1 class="title">HOST</h1>
 
-                            <a class="btn btn-oxfordblue" href="php/hostLogin.php">Login</a>
+                            <a class="btn btn-pinterest" href="php/hostLogin.php">Login</a>
 
 
-                            <a class="btn btn-oxfordblue" href="#">Register (coming soon)</a>
+                            <a class="btn btn-pinterest" href="#">Register (coming soon)</a>
 
                         </div>
                     </div>

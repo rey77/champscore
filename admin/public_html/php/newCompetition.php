@@ -25,9 +25,8 @@ if ($_SESSION['eingeloggt'] == false) {
         <!--     Fonts and icons     -->
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
-
+        <script src="js/colorpicker/jscolor.js"></script>
     </head>
-
 
     <body>
 
@@ -40,14 +39,15 @@ if ($_SESSION['eingeloggt'] == false) {
             Tip 3: you can change the color of the sidebar with data-background-color="white | black"
                 -->
                 <div class="logo">
-                    <a href="index.php" class="simple-text">
+                    <a href="hostIndex.php" class="simple-text">
                         <p><!--<img style=" margin-left: -20px; height: 70px;" class="logo" src="../img/Logo.png" alt=""/>-->
                             <img style="  height: 20px;" src="img/text.png" alt=""/></p>
                     </a>
 
                 </div>
+
                 <div class="logo logo-mini">
-                    <a href="index.php" class="simple-text">
+                    <a href="hostIndex.php" class="simple-text">
                         CS
                     </a>
                 </div>
@@ -81,11 +81,11 @@ if ($_SESSION['eingeloggt'] == false) {
                             </a>
                         </li>
                         <li  class="active">
-                            
+
                             <a href="./hostCompetitions.php">
                                 <i class="material-icons">dashboard</i>
-                               <p>MY COMPETITIONS</p>
-                            
+                                <p>MY COMPETITIONS</p>
+
                             </a>
                         </li>
 
@@ -111,7 +111,7 @@ if ($_SESSION['eingeloggt'] == false) {
                             </button>
                             <a class="navbar-brand" href="#"> NEW COMPETITION </a>
                         </div>
-                        
+
                     </div>
                 </nav>
                 <div class="content">
@@ -171,8 +171,8 @@ if ($_SESSION['eingeloggt'] == false) {
                                             </div>
                                         </div>
 
-<hr>
-                                        <h3>COMPETITION BANNER <i class="material-icons">view_compact</i></h3>
+                                        <hr>
+                                        <h3>COMPETITION TYPE <i class="material-icons">view_compact</i></h3>
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="radio">
@@ -288,7 +288,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                                 </div>
                                             </div>
                                         </div>
-<hr>
+                                        <hr>
                                         <h3>SOCIAL MEDIA <i class="material-icons">share</i></h3>
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -304,26 +304,25 @@ if ($_SESSION['eingeloggt'] == false) {
                                                 </div>
                                             </div>
                                         </div>
-<hr>
+                                        <hr>
                                         <h3>COLORS <i class="material-icons">invert_colors</i></h3>
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group label-floating">
                                                     <label>Main Color</label>
-                                                    <button style="width: 25px ;height: 25px" class=" jscolor {valueElement:'chosen-value-mainColor', onFineChange:'setBodyBgColor(this)'} btn btn-default btn-md colorchange">
-                                                    </button>
-                                                    <input  class="form-control" name="compMainColor" id="chosen-value-mainColor" value="<?php echo 000000 ?>">
-
+                                                    <p><button style="width: 25px; height: 25px" class="jscolor {valueElement:'chosen-value-mainColor', value:'0B2545', onFineChange:'setBodyBgColor(this)'} btn btn-round btn-md colorchange">
+                                                        </button>
+                                                        <input  class="form-control" name="compMainColor" id="chosen-value-mainColor" >
+                                                    </p>
                                                 </div>
                                             </div>
-
                                             <div class="col-lg-6">
                                                 <div class="form-group label-floating">
                                                     <label>Accent Color</label>
-                                                    <button style="width: 25px; height: 25px" class=" jscolor {valueElement:'chosen-value-accentColor', onFineChange:'setBodyBgColor(this)'} btn btn-default btn-md colorchange">
-                                                    </button>
-                                                    <input  class="form-control" name="compAccentColor" id="chosen-value-accentColor" value="<?php echo 000000 ?>">
-
+                                                    <p><button style="width: 25px; height: 25px" class=" jscolor {valueElement:'chosen-value-accentColor', value:'cc2127', onFineChange:'setBodyBgColor(this)'} btn btn-round btn-md colorchange">
+                                                        </button>
+                                                        <input  class="form-control" name="compAccentColor" id="chosen-value-accentColor" >
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -341,7 +340,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                                     <span class="btn btn-pinterest btn-round btn-file">
                                                         <span class="fileinput-new">Select PDF File</span>
                                                         <span class="fileinput-exists">Change</span>
-                                                        <input type="file" accept="application/pdf" name="compTerms" id="compTerms" value="<?php echo $logosrc ?>" />
+                                                        <input type="file" accept="application/pdf" name="compTerms" id="compTerms"  />
                                                     </span>
                                                     <a href="#pablo" class="btn btn-pinterest btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
                                                 </div>
@@ -376,7 +375,8 @@ if ($_SESSION['eingeloggt'] == false) {
             </div>
         </div>
     </body>
-    <!--   Core JS Files   -->
+    <!--   Core 
+    Files   -->
     <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
     <script src="js/jquery-ui.min.js" type="text/javascript"></script>
     <script src="js/bootstrap.min.js" type="text/javascript"></script>

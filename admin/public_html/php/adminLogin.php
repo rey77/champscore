@@ -27,7 +27,7 @@ if (ini_get("session.use_cookies")) {
         <link rel="icon" type="image/png" href="../img/favicon-16x16.png">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-        <title>Athlete Login</title>
+        <title>Admin Login</title>
 
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
@@ -62,9 +62,9 @@ if (ini_get("session.use_cookies")) {
                 <div class="row">
                     <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
                         <div class="card card-signup">
-                            <form class="form" name="formLogin" onsubmit="onSubmitLogin()" method="POST" action="loginsec/loginAthlete.php">
+                            <form class="form" name="formLogin" onsubmit="onSubmitLogin()" method="POST" action="loginsec/loginAdmin.php">
                                 <div class="header header-pinterest text-center">
-                                    <h4 class="card-title">ATHLETE LOGIN</h4>
+                                    <h4 class="card-title">ADMIN LOGIN</h4>
                                     <!--<div class="social-line">
                                         <a href="#pablo" class="btn btn-just-icon btn-simple">
                                             <i class="fa fa-facebook-square"></i>
@@ -86,18 +86,18 @@ if (ini_get("session.use_cookies")) {
                                         <span class="input-group-addon">
                                             <i class="material-icons">email</i>
                                         </span>
-                                        <input type="email" name ="athleteEmail" class="form-control" placeholder="Email..." email="true" required="true">
+                                        <input type="email" name ="adminEmail" class="form-control" placeholder="Email..." email="true" required="true">
                                     </div>
 
                                     <div class="input-group">
                                         <span class="input-group-addon">
                                             <i class="material-icons">lock_outline</i>
                                         </span>
-                                        <input type="password" name="athletePassword" placeholder="Password..." class="form-control" type="password" required="true" />
-                                    <a href="#" class="passforgot"  data-toggle="modal" data-target="#passwordforgot">FORGOT YOUR PASSWORD?</a>
-                                    
+                                        <input type="password" name="adminPassword" placeholder="Password..." class="form-control" type="password" required="true" />
+
+
                                     </div>
-                                                
+
 
                                     <!-- If you want to add a checkbox to this form, uncomment this code
 
@@ -121,39 +121,6 @@ if (ini_get("session.use_cookies")) {
 
         </div>
 
-        
-        
-        <div class="modal fade" id="passwordforgot">
-            <div class="modal-dialog modal-md">
-                <div class="modal-content">
-
-                    <!-- header -->
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h3 class="modal-title">Forgot your Password?</h3>
-                    </div>
-
-                    <!-- body ( form ) -->
-                    <div class="modal-body">
-
-                        <form role="form" action="loginsec/resetAthletePassword.php" method="POST" id="passForgot">
-                            <div class="form-group">
-                                <label>Please type in your Email Address. We will send you a new password</label>
-                                <input type="text" class="form-control" Name = "email" placeholder="Email Address">                                     
-                            </div>
-                        </form>
-                    </div>
-
-                    <!-- button -->
-                    <div class="modal-footer">
-
-                        <button type="Submit" form="passForgot" class="btn btn-pinterest btn-block"  name="submit">OK</button>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        
         <footer class="footer">
             <div class="container">
 

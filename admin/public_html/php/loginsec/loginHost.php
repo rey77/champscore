@@ -8,6 +8,24 @@ if (isset($_POST['hostEmail']) AND isset($_POST['hostPassword'])) {
     $pass = $_POST['hostPassword'];
     $pass = md5($pass);
 
+    
+    include '../Database.php';
+    $pdo = Database::connect();
+
+    $sql_host = "SELECT host_ID, host_email, host_password FROM `tbl_host` WHERE host_email=? and host_password=?";
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $q_host = $pdo->prepare($sql_host);
+    $q_host->execute(array($email, $pass));
+
+    while ($zeile = $q_host->fetch(/* PDO::FETCH_ASSOC */)) {
+
+        $_SESSION['host_id'] = $zeile["host_ID"];
+        $_SESSION['eingeloggt'] = true;
+        $_SESSION['hostEmail'] = $email;
+
+        header("Location: ../hostIndex.php");
+        exit();
+    }
 
     // Datenbankverbindung
     include "db.inc.php";

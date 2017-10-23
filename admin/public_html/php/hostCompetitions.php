@@ -58,7 +58,7 @@ Database::disconnect();
                         <p><!--<img style=" margin-left: -20px; height: 70px;" class="logo" src="../img/Logo.png" alt=""/>-->
                             <img style="  height: 20px;" src="img/text.png" alt=""/></p>
                     </a>
-                    
+
                 </div>
                 <div class="logo logo-mini">
                     <a href="hostIndex.php" class="simple-text">
@@ -96,11 +96,11 @@ Database::disconnect();
                             </a>
                         </li>
                         <li  class="active">
-                            
+
                             <a href="./hostCompetitions.php">
                                 <i class="material-icons">dashboard</i>
-                               <p>MY COMPETITIONS</p>
-                            
+                                <p>MY COMPETITIONS</p>
+
                             </a>
                         </li>
 
@@ -124,7 +124,7 @@ Database::disconnect();
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                         <a class="navbar-brand" href="#"> MY COMPETITIONS </a>
+                            <a class="navbar-brand" href="#"> MY COMPETITIONS </a>
                         </div>
                         <!--<div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-right">
@@ -186,18 +186,30 @@ Database::disconnect();
                     <div class="container-fluid">
 
                         <div class="row">
-                            <div class="col-lg-6">
+                            <div class="col-lg-12">
 
                                 <p>CUSTOMIZE YOUR COMPETITIONS. YOU CAN ADD NEW COMPETITIONS AND EDIT EXISTING ONES</p>
 
-                                <form method="POST" action='newCompetition.php'>
+
+                                <div class ="dropdown">
+                                    <button class = "btn btn-pinterest dropdown-toggle" type = "button" data-toggle = "dropdown">NEW COMPETITION
+                                        <span class = "caret"></span></button>
+
+                                    <ul class = "dropdown-menu">
+                                        <li><a href = "newCompetition.php">New</a></li>
+                                    </ul>
+                                </div>
+
+                                <!--<form method="POST" action='newCompetition.php'>
 
                                     <button type ="submit" class="btn btn-pinterest" data-toggle="tooltip" data-placement="right" title="Create Competition" >New Competition</button>
-                                </form>
-                                
+
+
+                                </form>-->
+
 
                             </div>
-                            
+
                         </div>
                         <br>
                         <?php
@@ -210,8 +222,8 @@ Database::disconnect();
                             } else {
                                 $logosrc = "img/image_placeholder.jpg";
                             }
-                            
-                             $originalDate = $zeile['comp_start_date'];
+
+                            $originalDate = $zeile['comp_start_date'];
                             $newDate = date("d.m.Y", strtotime($originalDate));
                             ?>
 
@@ -236,14 +248,16 @@ Database::disconnect();
                                                     <li><a href = "wodCustomize.php?comp_id=<?php echo $zeile['comp_ID'] ?>" >DIVISIONS & WODS</a></li>
                                                     <li><a href = "athletesCustomize.php?comp_id=<?php echo $zeile['comp_ID'] ?>"  >ATHLETES AND TEAMS</a></li>
                                                     <li><a href = "competitionAddScore.php?comp_ID=<?php echo $zeile['comp_ID'] ?>"  >SCORES</a></li>
-                                                    <!--<li><a href = "competitionTicketing.php?comp_ID=<?php echo $zeile['comp_ID'] ?>"  >TICKETING</a></li>-->
-                                                   <!-- <li><a href = "scoreboardCustomize.php?comp_id=<?php echo $zeile['comp_ID'] ?>"  >Leaderboard</a>-->
-                                                    <!--<li><a href = "javascript:;" onclick="deleteComp(<?php echo $zeile['comp_ID'] ?>);" > Delete Competition</a>-->
+                                                    <li><a href = "competitionScoresheets.php?comp_ID=<?php echo $zeile['comp_ID'] ?>"  >SCORESHEETS</a></li>
+    <!--<li><a href = "competitionTicketing.php?comp_ID=<?php echo $zeile['comp_ID'] ?>"  >TICKETING</a></li>-->
+    <!-- <li><a href = "scoreboardCustomize.php?comp_id=<?php echo $zeile['comp_ID'] ?>"  >Leaderboard</a>-->
+    <!--<li><a href = "javascript:;" onclick="deleteComp(<?php echo $zeile['comp_ID'] ?>);" > Delete Competition</a>-->
                                                 </ul>
                                             </div>
 
                                         </div>
-                                        <h4 class="card-title">
+                                        <h4 class="card-title" style="text-overflow: ellipsis;
+                                            white-space: nowrap;">
                                             <a href="competitionView.php?comp_id=<?php echo $zeile['comp_ID'] ?>"><?php echo $zeile['comp_name'] ?></a>
                                         </h4>
                                         <div class="card-description">
@@ -326,8 +340,8 @@ Database::disconnect();
     <script src="js/material-dashboard.js"></script>
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="js/demo.js"></script>
-    
-    
+
+
     <script type="text/javascript">
                                 $(document).ready(function () {
 
@@ -336,8 +350,8 @@ Database::disconnect();
 
                                     demo.initVectorMap();
                                 });
-                                
-                                
+
+
     </script>
 
 

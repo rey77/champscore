@@ -6,6 +6,17 @@ if ($_SESSION['eingeloggt'] == false) {
     header("Location: /index.php");
     exit();
 }
+
+
+include 'Database.php';
+$pdo = Database::connect();
+
+$sql = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_city, comp_country, comp_active from tbl_competition";
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$q = $pdo->prepare($sql);
+$q->execute();
+
+Database::disconnect();
 ?>
 
 
@@ -40,55 +51,46 @@ if ($_SESSION['eingeloggt'] == false) {
             Tip 3: you can change the color of the sidebar with data-background-color="white | black"
                 -->
                 <div class="logo">
-                    <a href="athleteIndex.php" class="simple-text">
+                    <a href="hostIndex.php" class="simple-text">
                         <p><!--<img style=" margin-left: -20px; height: 70px;" class="logo" src="../img/Logo.png" alt=""/>-->
                             <img style="  height: 20px;" src="img/text.png" alt=""/></p>
                     </a>
 
                 </div>
                 <div class="logo logo-mini">
-                    <a href="athleteIndex.php" class="simple-text">
+                    <a href="hostIndex.php" class="simple-text">
                         CS
                     </a>
                 </div>
                 <div class="sidebar-wrapper">
                     <div class="user">
-                        <div class="photo">
-                            <img src="uploads/athlete/profile/<?php echo $_SESSION['athlete_id'] . ".jpg" ?>">
-                        </div>
+
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                                <?php echo $_SESSION['athleteEmail']; ?>
+                                <?php echo $_SESSION['admin_email']; ?>
                                 <b class="caret"></b>
                             </a>
                             <div class="collapse" id="collapseExample">
                                 <ul class="nav">
 
+
                                     <li>
-                                        <a href="athletePersonalData.php">Edit Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="loginsec/logout.php">Log out</a>
+                                        <a href="loginsec/logout.php">Log Out</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <ul class="nav">
-                        <li>
-                            <a href="./athleteAllCompetitions.php">
-                                <i class="material-icons">public</i>
-                                <p>ALL COMPETITIONS</p>
-                            </a>
-                        </li>
-                        <li>
+                        <li  class="active">
 
-                            <a href="./athleteCompetitions.php">
+                            <a href="./adminIndex.php">
                                 <i class="material-icons">dashboard</i>
-                                <p>MY COMPETITIONS</p>
+                                <p>COMPETITIONS</p>
 
                             </a>
                         </li>
+
 
 
                     </ul>
@@ -114,29 +116,92 @@ if ($_SESSION['eingeloggt'] == false) {
                         </div>
 
                     </div>
+
+
                 </nav>
+
                 <div class="content">
                     <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-8 col-md-offset-2 text-center">
-                                <h2 class="title">WELCOME TO CHAMPSCORE</h2>
-                                <h5 class="description">AS AN ATHLETE YOU HAVE POSSIBILITES TO BROWSE AND REGISTER FOR COMPETITIONS</h5>
-                            </div>
-                        </div>
 
-                        <div class="row">
-                            <div class="col-md-8 col-md-offset-2 text-center">
-                                <a class="btn btn-lg btn-oxfordblue"  href = "athleteCompetitions.php" >
-                                    <i class="material-icons">fitness_center</i> My Competitions
-                                </a> 
-                                <a class="btn btn-lg"  href = "athleteAllCompetitions.php" >
-                                    <i class="material-icons">public</i> Browse Competitions
-                                </a>
-                                
+
+                        <br>
+                        <?php
+                        while ($zeile = $q->fetch(/* PDO::FETCH_ASSOC */)) {
+
+
+                            $compLogo = $zeile['comp_logo'];
+                            if ($compLogo != 0) {
+                                $logosrc = "uploads/host/complogo/$compLogo";
+                            } else {
+                                $logosrc = "img/image_placeholder.jpg";
+                            }
+
+                            $originalDate = $zeile['comp_start_date'];
+                            $newDate = date("d.m.Y", strtotime($originalDate));
+                            ?>
+
+
+
+                            <div class="col-md-4">
+                                <div class="card card-product">
+                                    <div class="card-image" data-header-animation="true">
+                                        <a href="#pablo">
+                                            <img class="img" src="<?php echo $logosrc ?>">
+                                        </a>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="card-actions">
+
+                                            <div class ="dropdown">
+                                                <button class = "btn btn-pinterest dropdown-toggle" type = "button" data-toggle = "dropdown">Options
+                                                    <span class = "caret"></span></button>
+
+                                                <ul class = "dropdown-menu">
+                                                    <li><a href = "editCompetition.php?comp_id=<?php echo $zeile['comp_ID'] ?>"  >EDIT COMPETITION</a></li>
+                                                    <li><a href = "wodCustomize.php?comp_id=<?php echo $zeile['comp_ID'] ?>" >DIVISIONS & WODS</a></li>
+                                                    <li><a href = "athletesCustomize.php?comp_id=<?php echo $zeile['comp_ID'] ?>"  >ATHLETES AND TEAMS</a></li>
+                                                    <li><a href = "competitionAddScore.php?comp_ID=<?php echo $zeile['comp_ID'] ?>"  >SCORES</a></li>
+                                                    <li><a href = "adminAddScoresheets.php?comp_ID=<?php echo $zeile['comp_ID'] ?>"  >SCORESHEETS</a></li>
+                                                    
+<!--<li><a href = "competitionTicketing.php?comp_ID=<?php echo $zeile['comp_ID'] ?>"  >TICKETING</a></li>-->
+                                                   <!-- <li><a href = "scoreboardCustomize.php?comp_id=<?php echo $zeile['comp_ID'] ?>"  >Leaderboard</a>-->
+                                                    <!--<li><a href = "javascript:;" onclick="deleteComp(<?php echo $zeile['comp_ID'] ?>);" > Delete Competition</a>-->
+                                                </ul>
+                                            </div>
+
+                                        </div>
+                                        <h4 class="card-title" style="text-overflow: ellipsis;
+                                            white-space: nowrap;">
+                                            <a href="competitionView.php?comp_id=<?php echo $zeile['comp_ID'] ?>"><?php echo $zeile['comp_name'] ?></a>
+                                        </h4>
+                                        <div class="card-description">
+
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <div class="price">
+                                            <h4><?php echo $newDate ?></h4>
+                                        </div>
+                                        <div class="stats pull-right">
+                                            <p class="category"><i class="material-icons">place</i><?php echo $zeile['comp_city'] ?>, <?php echo $zeile['comp_country'] ?></p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
+
+
+
+
+                            <?php
+                        }
+                        ?>
+
+
                     </div>
                 </div>
+
+
+
                 <footer class="footer">
                     <div class="container-fluid">
 
@@ -145,7 +210,7 @@ if ($_SESSION['eingeloggt'] == false) {
                             <script>
                                 document.write(new Date().getFullYear())
                             </script>
-                             <a>champscore</a>
+                            <a>champscore</a>
                         </p>
                     </div>
                 </footer>

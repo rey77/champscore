@@ -72,21 +72,21 @@ if ($_SESSION['eingeloggt'] == false) {
             Tip 3: you can change the color of the sidebar with data-background-color="white | black"
                 -->
                 <div class="logo">
-                    <a href="index.php" class="simple-text">
+                    <a href="hostIndex.php" class="simple-text">
                         <p><!--<img style=" margin-left: -20px; height: 70px;" class="logo" src="../img/Logo.png" alt=""/>-->
                             <img style="  height: 20px;" src="img/text.png" alt=""/></p>
                     </a>
                     
                 </div>
                 <div class="logo logo-mini">
-                    <a href="index.php" class="simple-text">
+                    <a href="hostIndex.php" class="simple-text">
                         CS
                     </a>
                 </div>
                 <div class="sidebar-wrapper">
                     <div class="user">
                         <div class="photo">
-                            <img src="uploads/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
+                            <img src="uploads/host/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
                         </div>
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
@@ -116,7 +116,7 @@ if ($_SESSION['eingeloggt'] == false) {
                             
                             <a href="./hostCompetitions.php">
                                 <i class="material-icons">dashboard</i>
-                               <p>MY COMPETTIONS</p>
+                               <p>MY COMPETITIONS</p>
                             
                             </a>
                         </li>
@@ -148,7 +148,7 @@ if ($_SESSION['eingeloggt'] == false) {
                 </nav>
                 <div class="content">
                     <div class="row">
-                    <div class="col-lg-3 container-fluid align-right">
+                    <div class="col-lg-3 col-lg-offset-4 col-md-3 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2 container-fluid align-right">
 
                         <?php
                         $compID = $_GET['comp_ID'];
@@ -170,7 +170,7 @@ if ($_SESSION['eingeloggt'] == false) {
                         }
                         ?>
 
-                        <select class = "selectpicker form-control" data-style="btn btn-darkred btn-round" id = "selDiv" onChange="onSelectDivision(<?php echo $compID ?>);">
+                        <select class = "selectpicker form-control" data-style="btn btn-pinterest" id = "selDiv" onChange="onSelectDivision(<?php echo $compID ?>);">
                               <option value='0' disabled selected>Choose Division</option>
                             <?php
                             $sql_div = "SELECT div_name, div_ID FROM `tbl_division` where fk_comp_id = ?";
