@@ -162,7 +162,7 @@ if (isset($_POST['athleteEmail']) AND isset($_POST['athletePassword1'])) {
         $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
         $mail->Port = 465;                                    // TCP port to connect to
         $mail->setFrom('info@champscore.ch', 'champscore');
-        $mail->addAddress($athleteEmail, $athleteFirstName + " " + $athleteLastName);     // Add a recipient
+        $mail->addAddress($athleteEmail, $athleteFirstName . " " . $athleteLastName);     // Add a recipient
         $mail->addReplyTo('info@champscore.ch', 'Information');
         $mail->isHTML(true);                                  // Set email format to HTML
         $mail->AddEmbeddedImage('../img/text_dark.png', 'cs');
@@ -170,7 +170,7 @@ if (isset($_POST['athleteEmail']) AND isset($_POST['athletePassword1'])) {
         $mail->Body = 'Welcome, ' . $athleteFirstName . '<br><br>And thanks for joining our competition community! Our goal is to provide you a better competition experience overall.<br><br>'
             . '<h2>Look for Competitions</h2>As an Athlete, you can browse for competitions, sign up for them and track your results within your Athlete account<br><br>'
             . '<h2>Login to your Account</h2>Click <a href = "http://www.champscore.ch/php/athleteLogin.php">here</a> to Log in<br><br><br><br>'
-            . 'Happy Competing!<br><br><br><a href = "http://www.champscore.ch"><img src="cid:cs" alt="www.champscore.ch" height="30" /></a><br>';
+            . 'Happy Competing!<br><br><br><a href = "http://www.champscore.ch"><img src="cid:cs" alt="www.champscore.ch" height="30" style="padding-left: 20px; padding-right: 20px; width: 100%" /></a><br>';
         $mail->AltBody = "Welcome,  " . $athleteFirstName
             . "\n\nAnd thanks for joining our competition community! Our goal is to provide you a better competition experience overall.
                \n\nAs an Athlete, you can browse for competitions, sign up for them and track your results within your Athlete account.
