@@ -169,14 +169,14 @@ Database::disconnect();
             Tip 3: you can change the color of the sidebar with data-background-color="white | black"
                 -->
                 <div class="logo">
-                    <a href="index.php" class="simple-text">
+                    <a href="hostIndex.php" class="simple-text">
                         <p><!--<img style=" margin-left: -20px; height: 70px;" class="logo" src="../img/Logo.png" alt=""/>-->
                             <img style="  height: 20px;" src="img/text.png" alt=""/></p>
                     </a>
                     
                 </div>
                 <div class="logo logo-mini">
-                    <a href="index.php" class="simple-text">
+                    <a href="hostIndex.php" class="simple-text">
                         CS
                     </a>
                 </div>
@@ -195,11 +195,9 @@ Database::disconnect();
                                    <!-- <li>
                                         <a href="#">My Profile</a>
                                     </li>-->
+                                    
                                     <li>
-                                        <a href="hostPersonalData.php">Edit Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="loginsec/logout.php">Log out</a>
+                                        <a href="loginsec/logout.php">Log Out</a>
                                     </li>
                                     <!--<li>
                                         <a href="#">Settings</a>
@@ -212,14 +210,14 @@ Database::disconnect();
                         <li>
                             <a href="./hostAllCompetitions.php">
                                 <i class="material-icons">public</i>
-                                <p>All Competitions</p>
+                                <p>ALL COMPETITIONS</p>
                             </a>
                         </li>
                         <li>
                             
                             <a href="./hostCompetitions.php">
                                 <i class="material-icons">dashboard</i>
-                               <p>My Competitions</p>
+                               <p>MY COMPETITIONS</p>
                             
                             </a>
                         </li>
@@ -244,62 +242,9 @@ Database::disconnect();
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"> Edit Profile </a>
+                            <a class="navbar-brand" href="#"> EDIT PROFILE </a>
                         </div>
-                        <div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">dashboard</i>
-                                        <p class="hidden-lg hidden-md">Dashboard</p>
-                                    </a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">notifications</i>
-                                        <span class="notification">5</span>
-                                        <p class="hidden-lg hidden-md">
-                                            Notifications
-                                            <b class="caret"></b>
-                                        </p>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="#">Mike John responded to your email</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">You have 5 new tasks</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">You're now friend with Andrew</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Another Notification</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Another One</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">person</i>
-                                        <p class="hidden-lg hidden-md">Profile</p>
-                                    </a>
-                                </li>
-                                <li class="separator hidden-lg hidden-md"></li>
-                            </ul>
-                            <form class="navbar-form navbar-right" role="search">
-                                <div class="form-group form-search is-empty">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                    <span class="material-input"></span>
-                                </div>
-                                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                    <i class="material-icons">search</i>
-                                    <div class="ripple-container"></div>
-                                </button>
-                            </form>
-                        </div>
+                        
                     </div>
                 </nav>
                 <div class="content">
@@ -334,7 +279,7 @@ Database::disconnect();
                                                         <?php echo $hostAffiliate ?>
                                                     </p>
                                                     <div>
-                                                        <span class="btn btn-raised btn-round btn-default btn-file">
+                                                        <span class="btn btn-raised btn-round btn-pinterest btn-file">
                                                             <span class="fileinput-new">Select Photo</span>
                                                             <span class="fileinput-exists">Change</span>
 
@@ -731,9 +676,7 @@ Database::disconnect();
 
 
                 </div>
-            </div>
-
-            <footer class="footer">
+                <footer class="footer">
                     <div class="container-fluid">
 
                         <p class="copyright pull-right">
@@ -745,6 +688,9 @@ Database::disconnect();
                         </p>
                     </div>
                 </footer>
+            </div>
+
+            
         </div>
     
 

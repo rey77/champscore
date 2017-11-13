@@ -252,7 +252,7 @@ session_start();
                 <div class="container">
 
                     <div class="row">
-                        <div class="col-xs-6 col-xs-offset-3">
+                        <div class="col-xs-12 col-xs-offset-0">
                             <div class="profile">
                                 <div class="avatar">
                                     <img src="<?php echo $logosrc ?>" alt="Circle Image" style="border: solid; border-color: <?php echo "#" . $compAccentColor ?>" class="img-rounded img-responsive img-raised">
@@ -557,10 +557,10 @@ session_start();
 
 
                                                     <?php
-                                                    $sql_wod_colspan = "select * from tbl_wod where fk_div_id = ?";
+                                                    $sql_wod_colspan = "select * from tbl_wod where fk_div_id = ? and wod_is_published =?";
                                                     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                                                     $q_wod_colspan = $pdo->prepare($sql_wod_colspan);
-                                                    $q_wod_colspan->execute(array($valueDiv));
+                                                    $q_wod_colspan->execute(array($valueDiv,TRUE));
 
                                                     if ($q_wod_colspan->rowCount() == 0) {
 

@@ -27,7 +27,7 @@ if (ini_get("session.use_cookies")) {
         <link rel="icon" type="image/png" href="../img/favicon-16x16.png">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-        <title>Login</title>
+        <title>Athlete Login</title>
 
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
@@ -64,7 +64,7 @@ if (ini_get("session.use_cookies")) {
                         <div class="card card-signup">
                             <form class="form" name="formLogin" onsubmit="onSubmitLogin()" method="POST" action="loginsec/loginAthlete.php">
                                 <div class="header header-pinterest text-center">
-                                    <h4 class="card-title">Athlete Login</h4>
+                                    <h4 class="card-title">ATHLETE LOGIN</h4>
                                     <!--<div class="social-line">
                                         <a href="#pablo" class="btn btn-just-icon btn-simple">
                                             <i class="fa fa-facebook-square"></i>
@@ -94,7 +94,7 @@ if (ini_get("session.use_cookies")) {
                                             <i class="material-icons">lock_outline</i>
                                         </span>
                                         <input type="password" name="athletePassword" placeholder="Password..." class="form-control" type="password" required="true" />
-                                    <a href="#" class="passforgot"  data-toggle="modal" data-target="#passwordforgot">Forgot your Password?</a>
+                                    <a href="#" class="passforgot"  data-toggle="modal" data-target="#passwordforgot">FORGOT YOUR PASSWORD?</a>
                                     
                                     </div>
                                                 

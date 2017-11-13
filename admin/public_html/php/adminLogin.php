@@ -27,7 +27,7 @@ if (ini_get("session.use_cookies")) {
         <link rel="icon" type="image/png" href="../img/favicon-16x16.png">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-        <title>Login</title>
+        <title>Admin Login</title>
 
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
@@ -57,14 +57,14 @@ if (ini_get("session.use_cookies")) {
             </div>
         </nav>
 
-        <div class="page-header header-filter" style="background-image: url('img/hostLoginHeader.jpg'); background-size: cover; background-position: top center;">
+        <div class="page-header header-filter" style="background-image: url('img/athleteLoginHeader.jpg'); background-size: cover; background-position: top center;">
             <div class="container">
                 <div class="row">
                     <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
                         <div class="card card-signup">
-                            <form class="form" name="formLogin" method="POST" action="loginsec/loginHost.php">
+                            <form class="form" name="formLogin" onsubmit="onSubmitLogin()" method="POST" action="loginsec/loginAdmin.php">
                                 <div class="header header-pinterest text-center">
-                                    <h4 class="card-title">HOST LOGIN</h4>
+                                    <h4 class="card-title">ADMIN LOGIN</h4>
                                     <!--<div class="social-line">
                                         <a href="#pablo" class="btn btn-just-icon btn-simple">
                                             <i class="fa fa-facebook-square"></i>
@@ -86,15 +86,18 @@ if (ini_get("session.use_cookies")) {
                                         <span class="input-group-addon">
                                             <i class="material-icons">email</i>
                                         </span>
-                                        <input type="email" name ="hostEmail" class="form-control" placeholder="Email..." email="true" required="true">
+                                        <input type="email" name ="adminEmail" class="form-control" placeholder="Email..." email="true" required="true">
                                     </div>
 
                                     <div class="input-group">
                                         <span class="input-group-addon">
                                             <i class="material-icons">lock_outline</i>
                                         </span>
-                                        <input type="password" name="hostPassword" placeholder="Password..." class="form-control" type="password" required="true" />
+                                        <input type="password" name="adminPassword" placeholder="Password..." class="form-control" type="password" required="true" />
+
+
                                     </div>
+
 
                                     <!-- If you want to add a checkbox to this form, uncomment this code
 
@@ -118,6 +121,32 @@ if (ini_get("session.use_cookies")) {
 
         </div>
 
+        <footer class="footer">
+            <div class="container">
+
+
+                <ul class="pull-center">
+                    <li>
+                        <a style="color:black" href="#pablo">
+                            info@champscore.ch
+                        </a>
+                    </li>
+
+
+                </ul>
+
+                <!--<ul class="social-buttons pull-right">
+                    
+                    <li>
+                        <a href="https://www.facebook.com/CreativeTim" target="_blank" class="btn btn-just-icon btn-simple">
+                            <i class="fa fa-facebook-square"></i>
+                        </a>
+                    </li>
+                   
+                </ul>-->
+
+            </div>
+        </footer>
     </body>
     <!--   Core JS Files   -->
     <script src="js/jquery.min.js" type="text/javascript"></script>

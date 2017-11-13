@@ -40,14 +40,14 @@ if ($_SESSION['eingeloggt'] == false) {
             Tip 3: you can change the color of the sidebar with data-background-color="white | black"
                 -->
                 <div class="logo">
-                    <a href="index.php" class="simple-text">
+                    <a href="hostIndex.php" class="simple-text">
                         <p><!--<img style=" margin-left: -20px; height: 70px;" class="logo" src="../img/Logo.png" alt=""/>-->
                             <img style="  height: 20px;" src="img/text.png" alt=""/></p>
                     </a>
 
                 </div>
                 <div class="logo logo-mini">
-                    <a href="http://www.creative-tim.com" class="simple-text">
+                    <a href="hostIndex.php" class="simple-text">
                         CS
                     </a>
                 </div>
@@ -55,6 +55,7 @@ if ($_SESSION['eingeloggt'] == false) {
                     <div class="user">
                         <div class="photo">
                             <img src="uploads/host/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
+                            
                         </div>
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
@@ -78,14 +79,14 @@ if ($_SESSION['eingeloggt'] == false) {
                         <li>
                             <a href="./hostAllCompetitions.php">
                                 <i class="material-icons">public</i>
-                                <p>All Competitions</p>
+                                <p>ALL COMPETITIONS</p>
                             </a>
                         </li>
                         <li>
                             
                             <a href="./hostCompetitions.php">
                                 <i class="material-icons">dashboard</i>
-                               <p>My Competitions</p>
+                               <p>MY COMPETITIONS</p>
                             
                             </a>
                         </li>
@@ -119,8 +120,20 @@ if ($_SESSION['eingeloggt'] == false) {
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2 text-center">
-                                <h2 class="title">Welcome to champscore</h2>
-                                <h5 class="description">As a Host you have possibilites to manage whole Competitions</h5>
+                                <h2 class="title">WELCOME TO CHAMPSCORE</h2>
+                                <h5 class="description">AS A HOST YOU HAVE THE POSSIBILITY TO MANAGE WHOLE COMPETITIONS AND PARTICIPANTS</h5>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2 text-center">
+                                
+                                <a class="btn btn-lg btn-pinterest"  href = "hostCompetitions.php" >
+                                    <i class="material-icons">fitness_center</i> My Competitions
+                                </a> 
+                                <a class="btn btn-lg "  href = "hostAllCompetitions.php" >
+                                    <i class="material-icons">public</i> Browse all Competitions
+                                </a>
                             </div>
                         </div>
 

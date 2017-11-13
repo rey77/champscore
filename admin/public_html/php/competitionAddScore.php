@@ -14,7 +14,7 @@ if ($_SESSION['eingeloggt'] == false) {
         <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png" />
         <link rel="icon" type="image/png" href="img/favicon-16x16.png" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <title>Material Dashboard Pro by Creative Tim</title>
+        <title>champscore</title>
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
         <!-- Bootstrap core CSS     -->
@@ -72,21 +72,21 @@ if ($_SESSION['eingeloggt'] == false) {
             Tip 3: you can change the color of the sidebar with data-background-color="white | black"
                 -->
                 <div class="logo">
-                    <a href="index.php" class="simple-text">
+                    <a href="hostIndex.php" class="simple-text">
                         <p><!--<img style=" margin-left: -20px; height: 70px;" class="logo" src="../img/Logo.png" alt=""/>-->
                             <img style="  height: 20px;" src="img/text.png" alt=""/></p>
                     </a>
                     
                 </div>
                 <div class="logo logo-mini">
-                    <a href="index.php" class="simple-text">
+                    <a href="hostIndex.php" class="simple-text">
                         CS
                     </a>
                 </div>
                 <div class="sidebar-wrapper">
                     <div class="user">
                         <div class="photo">
-                            <img src="uploads/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
+                            <img src="uploads/host/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
                         </div>
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
@@ -95,14 +95,11 @@ if ($_SESSION['eingeloggt'] == false) {
                             </a>
                             <div class="collapse" id="collapseExample">
                                 <ul class="nav">
-                                    <li>
-                                        <a href="#">My Profile</a>
+                                     <li>
+                                        <a href="hostPersonalData.php">Edit Profile</a>
                                     </li>
                                     <li>
-                                        <a href="#">Edit Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Settings</a>
+                                        <a href="loginsec/logout.php">Log out</a>
                                     </li>
                                 </ul>
                             </div>
@@ -112,14 +109,14 @@ if ($_SESSION['eingeloggt'] == false) {
                         <li>
                             <a href="./hostAllCompetitions.php">
                                 <i class="material-icons">public</i>
-                                <p>All Competitions</p>
+                                <p>ALL COMPETITIONS</p>
                             </a>
                         </li>
                         <li  class="active">
                             
                             <a href="./hostCompetitions.php">
                                 <i class="material-icons">dashboard</i>
-                               <p>My Competitions</p>
+                               <p>MY COMPETITIONS</p>
                             
                             </a>
                         </li>
@@ -144,66 +141,14 @@ if ($_SESSION['eingeloggt'] == false) {
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"> Add Score </a>
+                            <a class="navbar-brand" href="#"> SCORES </a>
                         </div>
-                        <div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">dashboard</i>
-                                        <p class="hidden-lg hidden-md">Dashboard</p>
-                                    </a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">notifications</i>
-                                        <span class="notification">5</span>
-                                        <p class="hidden-lg hidden-md">
-                                            Notifications
-                                            <b class="caret"></b>
-                                        </p>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="#">Mike John responded to your email</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">You have 5 new tasks</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">You're now friend with Andrew</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Another Notification</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Another One</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">person</i>
-                                        <p class="hidden-lg hidden-md">Profile</p>
-                                    </a>
-                                </li>
-                                <li class="separator hidden-lg hidden-md"></li>
-                            </ul>
-                            <form class="navbar-form navbar-right" role="search">
-                                <div class="form-group form-search is-empty">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                    <span class="material-input"></span>
-                                </div>
-                                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                    <i class="material-icons">search</i>
-                                    <div class="ripple-container"></div>
-                                </button>
-                            </form>
-                        </div>
+                        
                     </div>
                 </nav>
                 <div class="content">
-                    <div class="col-lg-12 container-fluid">
+                    <div class="row">
+                    <div class="col-lg-3 col-lg-offset-4 col-md-3 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-8 col-xs-offset-2 container-fluid align-right">
 
                         <?php
                         $compID = $_GET['comp_ID'];
@@ -225,8 +170,8 @@ if ($_SESSION['eingeloggt'] == false) {
                         }
                         ?>
 
-                        <select class = "form-control" id = "selDiv" onChange="onSelectDivision(<?php echo $compID ?>);">
-                            <option value="0">Select Division</option>
+                        <select class = "selectpicker form-control" data-style="btn btn-pinterest" id = "selDiv" onChange="onSelectDivision(<?php echo $compID ?>);">
+                              <option value='0' disabled selected>Choose Division</option>
                             <?php
                             $sql_div = "SELECT div_name, div_ID FROM `tbl_division` where fk_comp_id = ?";
 
@@ -253,7 +198,12 @@ if ($_SESSION['eingeloggt'] == false) {
                             "<th><button type='submit' value='" . $row['div_ID'] . "' id='" . $row['div_ID'] . "' name='divselectbasic' class='btn btn-pinterest'>" . $row['div_name'] . "  </button>  </th> ";
                         }
                         ?>
+                        
                         -->
+                        </div>
+                    </div>
+                    <div class="row">
+                    <div class="col-lg-12 container-fluid">
                         <div id="sel">
 
 
@@ -366,6 +316,7 @@ Database::disconnect();
 ?>
 
                     </div>
+                        </div>
                 </div>
 
             </div>

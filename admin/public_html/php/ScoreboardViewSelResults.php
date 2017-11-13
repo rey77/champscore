@@ -24,6 +24,7 @@ $q_comp->execute(array($compID));
 
 while ($zeile = $q_comp->fetch(/* PDO::FETCH_ASSOC */)) {
     $compAccentColor = $zeile['comp_accent_color'];
+    $compMainColor = $zeile['comp_main_color'];
 }
 
 
@@ -76,7 +77,7 @@ while ($zeile = $q_des->fetch(/* PDO::FETCH_ASSOC */)) {
 
 if ($wodOverall) {
 
-    echo "<center><h3><b>Total Score</b></h3></center><br>";
+
 
 
     if ($divIsTeam) {
@@ -95,8 +96,8 @@ if ($wodOverall) {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $q_wod = $pdo->prepare($sql_wod);
     $q_wod->execute(array($div_ID));
-
     while ($zeile = $q_wod->fetch(/* PDO::FETCH_ASSOC */)) {
+
         $zeile['wodID'];
 
         if ($divIsTeam) {
@@ -221,6 +222,8 @@ if ($wodOverall) {
     asort($final);
     $arrayCount = count($final);
     $arrayCount++;
+
+
     echo"<br>";
     echo"<div class=\"col-lg-6 col-md-12 col-md-12 col-md-12\">";
     foreach ($final as $athleteName => $value) {
@@ -249,18 +252,18 @@ if ($wodOverall) {
             echo"</div><div class=\"col-lg-6 col-md-12 col-md-12 col-md-12\">";
         }
 
-
+echo"<br>";
         echo "<div class=\"col-lg-12 col-md-12 col-md-12 col-md-12\" style=\" margin: -50px 0px 0px 0px; \">"
         . "<div class=\"card\" style=\"vertical-align: middle; height: 100px;\" >"
         . "<div class=\"card-content\">"
         . "<div class=\"col-lg-2 col-md-2 col-sm-2 col-xs-2\">"
-        . "<h3 style=\"color:#$desRankColor;\"><b>" . $index_rank . "</b></h3>"
+        . "<h3 style=\"color:#$compAccentColor;\"><b>" . $index_rank . "</b></h3>"
         . "</div>"
         . "<div class=\"col-lg-8 col-md-8 col-sm-8 col-xs-8\" style=\" overflow:hidden; white-space:nowrap; text-overflow: ellipsis;\">"
-        . "<h3 style=\"color:#$desCompetitorColor;\">" . $athleteName . "</h3>"
+        . "<h3><b>" . $athleteName . "</b></h3>"
         . "</div>"
         . "<div class=\"col-lg-2 col-md-2 col-sm-2 col-xs-2\">"
-        . "<h3 style =\"color:#$desScoreColor;\">" . $overallScore . "</h3>"
+        . "<h3 style =\"color:#$compMainColor;\">" . $overallScore . "</h3>"
         . "</div>"
         . "</div>"
         . "</div>"
@@ -315,8 +318,7 @@ if ($wodOverall) {
                     <div class="col-md-12" align="left">
                         <?php
                         echo"<div  class=\"col-md-offset-3\" style=\" overflow: auto;
-          word-wrap: normal;
-          color:#$desWodDescColor\">"
+          word-wrap: normal;\">"
                         . "<h4>" . $wodDescFormatted . "</h4>"
                         . "</div>";
                         ?>
@@ -452,13 +454,13 @@ if ($wodOverall) {
             . "<div class=\"card\" style=\"vertical-align: middle; height: 100px;\" >"
             . "<div class=\"card-content\">"
             . "<div class=\"col-lg-2 col-md-2 col-sm-2 col-xs-2\">"
-            . "<h3 style=\"color:#$desRankColor;\"><b>" . $index_rank . "</b></h3>"
+            . "<h3 style=\"color:#$compAccentColor;\"><b>" . $index_rank . "</b></h3>"
             . "</div>"
             . "<div class=\"col-lg-8 col-md-8 col-sm-8 col-xs-8\" style=\" overflow:hidden; white-space:nowrap; text-overflow: ellipsis;\">"
-            . "<h3 style=\"color:#$desCompetitorColor;\">" . $athleteName . "</h3>"
+            . "<h3><b>" . $athleteName . "</b></h3>"
             . "</div>"
             . "<div class=\"col-lg-2 col-md-2 col-sm-2 col-xs-2\">"
-            . "<h3 style =\"color:#$desScoreColor;\">" . $scoreDisplay . "</h3>"
+            . "<h3 style =\"color:#$compMainColor;\">" . $scoreDisplay . "</h3>"
             . "</div>"
             . "</div>"
             . "</div>"

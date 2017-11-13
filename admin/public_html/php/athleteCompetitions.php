@@ -29,7 +29,7 @@ $q_indiv->execute(array($athleteID));
         <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png" />
         <link rel="icon" type="image/png" href="img/favicon-16x16.png" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <title>champscore</title>
+        <title>My Competitions</title>
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
         <!-- Bootstrap core CSS     -->
@@ -49,7 +49,7 @@ $q_indiv->execute(array($athleteID));
     <body>
         <div class="wrapper">
 
-            <div class="sidebar" data-active-color="darkred" data-background-color="black" data-image="img/sidebar-1.jpg">
+            <div class="sidebar" data-active-color="oxfordblue" data-background-color="black" data-image="img/sidebar-1.jpg">
                 <!--
             Tip 1: You can change the color of active element of the sidebar using: data-active-color="purple | blue | green | orange | red | rose"
             Tip 2: you can also add an image using data-image tag
@@ -94,14 +94,14 @@ $q_indiv->execute(array($athleteID));
                         <li>
                             <a href="./athleteAllCompetitions.php">
                                 <i class="material-icons">public</i>
-                                <p>All Competitions</p>
+                                <p>ALL COMPETITIONS</p>
                             </a>
                         </li>
                         <li class="active">
 
                             <a href="./athleteCompetitions.php">
                                 <i class="material-icons">dashboard</i>
-                                <p>My Competitions</p>
+                                <p>MY COMPETITIONS</p>
 
                             </a>
                         </li>
@@ -126,7 +126,7 @@ $q_indiv->execute(array($athleteID));
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"> My Competitions </a>
+                            <a class="navbar-brand" href="#"> MY COMPETITIONS </a>
                         </div>
 
                     </div>
@@ -137,23 +137,20 @@ $q_indiv->execute(array($athleteID));
                         <div class="row">
                             <div class="col-lg-12">
 
-                                <p>Here, you can see your upcoming, current and past competitions</p>
-
-
+                                <p>HERE, YOU CAN SEE YOUR UPCOMING, CURRENT AND PAST COMPETITIONS</p>
 
                             </div>
                         </div>
-
 
 
                         <div class="row">
 
                             <div class="col-md-12">
                                 <div class="card">
-                                    <div class="card-header card-header-tabs" data-background-color="darkred" >
+                                    <div class="card-header card-header-tabs" data-background-color="oxfordblue" >
                                         <div class="nav-tabs-navigation">
                                             <div class="nav-tabs-wrapper">
-                                                <span class="nav-tabs-title"><b>Competitions</b></span>
+                                                <span class="nav-tabs-title"><b>COMPETITIONS:</b></span>
                                                 <ul class="nav nav-tabs" data-tabs="tabs" >
 
                                                     <li class="active">

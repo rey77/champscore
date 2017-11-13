@@ -25,9 +25,8 @@ if ($_SESSION['eingeloggt'] == false) {
         <!--     Fonts and icons     -->
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
-
+        <script src="js/colorpicker/jscolor.js"></script>
     </head>
-
 
     <body>
 
@@ -40,14 +39,15 @@ if ($_SESSION['eingeloggt'] == false) {
             Tip 3: you can change the color of the sidebar with data-background-color="white | black"
                 -->
                 <div class="logo">
-                    <a href="index.php" class="simple-text">
+                    <a href="hostIndex.php" class="simple-text">
                         <p><!--<img style=" margin-left: -20px; height: 70px;" class="logo" src="../img/Logo.png" alt=""/>-->
                             <img style="  height: 20px;" src="img/text.png" alt=""/></p>
                     </a>
 
                 </div>
+
                 <div class="logo logo-mini">
-                    <a href="index.php" class="simple-text">
+                    <a href="hostIndex.php" class="simple-text">
                         CS
                     </a>
                 </div>
@@ -64,13 +64,10 @@ if ($_SESSION['eingeloggt'] == false) {
                             <div class="collapse" id="collapseExample">
                                 <ul class="nav">
                                     <li>
-                                        <a href="#">My Profile</a>
+                                        <a href="hostPersonalData.php">Edit Profile</a>
                                     </li>
                                     <li>
-                                        <a href="person.php">Edit Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Settings</a>
+                                        <a href="loginsec/logout.php">Log out</a>
                                     </li>
                                 </ul>
                             </div>
@@ -80,15 +77,15 @@ if ($_SESSION['eingeloggt'] == false) {
                         <li>
                             <a href="./hostAllCompetitions.php">
                                 <i class="material-icons">public</i>
-                                <p>All Competitions</p>
+                                <p>ALL COMPETITIONS</p>
                             </a>
                         </li>
                         <li  class="active">
-                            
+
                             <a href="./hostCompetitions.php">
                                 <i class="material-icons">dashboard</i>
-                               <p>My Competitions</p>
-                            
+                                <p>MY COMPETITIONS</p>
+
                             </a>
                         </li>
 
@@ -112,62 +109,9 @@ if ($_SESSION['eingeloggt'] == false) {
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"> My Competitions </a>
+                            <a class="navbar-brand" href="#"> NEW COMPETITION </a>
                         </div>
-                        <div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">dashboard</i>
-                                        <p class="hidden-lg hidden-md">Dashboard</p>
-                                    </a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">notifications</i>
-                                        <span class="notification">5</span>
-                                        <p class="hidden-lg hidden-md">
-                                            Notifications
-                                            <b class="caret"></b>
-                                        </p>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="#">Mike John responded to your email</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">You have 5 new tasks</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">You're now friend with Andrew</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Another Notification</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Another One</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">person</i>
-                                        <p class="hidden-lg hidden-md">Profile</p>
-                                    </a>
-                                </li>
-                                <li class="separator hidden-lg hidden-md"></li>
-                            </ul>
-                            <form class="navbar-form navbar-right" role="search">
-                                <div class="form-group form-search is-empty">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                    <span class="material-input"></span>
-                                </div>
-                                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                    <i class="material-icons">search</i>
-                                    <div class="ripple-container"></div>
-                                </button>
-                            </form>
-                        </div>
+
                     </div>
                 </nav>
                 <div class="content">
@@ -176,7 +120,7 @@ if ($_SESSION['eingeloggt'] == false) {
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header card-header-text" data-background-color="oxfordblue">
-                                    <h4 class="card-title">New Competition</h4>
+                                    <h4 class="card-title">NEW</h4>
 
                                 </div>
                                 <div class="card-content">
@@ -185,7 +129,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                         <div class="row">
 
                                             <div class="col-lg-6" align="center">
-                                                <h3>Competition Logo</h3>
+                                                <h3>COMPETITION LOGO <i class="material-icons">image</i></h3>
                                                 <p class="text-muted">
                                                     This is the Logo of the Competition. Choose a big enough image
                                                 </p>
@@ -206,9 +150,9 @@ if ($_SESSION['eingeloggt'] == false) {
                                             </div>
 
                                             <div class="col-lg-6" align="center">
-                                                <h3>Competition Banner</h3>
+                                                <h3>CCOMPETITION BANNER <i class="material-icons">image</i></h3>
                                                 <p class="text-muted">
-                                                    This is the big picture is displayed on the top of your Competition Page
+                                                    This is the big picture displayed on the top of your Competition Page
                                                 </p>
                                                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">
                                                     <div class="fileinput-new thumbnail">
@@ -227,8 +171,8 @@ if ($_SESSION['eingeloggt'] == false) {
                                             </div>
                                         </div>
 
-
-                                        <h3>Competition Type</h3>
+                                        <hr>
+                                        <h3>COMPETITION TYPE <i class="material-icons">view_compact</i></h3>
                                         <div class="row">
                                             <div class="col-lg-4">
                                                 <div class="radio">
@@ -245,7 +189,8 @@ if ($_SESSION['eingeloggt'] == false) {
 
 
                                         </div>
-                                        <h3>General</h3>
+                                        <hr>
+                                        <h3>GENERAL <i class="material-icons">reorder</i></h3></h3>
 
                                         <div class="row">
                                             <div class="col-lg-4">
@@ -270,7 +215,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                                 </div>
                                             </div>
 
-                                            <div class="col-lg-6">
+                                            <div class="col-lg-12">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Long Description</label>
                                                     <textarea class="form-control" style="resize: none; height: 100px;" name="compDescLong" required></textarea>
@@ -279,7 +224,8 @@ if ($_SESSION['eingeloggt'] == false) {
                                             </div>
 
                                         </div>
-                                        <h3>When</h3>
+                                        <hr>
+                                        <h3>WHEN <i class="material-icons">watch_later</i></h3>
                                         <div class="row">
                                             <div class="col-lg-3">
                                                 <div class="form-group label-floating">
@@ -306,7 +252,8 @@ if ($_SESSION['eingeloggt'] == false) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <h3>Where</h3>
+                                        <hr>
+                                        <h3>WHERE <i class="material-icons">location_on</i></h3>
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group label-floating">
@@ -341,8 +288,8 @@ if ($_SESSION['eingeloggt'] == false) {
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <h3>Social Media</h3>
+                                        <hr>
+                                        <h3>SOCIAL MEDIA <i class="material-icons">share</i></h3>
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group label-floating">
@@ -357,26 +304,25 @@ if ($_SESSION['eingeloggt'] == false) {
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <h3>Colors</h3>
+                                        <hr>
+                                        <h3>COLORS <i class="material-icons">invert_colors</i></h3>
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group label-floating">
                                                     <label>Main Color</label>
-                                                    <button style="width: 25px ;height: 25px" class=" jscolor {valueElement:'chosen-value-mainColor', onFineChange:'setBodyBgColor(this)'} btn btn-default btn-md colorchange">
-                                                    </button>
-                                                    <input  class="form-control" name="compMainColor" id="chosen-value-mainColor" value="<?php echo 000000 ?>">
-
+                                                    <p><button style="width: 25px; height: 25px" class="jscolor {valueElement:'chosen-value-mainColor', value:'0B2545', onFineChange:'setBodyBgColor(this)'} btn btn-round btn-md colorchange">
+                                                        </button>
+                                                        <input  class="form-control" name="compMainColor" id="chosen-value-mainColor" >
+                                                    </p>
                                                 </div>
                                             </div>
-
                                             <div class="col-lg-6">
                                                 <div class="form-group label-floating">
                                                     <label>Accent Color</label>
-                                                    <button style="width: 25px; height: 25px" class=" jscolor {valueElement:'chosen-value-accentColor', onFineChange:'setBodyBgColor(this)'} btn btn-default btn-md colorchange">
-                                                    </button>
-                                                    <input  class="form-control" name="compAccentColor" id="chosen-value-accentColor" value="<?php echo 000000 ?>">
-
+                                                    <p><button style="width: 25px; height: 25px" class=" jscolor {valueElement:'chosen-value-accentColor', value:'cc2127', onFineChange:'setBodyBgColor(this)'} btn btn-round btn-md colorchange">
+                                                        </button>
+                                                        <input  class="form-control" name="compAccentColor" id="chosen-value-accentColor" >
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -391,7 +337,8 @@ if ($_SESSION['eingeloggt'] == false) {
                                             </div>
 
                                         </div>
-                                        <h3>Terms and Conditions</h3>
+                                        <hr>
+                                        <h3>TERMS AND CONDITIONS <i class="material-icons">assignment</i></h3>
 
                                         <div class="col-lg-12" align="center">
 
@@ -404,7 +351,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                                     <span class="btn btn-pinterest btn-round btn-file">
                                                         <span class="fileinput-new">Select PDF File</span>
                                                         <span class="fileinput-exists">Change</span>
-                                                        <input type="file" accept="application/pdf" name="compTerms" id="compTerms" value="<?php echo $logosrc ?>" />
+                                                        <input type="file" accept="application/pdf" name="compTerms" id="compTerms"  />
                                                     </span>
                                                     <a href="#pablo" class="btn btn-pinterest btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
                                                 </div>
@@ -426,38 +373,13 @@ if ($_SESSION['eingeloggt'] == false) {
                 </div>
                 <footer class="footer">
                     <div class="container-fluid">
-                        <nav class="pull-left">
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        Home
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Company
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Portfolio
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Blog
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+
                         <p class="copyright pull-right">
                             &copy;
                             <script>
                                 document.write(new Date().getFullYear())
-
-
                             </script>
-                            <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+                            <a>champscore</a>
                         </p>
                     </div>
                 </footer>

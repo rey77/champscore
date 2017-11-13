@@ -96,21 +96,21 @@ Database::disconnect();
             Tip 3: you can change the color of the sidebar with data-background-color="white | black"
                 -->
                 <div class="logo">
-                    <a href="index.php" class="simple-text">
+                    <a href="hostIndex.php" class="simple-text">
                         <p><!--<img style=" margin-left: -20px; height: 70px;" class="logo" src="../img/Logo.png" alt=""/>-->
                             <img style="  height: 20px;" src="img/text.png" alt=""/></p>
                     </a>
                     
                 </div>
                 <div class="logo logo-mini">
-                    <a href="index.php" class="simple-text">
+                    <a href="hostIndex.php" class="simple-text">
                         CS
                     </a>
                 </div>
                 <div class="sidebar-wrapper">
                     <div class="user">
                         <div class="photo">
-                            <img src="uploads/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
+                            <img src="uploads/host/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
                         </div>
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
@@ -123,7 +123,7 @@ Database::disconnect();
                                         <a href="hostPersonalData.php">Edit Profile</a>
                                     </li>
                                     <li>
-                                        <a href="loginsec/logout.php">Log out</a>
+                                        <a href="loginsec/logout.php">Log Out</a>
                                     </li>
                                 </ul>
                             </div>
@@ -133,14 +133,14 @@ Database::disconnect();
                         <li>
                             <a href="./hostAllCompetitions.php">
                                 <i class="material-icons">public</i>
-                                <p>All Competitions</p>
+                                <p>ALL COMPETITIONS</p>
                             </a>
                         </li>
                         <li  class="active">
                             
                             <a href="./hostCompetitions.php">
                                 <i class="material-icons">dashboard</i>
-                               <p>My Competitions</p>
+                               <p>MY COMPETITIONS</p>
                             
                             </a>
                         </li>
@@ -165,7 +165,7 @@ Database::disconnect();
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"> Division </a>
+                            <a class="navbar-brand" href="#"> EDIT DIVISION </a>
                         </div>
                         
                     </div>
@@ -176,7 +176,7 @@ Database::disconnect();
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header card-header-text" data-background-color="oxfordblue">
-                                    <h4 class="card-title">Edit Division</h4>
+                                    <h4 class="card-title"><?php echo $divName ?></h4>
 
                                 </div>
                                 <div class="card-content">

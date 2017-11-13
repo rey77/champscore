@@ -38,9 +38,6 @@
     <body class="blog-post">
         <?php include_once("./php/analyticstracking.php") ?>
         <div class="cd-section" id="headers">
-            <!--     *********     HEADER 1      *********      -->
-
-            <!--     *********     HEADER 2      *********      -->
             <div class="header-2">
                 <nav class="navbar navbar-transparent navbar-absolute">
                     <div class="container">
@@ -72,7 +69,7 @@
                                     </a>
                                     <ul class="dropdown-menu dropdown-with-icons">
                                         <li>
-                                            <a href="php/athleteLogin.php">
+                                            <a class="host" href="php/athleteLogin.php">
                                                 <i class="material-icons">fingerprint</i> Login
                                             </a>
                                         </li>
@@ -84,7 +81,6 @@
 
                                     </ul>
                                 </li>
-
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person_outline</i> Host
@@ -132,22 +128,30 @@
 
                 <div class="page-header header-filter" style="background-image: url('img/header.jpg');">
                     <div class="container">
-                        <div class="row">
-                            <!--<div class="col-md-8 col-md-offset-2 text-center">
-                                <h1 class="title"> Your Favorite Competition Management Tool</h1>
-                                <h4>You will have an unique competition experience using champscore</h4>
-                            </div>-->
-                            <div class="col-md-6 col-md-offset-0 text-center">
-                                <h1 class="title">ATHLETE</h1>
-                                <a class="btn btn-pinterest" href="php/athleteLogin.php">Login</a>
-                                <a class="btn btn-pinterest" href="php/athleteRegister.php">create Account</a>
-                            </div>
 
-                            <div class="col-md-6 col-md-offset-0 text-center">
-                                <h1 class="title">HOST</h1>
-                                <a class="btn btn-oxfordblue" href="php/hostLogin.php">Login</a>
-                                <a class="btn btn-oxfordblue" href="#">create Account (coming soon)</a>
-                            </div>
+                        <!--<div class="col-md-8 col-md-offset-2 text-center">
+                            <h1 class="title"> Your Favorite Competition Management Tool</h1>
+                            <h4>You will have an unique competition experience using champscore</h4>
+                        </div>-->
+                        <div class="col-lg-6 col-md-6 col-md-offset-0 text-center">
+
+                            <h1 class="title">ATHLETE</h1>
+
+                            <a class="btn btn-oxfordblue" href="php/athleteLogin.php">Login</a>
+
+
+                            <a class="btn btn-oxfordblue" href="php/athleteRegister.php">Register</a>
+
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-md-offset-0 text-center">
+                            <h1 class="title">HOST</h1>
+
+                            <a class="btn btn-pinterest" href="php/hostLogin.php">Login</a>
+
+
+                            <a class="btn btn-pinterest" href="#">Register (coming soon)</a>
+
                         </div>
                     </div>
                 </div>
@@ -159,7 +163,7 @@
                         <br>
                         <br>
                         <div class="col-md-8 col-md-offset-2 text-center">
-                            <h2 class="title">Our Competitions</h2>
+                            <h2 class="title">OUR COMPETITIONS</h2>
                             <!--<h5 class="description">We are happy to host Competitions all around the globe.</h5>-->
                             <br>
                             <br>
@@ -244,40 +248,28 @@
                 </ul>
 
                 <!--<ul class="social-buttons pull-right">
-
                     <li>
                         <a href="https://www.facebook.com/CreativeTim" target="_blank" class="btn btn-just-icon btn-simple">
                             <i class="fa fa-facebook-square"></i>
                         </a>
                     </li>
-
                 </ul>-->
 
             </div>
         </footer>
 
         <!-- <div class="cd-section" id="pricing">
-
-
              <div class="pricing-2" id="pricing-2">
-
                  <div class="container">
-
-
                      <div class="row">
                          <div class="col-md-6 col-md-offset-3 text-center">
                              <h2 class="title">Pricing</h2>
-
                          </div>
                      </div>
                      <div class="row">
-
-
-
                          <div class="col-md-4">
                              <div class="card card-pricing  card-raised" style="background-image: url('php/img/cs.png')">
                                  <div class="card-content">
-
                                      <h1 class="card-title"><small>$</small>.99<small>/ Registration</small></h1>
                                      <ul>
                                          <li><b>+3.5%</b> Fee per registration</li>
@@ -293,14 +285,9 @@
                                  </div>
                              </div>
                          </div>
-
-
-
                      </div>
-
                  </div>
              </div>
-
          </div>-->
 
         <!--   Core JS Files   -->
