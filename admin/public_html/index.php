@@ -33,6 +33,13 @@
         <link href="php/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="php/css/material-kit.css?v=1.1.0" rel="stylesheet"/>
         <link href="assets/css/styles.css" type="text/css" rel="stylesheet"/>
+        <!--   Core JS Files   -->
+        <script src="php/js/jquery-3.1.1.min.js" type="text/javascript"></script>
+        <script src="php/js/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="php/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="php/js/material.min.js" type="text/javascript"></script>
+        <script src="php/js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+        <script src="php/js/jquery.autocomplete.min.js" type="text/javascript"></script>
     </head>
 
     <body class="blog-post">
@@ -165,11 +172,38 @@
                         <div class="col-md-8 col-md-offset-2 text-center">
                             <h2 class="title">OUR COMPETITIONS</h2>
                             <!--<h5 class="description">We are happy to host Competitions all around the globe.</h5>-->
-                            <br>
-                            <br>
                         </div>
+                        <script>
+                            $(function () {
+                                var url = "php/json_comp.php";
 
+                                $.getJSON(url, function (result) {
+                                    var comp = [];
+                                    $.each(result, function (i, field) {
+                                        comp.push(field.comp_name);
+                                    });
+
+                                    $('#autocomplete').autocomplete({
+                                        lookup: comp,
+                                        onSelect: function (suggestion) {
+                                            $.each(result, function (i, field) {
+                                                if(field.comp_name === suggestion.value) {
+                                                    window.location.href = 'php/competitionView.php?comp_id=' + field.comp_id;
+                                                }
+                                            });
+                                        }
+                                    });
+                                });
+                            });
+                        </script>
+                        <form class="navbar-form navbar-right search-form" role="search">
+                            <div class="form-group form-search is-empty field-container" id="search">
+                                <input type="text" class="form-control search-field" placeholder="Search for Competition" id="autocomplete">
+                            </div>
+                        </form>
                     </div>
+                    <br>
+                    <br>
 
                     <div class="row">
 
@@ -321,6 +355,7 @@
 
         <!--    Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc    -->
         <script src="php/js/material-kit.js?v=1.1.0" type="text/javascript"></script>
+        <script src="php/js/jquery.autocomplete.min.js" type="text/javascript"></script>
 
         <script type="text/javascript">
             $().ready(function () {

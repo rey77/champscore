@@ -12,7 +12,7 @@
     $link = mysqli_connect("localhost", $benutzer, $passwort) or die("Keine Verbindung zur Datenbank!");
     mysqli_select_db($link, $dbname) or die("Datenbank nicht gefunden!");
 
-    $abfrage = "SELECT comp_name FROM `tbl_competition`";
+    $abfrage = "SELECT comp_name, comp_id FROM `tbl_competition`";
     $ergebnis = mysqli_query($link, $abfrage) or die("no competitions");
 
     $arr = [];
@@ -21,6 +21,7 @@
         $row = array();
 
         $row['comp_name'] = $obj->comp_name;
+        $row['comp_id'] = $obj->comp_id;
         $arr[] = $row;
 
     }
