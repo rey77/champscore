@@ -330,7 +330,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Sponsors</label>
+                                                    <label class="control-label">Sponsor 1, Sponsor 2, etc.</label>
                                                     <textarea title="sponsors" class="form-control" style="resize: none; height: 100px;" name="compSponsors"></textarea>
                                                     <!--<p class="help-block">Example block-level help text here.</p>-->
                                                 </div>

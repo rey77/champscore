@@ -377,7 +377,12 @@ session_start();
                                     <hr />
                                     <h4 style="color:<?php echo $compMainColor?>" class="title">Sponsors</h4>
                                     <ul class="list-unstyled">
-                                        <p><?php echo $compSponsors; ?></p>
+                                        <?php
+                                            $sponsors = explode(',', $compSponsors);
+                                            foreach ($sponsors as $sponsor) {
+                                                echo '<li>' . trim($sponsor) . '</li>';
+                                            }
+                                        ?>
                                     </ul><br>
 
                 <!-- <p class="description">Vogttraining Equipment</p>-->
