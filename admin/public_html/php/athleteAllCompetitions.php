@@ -193,15 +193,21 @@
                                     $future = addCompToFuture($competitions);
                                     ?>
                                     <div id="tab-1" class="tab-content">
-                                        <? showCompetitionsInAthleteAndHostSite($past); ?>
+                                        <?php
+                                            showCompetitionsInAthleteAndHostSite($past);
+                                        ?>
                                     </div>
 
                                     <div id="tab-2" class="tab-content">
-                                        <? showCompetitionsInAthleteAndHostSite($now); ?>
+                                        <?php
+                                            showCompetitionsInAthleteAndHostSite($now);
+                                        ?>
                                     </div>
 
                                     <div id="tab-3" class="tab-content">
-                                        <? showCompetitionsInAthleteAndHostSite($future); ?>
+                                        <?php
+                                            showCompetitionsInAthleteAndHostSite($future);
+                                        ?>
                                     </div>
                                 </div>
                             </div>

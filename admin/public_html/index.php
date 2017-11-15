@@ -201,15 +201,23 @@
                                     $future = addCompToFuture($competitions);
                                 ?>
                                 <div id="tab-1" class="tab-content">
-                                    <? showCompetitionsInIndex($past); ?>
+                                    <?php
+                                        showCompetitionsInIndex($past);
+                                    ?>
                                 </div>
 
                                 <div id="tab-2" class="tab-content">
-                                    <? showCompetitionsInIndex($now); ?>
+                                    <?php
+                                        showCompetitionsInIndex($now);
+                                    ?>
+
                                 </div>
 
                                 <div id="tab-3" class="tab-content">
-                                    <? showCompetitionsInIndex($future); ?>
+                                    <?php
+                                        showCompetitionsInIndex($future);
+                                    ?>
+                                    ?>
                                 </div>
                             </div>
                         </div>
