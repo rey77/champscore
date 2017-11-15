@@ -217,7 +217,6 @@
                                     <?php
                                         showCompetitionsInIndex($future);
                                     ?>
-                                    ?>
                                 </div>
                             </div>
                         </div>
