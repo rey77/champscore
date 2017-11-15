@@ -109,6 +109,9 @@ session_start();
     </head>
 
     <body class="profile-page">
+        <?php
+            $compID = $_GET['comp_id'];
+        ?>
         <nav class="navbar navbar-transparent navbar-absolute">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -516,7 +519,6 @@ session_start();
                                                     <ul class="nav nav-tabs" data-tabs="tabs" style="color: <?php echo '#' . $compAccentColor ?>">
 
                                                         <?php
-                                                        $compID = $_GET['comp_id'];
                                                         $sql_div = "SELECT div_name, div_ID FROM `tbl_division` where fk_comp_id = ?";
 
                                                         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
