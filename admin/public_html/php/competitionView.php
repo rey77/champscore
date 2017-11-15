@@ -94,7 +94,18 @@ session_start();
         <!-- CSS Files -->
         <link href="css/bootstrap.min.css" rel="stylesheet" />
         <link href="css/material-kit.css?v=1.1.0" rel="stylesheet"/>
-        <link href="../assets/css/styles.css" type="text/css" rel="stylesheet"/>
+        <style type="text/css">
+            @media (max-width: 499px) {
+                .profile-tabs .nav li a {
+                    font-size: 10px;
+                }
+
+                .profile-tabs .nav li a i {
+                    padding: 1px 8px;
+                    font-size: 20px;
+                }
+            }
+        </style>
     </head>
 
     <body class="profile-page">
