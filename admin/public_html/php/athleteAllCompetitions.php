@@ -178,65 +178,47 @@
                         </div>
 
                         <div class="row">
-                            <?php
-                            while ($zeile = $q->fetch(/* PDO::FETCH_ASSOC */)) {
-
-                                $compID = $zeile['comp_ID'];
-                                $compLogo = $zeile['comp_logo'];
-
-                                if ($compLogo != 0) {
-
-                                    $logosrc = "uploads/host/complogo/$compLogo";
-                                } else {
-                                    $logosrc = "http://placehold.it/400x250/000/fff";
-                                }
-                                
-                                 $originalDate = $zeile['comp_start_date'];
-                            $newDate = date("d.m.Y", strtotime($originalDate));
-                                ?> 
-
-                                <div class="col-md-4">
-
-
-                                    <div class="card card-testimonial">
-                                        <div class="icon">
-
-                                        </div>
-
-                                        
-                                        
-                                        
-                                        <div class="footer">
-
-                                            <a  href="competitionView.php?comp_id=<?php echo $compID ?>">
-                                                <h4 class="card-title"><b><?php echo $zeile['comp_name'] ?></b></h4>
-
-                                                </a>
-                                            <p><?php echo $newDate ?> in <?php echo $zeile['comp_city'] ?>, <?php echo $zeile['comp_country'] ?></p>
-                                            
-
-
-
-                                            <div class="card-avatar">
-                                                <a href="competitionView.php?comp_id=<?php echo $compID ?>">
-                                                    <img class="img" src="<?php echo $logosrc ?>">
-                                                </a>
-                                            </div>
-                                        </div>
+                            <div id="tabs-container" class="tabs-container-athlete">
+                                <ul class="tabs-menu">
+                                    <li><a href="#tab-1">Past</a></li>
+                                    <li class="current"><a href="#tab-2">Now</a></li>
+                                    <li><a href="#tab-3">Future</a></li>
+                                </ul>
+                                <div class="tab">
+                                    <?php
+                                    include 'showCompetitions.php';
+                                    $competitions = getCompetitionsFromDB();
+                                    $past = addCompToPast($competitions);
+                                    $now = addCompToNow($competitions);
+                                    $future = addCompToFuture($competitions);
+                                    ?>
+                                    <div id="tab-1" class="tab-content">
+                                        <? showCompetitionsInAthleteAndHostSite($past); ?>
                                     </div>
 
+                                    <div id="tab-2" class="tab-content">
+                                        <? showCompetitionsInAthleteAndHostSite($now); ?>
+                                    </div>
 
+                                    <div id="tab-3" class="tab-content">
+                                        <? showCompetitionsInAthleteAndHostSite($future); ?>
+                                    </div>
                                 </div>
-                                <?php
-                            }
-                            Database::disconnect();
-                            ?>
+                            </div>
 
+                            <script>
+                                $(document).ready(function() {
+                                    $(".tabs-menu a").click(function(event) {
+                                        event.preventDefault();
+                                        $(this).parent().addClass("current");
+                                        $(this).parent().siblings().removeClass("current");
+                                        var tab = $(this).attr("href");
+                                        $(".tab-content").not(tab).css("display", "none");
+                                        $(tab).fadeIn();
+                                    });
+                                });
+                            </script>
                         </div>
-
-
-
-
                     </div>
                 </div>
                 <footer class="footer">

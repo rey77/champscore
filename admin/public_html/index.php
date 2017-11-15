@@ -40,6 +40,7 @@
         <script src="php/js/material.min.js" type="text/javascript"></script>
         <script src="php/js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
         <script src="php/js/jquery.autocomplete.min.js" type="text/javascript"></script>
+        <script src="php/js/script.js" type="text/javascript"></script>
     </head>
 
     <body class="blog-post">
@@ -173,29 +174,6 @@
                             <h2 class="title">OUR COMPETITIONS</h2>
                             <!--<h5 class="description">We are happy to host Competitions all around the globe.</h5>-->
                         </div>
-                        <script>
-                            $(function () {
-                                var url = "php/json_comp.php";
-
-                                $.getJSON(url, function (result) {
-                                    var comp = [];
-                                    $.each(result, function (i, field) {
-                                        comp.push(field.comp_name);
-                                    });
-
-                                    $('#autocomplete').autocomplete({
-                                        lookup: comp,
-                                        onSelect: function (suggestion) {
-                                            $.each(result, function (i, field) {
-                                                if(field.comp_name === suggestion.value) {
-                                                    window.location.href = 'php/competitionView.php?comp_id=' + field.comp_id;
-                                                }
-                                            });
-                                        }
-                                    });
-                                });
-                            });
-                        </script>
                         <form class="navbar-form navbar-right search-form" role="search">
                             <div class="form-group form-search is-empty field-container" id="search">
                                 <input type="text" class="form-control search-field" placeholder="Search for Competition" id="autocomplete">
@@ -207,53 +185,34 @@
 
                     <div class="row">
 
-                        <?php
-                            include 'php/Database.php';
-                            $pdo = Database::connect();
-                            $sql = "select comp_ID, comp_reg_active, comp_name, comp_start_date, comp_logo, comp_city, comp_country from tbl_competition";
-                            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                            $q = $pdo->prepare($sql);
-                            $q->execute(array());
-                            while ($row = $q->fetch(/* PDO::FETCH_ASSOC */)) {
-                                $compID = $row['comp_ID'];
-                                $compLogo = $row['comp_logo'];
-                                $compRegActive = $row['comp_reg_active'];
-                                if ($compLogo != 0) {
-                                    $logosrc = "php/uploads/host/complogo/$compLogo";
-                                } else {
-                                    $logosrc = "http://placehold.it/400x250/000/fff";
-                                }
-                                $originalDate = $row['comp_start_date'];
-                                $newDate = date("d.m.Y", strtotime($originalDate));
-                                ?>
-
-                                <div class="col-md-6">
-                                    <div class="media">
-                                        <a class="pull-left" href="php/competitionView.php?comp_id=<?php echo $compID ?>">
-                                            <div class="avatar">
-                                                <img class="media-object"  src="<?php echo $logosrc ?>">
-                                            </div>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="pull-left" href="php/competitionView.php?comp_id=<?php echo $compID ?>"><h4 class="media-heading" ><?php echo $row['comp_name'] ?> </h4>
-                                            </a><br><br>
-                                            <p><?php echo $newDate . " in " . $row['comp_city'] . ", " . $row['comp_country']; ?>
-
-                                                <?php if ($compRegActive != 0) { ?><a href="php/registrationView_1.php?comp_id=<?php echo $compID ?>"  class="btn btn-pinterest btn-single btn-sm ">Join! </a>
-
-                                                <?php } else { ?>
-
-                                                    <a class="btn btn-pinterest btn-single btn-sm " disabled>Join! </a>
-
-                                                <?php } ?>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div id="tabs-container">
+                            <ul class="tabs-menu">
+                                <li><a href="#tab-1">Past</a></li>
+                                <li class="current"><a href="#tab-2">Now</a></li>
+                                <li><a href="#tab-3">Future</a></li>
+                            </ul>
+                            <div class="tab">
                                 <?php
-                            }
-                            Database::disconnect();
-                        ?>
+                                    include 'php/Database.php';
+                                    include 'php/showCompetitions.php';
+                                    $competitions = getCompetitionsFromDB();
+                                    $past = addCompToPast($competitions);
+                                    $now = addCompToNow($competitions);
+                                    $future = addCompToFuture($competitions);
+                                ?>
+                                <div id="tab-1" class="tab-content">
+                                    <? showCompetitionsInIndex($past); ?>
+                                </div>
+
+                                <div id="tab-2" class="tab-content">
+                                    <? showCompetitionsInIndex($now); ?>
+                                </div>
+
+                                <div id="tab-3" class="tab-content">
+                                    <? showCompetitionsInIndex($future); ?>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <br>
@@ -356,6 +315,7 @@
         <!--    Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc    -->
         <script src="php/js/material-kit.js?v=1.1.0" type="text/javascript"></script>
         <script src="php/js/jquery.autocomplete.min.js" type="text/javascript"></script>
+        <script src="php/js/script.js" type="text/javascript"></script>
 
         <script type="text/javascript">
             $().ready(function () {

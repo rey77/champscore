@@ -43,6 +43,92 @@
     cursor: pointer;
 }
 
+
+.tabs-menu {
+    height: 30px;
+    width: 215px;
+    padding: 0;
+    margin-left: 40%;
+}
+
+.tabs-menu li {
+    height: 30px;
+    line-height: 30px;
+    float: left;
+    margin-right: 10px;
+    background-color: #ccc;
+    border-top: 1px solid #d4d4d1;
+    border-right: 1px solid #d4d4d1;
+    border-left: 1px solid #d4d4d1;
+    list-style: none;
+}
+
+.tabs-menu li.current {
+    position: relative;
+    background-color: #fff;
+    border-bottom: 1px solid #fff;
+    z-index: 5;
+}
+
+.tabs-menu li a {
+    padding: 10px;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+}
+
+.tabs-menu .current a {
+    color: #2e7da3;
+}
+
+.tab {
+    width: auto;
+    margin-top: 30px;
+    margin-left: 105px;
+}
+
+.tab-content {
+    display: none;
+}
+
+#tab-2 {
+    display: block;
+}
+
+.no-competitions {
+    text-align: center;
+    margin-right: 145px;
+}
+
+.tabs-container-athlete > .tabs-menu > li.current {
+    background-color: #EEEEEE;
+    border-bottom: 1px solid #EEEEEE;
+
+}
+
+@media (max-width: 991px) {
+    .tabs-menu {
+        margin-left: 18%;
+    }
+
+    .no-competitions {
+        text-align: left;
+        margin-right: 0;
+        margin-left: 28px;
+    }
+
+    .tabs-container-athlete .no-competitions {
+        margin-left: 22%;
+    }
+
+    .tabs-container-athlete .tabs-menu {
+        margin-left: 36%;
+    }
+    .tabs-container-athlete .tab {
+        margin-right: 18%;
+    }
+}
+
 @media (max-width: 499px) {
     .search-form > .field-container > .search-field {
         font-size: 20px;
@@ -53,5 +139,24 @@
     .search-form > .field-container > .search-field::placeholder {
         font-size: 20px;
         text-align: center;
+    }
+    .tabs-menu {
+        margin-left: 6%;
+    }
+
+    .tab {
+        margin-left: 0;
+    }
+
+    .tabs-container-athlete .tabs-menu {
+        margin-left: 25%;
+    }
+
+    .tabs-container-athlete .no-competitions {
+        margin-left: 16%;
+    }
+
+    .tabs-container-athlete .tab {
+        margin-right: 0;
     }
 }
