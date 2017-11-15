@@ -130,6 +130,13 @@
 }
 
 @media (max-width: 499px) {
+    .profile-tabs .nav li a {
+        font-size: 10px;
+    }
+    .profile-tabs .nav li a i {
+        padding: 1px 8px;
+        font-size: 20px;
+    }
     .search-form > .field-container > .search-field {
         font-size: 20px;
         height: auto;

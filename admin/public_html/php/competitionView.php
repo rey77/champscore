@@ -94,10 +94,7 @@ session_start();
         <!-- CSS Files -->
         <link href="css/bootstrap.min.css" rel="stylesheet" />
         <link href="css/material-kit.css?v=1.1.0" rel="stylesheet"/>
-
-
-
-
+        <link href="../assets/css/styles.css" type="text/css" rel="stylesheet"/>
     </head>
 
     <body class="profile-page">
