@@ -516,6 +516,7 @@ session_start();
                                                     <ul class="nav nav-tabs" data-tabs="tabs" style="color: <?php echo '#' . $compAccentColor ?>">
 
                                                         <?php
+                                                        $compID = $_GET['comp_id'];
                                                         $sql_div = "SELECT div_name, div_ID FROM `tbl_division` where fk_comp_id = ?";
 
                                                         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
