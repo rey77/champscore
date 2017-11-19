@@ -46,7 +46,9 @@ session_start();
     </head>
 
     <body>
-
+    <?php
+    $compID = $_GET['comp_id'];
+    ?>
         <nav class="navbar top-nav navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">

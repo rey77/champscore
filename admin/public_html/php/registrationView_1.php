@@ -222,9 +222,8 @@ $compID = $_GET['comp_id'];
                     return false;
                 }
 
-                if (!this.form.optionsCheckboxes.checked)
+                if (!document.formular.optionsCheckboxes.checked)
                 {
-
                     alert('You must agree to the terms first.');
                     return false;
                 } else {
@@ -242,6 +241,9 @@ $compID = $_GET['comp_id'];
     </head>
 
     <body class="login-page">
+    <?php
+    $compID = $_GET['comp_id'];
+    ?>
         <nav class="navbar navbar-transparent navbar-absolute" id="sectionsNav">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -278,7 +280,7 @@ $compID = $_GET['comp_id'];
                             <div class="row">
                                 <div class="col-md-11 col-md-offset-2 col-sm-11 col-sm-offset-1 col-xs-11 col-xs-offset-1">
 
-                                    <form class="form" id="regForm" onsubmit="return mySubmitCompReg()" method="POST" action="inputCompRegistration.php">
+                                    <form name="formular" class="form" id="regForm" onsubmit="return mySubmitCompReg()" method="POST" action="inputCompRegistration.php">
                                         <input type='hidden' id='compID' name='compID' class='form-control' value= '<?php echo $compID ?>'>
                                         <input type='hidden' id='divID' name='divID' class='form-control' >
                                         <p><b>Note:</b> You need to <a href="athleteRegister.php" target="_blank">create Athlete Accounts</a> before you register for this Competition</p>
@@ -329,7 +331,7 @@ $compID = $_GET['comp_id'];
                                                         I agree to the <a href="#something" data-toggle="modal" data-target="#myModal">I agree to the Terms and Conditions</a>.
                                                     </label>
 
-                                                    <button id="btnRegister"  class="btn btn-pinterest" disabled>Register</button>
+                                                    <button id="btnRegister" class="btn btn-pinterest" onclick="mySubmitCompReg()" disabled>Register</button>
 
                                                 </div>
                                             </div>

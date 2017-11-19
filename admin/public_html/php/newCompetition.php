@@ -326,6 +326,17 @@ if ($_SESSION['eingeloggt'] == false) {
                                                 </div>
                                             </div>
                                         </div>
+                                        <h3>Sponsors</h3>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Sponsor 1, Sponsor 2, etc.</label>
+                                                    <textarea title="sponsors" class="form-control" style="resize: none; height: 100px;" name="compSponsors"></textarea>
+                                                    <!--<p class="help-block">Example block-level help text here.</p>-->
+                                                </div>
+                                            </div>
+
+                                        </div>
                                         <hr>
                                         <h3>TERMS AND CONDITIONS <i class="material-icons">assignment</i></h3>
 
@@ -374,47 +385,45 @@ if ($_SESSION['eingeloggt'] == false) {
                 </footer>
             </div>
         </div>
+        <!--   Core JS Files   -->
+        <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
+        <script src="js/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/material.min.js" type="text/javascript"></script>
+        <script src="js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+        <!-- Forms Validations Plugin -->
+        <script src="js/jquery.validate.min.js"></script>
+        <!--  Plugin for Date Time Picker and Full Calendar Plugin-->
+        <script src="js/moment.min.js"></script>
+        <!--  Charts Plugin -->
+        <script src="js/chartist.min.js"></script>
+        <!--  Plugin for the Wizard -->
+        <script src="js/jquery.bootstrap-wizard.js"></script>
+        <!--  Notifications Plugin    -->
+        <script src="js/bootstrap-notify.js"></script>
+        <!-- DateTimePicker Plugin -->
+        <script src="js/bootstrap-datetimepicker.js"></script>
+        <!-- Vector Map plugin -->
+        <script src="js/jquery-jvectormap.js"></script>
+        <!-- Sliders Plugin -->
+        <script src="js/nouislider.min.js"></script>
+        <!--  Google Maps Plugin    -->
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
+        <!-- Select Plugin -->
+        <script src="js/jquery.select-bootstrap.js"></script>
+        <!--  DataTables.net Plugin    -->
+        <script src="js/jquery.datatables.js"></script>
+        <!-- Sweet Alert 2 plugin -->
+        <script src="js/sweetalert2.js"></script>
+        <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+        <script src="js/jasny-bootstrap.min.js"></script>
+        <!--  Full Calendar Plugin    -->
+        <script src="js/fullcalendar.min.js"></script>
+        <!-- TagsInput Plugin -->
+        <script src="js/jquery.tagsinput.js"></script>
+        <!-- Material Dashboard javascript methods -->
+        <script src="js/material-dashboard.js"></script>
+        <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+        <script src="js/demo.js"></script>
     </body>
-    <!--   Core 
-    Files   -->
-    <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
-    <script src="js/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="js/material.min.js" type="text/javascript"></script>
-    <script src="js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
-    <!-- Forms Validations Plugin -->
-    <script src="js/jquery.validate.min.js"></script>
-    <!--  Plugin for Date Time Picker and Full Calendar Plugin-->
-    <script src="js/moment.min.js"></script>
-    <!--  Charts Plugin -->
-    <script src="js/chartist.min.js"></script>
-    <!--  Plugin for the Wizard -->
-    <script src="js/jquery.bootstrap-wizard.js"></script>
-    <!--  Notifications Plugin    -->
-    <script src="js/bootstrap-notify.js"></script>
-    <!-- DateTimePicker Plugin -->
-    <script src="js/bootstrap-datetimepicker.js"></script>
-    <!-- Vector Map plugin -->
-    <script src="js/jquery-jvectormap.js"></script>
-    <!-- Sliders Plugin -->
-    <script src="js/nouislider.min.js"></script>
-    <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
-    <!-- Select Plugin -->
-    <script src="js/jquery.select-bootstrap.js"></script>
-    <!--  DataTables.net Plugin    -->
-    <script src="js/jquery.datatables.js"></script>
-    <!-- Sweet Alert 2 plugin -->
-    <script src="js/sweetalert2.js"></script>
-    <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-    <script src="js/jasny-bootstrap.min.js"></script>
-    <!--  Full Calendar Plugin    -->
-    <script src="js/fullcalendar.min.js"></script>
-    <!-- TagsInput Plugin -->
-    <script src="js/jquery.tagsinput.js"></script>
-    <!-- Material Dashboard javascript methods -->
-    <script src="js/material-dashboard.js"></script>
-    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-    <script src="js/demo.js"></script>
-
 </html>

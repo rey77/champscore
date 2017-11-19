@@ -192,6 +192,9 @@ while ($zeile = $q_des->fetch(/* PDO::FETCH_ASSOC */)) {
     </head>
 
     <body class="profile-page">
+    <?php
+    $compID = $_GET['comp_id'];
+    ?>
         <nav class="navbar navbar-transparent navbar-absolute">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
