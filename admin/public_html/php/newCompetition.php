@@ -373,7 +373,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                             </div>
                                         </div>
                                     </div>
-                                
+
                                     <h3>WHERE <i class="material-icons">location_on</i></h3>
                                     <div class="row">
                                         <div class="col-lg-6">
@@ -456,6 +456,18 @@ if ($_SESSION['eingeloggt'] == false) {
                                             </div>
                                         </div>
                                     </div>
+                                    <h3>Sponsors</h3>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group label-floating">
+                                                <label class="control-label">Sponsor 1, Sponsor 2, etc.</label>
+                                                <textarea title="sponsors" class="form-control" style="resize: none; height: 100px;" name="compSponsors"></textarea>
+                                                <!--<p class="help-block">Example block-level help text here.</p>-->
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <hr>
                                 </div>
                             </div>
                             <div class="card">
@@ -511,7 +523,7 @@ if ($_SESSION['eingeloggt'] == false) {
     </div>
 </div>
 </body>
-<!--   Core 
+<!--   Core
 Files   -->
 <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
 <script src="js/jquery-ui.min.js" type="text/javascript"></script>

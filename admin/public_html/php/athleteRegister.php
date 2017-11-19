@@ -1,14 +1,12 @@
 <?php
-session_start();
-
-if (isset($_SESSION['message'])) {
-    echo $_SESSION['message'];
-    unset($_SESSION['message']);
-}
+    session_start();
+    if (isset($_SESSION['message'])) {
+        echo $_SESSION['message'];
+        unset($_SESSION['message']);
+    }
 ?>
 <!doctype html>
 <html lang="en">
-
     <head>
         <meta charset="utf-8" />
         <link rel="apple-touch-icon" sizes="76x76" href="../../assets/img/apple-icon.png" />
@@ -32,7 +30,6 @@ if (isset($_SESSION['message'])) {
         <script>
             $(function () {
                 $("#datepicker").datepicker({
-
                     dateFormat: 'dd.mm.yy',
                     showButtonPanel: true,
                     changeMonth: true,
@@ -41,8 +38,6 @@ if (isset($_SESSION['message'])) {
                     selectOtherMonths: true,
                     yearRange: "-60:+0"
                 });
-
-
             });
         </script>
 
@@ -50,28 +45,21 @@ if (isset($_SESSION['message'])) {
             //Funktion zur Prüfung der Registrierungsdaten
             function mySubmitReg()
             {
-
-
-
                 if ($("#avatar").val() == "") {
                     alert("Please provide a Profile Picture");
                     document.formular.avatar.focus();
                     return false;
-
                 }
-
                 if (document.formular.avatar.value == "") {
                     alert("Please provide a Profile Picture");
                     document.formular.avatar.focus();
                     return false;
                 }
-
                 if (document.formular.athleteEmail.value == "") {
                     alert("Please provide an Email Address");
                     document.formular.athleteEmail.focus();
                     return false;
                 }
-
                 if (document.formular.athletePassword1.value == "") {
                     alert("Please provide a password");
                     document.formular.athletePassword1.focus();
@@ -93,39 +81,31 @@ if (isset($_SESSION['message'])) {
                     document.formular.athletePassword1.focus();
                     return false;
                 }
-
-
                 if (document.formular.athleteFirstName.value == "") {
                     alert("Please provide your First Name");
                     document.formular.athleteFirstName.focus();
                     return false;
                 }
-
                 if (document.formular.athleteLastName.value == "") {
                     alert("Please provide your Last Name");
                     document.formular.athleteLastName.focus();
                     return false;
                 }
-
                 if (document.formular.athleteBirthDate == "") {
                     alert("Please provide your Birth Date");
                     document.formular.athleteBirthDate.focus();
                     return false;
                 }
-
-
                 if (document.formular.athleteStreet.value == "") {
                     alert("Please provide your Street");
                     document.formular.athleteStreet.focus();
                     return false;
                 }
-
                 if (document.formular.athleteZip.value == "") {
                     alert("Please provide your ZIP");
                     document.formular.athleteZIP.focus();
                     return false;
                 }
-
                 if (document.formular.athleteCity.value == "") {
                     alert("Please provide your City");
                     document.formular.athleteCity.focus();
@@ -136,43 +116,36 @@ if (isset($_SESSION['message'])) {
                     document.formular.athleteCountry.focus();
                     return false;
                 }
-
                 if (document.formular.athletePhone.value == "") {
                     alert("Please provide your Phone Number");
                     document.formular.athletePhone.focus();
                     return false;
                 }
-
                 if (document.formular.athleteAffiliate.value == "") {
                     alert("Please provide your Affiliate or fill in 'no Affiliate'");
                     document.formular.athleteAffiliate.focus();
                     return false;
                 }
-
                 if ($("#athleteShirtsize").val() == "") {
                     alert("Please provide your Shirt Size");
                     document.formular.athleteShirtsize.focus();
                     return false;
                 }
-
                 if ($("#athleteBestscore").val() == "") {
                     alert("Please provide your Best Result in Competitive Fitness");
                     document.formular.athleteBestscore.focus();
                     return false;
                 }
-
                 if ($("#actionPicture").val() == "") {
                     alert("Please provide an Action Picture");
                     document.formular.actionPicture.focus();
                     return false;
                 }
-
                 if (document.formular.actionPicture.value == "") {
                     alert("Please provide an Action Picture");
                     document.formular.actionPicture.focus();
                     return false;
                 }
-
                 if (document.formular.athletePassword1.value == document.formular.athletePassword2.value)
                 {
                     return true;
@@ -192,17 +165,8 @@ if (isset($_SESSION['message'])) {
                  document.formular.avatar.focus();
                  return false;
                  }*/
-
-
-
-
-
             }
-
-
-
-
-        </script> 
+        </script>
 
     </head>
 
@@ -231,7 +195,7 @@ if (isset($_SESSION['message'])) {
 
 
                             <div class="row">
-                                <form name="formular" class="form" onsubmit="return mySubmitReg()" method="POST" enctype="multipart/form-data" action="loginsec/registerAthlete.php">
+                                <form name="formular" class="form" method="POST" enctype="multipart/form-data" action="loginsec/registerAthlete.php">
                                     <div class="card-content">
 
                                         <div class="row">
@@ -255,7 +219,7 @@ if (isset($_SESSION['message'])) {
                                                         <span class="fileinput-new">Select Profile Picture</span>
                                                         <span class="fileinput-exists">Change</span>
 
-                                                        <input type="file"  name="avatar" id="avatar" required /></span>
+                                                                <input type="file"  name="avatar" id="avatar" required="required" /></span>
                                                     <br />
 
                                                 </div>
@@ -275,19 +239,19 @@ if (isset($_SESSION['message'])) {
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Email address</label>
-                                                        <input type="email" name="athleteEmail" id="email" class="form-control" required >
+                                                        <input type="email" name="athleteEmail" id="email" class="form-control" required="required" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label"> Password</label>
-                                                        <input type="password" name="athletePassword1" class="form-control" required minLength="8" >
+                                                        <input type="password" name="athletePassword1" class="form-control" required="required" minLength="8" >
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Confirm Password</label>
-                                                        <input type="password" name="athletePassword2" class="form-control" required minLength="8" >
+                                                        <input type="password" name="athletePassword2" class="form-control" required="required" minLength="8" >
                                                     </div>
                                                 </div>
 
@@ -300,13 +264,13 @@ if (isset($_SESSION['message'])) {
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">First Name</label>
-                                                        <input type="text" name="athleteFirstName" id="athleteFirstName" class="form-control" required>
+                                                        <input type="text" name="athleteFirstName" id="athleteFirstName" class="form-control" required="required">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Last Name</label>
-                                                        <input type="text" name="athleteLastName" id="athleteLastName" class="form-control" required>
+                                                        <input type="text" name="athleteLastName" id="athleteLastName" class="form-control" required="required">
                                                     </div>
                                                 </div>
                                             </div>
@@ -320,7 +284,7 @@ if (isset($_SESSION['message'])) {
                                                 </span>
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Email
-                                                        <small>(required)</small>
+                                                        <small>(required="required")</small>
                                                     </label>
                                                     <input name="email" type="email" class="form-control">
                                                 </div>
@@ -334,7 +298,7 @@ if (isset($_SESSION['message'])) {
                                                 <div class="col-md-6">
                                                     <div class="form-group" >
                                                         <label class="control-label">Date of Birth</label>
-                                                        <input type="text" name="athleteBirthDate" id="datepicker" class="form-control datepicker" placeholder="dd.mm.yyyy"  required readonly>
+                                                        <input type="text" name="athleteBirthDate" id="datepicker" class="form-control datepicker" placeholder="dd.mm.yyyy"  required="required" readonly>
                                                     </div>
                                                 </div>
 
@@ -346,7 +310,7 @@ if (isset($_SESSION['message'])) {
                                                     </label>
                                                     <label>
                                                         <input type="radio" name="athleteGender" id="maleRadio" value="2">Male
-                                                    </label>                                                    
+                                                    </label>
                                                 </div>
                                             </div>
 
@@ -356,13 +320,13 @@ if (isset($_SESSION['message'])) {
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Street</label>
-                                                        <input type="text" name="athleteStreet" id="athleteStreet" class="form-control" required>
+                                                        <input type="text" name="athleteStreet" id="athleteStreet" class="form-control" required="required">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">ZIP</label>
-                                                        <input type="text" name="athleteZIP" id="athleteZip" class="form-control" required>
+                                                        <input type="text" name="athleteZIP" id="athleteZip" class="form-control" required="required">
                                                     </div>
                                                 </div>
                                             </div>
@@ -372,13 +336,13 @@ if (isset($_SESSION['message'])) {
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">City</label>
-                                                        <input type="text" name="athleteCity" id="athleteCity" class="form-control" required>
+                                                        <input type="text" name="athleteCity" id="athleteCity" class="form-control" required="required">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label"> Country</label>
-                                                        <select id="country" name="athleteCountry" class="form-control" required >
+                                                        <select id="country" name="athleteCountry" class="form-control" required="required" >
                                                             <option value=""></option>
                                                             <option value="AF">Afghanistan</option>
                                                             <option value="AX">Åland Islands</option>
@@ -639,7 +603,7 @@ if (isset($_SESSION['message'])) {
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Phone number</label>
-                                                        <input type="text" name="athletePhone" id="athletePhone" class="form-control" required>
+                                                        <input type="text" name="athletePhone" id="athletePhone" class="form-control" required="required">
                                                     </div>
                                                 </div>
 
@@ -647,7 +611,7 @@ if (isset($_SESSION['message'])) {
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Affiliate Name</label>
-                                                        <input type="text" name="athleteAffiliate" id="athleteAffiliate"  class="form-control" required>
+                                                        <input type="text" name="athleteAffiliate" id="athleteAffiliate"  class="form-control" required="required">
                                                     </div>
                                                 </div>
 
@@ -661,7 +625,7 @@ if (isset($_SESSION['message'])) {
                                                 <div class="col-md-4">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">T-Shirt Size</label>
-                                                        <select id="athleteShirtsize" name="athleteShirtsize" class="form-control" required>
+                                                        <select id="athleteShirtsize" name="athleteShirtsize" class="form-control" required="required">
 
                                                             <option value="XS">XS </option>
                                                             <option value="S">S</option>
@@ -677,7 +641,7 @@ if (isset($_SESSION['message'])) {
                                                 <div class="col-md-6">
                                                     <div class="form-group label-floating">
                                                         <label class="control-label">Personal Best in Competitive Fitness</label>
-                                                        <input type="text" name="athleteBestscore" id="athleteBestscore"  class="form-control" required>
+                                                        <input type="text" name="athleteBestscore" id="athleteBestscore"  class="form-control" required="required">
                                                     </div>
                                                 </div>
 
@@ -741,18 +705,18 @@ if (isset($_SESSION['message'])) {
                             info@champscore.ch
                         </a>
                     </li>
-                    
-                    
+
+
                 </ul>
 
                 <!--<ul class="social-buttons pull-right">
-                    
+
                     <li>
                         <a href="https://www.facebook.com/CreativeTim" target="_blank" class="btn btn-just-icon btn-simple">
                             <i class="fa fa-facebook-square"></i>
                         </a>
                     </li>
-                   
+
                 </ul>-->
 
             </div>
@@ -800,12 +764,5 @@ if (isset($_SESSION['message'])) {
         <script src="js/material-dashboard.js"></script>
 
         <script type="text/javascript" src="js/ajaxlivesearch.min.js"></script>
-
-
-
-
-
-
-
     </body>
 </html>

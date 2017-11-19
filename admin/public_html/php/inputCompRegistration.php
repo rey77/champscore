@@ -113,7 +113,7 @@ if (($_POST['isTeam'])) {
                     $mail->isHTML(true);                                  // Set email format to HTML
                     $mail->AddEmbeddedImage('img/text_dark.png', 'cs');
                     $mail->Subject = 'You are registered for ' . $compName;
-                    $mail->Body = 'Hello ' . $athleteFirstname . '<br><br>You are now registered for the Competition <b>' . $compName . '</b>, which is held on ' . $compStartDate . '<br><br>You can sit back now until you get further instructions from the Competition Organization<br><br>Best Wishes,<br><br><a href = "http://www.champscore.ch/"><img src="cid:cs" alt="www.champscore.ch" height="30" /></a><br>';
+                    $mail->Body = 'Hello ' . $athleteFirstname . '<br><br>You are now registered for the Competition <b>' . $compName . '</b>, which is held on ' . $compStartDate . '<br><br>You can sit back now until you get further instructions from the Competition Organization<br><br>Best Wishes,<br><br><a href = "http://www.champscore.ch/"><img src="cid:cs" alt="www.champscore.ch" height="30" style="padding-left: 20px; padding-right: 20px; width: 100%" /></a><br>';
 
                     $mail->AltBody = "Hello " . $athleteFirstname
                             . "\n\nYou are now registered for the Competition " . $compName . ", which is held on " . $compStartDate . "
@@ -160,7 +160,7 @@ if (($_POST['isTeam'])) {
     $mail->isHTML(true);                                  // Set email format to HTML
     $mail->AddEmbeddedImage('img/text_dark.png', 'cs');
     $mail->Subject = 'New Team Registration for ' . $compName . '!';
-    $mail->Body = 'Hello ' . $hostFirstname . '<br><br>A Team just registered for the Competition <b>' . $compName . '!</b><br><br><b>Team Name:</b><br>' . $teamName . '<br><br>You can see further details in your Host Account. Click <a href = "http://www.champscore.ch/php/hostLogin.php">here</a> to Log in <br><br>Best Wishes,<br><br><a href = "http://www.champscore.ch/"><img src="cid:cs" alt="www.champscore.ch" height="30" /></a><br>';
+    $mail->Body = 'Hello ' . $hostFirstname . '<br><br>A Team just registered for the Competition <b>' . $compName . '!</b><br><br><b>Team Name:</b><br>' . $teamName . '<br><br>You can see further details in your Host Account. Click <a href = "http://www.champscore.ch/php/hostLogin.php">here</a> to Log in <br><br>Best Wishes,<br><br><a href = "http://www.champscore.ch/"><img src="cid:cs" alt="www.champscore.ch" height="30" style="padding-left: 20px; padding-right: 20px; width: 100%" /></a><br>';
 
     $mail->AltBody = "Hello " . $hostFirstname
             . "\n\nA new Team Registration for the Competition $compName just went in!

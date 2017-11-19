@@ -63,6 +63,9 @@ if ($_SESSION['eingeloggt'] == false) {
     </head>
 
     <body>
+    <?php
+    $compID = $_GET['comp_id'];
+    ?>
 
         <div class="wrapper">
             <div class="sidebar" data-active-color="darkred" data-background-color="black" data-image="img/sidebar-1.jpg">

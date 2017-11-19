@@ -8117,6 +8117,7 @@ select.form-control[multiple], .form-group.is-focused select.form-control[multip
 .fileinput .thumbnail.img-circle {
     border-radius: 50%;
     max-width: 100px;
+    max-height: 100px;
 }
 
 .fileinput .thumbnail > img {

@@ -144,6 +144,9 @@ if ($compBanner != 0) {
     </head>
 
     <body class="profile-page">
+    <?php
+    $compID = $_GET['comp_id'];
+    ?>
         <nav class="navbar navbar-transparent navbar-absolute">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->

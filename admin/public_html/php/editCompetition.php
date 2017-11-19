@@ -161,7 +161,7 @@ if ($_SESSION['eingeloggt'] == false) {
         include 'Database.php';
         $pdo = Database::connect();
 
-        $sql_comp = "select comp_ID, comp_name, comp_start_date, comp_end_date, comp_start_time, comp_end_time,comp_banner, comp_terms, comp_desc_long,comp_start_time, comp_location_name, comp_facebook_link,comp_instagram_link, comp_desc_short, comp_regcode, comp_active, comp_street, comp_zip, comp_city, comp_country, comp_logo, comp_main_color, comp_accent_color from tbl_competition where comp_id = ?";
+        $sql_comp = "select comp_ID, comp_name, comp_start_date, comp_end_date, comp_start_time, comp_end_time,comp_banner, comp_terms, comp_desc_long,comp_start_time, comp_location_name, comp_facebook_link,comp_instagram_link, comp_sponsors, comp_desc_short, comp_regcode, comp_active, comp_street, comp_zip, comp_city, comp_country, comp_logo, comp_main_color, comp_accent_color from tbl_competition where comp_id = ?";
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $q_comp = $pdo->prepare($sql_comp);
         $q_comp->execute(array($compID));
@@ -190,6 +190,7 @@ if ($_SESSION['eingeloggt'] == false) {
             $compInstagramLink = $zeile['comp_instagram_link'];
             $compTerms = $zeile['comp_terms'];
             $compBanner = $zeile['comp_banner'];
+            $compSponsors = $zeile['comp_sponsors'];
         }
 
         if ($compLogo != 0) {
@@ -553,6 +554,17 @@ if ($_SESSION['eingeloggt'] == false) {
 
                                                 </div>
                                             </div>
+                                        </div>
+                                        <h3>Sponsors</h3>
+                                        <div class="row">
+                                            <div class="col-lg-6">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Sponsor 1, Sponsor 2, etc.</label>
+                                                    <textarea title="sponsors" class="form-control" style="resize: none; height: 100px;" name="compSponsors"><?php echo $compSponsors; ?></textarea>
+                                                    <!--<p class="help-block">Example block-level help text here.</p>-->
+                                                </div>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>

@@ -41,7 +41,7 @@ session_start();
             $logosrc = "img/image_placeholder.jpg";
         }
 
-        
+
 
         $sql_div = "SELECT div_name, div_ID FROM `tbl_division` where fk_comp_id = ?";
 
@@ -151,6 +151,9 @@ session_start();
     </head>
 
     <body class="profile-page">
+    <?php
+    $compID = $_GET['comp_id'];
+    ?>
         <nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -164,7 +167,7 @@ session_start();
                     <a class="navbar-brand" href="organizer.php">CHAMPSCORE</a>
                 </div>
 
-               
+
             </div>
         </nav>
 

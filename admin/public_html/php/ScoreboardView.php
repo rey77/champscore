@@ -167,6 +167,9 @@ session_start();
     </head>
 
     <body style="background-color: <?php echo "#" . $desBgColor ?>">
+    <?php
+    $compID = $_GET['comp_id'];
+    ?>
 
         <nav class="navbar top-nav navbar-fixed-top" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->

@@ -29,6 +29,14 @@ if ($_SESSION['eingeloggt'] == false) {
         <!--     Fonts and icons     -->
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
+
+        <!--   Core JS Files   -->
+        <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
+        <script src="js/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/material.min.js" type="text/javascript"></script>
+        <script src="js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="js/jquery.autocomplete.min.js"></script>
     </head>
 
     <body>
@@ -187,10 +195,26 @@ if ($_SESSION['eingeloggt'] == false) {
                                 </li>
                                 <li class="separator hidden-lg hidden-md"></li>
                             </ul>
+                            <script>
+                                $(function () {
+                                    var url = "json_comp.php";
+
+                                    $.getJSON(url, function (result) {
+                                        var comp = [];
+                                        $.each(result, function (i, field) {
+                                            comp.push(field.comp_name);
+                                        });
+
+                                        $('#autocomplete').autocomplete({
+                                            lookup: comp,
+                                            onSelect: function (suggestion) {}
+                                        });
+                                    });
+                                });
+                            </script>
                             <form class="navbar-form navbar-right" role="search">
-                                <div class="form-group form-search is-empty">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                    <span class="material-input"></span>
+                                <div class="form-group form-search is-empty" id="search">
+                                    <input type="text" class="form-control" placeholder="Search" id="autocomplete">
                                 </div>
                                 <button type="submit" class="btn btn-white btn-round btn-just-icon">
                                     <i class="material-icons">search</i>
@@ -248,48 +272,42 @@ if ($_SESSION['eingeloggt'] == false) {
                 </footer>
             </div>
         </div>
-    </body>
-    <!--   Core JS Files   -->
-    <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
-    <script src="js/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="js/material.min.js" type="text/javascript"></script>
-    <script src="js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
-    <!-- Forms Validations Plugin -->
-    <script src="js/jquery.validate.min.js"></script>
-    <!--  Plugin for Date Time Picker and Full Calendar Plugin-->
-    <script src="js/moment.min.js"></script>
-    <!--  Charts Plugin -->
-    <script src="js/chartist.min.js"></script>
-    <!--  Plugin for the Wizard -->
-    <script src="js/jquery.bootstrap-wizard.js"></script>
-    <!--  Notifications Plugin    -->
-    <script src="js/bootstrap-notify.js"></script>
-    <!-- DateTimePicker Plugin -->
-    <script src="js/bootstrap-datetimepicker.js"></script>
-    <!-- Vector Map plugin -->
-    <script src="js/jquery-jvectormap.js"></script>
-    <!-- Sliders Plugin -->
-    <script src="js/nouislider.min.js"></script>
-    <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
-    <!-- Select Plugin -->
-    <script src="js/jquery.select-bootstrap.js"></script>
-    <!--  DataTables.net Plugin    -->
-    <script src="js/jquery.datatables.js"></script>
-    <!-- Sweet Alert 2 plugin -->
-    <script src="js/sweetalert2.js"></script>
-    <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-    <script src="js/jasny-bootstrap.min.js"></script>
-    <!--  Full Calendar Plugin    -->
-    <script src="js/fullcalendar.min.js"></script>
-    <!-- TagsInput Plugin -->
-    <script src="js/jquery.tagsinput.js"></script>
-    <!-- Material Dashboard javascript methods -->
-    <script src="js/material-dashboard.js"></script>
-    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-    <script src="js/demo.js"></script>
 
+        <!-- Forms Validations Plugin -->
+        <script src="js/jquery.validate.min.js"></script>
+        <!--  Plugin for Date Time Picker and Full Calendar Plugin-->
+        <script src="js/moment.min.js"></script>
+        <!--  Charts Plugin -->
+        <script src="js/chartist.min.js"></script>
+        <!--  Plugin for the Wizard -->
+        <script src="js/jquery.bootstrap-wizard.js"></script>
+        <!--  Notifications Plugin    -->
+        <script src="js/bootstrap-notify.js"></script>
+        <!-- DateTimePicker Plugin -->
+        <script src="js/bootstrap-datetimepicker.js"></script>
+        <!-- Vector Map plugin -->
+        <script src="js/jquery-jvectormap.js"></script>
+        <!-- Sliders Plugin -->
+        <script src="js/nouislider.min.js"></script>
+        <!--  Google Maps Plugin    -->
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
+        <!-- Select Plugin -->
+        <script src="js/jquery.select-bootstrap.js"></script>
+        <!--  DataTables.net Plugin    -->
+        <script src="js/jquery.datatables.js"></script>
+        <!-- Sweet Alert 2 plugin -->
+        <script src="js/sweetalert2.js"></script>
+        <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+        <script src="js/jasny-bootstrap.min.js"></script>
+        <!--  Full Calendar Plugin    -->
+        <script src="js/fullcalendar.min.js"></script>
+        <!-- TagsInput Plugin -->
+        <script src="js/jquery.tagsinput.js"></script>
+        <!-- Material Dashboard javascript methods -->
+        <script src="js/material-dashboard.js"></script>
+        <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+        <script src="js/demo.js"></script>
+    </body>
 </html>
 
 

@@ -1,23 +1,23 @@
 <?php
-session_start();
+    session_start();
 
-if ($_SESSION['eingeloggt'] == false) {
+    if ($_SESSION['eingeloggt'] == false) {
 
-    header("Location: public_html/index.php");
-    exit();
-}
+        header("Location: public_html/index.php");
+        exit();
+    }
 
-$athleteID = $_SESSION['athlete_id'];
-include 'Database.php';
-$pdo = Database::connect();
+    $athleteID = $_SESSION['athlete_id'];
+    include 'Database.php';
+    $pdo = Database::connect();
 
-$sql = "select * from tbl_competition";
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$q = $pdo->prepare($sql);
-$q->execute();
+    $sql = "select * from tbl_competition";
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $q = $pdo->prepare($sql);
+    $q->execute();
 
-Database::disconnect();
-?>
+    Database::disconnect();
+    ?>
 
 <!doctype html>
 <html lang="en">
@@ -42,7 +42,15 @@ Database::disconnect();
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
 
         <link href="php/css/material-kit.css?v=1.1.0" rel="stylesheet"/>
+        <link href="../assets/css/styles.css" type="text/css" rel="stylesheet"/>
 
+        <!--   Core JS Files   -->
+        <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
+        <script src="js/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/material.min.js" type="text/javascript"></script>
+        <script src="js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+        <script src="js/jquery.autocomplete.min.js" type="text/javascript"></script>
 
     </head>
 
@@ -138,70 +146,85 @@ Database::disconnect();
                         <div class="row">
                             <div class="col-md-8 col-md-offset-2 text-center">
                                 <h2 class="title"><i class="material-icons">public</i> ALL COMPETITIONS</h2>
-                                
                             </div>
+                            <script>
+                                $(function () {
+                                    var url = "json_comp.php";
+
+                                    $.getJSON(url, function (result) {
+                                        var comp = [];
+                                        $.each(result, function (i, field) {
+                                            comp.push(field.comp_name);
+                                        });
+
+                                        $('#autocomplete').autocomplete({
+                                            lookup: comp,
+                                            onSelect: function (suggestion) {
+                                                $.each(result, function (i, field) {
+                                                    if(field.comp_name === suggestion.value) {
+                                                        window.location.href = 'competitionView.php?comp_id=' + field.comp_id;
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    });
+                                });
+                            </script>
+                            <form class="navbar-form navbar-right search-form" role="search">
+                                <div class="form-group form-search is-empty field-container" id="search">
+                                    <input type="text" class="form-control search-field" placeholder="Search for Competition" id="autocomplete">
+                                </div>
+                            </form>
                         </div>
 
                         <div class="row">
-                            <?php
-                            while ($zeile = $q->fetch(/* PDO::FETCH_ASSOC */)) {
-
-                                $compID = $zeile['comp_ID'];
-                                $compLogo = $zeile['comp_logo'];
-
-                                if ($compLogo != 0) {
-
-                                    $logosrc = "uploads/host/complogo/$compLogo";
-                                } else {
-                                    $logosrc = "http://placehold.it/400x250/000/fff";
-                                }
-                                
-                                 $originalDate = $zeile['comp_start_date'];
-                            $newDate = date("d.m.Y", strtotime($originalDate));
-                                ?> 
-
-                                <div class="col-md-4">
-
-
-                                    <div class="card card-testimonial">
-                                        <div class="icon">
-
-                                        </div>
-
-                                        
-                                        
-                                        
-                                        <div class="footer">
-
-                                            <a  href="competitionView.php?comp_id=<?php echo $compID ?>">
-                                                <h4 class="card-title"><b><?php echo $zeile['comp_name'] ?></b></h4>
-
-                                                </a>
-                                            <p><?php echo $newDate ?> in <?php echo $zeile['comp_city'] ?>, <?php echo $zeile['comp_country'] ?></p>
-                                            
-
-
-
-                                            <div class="card-avatar">
-                                                <a href="competitionView.php?comp_id=<?php echo $compID ?>">
-                                                    <img class="img" src="<?php echo $logosrc ?>">
-                                                </a>
-                                            </div>
-                                        </div>
+                            <div id="tabs-container" class="tabs-container-athlete">
+                                <ul class="tabs-menu">
+                                    <li><a href="#tab-1">Past</a></li>
+                                    <li class="current"><a href="#tab-2">Now</a></li>
+                                    <li><a href="#tab-3">Future</a></li>
+                                </ul>
+                                <div class="tab">
+                                    <?php
+                                    include 'showCompetitions.php';
+                                    $competitions = getCompetitionsFromDB();
+                                    $past = addCompToPast($competitions);
+                                    $now = addCompToNow($competitions);
+                                    $future = addCompToFuture($competitions);
+                                    ?>
+                                    <div id="tab-1" class="tab-content">
+                                        <?php
+                                            showCompetitionsInAthleteAndHostSite($past);
+                                        ?>
                                     </div>
 
+                                    <div id="tab-2" class="tab-content">
+                                        <?php
+                                            showCompetitionsInAthleteAndHostSite($now);
+                                        ?>
+                                    </div>
 
+                                    <div id="tab-3" class="tab-content">
+                                        <?php
+                                            showCompetitionsInAthleteAndHostSite($future);
+                                        ?>
+                                    </div>
                                 </div>
-                                <?php
-                            }
-                            Database::disconnect();
-                            ?>
+                            </div>
 
+                            <script>
+                                $(document).ready(function() {
+                                    $(".tabs-menu a").click(function(event) {
+                                        event.preventDefault();
+                                        $(this).parent().addClass("current");
+                                        $(this).parent().siblings().removeClass("current");
+                                        var tab = $(this).attr("href");
+                                        $(".tab-content").not(tab).css("display", "none");
+                                        $(tab).fadeIn();
+                                    });
+                                });
+                            </script>
                         </div>
-
-
-
-
                     </div>
                 </div>
                 <footer class="footer">
@@ -218,57 +241,56 @@ Database::disconnect();
                 </footer>
             </div>
         </div>
+
+        <!--   Core JS Files   -->
+        <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
+        <script src="js/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/material.min.js" type="text/javascript"></script>
+        <script src="js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+        <!-- Forms Validations Plugin -->
+        <script src="js/jquery.validate.min.js"></script>
+        <!--  Plugin for Date Time Picker and Full Calendar Plugin-->
+        <script src="js/moment.min.js"></script>
+        <!--  Charts Plugin -->
+        <script src="js/chartist.min.js"></script>
+        <!--  Plugin for the Wizard -->
+        <script src="js/jquery.bootstrap-wizard.js"></script>
+        <!--  Notifications Plugin    -->
+        <script src="js/bootstrap-notify.js"></script>
+        <!-- DateTimePicker Plugin -->
+        <script src="js/bootstrap-datetimepicker.js"></script>
+        <!-- Vector Map plugin -->
+        <script src="js/jquery-jvectormap.js"></script>
+        <!-- Sliders Plugin -->
+        <script src="js/nouislider.min.js"></script>
+        <!--  Google Maps Plugin    -->
+        <script src="https://maps.googleapis.com/maps/api/js"></script>
+        <!-- Select Plugin -->
+        <script src="js/jquery.select-bootstrap.js"></script>
+        <!--  DataTables.net Plugin    -->
+        <script src="js/jquery.datatables.js"></script>
+        <!-- Sweet Alert 2 plugin -->
+        <script src="js/sweetalert2.js"></script>
+        <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+        <script src="js/jasny-bootstrap.min.js"></script>
+        <!--  Full Calendar Plugin    -->
+        <script src="js/fullcalendar.min.js"></script>
+        <!-- TagsInput Plugin -->
+        <script src="js/jquery.tagsinput.js"></script>
+        <!-- Material Dashboard javascript methods -->
+        <script src="js/material-dashboard.js"></script>
+        <!-- Material Dashboard DEMO methods, don't include it in your project! -->
+        <script src="js/demo.js"></script>
+        <script src="js/jquery.autocomplete.min.js" type="text/javascript"></script>
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                // Javascript method's body can be found in assets/js/demos.js
+                demo.initDashboardPageCharts();
+
+                demo.initVectorMap();
+            });
+        </script>
     </body>
-    <!--   Core JS Files   -->
-    <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
-    <script src="js/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="js/material.min.js" type="text/javascript"></script>
-    <script src="js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
-    <!-- Forms Validations Plugin -->
-    <script src="js/jquery.validate.min.js"></script>
-    <!--  Plugin for Date Time Picker and Full Calendar Plugin-->
-    <script src="js/moment.min.js"></script>
-    <!--  Charts Plugin -->
-    <script src="js/chartist.min.js"></script>
-    <!--  Plugin for the Wizard -->
-    <script src="js/jquery.bootstrap-wizard.js"></script>
-    <!--  Notifications Plugin    -->
-    <script src="js/bootstrap-notify.js"></script>
-    <!-- DateTimePicker Plugin -->
-    <script src="js/bootstrap-datetimepicker.js"></script>
-    <!-- Vector Map plugin -->
-    <script src="js/jquery-jvectormap.js"></script>
-    <!-- Sliders Plugin -->
-    <script src="js/nouislider.min.js"></script>
-    <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
-    <!-- Select Plugin -->
-    <script src="js/jquery.select-bootstrap.js"></script>
-    <!--  DataTables.net Plugin    -->
-    <script src="js/jquery.datatables.js"></script>
-    <!-- Sweet Alert 2 plugin -->
-    <script src="js/sweetalert2.js"></script>
-    <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-    <script src="js/jasny-bootstrap.min.js"></script>
-    <!--  Full Calendar Plugin    -->
-    <script src="js/fullcalendar.min.js"></script>
-    <!-- TagsInput Plugin -->
-    <script src="js/jquery.tagsinput.js"></script>
-    <!-- Material Dashboard javascript methods -->
-    <script src="js/material-dashboard.js"></script>
-    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-    <script src="js/demo.js"></script>
-    <script type="text/javascript">
-                                $(document).ready(function () {
-
-                                    // Javascript method's body can be found in assets/js/demos.js
-                                    demo.initDashboardPageCharts();
-
-                                    demo.initVectorMap();
-                                });
-    </script>
-
-
-    
 </html>
