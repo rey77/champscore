@@ -188,7 +188,7 @@
 
                     <div class="col-sm-8 col-sm-offset-2">
                         <div class="card card-signup">
-                            <h2 class="wizard-title text-center">Create Athlete Account</h2>
+                            <h2 class="wizard-title text-center">NEW ATHLETE ACCOUNT</h2>
 
 
 
@@ -215,9 +215,9 @@
 
 
                                                 <div>
-                                                            <span class="btn btn-raised btn-round btn-pinterest btn-file">
-                                                                <span class="fileinput-new">Select Profile Picture</span>
-                                                                <span class="fileinput-exists">Change</span>
+                                                    <span class="btn btn-raised btn-round btn-oxfordblue btn-file">
+                                                        <span class="fileinput-new">Select Profile Picture</span>
+                                                        <span class="fileinput-exists">Change</span>
 
                                                                 <input type="file"  name="avatar" id="avatar" required="required" /></span>
                                                     <br />
@@ -661,11 +661,11 @@
                                                     </div>
                                                     <div class="fileinput-preview fileinput-exists thumbnail"></div>
                                                     <div>
-                                                                <span class="btn btn-pinterest btn-round btn-file">
-                                                                    <span class="fileinput-new">Select Action Picture</span>
-                                                                    <span class="fileinput-exists">Change</span>
-                                                                    <input type="file" name="actionPicture" id="actionPicture"  required="required" />
-                                                                </span>
+                                                        <span class="btn btn-oxfordblue btn-round btn-file">
+                                                            <span class="fileinput-new">Select Action Picture</span>
+                                                            <span class="fileinput-exists">Change</span>
+                                                            <input type="file" name="actionPicture" id="actionPicture"  required />
+                                                        </span>
 
                                                     </div>
                                                 </div>
@@ -678,7 +678,7 @@
 
                                                 <div align="right" class="col-md-11 col-md-offset-0">
 
-                                                    <button  type="submit" onclick="mySubmitReg()" class="btn btn-pinterest">Register</button>
+                                                    <button  type="submit" class="btn btn-oxfordblue">Register</button>
 
                                                 </div>
 

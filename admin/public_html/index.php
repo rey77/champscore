@@ -33,14 +33,19 @@
         <link href="php/css/bootstrap.min.css" rel="stylesheet"/>
         <link href="php/css/material-kit.css?v=1.1.0" rel="stylesheet"/>
         <link href="assets/css/styles.css" type="text/css" rel="stylesheet"/>
+        <!--   Core JS Files   -->
+        <script src="php/js/jquery-3.1.1.min.js" type="text/javascript"></script>
+        <script src="php/js/jquery-ui.min.js" type="text/javascript"></script>
+        <script src="php/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="php/js/material.min.js" type="text/javascript"></script>
+        <script src="php/js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+        <script src="php/js/jquery.autocomplete.min.js" type="text/javascript"></script>
+        <script src="php/js/script.js" type="text/javascript"></script>
     </head>
 
     <body class="blog-post">
         <?php include_once("./php/analyticstracking.php") ?>
         <div class="cd-section" id="headers">
-            <!--     *********     HEADER 1      *********      -->
-
-            <!--     *********     HEADER 2      *********      -->
             <div class="header-2">
                 <nav class="navbar navbar-transparent navbar-absolute">
                     <div class="container">
@@ -72,7 +77,7 @@
                                     </a>
                                     <ul class="dropdown-menu dropdown-with-icons">
                                         <li>
-                                            <a href="php/athleteLogin.php">
+                                            <a class="host" href="php/athleteLogin.php">
                                                 <i class="material-icons">fingerprint</i> Login
                                             </a>
                                         </li>
@@ -84,7 +89,6 @@
 
                                     </ul>
                                 </li>
-
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                         <i class="material-icons">person_outline</i> Host
@@ -132,22 +136,30 @@
 
                 <div class="page-header header-filter" style="background-image: url('img/header.jpg');">
                     <div class="container">
-                        <div class="row">
-                            <!--<div class="col-md-8 col-md-offset-2 text-center">
-                                <h1 class="title"> Your Favorite Competition Management Tool</h1>
-                                <h4>You will have an unique competition experience using champscore</h4>
-                            </div>-->
-                            <div class="col-md-6 col-md-offset-0 text-center">
-                                <h1 class="title">ATHLETE</h1>
-                                <a class="btn btn-pinterest" href="php/athleteLogin.php">Login</a>
-                                <a class="btn btn-pinterest" href="php/athleteRegister.php">create Account</a>
-                            </div>
 
-                            <div class="col-md-6 col-md-offset-0 text-center">
-                                <h1 class="title">HOST</h1>
-                                <a class="btn btn-oxfordblue" href="php/hostLogin.php">Login</a>
-                                <a class="btn btn-oxfordblue" href="#">create Account (coming soon)</a>
-                            </div>
+                        <!--<div class="col-md-8 col-md-offset-2 text-center">
+                            <h1 class="title"> Your Favorite Competition Management Tool</h1>
+                            <h4>You will have an unique competition experience using champscore</h4>
+                        </div>-->
+                        <div class="col-lg-6 col-md-6 col-md-offset-0 text-center">
+
+                            <h1 class="title">ATHLETE</h1>
+
+                            <a class="btn btn-oxfordblue" href="php/athleteLogin.php">Login</a>
+
+
+                            <a class="btn btn-oxfordblue" href="php/athleteRegister.php">Register</a>
+
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-md-offset-0 text-center">
+                            <h1 class="title">HOST</h1>
+
+                            <a class="btn btn-pinterest" href="php/hostLogin.php">Login</a>
+
+
+                            <a class="btn btn-pinterest" href="#">Register (coming soon)</a>
+
                         </div>
                     </div>
                 </div>
@@ -159,63 +171,55 @@
                         <br>
                         <br>
                         <div class="col-md-8 col-md-offset-2 text-center">
-                            <h2 class="title">Our Competitions</h2>
+                            <h2 class="title">OUR COMPETITIONS</h2>
                             <!--<h5 class="description">We are happy to host Competitions all around the globe.</h5>-->
-                            <br>
-                            <br>
                         </div>
-
+                        <form class="navbar-form navbar-right search-form" role="search">
+                            <div class="form-group form-search is-empty field-container" id="search">
+                                <input type="text" class="form-control search-field" placeholder="Search for Competition" id="autocomplete">
+                            </div>
+                        </form>
                     </div>
+                    <br>
+                    <br>
 
                     <div class="row">
 
-                        <?php
-                            include 'php/Database.php';
-                            $pdo = Database::connect();
-                            $sql = "select comp_ID, comp_reg_active, comp_name, comp_start_date, comp_logo, comp_city, comp_country from tbl_competition";
-                            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                            $q = $pdo->prepare($sql);
-                            $q->execute(array());
-                            while ($row = $q->fetch(/* PDO::FETCH_ASSOC */)) {
-                                $compID = $row['comp_ID'];
-                                $compLogo = $row['comp_logo'];
-                                $compRegActive = $row['comp_reg_active'];
-                                if ($compLogo != 0) {
-                                    $logosrc = "php/uploads/host/complogo/$compLogo";
-                                } else {
-                                    $logosrc = "http://placehold.it/400x250/000/fff";
-                                }
-                                $originalDate = $row['comp_start_date'];
-                                $newDate = date("d.m.Y", strtotime($originalDate));
-                                ?>
-
-                                <div class="col-md-6">
-                                    <div class="media">
-                                        <a class="pull-left" href="php/competitionView.php?comp_id=<?php echo $compID ?>">
-                                            <div class="avatar">
-                                                <img class="media-object"  src="<?php echo $logosrc ?>">
-                                            </div>
-                                        </a>
-                                        <div class="media-body">
-                                            <a class="pull-left" href="php/competitionView.php?comp_id=<?php echo $compID ?>"><h4 class="media-heading" ><?php echo $row['comp_name'] ?> </h4>
-                                            </a><br><br>
-                                            <p><?php echo $newDate . " in " . $row['comp_city'] . ", " . $row['comp_country']; ?>
-
-                                                <?php if ($compRegActive != 0) { ?><a href="php/registrationView_1.php?comp_id=<?php echo $compID ?>"  class="btn btn-pinterest btn-single btn-sm ">Join! </a>
-
-                                                <?php } else { ?>
-
-                                                    <a class="btn btn-pinterest btn-single btn-sm " disabled>Join! </a>
-
-                                                <?php } ?>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div id="tabs-container">
+                            <ul class="tabs-menu">
+                                <li><a href="#tab-1">Past</a></li>
+                                <li class="current"><a href="#tab-2">Now</a></li>
+                                <li><a href="#tab-3">Future</a></li>
+                            </ul>
+                            <div class="tab">
                                 <?php
-                            }
-                            Database::disconnect();
-                        ?>
+                                    include 'php/Database.php';
+                                    include 'php/showCompetitions.php';
+                                    $competitions = getCompetitionsFromDB();
+                                    $past = addCompToPast($competitions);
+                                    $now = addCompToNow($competitions);
+                                    $future = addCompToFuture($competitions);
+                                ?>
+                                <div id="tab-1" class="tab-content">
+                                    <?php
+                                        showCompetitionsInIndex($past);
+                                    ?>
+                                </div>
+
+                                <div id="tab-2" class="tab-content">
+                                    <?php
+                                        showCompetitionsInIndex($now);
+                                    ?>
+
+                                </div>
+
+                                <div id="tab-3" class="tab-content">
+                                    <?php
+                                        showCompetitionsInIndex($future);
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <br>
@@ -244,40 +248,28 @@
                 </ul>
 
                 <!--<ul class="social-buttons pull-right">
-
                     <li>
                         <a href="https://www.facebook.com/CreativeTim" target="_blank" class="btn btn-just-icon btn-simple">
                             <i class="fa fa-facebook-square"></i>
                         </a>
                     </li>
-
                 </ul>-->
 
             </div>
         </footer>
 
         <!-- <div class="cd-section" id="pricing">
-
-
              <div class="pricing-2" id="pricing-2">
-
                  <div class="container">
-
-
                      <div class="row">
                          <div class="col-md-6 col-md-offset-3 text-center">
                              <h2 class="title">Pricing</h2>
-
                          </div>
                      </div>
                      <div class="row">
-
-
-
                          <div class="col-md-4">
                              <div class="card card-pricing  card-raised" style="background-image: url('php/img/cs.png')">
                                  <div class="card-content">
-
                                      <h1 class="card-title"><small>$</small>.99<small>/ Registration</small></h1>
                                      <ul>
                                          <li><b>+3.5%</b> Fee per registration</li>
@@ -293,14 +285,9 @@
                                  </div>
                              </div>
                          </div>
-
-
-
                      </div>
-
                  </div>
              </div>
-
          </div>-->
 
         <!--   Core JS Files   -->
@@ -334,6 +321,8 @@
 
         <!--    Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc    -->
         <script src="php/js/material-kit.js?v=1.1.0" type="text/javascript"></script>
+        <script src="php/js/jquery.autocomplete.min.js" type="text/javascript"></script>
+        <script src="php/js/script.js" type="text/javascript"></script>
 
         <script type="text/javascript">
             $().ready(function () {

@@ -187,14 +187,14 @@ Database::disconnect();
             Tip 3: you can change the color of the sidebar with data-background-color="white | black"
                 -->
                 <div class="logo">
-                    <a href="index.php" class="simple-text">
+                    <a href="athleteIndex.php" class="simple-text">
                         <p><!--<img style=" margin-left: -20px; height: 70px;" class="logo" src="../img/Logo.png" alt=""/>-->
                             <img style="  height: 20px;" src="img/text.png" alt=""/></p>
                     </a>
 
                 </div>
                 <div class="logo logo-mini">
-                    <a href="index.php" class="simple-text">
+                    <a href="athleteIndex.php" class="simple-text">
                         CS
                     </a>
                 </div>
@@ -213,9 +213,7 @@ Database::disconnect();
                                     <!-- <li>
                                          <a href="#">My Profile</a>
                                      </li>-->
-                                    <li>
-                                        <a href="athletePersonalData.php">Edit Profile</a>
-                                    </li>
+                                    
                                     <li>
                                         <a href="loginsec/logout.php">Log out</a>
                                     </li>
@@ -262,7 +260,7 @@ Database::disconnect();
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"> Edit Profile </a>
+                            <a class="navbar-brand" href="#"> EDIT PROFILE </a>
                         </div>
 
                     </div>
@@ -299,7 +297,7 @@ Database::disconnect();
                                                         <?php echo $athleteAffiliate ?>
                                                     </p>
                                                     <div>
-                                                        <span class="btn btn-raised btn-round btn-pinterest btn-file">
+                                                        <span class="btn btn-raised btn-round btn-oxfordblue btn-file">
                                                             <span class="fileinput-new">Select Photo</span>
                                                             <span class="fileinput-exists">Change</span>
 
@@ -668,7 +666,7 @@ Database::disconnect();
                                                         </div>
                                                         <div class="fileinput-preview fileinput-exists thumbnail"></div>
                                                         <div>
-                                                            <span class="btn btn-pinterest btn-round btn-file">
+                                                            <span class="btn btn-oxfordblue btn-round btn-file">
                                                                 <span class="fileinput-new">Select Action Picture</span>
                                                                 <span class="fileinput-exists">Change</span>
                                                                 <input type="file" name="actionPicture" id="actionPicture" value="<?php echo $athleteActionpictureSrc ?>" />
@@ -679,7 +677,7 @@ Database::disconnect();
                                                 </div>
                                             </div>
 
-                                            <button type="submit" class="btn btn-pinterest pull-right">Save Data</button>
+                                            <button type="submit" class="btn btn-oxfordblue pull-right">Save Data</button>
                                             <div class="clearfix"></div>
                                         </form>
                                     </div>

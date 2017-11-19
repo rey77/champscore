@@ -1,25 +1,12 @@
 <?php
-    session_start();
+session_start();
 
-    if ($_SESSION['eingeloggt'] == false) {
+if ($_SESSION['eingeloggt'] == false) {
 
-        header("Location: public_html/index.php");
-        exit();
-    }
-
-    $athleteID = $_SESSION['athlete_id'];
-    include 'Database.php';
-    $pdo = Database::connect();
-
-    $sql = "select * from tbl_competition";
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $q = $pdo->prepare($sql);
-    $q->execute();
-
-    Database::disconnect();
-    ?>
-
-<!doctype html>
+    header("Location: public_html/index.php");
+    exit();
+}
+?>
 <html lang="en">
 
     <head>
@@ -28,7 +15,7 @@
         <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png" />
         <link rel="icon" type="image/png" href="img/favicon-16x16.png" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <title>All Competitions</title>
+        <title>champscore</title>
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
         <!-- Bootstrap core CSS     -->
@@ -41,55 +28,62 @@
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
 
-        <link href="php/css/material-kit.css?v=1.1.0" rel="stylesheet"/>
-        <link href="../assets/css/styles.css" type="text/css" rel="stylesheet"/>
 
-        <!--   Core JS Files   -->
-        <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
-        <script src="js/jquery-ui.min.js" type="text/javascript"></script>
-        <script src="js/bootstrap.min.js" type="text/javascript"></script>
-        <script src="js/material.min.js" type="text/javascript"></script>
-        <script src="js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
-        <script src="js/jquery.autocomplete.min.js" type="text/javascript"></script>
 
     </head>
 
     <body>
-        <div class="wrapper">
 
-            <div class="sidebar" data-active-color="oxfordblue" data-background-color="black" data-image="img/sidebar-1.jpg">
+        <?php
+        $compID = $_GET['comp_ID'];
+
+        include 'Database.php';
+        $pdo = Database::connect();
+
+
+        $sql_div = "SELECT div_name, div_ID FROM `tbl_division` where fk_comp_id = ?";
+
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $q_div = $pdo->prepare($sql_div);
+        $q_div->execute(array($compID));
+
+        $arrayDiv = array();
+        $counter = 0;
+        ?>
+
+        <div class="wrapper">
+            <div class="sidebar" data-active-color="darkred" data-background-color="black" data-image="img/sidebar-1.jpg">
                 <!--
             Tip 1: You can change the color of active element of the sidebar using: data-active-color="purple | blue | green | orange | red | rose"
             Tip 2: you can also add an image using data-image tag
             Tip 3: you can change the color of the sidebar with data-background-color="white | black"
                 -->
                 <div class="logo">
-                    <a href="athleteIndex.php" class="simple-text">
+                    <a href="hostIndex.php" class="simple-text">
                         <p><!--<img style=" margin-left: -20px; height: 70px;" class="logo" src="../img/Logo.png" alt=""/>-->
                             <img style="  height: 20px;" src="img/text.png" alt=""/></p>
                     </a>
-                    
+
                 </div>
                 <div class="logo logo-mini">
-                    <a href="athleteIndex.php" class="simple-text">
+                    <a href="hostIndex.php" class="simple-text">
                         CS
                     </a>
                 </div>
                 <div class="sidebar-wrapper">
                     <div class="user">
                         <div class="photo">
-                            <img src="uploads/athlete/profile/<?php echo $_SESSION['athlete_id'] . ".jpg" ?>">
+                            <img src="uploads/host/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
                         </div>
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                                <?php echo $_SESSION['athleteEmail']; ?>
+                                <?php echo $_SESSION['hostEmail']; ?>
                                 <b class="caret"></b>
                             </a>
                             <div class="collapse" id="collapseExample">
                                 <ul class="nav">
-
                                     <li>
-                                        <a href="athletePersonalData.php">Edit Profile</a>
+                                        <a href="hostPersonalData.php">Edit Profile</a>
                                     </li>
                                     <li>
                                         <a href="loginsec/logout.php">Log out</a>
@@ -99,18 +93,18 @@
                         </div>
                     </div>
                     <ul class="nav">
-                        <li class="active">
-                            <a href="./athleteAllCompetitions.php">
+                        <li>
+                            <a href="./hostAllCompetitions.php">
                                 <i class="material-icons">public</i>
-                                <p>ALL COMPETITIONS</p>
+                                <p>All Competitions</p>
                             </a>
                         </li>
-                        <li >
-                            
-                            <a href="./athleteCompetitions.php">
+                        <li class="active">
+
+                            <a  href="./hostCompetitions.php">
                                 <i class="material-icons">dashboard</i>
-                               <p>MY COMPETITIONS</p>
-                            
+                                <p>My Competitions
+                                </p>
                             </a>
                         </li>
 
@@ -134,113 +128,114 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"> ALL COMPETITIONS </a>
+                            <a class="navbar-brand" href="#"> Ticketing </a>
                         </div>
-                        
+
                     </div>
                 </nav>
                 <div class="content">
-
                     <div class="container-fluid">
 
-                        <div class="row">
-                            <div class="col-md-8 col-md-offset-2 text-center">
-                                <h2 class="title"><i class="material-icons">public</i> ALL COMPETITIONS</h2>
-                            </div>
-                            <script>
-                                $(function () {
-                                    var url = "json_comp.php";
-
-                                    $.getJSON(url, function (result) {
-                                        var comp = [];
-                                        $.each(result, function (i, field) {
-                                            comp.push(field.comp_name);
-                                        });
-
-                                        $('#autocomplete').autocomplete({
-                                            lookup: comp,
-                                            onSelect: function (suggestion) {
-                                                $.each(result, function (i, field) {
-                                                    if(field.comp_name === suggestion.value) {
-                                                        window.location.href = 'competitionView.php?comp_id=' + field.comp_id;
-                                                    }
-                                                });
-                                            }
-                                        });
-                                    });
-                                });
-                            </script>
-                            <form class="navbar-form navbar-right search-form" role="search">
-                                <div class="form-group form-search is-empty field-container" id="search">
-                                    <input type="text" class="form-control search-field" placeholder="Search for Competition" id="autocomplete">
-                                </div>
-                            </form>
-                        </div>
 
                         <div class="row">
-                            <div id="tabs-container" class="tabs-container-athlete">
-                                <ul class="tabs-menu">
-                                    <li><a href="#tab-1">Past</a></li>
-                                    <li class="current"><a href="#tab-2">Now</a></li>
-                                    <li><a href="#tab-3">Future</a></li>
-                                </ul>
-                                <div class="tab">
-                                    <?php
-                                    include 'showCompetitions.php';
-                                    $competitions = getCompetitionsFromDB();
-                                    $past = addCompToPast($competitions);
-                                    $now = addCompToNow($competitions);
-                                    $future = addCompToFuture($competitions);
-                                    ?>
-                                    <div id="tab-1" class="tab-content">
-                                        <?php
-                                            showCompetitionsInAthleteAndHostSite($past);
-                                        ?>
+
+                            <div class="col-md-12">
+                                <div class="card">
+                                    <div class="card-header card-header-text" data-background-color="oxfordblue">
+                                        <h4 class="card-title">Divisions</h4>
+
+
                                     </div>
 
-                                    <div id="tab-2" class="tab-content">
-                                        <?php
-                                            showCompetitionsInAthleteAndHostSite($now);
-                                        ?>
-                                    </div>
+                                    <div class="card-content">
 
-                                    <div id="tab-3" class="tab-content">
-                                        <?php
-                                            showCompetitionsInAthleteAndHostSite($future);
-                                        ?>
+                                        <form name ="competitionTicketing" role="form" action="updateTicketing.php" method="POST" >
+
+                                            <?php
+                                            while ($zeile = $q_div->fetch(/* PDO::FETCH_ASSOC */)) {
+                                                $divID = $zeile['div_ID'];
+                                                $divName = $zeile['div_name'];
+                                                ?>
+                                                <div class = "row">
+                                                    <div class = "col-lg-12">
+                                                        <h3><?php echo $divName ?></h3>
+
+                                                        <input type="hidden" name="compID" class="form-control" value="<?php echo $compID ?>" />
+                                                        <div class="col-lg-4 form-group">
+                                                            <div class="checkbox">
+                                                                <label>
+                                                                    <input type="checkbox" name="optionsCheckboxes"> Free
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-lg-4 form-group label-floating">
+                                                            <label class="control-label">Price in US $</label>
+                                                            <input class="form-control" type="text" name="divisionTicketAmount" />
+                                                        </div>
+
+
+                                                    </div>
+
+                                               
+
+                                            </div>
+                                            <hr>
+ <?php } ?>
+
+
+                                            <button type="submit" class="btn pull-right btn-fill btn-pinterest">Save</button>
+
+                                        </form>
+
                                     </div>
                                 </div>
                             </div>
 
-                            <script>
-                                $(document).ready(function() {
-                                    $(".tabs-menu a").click(function(event) {
-                                        event.preventDefault();
-                                        $(this).parent().addClass("current");
-                                        $(this).parent().siblings().removeClass("current");
-                                        var tab = $(this).attr("href");
-                                        $(".tab-content").not(tab).css("display", "none");
-                                        $(tab).fadeIn();
-                                    });
-                                });
-                            </script>
+
                         </div>
+
                     </div>
                 </div>
+
                 <footer class="footer">
                     <div class="container-fluid">
-                        
+
                         <p class="copyright pull-right">
                             &copy;
                             <script>
                                 document.write(new Date().getFullYear())
                             </script>
-                             <a>champscore</a>
+                            <a>champscore</a>
                         </p>
                     </div>
                 </footer>
             </div>
         </div>
+
+        <div class="modal fade" id="modal-7">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Athlete info</h4>
+                    </div>
+
+                    <div class="modal-body">
+
+
+
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-pinterest" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
 
         <!--   Core JS Files   -->
         <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
@@ -282,15 +277,8 @@
         <script src="js/material-dashboard.js"></script>
         <!-- Material Dashboard DEMO methods, don't include it in your project! -->
         <script src="js/demo.js"></script>
-        <script src="js/jquery.autocomplete.min.js" type="text/javascript"></script>
-        <script type="text/javascript">
-            $(document).ready(function () {
+        <script src="js/bootstrap.min.js"></script>
 
-                // Javascript method's body can be found in assets/js/demos.js
-                demo.initDashboardPageCharts();
-
-                demo.initVectorMap();
-            });
-        </script>
     </body>
+
 </html>

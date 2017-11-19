@@ -15,7 +15,7 @@ if ($_SESSION['eingeloggt'] == false) {
         <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png" />
         <link rel="icon" type="image/png" href="img/favicon-16x16.png" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <title>Athletes</title>
+        <title>Athletes & Teams</title>
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
         <!-- Bootstrap core CSS     -->
@@ -140,21 +140,21 @@ if ($_SESSION['eingeloggt'] == false) {
             Tip 3: you can change the color of the sidebar with data-background-color="white | black"
                 -->
                 <div class="logo">
-                    <a href="index.php" class="simple-text">
+                    <a href="hostIndex.php" class="simple-text">
                         <p><!--<img style=" margin-left: -20px; height: 70px;" class="logo" src="../img/Logo.png" alt=""/>-->
                             <img style="  height: 20px;" src="img/text.png" alt=""/></p>
                     </a>
 
                 </div>
                 <div class="logo logo-mini">
-                    <a href="index.php" class="simple-text">
+                    <a href="hostIndex.php" class="simple-text">
                         CS
                     </a>
                 </div>
                 <div class="sidebar-wrapper">
                     <div class="user">
                         <div class="photo">
-                            <img src="uploads/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
+                            <img src="uploads/host/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
                         </div>
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
@@ -164,13 +164,10 @@ if ($_SESSION['eingeloggt'] == false) {
                             <div class="collapse" id="collapseExample">
                                 <ul class="nav">
                                     <li>
-                                        <a href="#">My Profile</a>
+                                        <a href="hostPersonalData.php">Edit Profile</a>
                                     </li>
                                     <li>
-                                        <a href="#">Edit Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Settings</a>
+                                        <a href="loginsec/logout.php">Log Out</a>
                                     </li>
                                 </ul>
                             </div>
@@ -180,14 +177,14 @@ if ($_SESSION['eingeloggt'] == false) {
                         <li>
                             <a href="./hostAllCompetitions.php">
                                 <i class="material-icons">public</i>
-                                <p>All Competitions</p>
+                                <p>ALL COMPETITIONS</p>
                             </a>
                         </li>
                         <li class="active">
 
                             <a  href="./hostCompetitions.php">
                                 <i class="material-icons">dashboard</i>
-                                <p>My Competitions
+                                <p>MY COMPETITIONS
                                 </p>
                             </a>
                         </li>
@@ -212,7 +209,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"> Athletes & Teams </a>
+                            <a class="navbar-brand" href="#"> ATHLETES & TEAMS </a>
                         </div>
 
                     </div>
@@ -228,7 +225,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                     <div class="card-header card-header-tabs" data-background-color="oxfordblue" >
                                         <div class="nav-tabs-navigation">
                                             <div class="nav-tabs-wrapper">
-                                                <span class="nav-tabs-title"><b>Divisions </b></span>
+                                                <span class="nav-tabs-title"><b>DIVISIONS </b></span>
                                                 <ul class="nav nav-tabs" data-tabs="tabs" >
                                                     <?php
                                                     $sql_div = "select div_ID, div_name, div_is_team from tbl_division where fk_comp_id = ?";
@@ -292,9 +289,9 @@ if ($_SESSION['eingeloggt'] == false) {
 
                                                         <?php
                                                         if ($divIsTeam) {
-                                                            $tblHeader1 = "Team Name";
-                                                            $tblHeader2 = "Team Affiliate";
-                                                            $tblHeader3 = "Team Members";
+                                                            $tblHeader1 = "TEAM NAME";
+                                                            $tblHeader2 = "TEAM AFFILIATE";
+                                                            $tblHeader3 = "TEAM MEMBERS";
                                                             ?>
                                                             <!--<form name="newTeam" action = "newTeam.php" method="POST" role="form">
                                                                 <div style="display:none;">
@@ -308,8 +305,8 @@ if ($_SESSION['eingeloggt'] == false) {
                                                             <?php
                                                         } else {
 
-                                                            $tblHeader1 = "Athlete Name";
-                                                            $tblHeader2 = "Athlete Affiliate";
+                                                            $tblHeader1 = "ATHLETE NAME";
+                                                            $tblHeader2 = "ATHLETE AFFILIATE";
                                                             $tblHeader3 = "";
                                                             ?>
                                                             <form name="newAthlete" action = "newAthlete.php" method="POST" role="form">
@@ -410,7 +407,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                                                                                 <i class="material-icons">edit</i>
                                                                                             </button>-->
                                                                                             <button type="button" onclick = "deleteTeam(<?php echo $teamID ?>);" rel="tooltip" class="btn btn-round btn-danger">
-                                                                                                <i class="material-icons">close</i>
+                                                                                                <i class="material-icons">delete</i>
                                                                                             </button>
                                                                                         </form>
 
@@ -491,6 +488,19 @@ if ($_SESSION['eingeloggt'] == false) {
 
                     </div>
                 </div>
+                
+                <footer class="footer">
+                    <div class="container-fluid">
+
+                        <p class="copyright pull-right">
+                            &copy;
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>
+                            <a>champscore</a>
+                        </p>
+                    </div>
+                </footer>
             </div>
         </div>
 
@@ -500,12 +510,12 @@ if ($_SESSION['eingeloggt'] == false) {
 
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Athlete info</h4>
+                        <h4 class="modal-title">ATHLETE INFORMATION</h4>
                     </div>
 
                     <div class="modal-body">
 
-                    
+                   
 
                     </div>
 

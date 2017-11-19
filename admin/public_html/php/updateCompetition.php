@@ -29,15 +29,16 @@ $compMainColor = $_POST['compMainColor'];
 $compAccentColor = $_POST['compAccentColor'];
 $compLocation = $_POST['compLocation'];
 $compFacebookLink = $_POST['compFacebookLink'];
+$compInstagramLink = $_POST['compInstagramLink'];
 $compSponsors = $_POST['compSponsors'];
 
-$sql = "UPDATE tbl_competition SET comp_name = ?, comp_desc_short =?, comp_desc_long = ?, comp_regcode = ? , comp_location_name = ?,  comp_facebook_link = ?, comp_start_date = ? , comp_start_time = ?, "
-        . "comp_end_date = ?, comp_end_time = ?, comp_street = ?, comp_zip = ?, comp_city = ?, comp_country = ? , comp_main_color = ?, comp_accent_color = ?, comp_sponsors = ?"
-        . "WHERE comp_id = ?";
+$sql = "UPDATE tbl_competition SET comp_name = ?, comp_desc_short =?, comp_desc_long = ?, comp_regcode = ? , comp_location_name = ?,  comp_facebook_link = ?, comp_instagram_link = ?, comp_start_date = ? , comp_start_time = ?, "
+        . "comp_end_date = ?, comp_end_time = ?, comp_street = ?, comp_zip = ?, comp_city = ?, comp_country = ? , comp_main_color = ?, comp_accent_color = ?, comp_sponsors = ?";
 
 
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $q = $pdo->prepare($sql);
+$q->execute(array($compName, $compDescShort, $compDescLong, $regCode, $compLocation, $compFacebookLink, $compInstagramLink, $compStartDate, $compStartTime, $compEndDate, $compEndTime, $compStreet, $compZip, $compCity, $compCountry, $compMainColor, $compAccentColor, $compID));
 $q->execute(array($compName, $compDescShort, $compDescLong, $regCode, $compLocation, $compFacebookLink, $compStartDate, $compStartTime, $compEndDate, $compEndTime, $compStreet, $compZip, $compCity, $compCountry, $compMainColor, $compAccentColor, $compSponsors, $compID));
 
 //save competition logo
@@ -78,7 +79,7 @@ if ($uploadOk == 0) {
 } else {
 
     $temp = explode(".", $_FILES["compLogo"]["name"]);
-    $newfilename = $compID . '.jpg';// . end($temp);
+    $newfilename = $compID . '.jpg'; // . end($temp);
 
     if (move_uploaded_file($_FILES["compLogo"]["tmp_name"], "uploads/host/complogo/" . $newfilename /* $target_file */)) {
         echo "The file " . basename($_FILES["compLogo"]["name"]) . " has been uploaded.";
@@ -132,7 +133,7 @@ if ($uploadOk == 0) {
 } else {
 
     $temp = explode(".", $_FILES["compBanner"]["name"]);
-    $newfilename = $compID . '.jpg';// . end($temp);
+    $newfilename = $compID . '.jpg'; // . end($temp);
     echo $newfilename;
     if (move_uploaded_file($_FILES["compBanner"]["tmp_name"], "uploads/host/compbanner/" . $newfilename /* $target_file */)) {
         echo "The file " . basename($_FILES["compBanner"]["name"]) . " has been uploaded.";

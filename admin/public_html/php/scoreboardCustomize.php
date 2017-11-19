@@ -186,6 +186,9 @@ session_start();
     </head>
 
     <body class=".bodyBgColor" style="background-color: <?php echo "#" . $desBgColor ?>" >
+    <?php
+    $compID = $_GET['comp_id'];
+    ?>
 
         <div class="wrapper">
             <div class="sidebar" data-active-color="rose" data-background-color="black" data-image="img/sidebar-1.jpg">

@@ -54,7 +54,7 @@ if (isset($_POST['email']) AND ( $_POST['email'] != '')) {
     $mail->isHTML(true);                                  // Set email format to HTML
     $mail->AddEmbeddedImage('../img/text_dark.png', 'cs');
     $mail->Subject = 'New Password for Athlete Account';
-    $mail->Body = 'Hello ' . $athleteFirstname . '<br><br> This is your new Password for your Athlete Login: <br><b>' . $passwort . '</b><br><br><br>Best Wishes<br><br><a href = "http://www.champscore.ch/"><img src="cid:cs" alt="www.champscore.ch" height="30" /></a><br>';
+    $mail->Body = 'Hello ' . $athleteFirstname . '<br><br> This is your new Password for your Athlete Login: <br><b>' . $passwort . '</b><br><br><br>Best Wishes<br><br><a href = "http://www.champscore.ch/"><img src="cid:cs" alt="www.champscore.ch" height="30" style="padding-left: 20px; padding-right: 20px; width: 100%" /></a><br>';
 
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 

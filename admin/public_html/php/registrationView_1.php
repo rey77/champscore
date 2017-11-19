@@ -241,6 +241,9 @@ $compID = $_GET['comp_id'];
     </head>
 
     <body class="login-page">
+    <?php
+    $compID = $_GET['comp_id'];
+    ?>
         <nav class="navbar navbar-transparent navbar-absolute" id="sectionsNav">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->

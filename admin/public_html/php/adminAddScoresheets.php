@@ -6,23 +6,6 @@ if ($_SESSION['eingeloggt'] == false) {
     header("Location: public_html/index.php");
     exit();
 }
-
-$evtID = $_POST['evtID'];
-$compID = $_POST['compID'];
-
-include 'Database.php';
-$pdo = Database::connect();
-
-$sql = "select evt_ID, evt_name from tbl_event where evt_id = ?";
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$q = $pdo->prepare($sql);
-$q->execute(array($evtID));
-
-while ($zeile = $q->fetch(/* PDO::FETCH_ASSOC */)) {
-    $evtName = $zeile['evt_name'];
-}
-
-Database::disconnect();
 ?>
 <html lang="en">
 
@@ -32,7 +15,7 @@ Database::disconnect();
         <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png" />
         <link rel="icon" type="image/png" href="img/favicon-16x16.png" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-        <title>Material Dashboard Pro by Creative Tim</title>
+        <title>Add Scoresheets</title>
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
         <!-- Bootstrap core CSS     -->
@@ -45,12 +28,43 @@ Database::disconnect();
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
 
+
+        
     </head>
 
     <body>
 
+        <?php
+        $compID = $_GET['comp_ID'];
+
+        include 'Database.php';
+        $pdo = Database::connect();
+
+        $sql_comp = "select comp_ID, comp_name, comp_scoresheets from tbl_competition where comp_id = ?";
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $q_comp = $pdo->prepare($sql_comp);
+        $q_comp->execute(array($compID));
+
+
+        while ($zeile = $q_comp->fetch(/* PDO::FETCH_ASSOC */)) {
+
+            $compID = $zeile['comp_ID'];
+            $compName = $zeile['comp_name'];
+            $compScoresheets = $zeile['comp_scoresheets'];
+                    
+        }
+        
+        if ($compScoresheets != 0) {
+            $scoresheetssrc = "uploads/host/scoresheets/$compScoresheets";
+        } else {
+            $scoresheetssrc = "img/image_placeholder.jpg";
+        }
+
+        
+        ?>
 
         <div class="wrapper">
+
             <div class="sidebar" data-active-color="darkred" data-background-color="black" data-image="img/sidebar-1.jpg">
                 <!--
             Tip 1: You can change the color of active element of the sidebar using: data-active-color="purple | blue | green | orange | red | rose"
@@ -62,7 +76,7 @@ Database::disconnect();
                         <p><!--<img style=" margin-left: -20px; height: 70px;" class="logo" src="../img/Logo.png" alt=""/>-->
                             <img style="  height: 20px;" src="img/text.png" alt=""/></p>
                     </a>
-                    
+
                 </div>
                 <div class="logo logo-mini">
                     <a href="hostIndex.php" class="simple-text">
@@ -71,42 +85,30 @@ Database::disconnect();
                 </div>
                 <div class="sidebar-wrapper">
                     <div class="user">
-                        <div class="photo">
-                            <img src="uploads/profile/<?php echo $_SESSION['host_id'] . ".jpg" ?>">
-                        </div>
+                        
                         <div class="info">
                             <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                                <?php echo $_SESSION['hostName']; ?>
+                                <?php echo $_SESSION['admin_email']; ?>
                                 <b class="caret"></b>
                             </a>
                             <div class="collapse" id="collapseExample">
                                 <ul class="nav">
+                                    
                                     <li>
-                                        <a href="#">My Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Edit Profile</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Settings</a>
+                                        <a href="loginsec/logout.php">Log out</a>
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <ul class="nav">
-                        <li>
-                            <a href="./hostAllCompetitions.php">
-                                <i class="material-icons">public</i>
-                                <p>All Competitions</p>
-                            </a>
-                        </li>
+                       
                         <li  class="active">
-                            
-                            <a href="./hostCompetitions.php">
+
+                            <a href="./adminIndex.php">
                                 <i class="material-icons">dashboard</i>
-                               <p>My Competitions</p>
-                            
+                                <p>COMPETITIONS</p>
+
                             </a>
                         </li>
 
@@ -130,129 +132,71 @@ Database::disconnect();
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="#"> Division </a>
+                            <a class="navbar-brand" href="#"> ADD SCORESHEETS </a>
                         </div>
-                        <div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">dashboard</i>
-                                        <p class="hidden-lg hidden-md">Dashboard</p>
-                                    </a>
-                                </li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">notifications</i>
-                                        <span class="notification">5</span>
-                                        <p class="hidden-lg hidden-md">
-                                            Notifications
-                                            <b class="caret"></b>
-                                        </p>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="#">Mike John responded to your email</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">You have 5 new tasks</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">You're now friend with Andrew</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Another Notification</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Another One</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">person</i>
-                                        <p class="hidden-lg hidden-md">Profile</p>
-                                    </a>
-                                </li>
-                                <li class="separator hidden-lg hidden-md"></li>
-                            </ul>
-                            <form class="navbar-form navbar-right" role="search">
-                                <div class="form-group form-search is-empty">
-                                    <input type="text" class="form-control" placeholder="Search">
-                                    <span class="material-input"></span>
-                                </div>
-                                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                    <i class="material-icons">search</i>
-                                    <div class="ripple-container"></div>
-                                </button>
-                            </form>
-                        </div>
+
                     </div>
                 </nav>
                 <div class="content">
                     <div class="container-fluid">
 
 
+
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header card-header-text" data-background-color="oxfordblue">
-                                    <h4 class="card-title">Edit Event</h4>
+                                    <h4 class="card-title"><?php echo $compName ?></h4>
 
                                 </div>
                                 <div class="card-content">
 
-                                    <form name ="eventData" role="form" action="updateEvt.php" method="POST" >
-                                        
-                                        <input type="hidden" name="evtID" value="<?php echo $evtID ?>" class="form-control" >
+                                    <form name ="compData" role="form" action="updateScoresheets.php" method="POST" enctype="multipart/form-data">
+                                        <div class="row">
+                                            
+                                              <input type="hidden" name="compID" class="form-control" value="<?php echo $compID ?>" >
+  
+                                        <h3>SCORESHEETS <i class="material-icons">assignment</i></h3>
 
-                                                <input type="hidden" name="compID" value="<?php echo $compID ?>" class="form-control" >
-                                              
-                                            <div class="form-group label-floating">
-                                                <label class="control-label">Event Name</label>
-                                                <input type="text" name="evtName"  class="form-control" value="<?php echo $evtName ?>" required>
-                                                <!--<p class="help-block">Example block-level help text here.</p>-->
+                                        <div class="col-lg-12" align="center">
+
+                                            <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+
+                                                <div class="fileinput-new ">
+                                                    <iframe src="<?php echo $scoresheetssrc ?>" width="400" height="500"></iframe>
+                                                </div>
+                                                <div class="fileinput-preview fileinput-exists"></div>
+                                                <div>
+                                                    <span class="btn btn-pinterest btn-round btn-file">
+                                                        <span class="fileinput-new">Select PDF File</span>
+                                                        <span class="fileinput-exists">Change</span>
+                                                        <input type="file" accept="application/pdf" name="compScoresheets" id="compScoresheets" value="<?php echo $scoresheetssrc ?>" />
+                                                    </span>
+                                                    <a href="#pablo" class="btn btn-pinterest btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                                                </div>
                                             </div>
+                                        </div>
 
-                                        
-                                            <button type="submit" class="pull-right btn btn-pinterest">Save</button>
-                                        
-                                    </form></div>
+                                        <button type="submit" class="btn pull-right btn-fill btn-pinterest">Save</button>
+
+                                    </form>
+
+                                
                             </div>
                         </div>
 
                     </div>
                 </div>
+
+
                 <footer class="footer">
                     <div class="container-fluid">
-                        <nav class="pull-left">
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                        Home
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Company
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Portfolio
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Blog
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+
                         <p class="copyright pull-right">
                             &copy;
                             <script>
                                 document.write(new Date().getFullYear())
                             </script>
-                            <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+                            <a>champscore</a>
                         </p>
                     </div>
                 </footer>
@@ -300,4 +244,39 @@ Database::disconnect();
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="js/demo.js"></script>
 
+    <script src="js/colorpicker/jscolor.js"></script>
+
+    <script type="text/javascript">
+
+
+                                $(document).ready(function () {
+                                    var slider = document.getElementById('sliderRegular');
+
+                                    noUiSlider.create(slider, {
+                                        start: 40,
+                                        connect: [true, false],
+                                        range: {
+                                            min: 0,
+                                            max: 100
+                                        }
+                                    });
+
+                                    var slider2 = document.getElementById('sliderDouble');
+
+                                    noUiSlider.create(slider2, {
+                                        start: [20, 60],
+                                        connect: true,
+                                        range: {
+                                            min: 0,
+                                            max: 100
+                                        }
+                                    });
+
+
+
+                                    materialKit.initFormExtendedDatetimepickers();
+
+                                    $('#cp2').colorpicker();
+                                });
+    </script>
 </html>

@@ -94,13 +94,24 @@ session_start();
         <!-- CSS Files -->
         <link href="css/bootstrap.min.css" rel="stylesheet" />
         <link href="css/material-kit.css?v=1.1.0" rel="stylesheet"/>
+        <style type="text/css">
+            @media (max-width: 499px) {
+                .profile-tabs .nav li a {
+                    font-size: 10px;
+                }
 
-
-
-
+                .profile-tabs .nav li a i {
+                    padding: 1px 8px;
+                    font-size: 20px;
+                }
+            }
+        </style>
     </head>
 
     <body class="profile-page">
+        <?php
+            $compID = $_GET['comp_id'];
+        ?>
         <nav class="navbar navbar-transparent navbar-absolute">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -252,7 +263,7 @@ session_start();
                 <div class="container">
 
                     <div class="row">
-                        <div class="col-xs-6 col-xs-offset-3">
+                        <div class="col-xs-12 col-xs-offset-0">
                             <div class="profile">
                                 <div class="avatar">
                                     <img src="<?php echo $logosrc ?>" alt="Circle Image" style="border: solid; border-color: <?php echo "#" . $compAccentColor ?>" class="img-rounded img-responsive img-raised">
@@ -377,7 +388,12 @@ session_start();
                                     <hr />
                                     <h4 style="color:<?php echo $compMainColor?>" class="title">Sponsors</h4>
                                     <ul class="list-unstyled">
-                                        <p><?php echo $compSponsors; ?></p>
+                                        <?php
+                                            $sponsors = explode(',', $compSponsors);
+                                            foreach ($sponsors as $sponsor) {
+                                                echo '<li>' . trim($sponsor) . '</li>';
+                                            }
+                                        ?>
                                     </ul><br>
 
                 <!-- <p class="description">Vogttraining Equipment</p>-->
@@ -557,10 +573,10 @@ session_start();
 
 
                                                     <?php
-                                                    $sql_wod_colspan = "select * from tbl_wod where fk_div_id = ?";
+                                                    $sql_wod_colspan = "select * from tbl_wod where fk_div_id = ? and wod_is_published =?";
                                                     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                                                     $q_wod_colspan = $pdo->prepare($sql_wod_colspan);
-                                                    $q_wod_colspan->execute(array($valueDiv));
+                                                    $q_wod_colspan->execute(array($valueDiv,TRUE));
 
                                                     if ($q_wod_colspan->rowCount() == 0) {
 
