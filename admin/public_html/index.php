@@ -46,10 +46,11 @@
     <body class="blog-post">
         <?php include_once("./php/analyticstracking.php") ?>
         <div class="cd-section" id="headers">
-            <div class="header-2">
+
+<div class="header-2">
                 <nav class="navbar navbar-transparent navbar-absolute">
                     <div class="container">
-                        <!-- Brand and toggle get grouped for better mobile display -->
+
                         <div class="navbar-header">
                             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
                                 <span class="sr-only">Toggle navigation</span>
@@ -57,12 +58,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-                            <a class="navbar-brand" href="index.php">
-                                <p>
-                                    <img class="logo" src="img/Logo.png" alt=""/>
-                                    <img class="logo-title" src="img/text.png" alt=""/>
-                                </p>
-                            </a>
+                            <a class="navbar-brand" href="index.php"><p><img style="width: 2em;" class="logo" src="img/Logo.png" alt=""/><img style=" padding-left: .5em; width: 9em;" class="logo" src="img/text.png" alt=""/></p></a>
                         </div>
 
                         <div class="collapse navbar-collapse">
@@ -72,7 +68,7 @@
 
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">person</i> Athlete
+                                        <i class="material-icons">person</i> ATHLETE
                                         <b class="caret"></b>
                                     </a>
                                     <ul class="dropdown-menu dropdown-with-icons">
@@ -91,7 +87,7 @@
                                 </li>
                                 <li class="dropdown">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <i class="material-icons">person_outline</i> Host
+                                        <i class="material-icons">person_outline</i> HOST
                                         <b class="caret"></b>
                                     </a>
                                     <ul class="dropdown-menu dropdown-with-icons">
@@ -108,27 +104,6 @@
 
                                     </ul>
                                 </li>
-
-                                <!--<li>
-                                    <a href="https://twitter.com/CreativeTim">
-                                        <i class="fa fa-twitter"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.facebook.com/CreativeTim">
-                                        <i class="fa fa-facebook-square"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="https://www.instagram.com/CreativeTimOfficial">
-                                        <i class="fa fa-instagram"></i>
-                                    </a>
-                                </li>-->
-                                <!-- <li class="button-container">
-                                     <a href="php/login.php"  class="btn btn-pinterest ">
-                                         Login
-                                     </a>
-                                 </li>-->
                             </ul>
                         </div>
                     </div>
@@ -136,12 +111,7 @@
 
                 <div class="page-header header-filter" style="background-image: url('img/header.jpg');">
                     <div class="container">
-
-                        <!--<div class="col-md-8 col-md-offset-2 text-center">
-                            <h1 class="title"> Your Favorite Competition Management Tool</h1>
-                            <h4>You will have an unique competition experience using champscore</h4>
-                        </div>-->
-                        <div class="col-lg-6 col-md-6 col-md-offset-0 text-center">
+                        <div class="col-lg-6 col-md-6 col-md-offset-0 col-sm-12 col-xs-12  text-center">
 
                             <h1 class="title">ATHLETE</h1>
 
@@ -152,7 +122,7 @@
 
                         </div>
 
-                        <div class="col-lg-6 col-md-6 col-md-offset-0 text-center">
+                        <div class="col-lg-6 col-md-6 col-md-offset-0 col-sm-12 col-xs-12  text-center">
                             <h1 class="title">HOST</h1>
 
                             <a class="btn btn-pinterest" href="php/hostLogin.php">Login</a>

@@ -191,21 +191,21 @@ Database::disconnect();
                                 <p>CUSTOMIZE YOUR COMPETITIONS. YOU CAN ADD NEW COMPETITIONS AND EDIT EXISTING ONES</p>
 
 
-                                <div class ="dropdown">
+                               <!-- <div class ="dropdown">
                                     <button class = "btn btn-pinterest dropdown-toggle" type = "button" data-toggle = "dropdown">NEW COMPETITION
                                         <span class = "caret"></span></button>
 
                                     <ul class = "dropdown-menu">
                                         <li><a href = "newCompetition.php">New</a></li>
                                     </ul>
-                                </div>
+                                </div>-->
 
-                                <!--<form method="POST" action='newCompetition.php'>
+                                <form method="POST" action='newCompetition.php'>
 
                                     <button type ="submit" class="btn btn-pinterest" data-toggle="tooltip" data-placement="right" title="Create Competition" >New Competition</button>
 
 
-                                </form>-->
+                                </form>
 
 
                             </div>

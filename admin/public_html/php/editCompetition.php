@@ -300,14 +300,15 @@ if ($_SESSION['eingeloggt'] == false) {
 
 
                         <div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header card-header-text" data-background-color="oxfordblue">
-                                    <h4 class="card-title"><?php echo $compName ?></h4>
+                            <form name ="compData" role="form" action="updateCompetition.php" method="POST" enctype="multipart/form-data">
 
-                                </div>
-                                <div class="card-content">
+                                <div class="card">
+                                    <div class="card-header card-header-text" data-background-color="oxfordblue">
+                                        <h4 class="card-title"><?php echo $compName ?></h4>
 
-                                    <form name ="compData" role="form" action="updateCompetition.php" method="POST" enctype="multipart/form-data">
+                                    </div>
+                                    <div class="card-content">
+
                                         <div class="row">
                                             <div class="col-lg-6" align="center">
                                                 <h3>COMPETITION LOGO <i class="material-icons">image</i></h3>
@@ -354,25 +355,56 @@ if ($_SESSION['eingeloggt'] == false) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <hr>
+                                    </div></div>
+                                <div class="card">
+
+                                    <div class="card-content">
                                         <h3>COMPETITION TYPE <i class="material-icons">view_compact</i></h3>
                                         <div class="row">
-                                            <div class="col-lg-4">
+                                            <div class="col-lg-12">
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="compType" checked="true" value="live"> Live Competition
+                                                        <input type="radio" name="compType" checked="true" value="Live"> LIVE COMPETITION (WEEKEND COMPETITION) - $ 7% PER REGISTRATION
                                                     </label>
                                                 </div>
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="compType" value="qualifier"> Qualifier
+                                                        <input type="radio" name="compType" value="Qualifier+Live"> QUALIFIER + LIVE COMPETITION PACKAGE - $ 6% PER REGISTRATION
                                                     </label>
                                                 </div>
-                                            </div>
+                                                <br>
+
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="optionsCheckboxes"> COMPLETE SETUP SERVICE (+$109)
+                                                    </label>
+                                                    <p class="text-muted">
+                                                        We will set up your Competition for you. Just send all Information to this Email Adress: <a>info@champscore.ch</a></p>
+                                                </div>
+                                                <br>
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="optionsCheckboxes"> SCORE SHEETS (+$79)
+                                                    </label>
+                                                    <p class="text-muted">
+                                                        We need at least 2 Weeks to create all Score Sheets </p>
+                                                </div>
+
+                                                <br>
+                                                <h4><b>TOTAL:</b></h4>
+                                                <div id="totalPrice">
+                                                </div>
 
 
-                                        </div>
-                                        <hr>
+                                            </div></div>
+
+
+                                    </div>
+
+                                </div>
+                                <div class="card">
+
+                                    <div class="card-content">
                                         <h3>GENERAL <i class="material-icons">reorder</i></h3>
                                         <div class="row">
 
@@ -405,8 +437,11 @@ if ($_SESSION['eingeloggt'] == false) {
                                                                                                 <!--<p class="help-block">Example block-level help text here.</p>-->
                                                 </div>
                                             </div>
-                                        </div>
-                                        <hr>
+                                        </div></div>
+                                </div>
+                                <div class="card">
+
+                                    <div class="card-content">
                                         <h3>WHEN <i class="material-icons">watch_later</i></h3>
 
                                         <div class="row">
@@ -435,7 +470,7 @@ if ($_SESSION['eingeloggt'] == false) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <hr>
+
                                         <h3>WHERE <i class="material-icons">location_on</i></h3>
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -471,7 +506,12 @@ if ($_SESSION['eingeloggt'] == false) {
                                             </div>
 
                                         </div>
-                                        <hr>
+                                    </div>
+
+                                </div>
+                                <div class="card">
+
+                                    <div class="card-content">
                                         <h3>SOCIAL MEDIA <i class="material-icons">share</i></h3>
                                         <div class="row">
                                             <div class="col-lg-6">
@@ -487,8 +527,13 @@ if ($_SESSION['eingeloggt'] == false) {
                                                 </div>
                                             </div>
                                         </div>
-                                        <hr>
-                                        <h3>COLORS <i class="material-icons">invert_colors</i></h3>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+
+                                    <div class="card-content">
+                                        <h3>THEME COLORS <i class="material-icons">invert_colors</i></h3>
                                         <div class="row">
                                             <div class="col-lg-6">
                                                 <div class="form-group label-floating">
@@ -521,7 +566,11 @@ if ($_SESSION['eingeloggt'] == false) {
                                             </div>
 
                                         </div>
-                                        <hr>
+                                    </div>
+                                </div>
+                                <div class="card">
+
+                                    <div class="card-content">
                                         <h3>TERMS AND CONDITIONS <i class="material-icons">assignment</i></h3>
 
                                         <div class="col-lg-12" align="center">
@@ -542,108 +591,110 @@ if ($_SESSION['eingeloggt'] == false) {
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <button type="submit" class="btn pull-right btn-fill btn-pinterest">Save</button>
-
-                                    </form>
-
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
 
+                                <button type="submit" class="btn pull-right btn-fill btn-pinterest">Save</button>
+
+                            </form>
+
+                        </div>
                     </div>
                 </div>
 
-
-                <footer class="footer">
-                    <div class="container-fluid">
-
-                        <p class="copyright pull-right">
-                            &copy;
-                            <script>
-                                document.write(new Date().getFullYear())
-                            </script>
-                            <a>champscore</a>
-                        </p>
-                    </div>
-                </footer>
             </div>
         </div>
-    </body>
-    <!--   Core JS Files   -->
-    <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
-    <script src="js/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="js/material.min.js" type="text/javascript"></script>
-    <script src="js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
-    <!-- Forms Validations Plugin -->
-    <script src="js/jquery.validate.min.js"></script>
-    <!--  Plugin for Date Time Picker and Full Calendar Plugin-->
-    <script src="js/moment.min.js"></script>
-    <!--  Charts Plugin -->
-    <script src="js/chartist.min.js"></script>
-    <!--  Plugin for the Wizard -->
-    <script src="js/jquery.bootstrap-wizard.js"></script>
-    <!--  Notifications Plugin    -->
-    <script src="js/bootstrap-notify.js"></script>
-    <!-- DateTimePicker Plugin -->
-    <script src="js/bootstrap-datetimepicker.js"></script>
-    <!-- Vector Map plugin -->
-    <script src="js/jquery-jvectormap.js"></script>
-    <!-- Sliders Plugin -->
-    <script src="js/nouislider.min.js"></script>
-    <!--  Google Maps Plugin    -->
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
-    <!-- Select Plugin -->
-    <script src="js/jquery.select-bootstrap.js"></script>
-    <!--  DataTables.net Plugin    -->
-    <script src="js/jquery.datatables.js"></script>
-    <!-- Sweet Alert 2 plugin -->
-    <script src="js/sweetalert2.js"></script>
-    <!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
-    <script src="js/jasny-bootstrap.min.js"></script>
-    <!--  Full Calendar Plugin    -->
-    <script src="js/fullcalendar.min.js"></script>
-    <!-- TagsInput Plugin -->
-    <script src="js/jquery.tagsinput.js"></script>
-    <!-- Material Dashboard javascript methods -->
-    <script src="js/material-dashboard.js"></script>
-    <!-- Material Dashboard DEMO methods, don't include it in your project! -->
-    <script src="js/demo.js"></script>
-
-    <script src="js/colorpicker/jscolor.js"></script>
-
-    <script type="text/javascript">
 
 
-                                $(document).ready(function () {
-                                    var slider = document.getElementById('sliderRegular');
+        <footer class="footer">
+            <div class="container-fluid">
 
-                                    noUiSlider.create(slider, {
-                                        start: 40,
-                                        connect: [true, false],
-                                        range: {
-                                            min: 0,
-                                            max: 100
-                                        }
-                                    });
+                <p class="copyright pull-right">
+                    &copy;
+                    <script>
+                        document.write(new Date().getFullYear())
+                    </script>
+                    <a>champscore</a>
+                </p>
+            </div>
+        </footer>
+    </div>
+</div>
+</body>
+<!--   Core JS Files   -->
+<script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
+<script src="js/jquery-ui.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script src="js/material.min.js" type="text/javascript"></script>
+<script src="js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+<!-- Forms Validations Plugin -->
+<script src="js/jquery.validate.min.js"></script>
+<!--  Plugin for Date Time Picker and Full Calendar Plugin-->
+<script src="js/moment.min.js"></script>
+<!--  Charts Plugin -->
+<script src="js/chartist.min.js"></script>
+<!--  Plugin for the Wizard -->
+<script src="js/jquery.bootstrap-wizard.js"></script>
+<!--  Notifications Plugin    -->
+<script src="js/bootstrap-notify.js"></script>
+<!-- DateTimePicker Plugin -->
+<script src="js/bootstrap-datetimepicker.js"></script>
+<!-- Vector Map plugin -->
+<script src="js/jquery-jvectormap.js"></script>
+<!-- Sliders Plugin -->
+<script src="js/nouislider.min.js"></script>
+<!--  Google Maps Plugin    -->
+<script src="https://maps.googleapis.com/maps/api/js"></script>
+<!-- Select Plugin -->
+<script src="js/jquery.select-bootstrap.js"></script>
+<!--  DataTables.net Plugin    -->
+<script src="js/jquery.datatables.js"></script>
+<!-- Sweet Alert 2 plugin -->
+<script src="js/sweetalert2.js"></script>
+<!--	Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+<script src="js/jasny-bootstrap.min.js"></script>
+<!--  Full Calendar Plugin    -->
+<script src="js/fullcalendar.min.js"></script>
+<!-- TagsInput Plugin -->
+<script src="js/jquery.tagsinput.js"></script>
+<!-- Material Dashboard javascript methods -->
+<script src="js/material-dashboard.js"></script>
+<!-- Material Dashboard DEMO methods, don't include it in your project! -->
+<script src="js/demo.js"></script>
 
-                                    var slider2 = document.getElementById('sliderDouble');
+<script src="js/colorpicker/jscolor.js"></script>
 
-                                    noUiSlider.create(slider2, {
-                                        start: [20, 60],
-                                        connect: true,
-                                        range: {
-                                            min: 0,
-                                            max: 100
-                                        }
-                                    });
+<script type="text/javascript">
 
 
+                        $(document).ready(function () {
+                            var slider = document.getElementById('sliderRegular');
 
-                                    materialKit.initFormExtendedDatetimepickers();
+                            noUiSlider.create(slider, {
+                                start: 40,
+                                connect: [true, false],
+                                range: {
+                                    min: 0,
+                                    max: 100
+                                }
+                            });
 
-                                    $('#cp2').colorpicker();
-                                });
-    </script>
+                            var slider2 = document.getElementById('sliderDouble');
+
+                            noUiSlider.create(slider2, {
+                                start: [20, 60],
+                                connect: true,
+                                range: {
+                                    min: 0,
+                                    max: 100
+                                }
+                            });
+
+
+
+                            materialKit.initFormExtendedDatetimepickers();
+
+                            $('#cp2').colorpicker();
+                        });
+</script>
 </html>

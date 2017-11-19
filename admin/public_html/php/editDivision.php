@@ -13,7 +13,7 @@ $divID = $_POST['divID'];
 include 'Database.php';
 $pdo = Database::connect();
 
-$sql = "select div_ID, div_name, div_is_team, div_team_size, fk_comp_ID from tbl_division where div_id = ?";
+$sql = "select div_ID, div_name, div_is_team, div_team_size, div_reg_fee, fk_comp_ID from tbl_division where div_id = ?";
 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 $q = $pdo->prepare($sql);
 $q->execute(array($divID));
@@ -24,6 +24,7 @@ while ($zeile = $q->fetch(/* PDO::FETCH_ASSOC */)) {
     $divName = $zeile['div_name'];
     $divIsTeam = $zeile['div_is_team'];
     $divTeamSize = $zeile['div_team_size'];
+     $divRegFee = $zeile['div_reg_fee'];
     $compID = $zeile['fk_comp_ID'];
 }
 
@@ -50,7 +51,7 @@ Database::disconnect();
         <!--     Fonts and icons     -->
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
-        
+
 
         <script type="text/javascript">
 
@@ -100,7 +101,7 @@ Database::disconnect();
                         <p><!--<img style=" margin-left: -20px; height: 70px;" class="logo" src="../img/Logo.png" alt=""/>-->
                             <img style="  height: 20px;" src="img/text.png" alt=""/></p>
                     </a>
-                    
+
                 </div>
                 <div class="logo logo-mini">
                     <a href="hostIndex.php" class="simple-text">
@@ -137,11 +138,11 @@ Database::disconnect();
                             </a>
                         </li>
                         <li  class="active">
-                            
+
                             <a href="./hostCompetitions.php">
                                 <i class="material-icons">dashboard</i>
-                               <p>MY COMPETITIONS</p>
-                            
+                                <p>MY COMPETITIONS</p>
+
                             </a>
                         </li>
 
@@ -167,7 +168,7 @@ Database::disconnect();
                             </button>
                             <a class="navbar-brand" href="#"> EDIT DIVISION </a>
                         </div>
-                        
+
                     </div>
                 </nav>
                 <div class="content">
@@ -183,32 +184,62 @@ Database::disconnect();
 
                                     <form name ="divisionData" role="form" action="updateDiv.php" method="POST" >
 
-                                        <div class="form-group label-floating">
-                                            <label class="control-label">Division Name</label>
-                                            <input type="text" name="divName"  class="form-control" value="<?php echo $divName ?>" required>
-                                            <!--<p class="help-block">Example block-level help text here.</p>-->
-                                        </div>
-                                        <div class="form-group" >
+                                        
+                                        <h3>GENERAL <i class="material-icons">list</i></h3>
 
-                                            <label>Team<input type="checkbox" id="divIsTeam" name="divIsTeam" value="X" class="form-control" onchange="toggleCheckbox(this)">
-                                            </label>
-                                            <!--<p class="help-block">Example block-level help text here.</p>-->
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Division Name</label>
+                                                    <input type="text" name="divName"  class="form-control" value="<?php echo $divName ?>" required>
+                                                    <!--<p class="help-block">Example block-level help text here.</p>-->
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="form-group" id="divTeamSize">
-                                            <label>Team Size</label>
-                                            <select class="form-control" style="width:100px;"  id="teamSize" name="teamSize">
-                                                <option value="1">1 </option>
-                                                <option value="2">2 </option>
-                                                <option value="3">3 </option>
-                                                <option value="4">4 </option>
-                                                <option value="5">5 </option>
-                                                <option value="6">6 </option>
-                                                <option value="7">7 </option>
-                                                <option value="8">8 </option>
+                                        <hr>
+                                        <h3>DIVISION TYPE <i class="material-icons">group</i></h3>
 
-                                            </select>
-                                                                                        <!--<p class="help-block">Example block-level help text here.</p>-->
+                                        <div class="row">
+                                            <div class="col-md-1 ">
+                                                <div class="form-group" >
+
+                                                    <label>Team<input type="checkbox" id="divIsTeam" name="divIsTeam" value="X" class="form-control" onchange="toggleCheckbox(this)">
+                                                    </label>
+                                                    <!--<p class="help-block">Example block-level help text here.</p>-->
+                                                </div>
+                                            </div>
+
+                                            <div class="col-md-3">
+                                                <div class="form-group" id="divTeamSize">
+                                                    <label>Team Size</label>
+                                                    <select class="form-control" style="width:100px;"  id="teamSize" name="teamSize">
+                                                       
+                                                        <option value="2">2 </option>
+                                                        <option value="3">3 </option>
+                                                        <option value="4">4 </option>
+                                                        <option value="5">5 </option>
+                                                        <option value="6">6 </option>
+                                                        <option value="7">7 </option>
+                                                        <option value="8">8 </option>
+
+                                                    </select>
+                                                                                                <!--<p class="help-block">Example block-level help text here.</p>-->
+                                                </div>
+                                            </div>
                                         </div>
+                                        <hr>
+                                        <h3>REGISTRATION FEE <i class="material-icons">attach_money</i></h3>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="form-group label-floating">
+                                                    <label class="control-label">Registration Fee</label>
+                                                    <input type="number" name="divRegFee" class="form-control" value="<?php echo $divRegFee ?>">
+                                                    <!--<p class="help-block">Example block-level help text here.</p>-->
+                                                </div>
+                                            </div>
+                                        </div>
+
+
                                         <div class="form-group">
 
                                             <input type="hidden" name="divID" value="<?php echo $divID ?>" class="form-control" >
