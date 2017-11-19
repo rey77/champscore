@@ -88,30 +88,42 @@ function showCompetitionsInIndex(array $competitions) {
             }
             $originalDate = $comp['comp_start_date'];
             $newDate = date("d.m.Y", strtotime($originalDate));
-            echo '<div class="col-md-6">';
-                echo '<div class="media">';
-                    echo '<a class="pull-left" href="php/competitionView.php?comp_id='.$compID.'">';
-                        echo '<div class="avatar">';
-                            echo '<img class="media-object"  src="'.$logosrc.'">';
-                        echo '</div>';
-                    echo '</a>';
-                    echo '<div class="media-body">';
+            echo '<div class="row">';
+                echo '<br><br>';
+                echo '<div class="col-lg-10 col-lg-offset-2 col-md-12  col-md-offset-1 col-sm-12 col-sm-offset-0 col-xs-12 col-xs-offset-0">';
+                    echo '<div class="media col-lg-6 col-md-6 col-sm-8 col-xs-12">';
                         echo '<a class="pull-left" href="php/competitionView.php?comp_id='.$compID.'">';
-                            echo '<h4 class="media-heading" >'.$comp['comp_name'].'</h4>';
+                            echo '<div class="avatar">';
+                                echo '<img class="media-object"  src="'.$logosrc.'">';
+                            echo '</div>';
                         echo '</a>';
-                        echo '<br><br>';
-                        echo '<p>';
-                            echo $newDate . " in " . $comp['comp_city'] . ", " . $comp['comp_country'];
-                            if ($compRegActive != 0) {
-                                echo '<a href="php/registrationView_1.php?comp_id='.$compID.'" class="btn btn-pinterest btn-single btn-sm ">Join! </a>';
-                            }
-                            else {
-                                echo '<a class="btn btn-pinterest btn-single btn-sm " disabled>Join! </a>';
-                            }
-                        echo '</p>';
+                        echo '<div class="media-body">';
+                            echo '<a class="pull-left" href="php/competitionView.php?comp_id='.$compID.'">';
+                                echo '<h4 class="media-heading" >'.$comp['comp_name'].'</h4>';
+                            echo '</a>';
+                            echo '<br><br>';
+                            echo '<p>';
+                                echo $newDate . " in " . $comp['comp_city'] . ", " . $comp['comp_country'];
+                            echo '</p>';
+                            echo '<a class="pull-left" href="php/ScoreboardView_2.php?comp_id='.$compID.'">';
+                                echo '<b>VIEW LEADERBOARD</b>';
+                            echo '</a>';
+                        echo '</div>';
+                    echo '</div>';
+                    echo '<div class="col-lg-3 col-md-3 col-sm-2 col-xs-12">';
+                        if ($compRegActive != 0) {
+                            echo '<a href="php/registrationView_1.php?comp_id='.$compID.'" class="btn btn-pinterest btn-single btn-sm ">Join!</a>';
+                        }
+                        else {
+                            echo '<a class="btn btn-pinterest btn-single btn-sm " disabled>Registration closed!</a>';
+                        }
+                    echo '</div>';
+                    echo '<div class="col-lg-3 col-md-2 col-sm-3 col-xs-12">';
+                        echo '<p>Preis</p>';
                     echo '</div>';
                 echo '</div>';
             echo '</div>';
+            echo '<hr>';
         }
     } else {
         echo '<h2 class="no-competitions">No Competitions</h2>';
