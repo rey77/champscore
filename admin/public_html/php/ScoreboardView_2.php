@@ -35,55 +35,7 @@ if ($compBanner != 0) {
     $bannersrc = "img/banner.jpg";
 }
 
-//Standardwerte
-$desBgColor = "EBEBEB";
-$desLogoFrameColor = "000000";
-$desWodBtnBgColor = "8B0000";
-$desWodBtnFontColor = "FFFFFF";
-$desWodDescColor = "000000";
-$desTableHeaderBgColor = "000000";
-$desTableHeaderFontColor = "FFFFFF";
-$desTableBodyBgColor = "FFFFFF";
-$desScoreColor = "000000";
-$desCompetitorColor = "000000";
-$desRankColor = "8B0000";
-$desTableBorderColor = "FFFFFF";
 
-$sql_des = "select design_ID,
-        design_body_bg_color,
-        design_logo_frame_color,
-        design_wod_btn_bg_color,
-        design_wod_btn_font_color,
-        design_wod_desc_color,
-        design_table_header_bg_color,
-        design_table_header_font_color,
-        design_table_body_bg_color,
-        design_score_color,
-        design_competitor_color,
-        design_rank_color,
-        design_table_border_color from tbl_design where fk_comp_id = ?";
-
-
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$q_des = $pdo->prepare($sql_des);
-$q_des->execute(array($compID));
-
-
-while ($zeile = $q_des->fetch(/* PDO::FETCH_ASSOC */)) {
-    $desID = $zeile['design_ID'];
-    $desBgColor = $zeile['design_body_bg_color'];
-    $desLogoFrameColor = $zeile['design_logo_frame_color'];
-    $desWodBtnBgColor = $zeile['design_wod_btn_bg_color'];
-    $desWodBtnFontColor = $zeile['design_wod_btn_font_color'];
-    $desWodDescColor = $zeile['design_wod_desc_color'];
-    $desTableHeaderBgColor = $zeile['design_table_header_bg_color'];
-    $desTableHeaderFontColor = $zeile['design_table_header_font_color'];
-    $desTableBodyBgColor = $zeile['design_table_body_bg_color'];
-    $desScoreColor = $zeile['design_score_color'];
-    $desCompetitorColor = $zeile['design_competitor_color'];
-    $desRankColor = $zeile['design_rank_color'];
-    $desTableBorderColor = $zeile['design_table_border_color'];
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -112,15 +64,15 @@ while ($zeile = $q_des->fetch(/* PDO::FETCH_ASSOC */)) {
 
 
 
-            function onSelectDivision(i_wodBtnFontColor, i_wodBtnBgColor, i_comp_ID)
+            function onSelectDivision(i_compMainColor, i_compAccentColor, i_comp_ID)
             {
 
 
                 var div_ID = 'div_ID=' + document.getElementById("selDiv").options[document.getElementById("selDiv").selectedIndex].value;
-                var wodBtnFontColor = '&wodBtnFontColor=' + i_wodBtnFontColor;
-                var wodBtnBgColor = '&wodBtnBgColor=' + i_wodBtnBgColor;
+                var compMainColor = '&compMainColor=' + i_compMainColor;
+                var compAccentColor = '&compAccentColor=' + i_compAccentColor;
                 var compID = '&comp_ID=' + i_comp_ID;
-                var data = div_ID + wodBtnFontColor + wodBtnBgColor + compID;
+                var data = div_ID + compMainColor + compAccentColor + compID;
 
 
                 $.ajax({
@@ -199,12 +151,7 @@ while ($zeile = $q_des->fetch(/* PDO::FETCH_ASSOC */)) {
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+                    
                     <a class="navbar-brand" href="../index.php"><p><img style="width: 2em;" class="logo" src="../img/Logo.png" alt=""/><img style=" padding-left: .5em; width: 9em;" class="logo" src="../img/text.png" alt=""/></p></a>
                 </div>
 
@@ -379,7 +326,7 @@ while ($zeile = $q_des->fetch(/* PDO::FETCH_ASSOC */)) {
 
                                     
 
-                                        <select class = "form-control" id = "selDiv" onChange="onSelectDivision('<?php echo $desWodBtnFontColor ?>', '<?php echo $desWodBtnBgColor ?>', <?php echo $compID ?>);">
+                                        <select class = "form-control" id = "selDiv" onChange="onSelectDivision('<?php echo $compMainColor ?>', '<?php echo $compAccentColor ?>', <?php echo $compID ?>);">
 
                                             <?php
                                             $sql_div = "SELECT div_name, div_ID FROM `tbl_division` where fk_comp_id = ?";

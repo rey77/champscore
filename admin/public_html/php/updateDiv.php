@@ -12,26 +12,25 @@ $divName = $_POST['divName'];
 $divID = $_POST['divID'];
 $teamSize = $_POST['teamSize'];
 $compID = $_POST['compID'];
-$divIsTeam = $_POST['divIsTeam'];
+$divRegFee = $_POST['divRegFee'];
 
 
 
 
 if (isset($_POST['divIsTeam'])) {
 
-   $sql = "UPDATE tbl_division SET div_name = ?, div_is_team = ?, div_team_size = ? WHERE div_id =?";
+    $sql = "UPDATE tbl_division SET div_name = ?, div_is_team = ?, div_team_size = ?, div_reg_fee = ? WHERE div_id =?";
 
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$q = $pdo->prepare($sql);
-$q->execute(array($divName, TRUE, $teamSize, $divID));
-
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $q = $pdo->prepare($sql);
+    $q->execute(array($divName, TRUE, $teamSize, $divRegFee, $divID));
 } else {
 
-    $sql = "UPDATE tbl_division SET div_name = ?, div_is_team = ?, div_team_size = ? WHERE div_id =?";
+    $sql = "UPDATE tbl_division SET div_name = ?, div_is_team = ?,  div_team_size = ?, div_reg_fee = ? WHERE div_id =?";
 
-$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$q = $pdo->prepare($sql);
-$q->execute(array($divName, FALSE, 0, $divID));
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $q = $pdo->prepare($sql);
+    $q->execute(array($divName, FALSE, 0, $divRegFee, $divID));
 }
 
 Database::disconnect();
