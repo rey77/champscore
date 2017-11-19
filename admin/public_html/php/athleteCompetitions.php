@@ -185,7 +185,7 @@ $q_indiv->execute(array($athleteID));
                                                         <table id="datatablessssss" class="table  table-no-bordered  table-shopping" cellspacing="0" width="100%" style="width:100%">
 
                                                             <?php
-                                                            $sql_team = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_city, comp_country, comp_active, div_is_team from tbl_competition "
+                                                            $sql_team = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_city, comp_type, comp_country, comp_active, div_is_team from tbl_competition "
                                                                     . " join tbl_division on tbl_competition.comp_ID = tbl_division.fk_comp_ID"
                                                                     . " join tbl_team_division on tbl_division.div_ID = tbl_team_division.fk_div_ID"
                                                                     . " join tbl_team on tbl_team_division.fk_team_ID = tbl_team.team_ID"
@@ -203,7 +203,7 @@ $q_indiv->execute(array($athleteID));
                                                                     <th>Name</th>
                                                                     <th>When</th>
                                                                     <th>Where</th>
-                                                                    <th>Team</th>
+
 
                                                                 </tr>
                                                             </thead>
@@ -233,14 +233,14 @@ $q_indiv->execute(array($athleteID));
                                                                     ?>
                                                                     <tr>
                                                                         <td><div class="img-container">
-                                                                                <img src="<?php echo $logosrc ?>" alt="...">
+                                                                                <img class="img-rounded img-responsive img-raised" src="<?php echo $logosrc ?>" alt="...">
                                                                             </div>
                                                                         </td>
 
                                                                         <td><a href="competitionView.php?comp_id=<?php echo $compID ?>" target="_blank"><?php echo $compName ?></a></td>
                                                                         <td><?php echo date("d.m.Y", strtotime($compStartDate)) ?></td>
                                                                         <td><?php echo $compLocation ?></td>
-                                                                        <td><i class="material-icons"><?php echo $divIsTeam ?></i></td>
+                                                                        
 
                                                                     </tr>
 
@@ -271,7 +271,7 @@ $q_indiv->execute(array($athleteID));
                                                                     <th>Name</th>
                                                                     <th>When</th>
                                                                     <th>Where</th>
-                                                                    <th>Team</th>
+
 
                                                                 </tr>
                                                             </thead>
@@ -279,14 +279,14 @@ $q_indiv->execute(array($athleteID));
                                                             <tbody>
 
                                                                 <?php
-                                                                $sql_team = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_city, comp_country, comp_active, div_is_team from tbl_competition "
+                                                                $sql_team = "select comp_ID, comp_name, comp_start_date,comp_end_date, comp_type, comp_logo, comp_city, comp_country, comp_active, div_is_team from tbl_competition "
                                                                         . " join tbl_division on tbl_competition.comp_ID = tbl_division.fk_comp_ID"
                                                                         . " join tbl_team_division on tbl_division.div_ID = tbl_team_division.fk_div_ID"
                                                                         . " join tbl_team on tbl_team_division.fk_team_ID = tbl_team.team_ID"
                                                                         . " join tbl_team_member on tbl_team.team_ID = tbl_team_member.fk_team_ID"
                                                                         . " where tbl_team_member.fk_athlete_ID =?"
-                                                                        . " and tbl_competition.comp_start_date  >= CURRENT_DATE()"
-                                                                        . " and tbl_competition.comp_end_date  <= CURRENT_DATE()";
+                                                                        . " and tbl_competition.comp_start_date  <= CURRENT_DATE()"
+                                                                        . " and tbl_competition.comp_end_date  >= CURRENT_DATE()";
 
                                                                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                                                                 $q_team = $pdo->prepare($sql_team);
@@ -296,14 +296,15 @@ $q_indiv->execute(array($athleteID));
 
                                                                     $compLocation = $zeile['comp_city'] . ", " . $zeile['comp_country'];
                                                                     $compName = $zeile['comp_name'];
-                                                                    $compStartDate = $zeile['comp_start_date'];
+                                                                    $compStartDate = date("d.m.Y", strtotime($zeile['comp_start_date']));
+                                                                    $compEndDate = date("d.m.Y", strtotime($zeile['comp_end_date']));
+                                                                    $compWhen = $compStartDate . " - " . $compEndDate;
                                                                     $compID = $zeile['comp_ID'];
 
 
 
-                                                                    if ($zeile['div_is_team']) {
-                                                                        $divIsTeam = "done";
-                                                                    }
+
+                                                                    
 
                                                                     $compLogo = $zeile['comp_logo'];
                                                                     if ($compLogo != 0) {
@@ -314,15 +315,20 @@ $q_indiv->execute(array($athleteID));
                                                                     ?>
                                                                     <tr>
                                                                         <td><div class="img-container">
-                                                                                <img src="<?php echo $logosrc ?>" alt="...">
+                                                                                <img class="img-rounded img-responsive img-raised" src="<?php echo $logosrc ?>" alt="...">
                                                                             </div>
                                                                         </td>
 
                                                                         <td><a href="competitionView.php?comp_id=<?php echo $compID ?>" target="_blank"><?php echo $compName ?></a></td>
-                                                                        <td><?php echo date("d.m.Y", strtotime($compStartDate)) ?></td>
+                                                                        <td><?php echo $compWhen ?></td>
                                                                         <td><?php echo $compLocation ?></td>
-                                                                        <td><i class="material-icons"><?php echo $divIsTeam ?></i></td>
+                                                                       
+                                                                        <?php
+                                                                        if ($zeile['comp_type'] == 2) {
 
+                                                                            echo"<td><a href=\"athleteSubmitScore.php?comp_id=$compID\">ADD SCORES</td>";
+                                                                        }
+                                                                        ?>
                                                                     </tr>
 
                                                                     <?php
@@ -352,8 +358,7 @@ $q_indiv->execute(array($athleteID));
                                                                     <th>Name</th>
                                                                     <th>When</th>
                                                                     <th>Where</th>
-                                                                    <th>Team</th>
-                                                                    <th>Rank</th>
+                                                                    <!--<th>Rank</th>-->
 
                                                                 </tr>
                                                             </thead>
@@ -361,7 +366,7 @@ $q_indiv->execute(array($athleteID));
                                                             <tbody>
 
                                                                 <?php
-                                                                $sql_team = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_city, comp_country, comp_active, div_is_team from tbl_competition "
+                                                                $sql_team = "select comp_ID, comp_name, comp_start_date, comp_logo, comp_type, comp_city, comp_country, comp_active, div_is_team from tbl_competition "
                                                                         . " join tbl_division on tbl_competition.comp_ID = tbl_division.fk_comp_ID"
                                                                         . " join tbl_team_division on tbl_division.div_ID = tbl_team_division.fk_div_ID"
                                                                         . " join tbl_team on tbl_team_division.fk_team_ID = tbl_team.team_ID"
@@ -382,9 +387,7 @@ $q_indiv->execute(array($athleteID));
 
 
 
-                                                                    if ($zeile['div_is_team']) {
-                                                                        $divIsTeam = "done";
-                                                                    }
+                                                                    
 
                                                                     $compLogo = $zeile['comp_logo'];
                                                                     if ($compLogo != 0) {
@@ -395,15 +398,15 @@ $q_indiv->execute(array($athleteID));
                                                                     ?>
                                                                     <tr>
                                                                         <td><div class="img-container">
-                                                                                <img src="<?php echo $logosrc ?>" alt="...">
+                                                                                <img class="img-rounded img-responsive img-raised"> src="<?php echo $logosrc ?>" alt="...">
                                                                             </div>
                                                                         </td>
 
                                                                         <td><a href="competitionView.php?comp_id=<?php echo $compID ?>" target="_blank"><?php echo $compName ?></a></td>
                                                                         <td><?php echo date("d.m.Y", strtotime($compStartDate)) ?></td>
                                                                         <td><?php echo $compLocation ?></td>
-                                                                        <td><i class="material-icons"><?php echo $divIsTeam ?></i></td>
-                                                                        <td></td>
+                                                                        
+                                                                        <!--<td></td>-->
                                                                     </tr>
 
                                                                     <?php

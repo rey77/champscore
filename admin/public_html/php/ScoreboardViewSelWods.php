@@ -3,8 +3,8 @@
 session_start();
 $div_ID = $_POST['div_ID'];
 $comp_ID = $_POST['comp_ID'];
-$wodBtnBgColor = $_POST['wodBtnBgColor'];
-$wodBtnFontColor = $_POST['wodBtnFontColor'];
+$compAccentColor = $_POST['compAccentColor'];
+$compMainColor = $_POST['compMainColor'];
 
 include 'Database.php';
 $pdo = Database::connect();
@@ -21,14 +21,14 @@ if ($q_evt->rowCount() > 0) {
 
     $wod_overall = 0;
 
-    echo "<button class= \"btn  btn-lg\" style=\"background-color:#$wodBtnBgColor; color:#$wodBtnFontColor;\" onclick='onSelectWod(" . $wod_overall . ',' . $div_ID . ',' . $comp_ID . ") '  value='" . $div_ID . "X" . $wod_overall . "' id='" . $wod_overall . "' ' class='btn btn-primary btn-lg'>
+    echo "<button class= \"btn  btn-lg\" style=\"background-color:#$compAccentColor; color:#$compMainColor;\" onclick='onSelectWod(" . $wod_overall . ',' . $div_ID . ',' . $comp_ID . ") '  value='" . $div_ID . "X" . $wod_overall . "' id='" . $wod_overall . "' ' class='btn btn-primary btn-lg'>
           <b>Total Score</b> </button>";
 
 
 
     while ($zeile = $q_evt->fetch(/* PDO::FETCH_ASSOC */)) {
 
-        echo "<button class= \"btn  btn-lg\" style=\"background-color:#$wodBtnBgColor; color:#$wodBtnFontColor;\" onclick='onSelectWod(" . $zeile['wod_ID'] . ',' . $div_ID . ',' . $comp_ID . ") '  value='" . $div_ID . "X" . $zeile['wod_ID'] . "' id='" . $zeile['wod_ID'] . "' ' class='btn btn-primary btn-lg'>
+        echo "<button class= \"btn  btn-lg\" style=\"background-color:#$compAccentColor; color:#$compMainColor;\" onclick='onSelectWod(" . $zeile['wod_ID'] . ',' . $div_ID . ',' . $comp_ID . ") '  value='" . $div_ID . "X" . $zeile['wod_ID'] . "' id='" . $zeile['wod_ID'] . "' ' class='btn btn-primary btn-lg'>
           <b> " . $zeile['wod_name'] . "</b> </button>";
     }
     
