@@ -47,137 +47,7 @@
         <?php include_once("./php/analyticstracking.php") ?>
         <div class="cd-section" id="headers">
 
-<div class="header-3">
-        <nav class="navbar navbar-transparent navbar-absolute">
-        	<div class="container">
-            	<!-- Brand and toggle get grouped for better mobile display -->
-            	<div class="navbar-header">
-            		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
-                		<span class="sr-only">Toggle navigation</span>
-    		            <span class="icon-bar"></span>
-    		            <span class="icon-bar"></span>
-    		            <span class="icon-bar"></span>
-            		</button>
-            		<a class="navbar-brand" href="index.php"><p><img style="width: 2em;" class="logo" src="img/Logo.png" alt=""/><img style=" padding-left: .5em; width: 9em;" class="logo" src="img/text.png" alt=""/></p></a>
-            	</div>
-
-
-        	</div>
-        </nav>
-
-		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-			<div class="carousel slide" data-ride="carousel">
-
-				<!-- Indicators -->
-				<ol class="carousel-indicators">
-					<li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-					<li data-target="#carousel-example-generic" data-slide-to="1"></li>
-					<li data-target="#carousel-example-generic" data-slide-to="2"></li>
-				</ol>
-
-				<!-- Wrapper for slides -->
-				<div class="carousel-inner">
-					<div class="item active">
-						<div class="page-header header-filter" style="background-image: url('img/header.jpg');">
-
-							<div class="container">
-								<div class="row">
-									<div class="col-md-8 col-md-offset-2 text-center">
-										<h1 class="title">COMPETING STARTS HERE</h1>
-										<h4>We focus on easy Competition management</h4>
-										<br />
-										<h6>Connect with us on:</h6>
-										<div class="buttons">
-
-											<a href="#pablo" class="btn btn-just-icon btn-white btn-simple btn-lg">
-												<i class="fa fa-facebook-square"></i>
-											</a>
-
-											<a href="#pablo" class="btn btn-just-icon btn-white btn-simple btn-lg">
-												<i class="fa fa-instagram"></i>
-											</a>
-										</div>
-									</div>
-								</div>
-							</div>
-				        </div>
-
-					</div>
-					<div class="item">
-						<div class="page-header header-filter" style="background-image: url('img/header_athl.jpg');">
-
-							<div class="container">
-								<div class="row"><div class="col-md-6 text-left">
-										<h1 class="title">ATHLETE</h1>
-										<h4>Sign up for upcoming Competitions and rock it!</h4>
-										<br />
-
-										<div class="buttons">
-											<a href="php/athleteLogin.php" class="btn btn-white btn-simple btn-lg">
-												<i class="material-icons">fingerprint</i> LOGIN
-											</a>
-											<a href="php/athleteRegister.php" class="btn btn-oxfordblue btn-lg">
-												<i class="material-icons">person_add</i> SIGN UP
-											</a>
-											<!--<a href="#pablo" class="btn btn-just-icon btn-white btn-simple btn-lg">
-												<i class="fa fa-twitter"></i>
-											</a>
-											<a href="#pablo" class="btn btn-just-icon btn-white btn-simple btn-lg">
-												<i class="fa fa-facebook-square"></i>
-											</a>
-											<a href="#pablo" class="btn btn-just-icon btn-white btn-simple btn-lg">
-												<i class="fa fa-get-pocket"></i>
-											</a>-->
-										</div>
-
-									</div></div>
-							</div>
-
-				        </div>
-
-					</div>
-
-					<div class="item">
-						<div class="page-header header-filter" style="background-image: url('img/header_host.jpg');">
-
-							<div class="container">
-								<div class="row">
-									<div class="col-md-7 col-md-offset-5 text-right">
-										<h1 class="title">COMPETITION HOST</h1>
-										<h4>Set up and Manage your Competition from start to finish.</h4>
-										<br />
-
-										<div class="buttons">
-											<a href="php/hostLogin.php" class="btn btn-white btn-simple btn-lg">
-												<i class="material-icons">fingerprint</i> LOGIN
-											</a>
-											<a href="php/hostRegister.php" class="btn btn-pinterest btn-lg">
-												<i class="material-icons">person_add</i> SIGN UP
-											</a>
-										</div>
-
-									</div>
-								</div>
-							</div>
-
-				        </div>
-
-					</div>
-
-				</div>
-
-				<!-- Controls -->
-				<a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
-					<i class="material-icons">keyboard_arrow_left</i>
-				</a>
-				<a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
-					<i class="material-icons">keyboard_arrow_right</i>
-				</a>
-			</div>
-		</div>
-
-    </div>
-            <!--<div class="header-2">
+<div class="header-2">
                 <nav class="navbar navbar-transparent navbar-absolute">
                     <div class="container">
 
@@ -193,7 +63,7 @@
 
                         <div class="collapse navbar-collapse">
 
-                            <ul class="nav navbar-nav navbar-center">
+                            <ul class="nav navbar-nav navbar-right">
 
 
                                 <li class="dropdown">
@@ -234,19 +104,6 @@
 
                                     </ul>
                                 </li>
-
-
-                                <!--<li>
-                                    <a href="https://www.facebook.com/CreativeTim">
-                                        <i class="fa fa-facebook-square"></i>
-                                    </a>
-                                </li>-->
-
-                                <!-- <li class="button-container">
-                                     <a href="php/login.php"  class="btn btn-pinterest ">
-                                         Login
-                                     </a>
-                                 </li>
                             </ul>
                         </div>
                     </div>
@@ -254,12 +111,7 @@
 
                 <div class="page-header header-filter" style="background-image: url('img/header.jpg');">
                     <div class="container">
-
-                        <!--<div class="col-md-8 col-md-offset-2 text-center">
-                            <h1 class="title"> Your Favorite Competition Management Tool</h1>
-                            <h4>You will have an unique competition experience using champscore</h4>
-                        </div>
-                        <div class="col-lg-6 col-md-6 col-md-offset-0 col-sm-12 col-xs-6  text-center">
+                        <div class="col-lg-6 col-md-6 col-md-offset-0 col-sm-12 col-xs-12  text-center">
 
                             <h1 class="title">ATHLETE</h1>
 
@@ -270,7 +122,7 @@
 
                         </div>
 
-                        <div class="col-lg-6 col-md-6 col-md-offset-0 col-sm-12 col-xs-6  text-center">
+                        <div class="col-lg-6 col-md-6 col-md-offset-0 col-sm-12 col-xs-12  text-center">
                             <h1 class="title">HOST</h1>
 
                             <a class="btn btn-pinterest" href="php/hostLogin.php">Login</a>
@@ -281,7 +133,7 @@
                         </div>
                     </div>
                 </div>
-            </div>-->
+            </div>
 
             <div class="main main-raised">
                 <div class="container">
